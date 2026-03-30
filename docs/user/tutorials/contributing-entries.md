@@ -44,7 +44,9 @@ After filling in the fields, you'll see a preview:
 ? Save this entry? (Y/n)
 ```
 
-Confirm to save. The entry is appended to `data/terms/economics.json`.
+Confirm to save. Your entry is saved to `data/terms/{your-username}.json` — 
+a file dedicated to your contributions. This avoids merge conflicts with
+other contributors.
 
 ## Adding a Sentence
 
@@ -70,6 +72,17 @@ Additional fields for paragraphs:
 - **Contains math?** — Does it include LaTeX/math notation?
 - **Contains code?** — Does it include code snippets?
 
+## Submitting Your Contributions
+
+After adding entries, push them to GitHub:
+
+```bash
+uv run qebench submit
+```
+
+This commits your data files and pushes to `main`. The dashboard updates
+automatically to reflect the new entries.
+
 ## Tips for Good Entries
 
 1. **Use real sources** — pull from QuantEcon lectures, not synthetic text
@@ -80,6 +93,15 @@ Additional fields for paragraphs:
    - **advanced**: specialized terms where translation choice matters (Bellman equation variants)
 4. **Include alternatives** — many terms have multiple valid translations
 5. **Fill the gaps** — check `qebench stats` to see which domains need more entries
+
+## How Data Is Organized
+
+- **Seed data** (`data/terms/_seed_*.json`) — the initial 300+ terms, organized by domain, read-only
+- **Your contributions** (`data/terms/{your-username}.json`) — entries you add via `qebench add`
+- **All files are loaded together** — `qebench stats` and `qebench translate` see everything
+
+This per-user file model means multiple RAs can work simultaneously without
+any merge conflicts.
 
 ## Checking Your Work
 

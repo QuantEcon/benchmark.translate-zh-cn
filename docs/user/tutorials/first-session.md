@@ -1,11 +1,14 @@
 # Tutorial: Your First Translation Session
 
 This tutorial walks you through a complete translation session — from setup
-to seeing your score.
+to submitting your results and seeing them on the dashboard.
 
 ## Prerequisites
 
-Make sure you've completed [Getting Started](../getting-started.md) and can run `uv run qebench stats`.
+Make sure you've completed [Getting Started](../getting-started.md):
+- `gh auth login` done
+- Repo cloned and `uv sync` run
+- `uv run qebench doctor` passes all checks
 
 ## Step 1: Check Your Dataset
 
@@ -21,10 +24,10 @@ with 300+ economics terms — enough to start practicing immediately.
 Let's try a 3-entry session with basic-level terms:
 
 ```bash
-uv run qebench translate -n 3 --difficulty basic -u your-name
+uv run qebench translate -n 3 --difficulty basic
 ```
 
-Replace `your-name` with your actual name (e.g. `-u alice`).
+Your GitHub username is detected automatically from `gh auth`.
 
 ## Step 3: Translate Each Entry
 
@@ -74,24 +77,45 @@ After completing all entries, you'll see:
 ╰────────────────────────╯
 ```
 
-Each completed translation earns 10 XP. Your progress is saved automatically.
+Each completed translation earns 10 XP. Your results are saved locally to
+`results/translations/{your-username}.jsonl` and your XP to
+`results/xp/{your-username}.json`.
 
-## Step 6: Try Different Filters
+## Step 6: Submit Your Results
+
+Push your work to GitHub so it appears on the dashboard:
+
+```bash
+uv run qebench submit
+```
+
+This pulls the latest changes, commits your results, and pushes — all in one command.
+
+```
+╭────── Submitted as alice ──────╮
+│  ✓ 1 result file(s)           │
+╰────────────────────────────────╯
+```
+
+Once pushed, the CI workflow rebuilds the dashboard with your activity and XP.
+
+## Step 7: Try Different Filters
 
 Focus on a specific domain:
 
 ```bash
-uv run qebench translate -d mathematics -u your-name
+uv run qebench translate -d mathematics
 ```
 
 Or crank up the difficulty:
 
 ```bash
-uv run qebench translate --difficulty advanced -n 10 -u your-name
+uv run qebench translate --difficulty advanced -n 10
 ```
 
 ## Next Steps
 
-- **Add entries**: Use `qebench add` to contribute new terms you encounter
+- **Add entries**: See [Contributing Entries](contributing-entries.md) to grow the dataset
 - **Check progress**: `qebench stats` shows overall dataset coverage
+- **View dashboard**: check the [live dashboard](../../dashboard/) for leaderboard and activity
 - See the full [CLI Reference](../cli-reference.md) for all options
