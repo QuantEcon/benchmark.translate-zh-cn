@@ -58,6 +58,7 @@ class OpenAIProvider(TranslationProvider):
             model=model_id,
             messages=[{"role": "user", "content": prompt}],
             max_tokens=2048,
+            temperature=0,
         )
         latency_ms = (time.monotonic() - start) * 1000
 

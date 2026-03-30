@@ -43,7 +43,7 @@ def _get_provider(name: str, *, model: str | None = None):
     return cls(model=model)
 
 
-def _save_results(results: list[TranslationResult], run_id: str) -> Path:
+def _save_results(results: list[TranslationResult], run_id: str, *, prompt_name: str) -> Path:
     """Save translation results to a JSONL file."""
     MODEL_OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     path = MODEL_OUTPUTS_DIR / f"{run_id}.jsonl"
@@ -55,7 +55,7 @@ def _save_results(results: list[TranslationResult], run_id: str) -> Path:
                 "translated_text": r.translated_text,
                 "model": r.model,
                 "provider": r.provider,
-                "prompt_template": r.prompt_template,
+                "prompt_template": prompt_name,
                 "input_tokens": r.input_tokens,
                 "output_tokens": r.output_tokens,
                 "cost_usd": round(r.cost_usd, 6),
@@ -76,11 +76,9 @@ def run(
 ) -> None:
     """Batch translate dataset entries via an LLM provider."""
     # Load config for language pair
-    import yaml
+    from qebench.utils.dataset import load_config
 
-    config_path = DATA_DIR.parent / "config.yaml"
-    with open(config_path, encoding="utf-8") as f:
-        config = yaml.safe_load(f)
+    config = load_config()
     source_lang = config["language_pair"]["source"]
     target_lang = config["language_pair"]["target"]
 
@@ -131,31 +129,24 @@ def run(
     # Instantiate provider
     llm = _get_provider(provider, model=model)
 
-    # Run translations with progress
-    run_id = f"{provider}-{llm._model}-{prompt}-{int(time.time())}"
-    results: list[TranslationResult] = []
+    # Run translations via batch API
+    run_id = f"{provider}-{llm.model}-{prompt}-{int(time.time())}"
 
     with Progress(
         SpinnerColumn(),
         TextColumn("[progress.description]{task.description}"),
         console=console,
     ) as progress:
-        task = progress.add_task(f"Translating {len(texts)} entries...", total=len(texts))
-        for entry in texts:
-            result = llm.translate(
-                entry["text"],
-                source_lang=source_lang,
-                target_lang=target_lang,
-                domain=entry.get("domain", "general"),
-                prompt_template=template,
-            )
-            result.entry_id = entry["id"]
-            result.source_text = entry["text"]
-            results.append(result)
-            progress.advance(task)
+        progress.add_task(f"Translating {len(texts)} entries...", total=None)
+        results = llm.translate_batch(
+            texts,
+            source_lang=source_lang,
+            target_lang=target_lang,
+            prompt_template=template,
+        )
 
     # Save results
-    output_path = _save_results(results, run_id)
+    output_path = _save_results(results, run_id, prompt_name=prompt)
 
     # Summary
     total_cost = sum(r.cost_usd for r in results)

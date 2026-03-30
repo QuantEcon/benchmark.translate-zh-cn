@@ -72,12 +72,13 @@ class TestSaveResults:
                 latency_ms=180.0,
             ),
         ]
-        path = _save_results(results, "test-run-123")
+        path = _save_results(results, "test-run-123", prompt_name="default")
         assert path.exists()
         lines = [json.loads(ln) for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
         assert len(lines) == 2
         assert lines[0]["entry_id"] == "term-001"
         assert lines[0]["translated_text"] == "通货膨胀"
+        assert lines[0]["prompt_template"] == "default"
         assert lines[1]["entry_id"] == "term-002"
 
     def test_appends_to_existing(self, tmp_path, monkeypatch) -> None:
@@ -90,8 +91,8 @@ class TestSaveResults:
             provider="p",
             prompt_template="t",
         )
-        _save_results([result], "run-1")
-        _save_results([result], "run-1")
+        _save_results([result], "run-1", prompt_name="t")
+        _save_results([result], "run-1", prompt_name="t")
         path = tmp_path / "run-1.jsonl"
         lines = [ln for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
         assert len(lines) == 2
@@ -107,5 +108,5 @@ class TestSaveResults:
             provider="p",
             prompt_template="t",
         )
-        path = _save_results([result], "run-1")
+        path = _save_results([result], "run-1", prompt_name="t")
         assert path.exists()

@@ -57,6 +57,7 @@ class ClaudeProvider(TranslationProvider):
         message = self._client.messages.create(
             model=model_id,
             max_tokens=2048,
+            temperature=0,
             messages=[{"role": "user", "content": prompt}],
         )
         latency_ms = (time.monotonic() - start) * 1000

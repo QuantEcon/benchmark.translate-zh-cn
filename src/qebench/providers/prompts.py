@@ -45,4 +45,15 @@ def load_template(name: str = "default") -> str:
             f"Template '{name}' is missing required placeholders: {', '.join(sorted(missing))}"
         )
 
+    # Reject unknown {placeholders} that would crash at runtime
+    import re
+
+    found = set(re.findall(r"\{(\w+)\}", template))
+    allowed = {p.strip("{}") for p in _REQUIRED_PLACEHOLDERS}
+    unknown = found - allowed
+    if unknown:
+        raise ValueError(
+            f"Template '{name}' contains unknown placeholders: {', '.join(sorted(unknown))}"
+        )
+
     return template

@@ -40,6 +40,11 @@ class TranslationProvider(ABC):
     def default_model(self) -> str:
         """Default model identifier, e.g. 'claude-sonnet-4-20250514'."""
 
+    @property
+    def model(self) -> str:
+        """Active model identifier (may differ from default if overridden)."""
+        return getattr(self, "_model", self.default_model)
+
     @abstractmethod
     def translate(
         self,

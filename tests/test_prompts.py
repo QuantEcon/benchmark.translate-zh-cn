@@ -47,3 +47,10 @@ class TestLoadTemplate:
         (tmp_path / "bad.txt").write_text("Just translate this.", encoding="utf-8")
         with pytest.raises(ValueError, match="missing required placeholders"):
             load_template("bad")
+
+    def test_unknown_placeholders_raises(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.providers.prompts._PROMPTS_DIR", tmp_path)
+        content = "Translate {text} from {source_lang} to {target_lang} in {domain} with {foo}."
+        (tmp_path / "extra.txt").write_text(content, encoding="utf-8")
+        with pytest.raises(ValueError, match="unknown placeholders.*foo"):
+            load_template("extra")
