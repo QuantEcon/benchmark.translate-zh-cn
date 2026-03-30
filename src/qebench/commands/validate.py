@@ -45,9 +45,25 @@ def validate() -> None:
                 errors.append(f"  {rel}: invalid JSON — {exc}")
                 continue
 
-            items = data if isinstance(data, list) else data.get("entries", [])
+            if isinstance(data, list):
+                items = data
+            elif isinstance(data, dict):
+                items = data.get("entries", [])
+            else:
+                errors.append(
+                    f"  {rel}: invalid top-level JSON type "
+                    f"{type(data).__name__} — expected list or object"
+                )
+                continue
+
             for i, item in enumerate(items):
                 total_entries += 1
+                if not isinstance(item, dict):
+                    errors.append(
+                        f"  {rel}[{i}] (?): invalid entry type "
+                        f"{type(item).__name__}, expected object"
+                    )
+                    continue
                 try:
                     model_class.model_validate(item)
                 except ValidationError as exc:

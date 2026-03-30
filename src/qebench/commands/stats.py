@@ -37,8 +37,11 @@ def _load_leaderboard() -> list[dict]:
     entries = []
     for path in sorted(XP_DIR.glob("*.json")):
         username = path.stem
-        with open(path, encoding="utf-8") as f:
-            data = json.load(f)
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue
         entries.append({
             "username": username,
             "total": data.get("total", 0),
