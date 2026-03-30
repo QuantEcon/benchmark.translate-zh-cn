@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import typer
 
 from qebench.commands.add import add
@@ -40,8 +38,8 @@ app.command("validate", help="Validate all dataset files against Pydantic schema
 @app.command("translate")
 def translate_cmd(
     count: int = typer.Option(5, "--count", "-n", help="Number of entries per session."),
-    domain: Optional[str] = typer.Option(None, "--domain", "-d", help="Filter by domain."),
-    difficulty: Optional[str] = typer.Option(None, "--difficulty", help="Filter: basic/intermediate/advanced."),
+    domain: str | None = typer.Option(None, "--domain", "-d", help="Filter by domain."),
+    difficulty: str | None = typer.Option(None, "--difficulty", help="Filter: basic/intermediate/advanced."),
 ) -> None:
     """Practice translating English to Chinese — the main game loop."""
     translate_fn(count=count, domain=domain, difficulty=difficulty)

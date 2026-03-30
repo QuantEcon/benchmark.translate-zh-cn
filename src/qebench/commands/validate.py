@@ -52,7 +52,7 @@ def validate() -> None:
                     model_class.model_validate(item)
                 except ValidationError as exc:
                     for err in exc.errors():
-                        loc = " → ".join(str(l) for l in err["loc"])
+                        loc = " → ".join(str(part) for part in err["loc"])
                         errors.append(
                             f"  {rel}[{i}] ({item.get('id', '?')}): "
                             f"{loc} — {err['msg']}"

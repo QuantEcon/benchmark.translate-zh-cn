@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from qebench.scoring.elo import expected_score, update_elo
 
 
@@ -32,6 +34,3 @@ class TestElo:
         new_a2, new_b2 = update_elo(1500, 1500, winner="b")
         assert new_a1 == new_b2
         assert new_b1 == new_a2
-
-
-import pytest

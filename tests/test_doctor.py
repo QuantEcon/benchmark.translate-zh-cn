@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import subprocess
-from pathlib import Path
 from unittest.mock import patch
 
 from qebench.commands.doctor import _check, _cmd_ok

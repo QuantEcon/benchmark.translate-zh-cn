@@ -8,7 +8,7 @@ from pathlib import Path
 from rich.panel import Panel
 
 from qebench.models import Term
-from qebench.utils.dataset import DATA_DIR, get_targets, load_all
+from qebench.utils.dataset import get_targets, load_all
 from qebench.utils.display import console
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent

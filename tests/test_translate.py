@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 import pytest
 
@@ -18,7 +17,10 @@ def sample_terms():
         Term(id="term-002", en="equilibrium", zh="均衡", domain="economics", difficulty=Difficulty.intermediate),
         Term(id="term-003", en="eigenvalue", zh="特征值", domain="mathematics", difficulty=Difficulty.advanced),
         Term(id="term-004", en="variance", zh="方差", domain="statistics", difficulty=Difficulty.basic),
-        Term(id="term-005", en="Bellman equation", zh="贝尔曼方程", domain="dynamic-programming", difficulty=Difficulty.advanced),
+        Term(
+            id="term-005", en="Bellman equation", zh="贝尔曼方程",
+            domain="dynamic-programming", difficulty=Difficulty.advanced,
+        ),
     ]
 
 
@@ -140,7 +142,9 @@ class TestSaveAttempt:
         _save_attempt("term-001", "A", "B", 2, 0.0, "", "", "bob")
         _save_attempt("term-002", "C", "D", 5, 1.0, "", "", "bob")
         filepath = tmp_path / "bob.jsonl"
-        lines = [l for l in filepath.read_text(encoding="utf-8").splitlines() if l.strip()]
+        lines = [
+            ln for ln in filepath.read_text(encoding="utf-8").splitlines() if ln.strip()
+        ]
         assert len(lines) == 2
 
     def test_omits_empty_optional_fields(self, tmp_path, monkeypatch):

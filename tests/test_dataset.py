@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from unittest.mock import patch
 
 from qebench.models import Term
 from qebench.utils.dataset import _load_entries, save_entries
