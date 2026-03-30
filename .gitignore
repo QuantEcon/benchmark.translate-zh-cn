@@ -24,12 +24,10 @@ Thumbs.db
 # uv
 uv.lock
 
-# Results (user-generated, not git-tracked by default)
-results/translations/*.json
-results/translations/*.jsonl
+# Results — committed so dashboard shows user activity
+# Model outputs and judgments remain ignored until Phase 3/4
 results/judgments/*.json
 results/model-outputs/*.json
-results/xp/*.json
 results/elo.json
 results/leaderboard.json
 results/weekly.json

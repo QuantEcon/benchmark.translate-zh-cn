@@ -20,6 +20,7 @@ from qebench.models import Difficulty, Paragraph, Sentence, Term
 from qebench.scoring.xp import XP_TRANSLATE, award_xp, load_xp
 from qebench.utils.dataset import DATA_DIR, get_domains, load_all
 from qebench.utils.display import console
+from qebench.utils.github import get_github_username
 
 
 RESULTS_DIR = DATA_DIR.parent / "results" / "translations"
@@ -137,13 +138,13 @@ def translate(
     count: int = 5,
     domain: str | None = None,
     difficulty: str | None = None,
-    username: str = "anonymous",
 ) -> None:
     """Practice translating English to Chinese — the main game loop.
 
     Presents English text, collects your translation, then shows
     the reference and a similarity score.
     """
+    username = get_github_username()
     terms, sentences, paragraphs = load_all()
 
     if not terms and not sentences and not paragraphs:

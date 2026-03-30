@@ -11,7 +11,19 @@ Three components that work together:
 2. **CLI tool (`qebench`)** — Typer-based CLI with interactive modes (translate, judge, add, run, stats, export)
 3. **Results website** — Static GitHub Pages site generated from JSON results
 
-Data flows: `qebench add/translate/judge` → `results/*.json` → `qebench export` → `site/data/` → GitHub Pages.
+Data flows: `qebench add/translate/judge` → `results/*.json` → `qebench submit` → GitHub → `qebench export` (CI) → `dashboard/data/` → GitHub Pages.
+
+## Identity & Data Model
+
+RAs authenticate via GitHub CLI (`gh auth login`). Username is auto-detected via `gh api user`.
+
+All user-generated files are per-user to eliminate merge conflicts:
+- `data/terms/{username}.json` — terms contributed by each user
+- `data/terms/_seed_*.json` — initial seeded data (read-only)
+- `results/xp/{username}.json` — XP tracking
+- `results/translations/{username}.jsonl` — translation attempts
+
+The `qebench submit` command handles the full git ceremony (pull --rebase → add → commit → push). RAs push directly to `main` — per-user files prevent conflicts.
 
 ## Technology Stack
 
@@ -144,8 +156,13 @@ The interactive modes that make RAs want to contribute.
 - [x] `qebench add` — interactive entry creation with questionary prompts, preview, auto-ID
 - [x] XP tracking system (`src/qebench/scoring/xp.py`) — 10/translate, 15/add, 5/judge
 - [x] Elo rating engine (`src/qebench/scoring/elo.py`)
+- [x] GitHub identity — auto-detect username via `gh api user`, cached per session
+- [x] Per-user data files — `data/terms/{username}.json` (seed data in `_seed_*.json`)
+- [x] `qebench submit` — pull --rebase, commit data/ + results/, push to GitHub
+- [x] `qebench doctor` — 8 preflight checks (gh, git, auth, remote, config, data, uv)
+- [x] Results committed to repo — XP + translations tracked in git, dashboard reads them
 - [ ] `qebench stats` — leaderboard display (current: coverage + domain table)
-- [x] 69 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 17, xp: 11, export: 16)
+- [x] 87 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 17, xp: 11, export: 16, github: 6, submit: 6, doctor: 6)
 
 ### Phase 3: LLM Integration (Layer 4)
 

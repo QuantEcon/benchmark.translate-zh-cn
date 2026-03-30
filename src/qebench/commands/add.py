@@ -12,6 +12,7 @@ from rich.text import Text
 from qebench.models import Difficulty, Paragraph, Sentence, Term
 from qebench.utils.dataset import DATA_DIR, get_domains, load_all
 from qebench.utils.display import console
+from qebench.utils.github import get_github_username
 
 
 def _next_id(prefix: str, existing: list) -> str:
@@ -26,11 +27,11 @@ def _next_id(prefix: str, existing: list) -> str:
     return f"{prefix}-{max_num + 1:03d}"
 
 
-def _save_to_domain_file(entry: Term | Sentence | Paragraph, entry_type: str) -> Path:
-    """Append an entry to the appropriate domain file."""
+def _save_to_user_file(entry: Term | Sentence | Paragraph, entry_type: str, username: str) -> Path:
+    """Append an entry to the user's data file."""
     type_dir = DATA_DIR / entry_type
     type_dir.mkdir(parents=True, exist_ok=True)
-    filepath = type_dir / f"{entry.domain}.json"
+    filepath = type_dir / f"{username}.json"
 
     entries: list[dict] = []
     if filepath.exists():
@@ -164,6 +165,7 @@ def _add_paragraph(domains: list[str], existing_paragraphs: list[Paragraph]) -> 
 
 def add() -> None:
     """Contribute new terms, sentences, or paragraphs to the dataset."""
+    username = get_github_username()
     domains = get_domains()
     if not domains:
         console.print("[red]No domains found in config.yaml[/red]")
@@ -206,7 +208,7 @@ def add() -> None:
         return
 
     type_plural = {"term": "terms", "sentence": "sentences", "paragraph": "paragraphs"}
-    filepath = _save_to_domain_file(entry, type_plural[entry_type])
+    filepath = _save_to_user_file(entry, type_plural[entry_type], username)
     console.print(f"\n[green]✓ Saved {entry.id} to {filepath.name}[/green]")
 
     # Ask to continue

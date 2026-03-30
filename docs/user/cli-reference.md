@@ -32,7 +32,8 @@ uv run qebench translate [OPTIONS]
 | `--count` | `-n` | `5` | Number of entries per session |
 | `--domain` | `-d` | all | Filter by domain (e.g. `economics`) |
 | `--difficulty` | | all | Filter: `basic`, `intermediate`, or `advanced` |
-| `--user` | `-u` | `anonymous` | Your username for XP tracking |
+
+Your GitHub username is detected automatically via `gh auth`.
 
 **Examples:**
 
@@ -40,8 +41,8 @@ uv run qebench translate [OPTIONS]
 # Quick 3-term session on economics
 uv run qebench translate -n 3 -d economics
 
-# Practice advanced terms as "alice"
-uv run qebench translate --difficulty advanced -u alice
+# Practice advanced terms
+uv run qebench translate --difficulty advanced
 
 # Default session (5 random entries)
 uv run qebench translate
@@ -74,6 +75,66 @@ No options — the command walks you through the process:
 5. **Continue?** — option to add another entry
 
 Each contributed entry earns **15 XP**.
+
+---
+
+## `qebench submit`
+
+Pull latest changes, commit your data and results, and push to GitHub. This is the primary way to share your contributions.
+
+```bash
+uv run qebench submit
+```
+
+No options — it handles the full git workflow:
+
+1. **Pull** — `git pull --rebase` to get latest changes
+2. **Stage** — adds `data/` and `results/` directories
+3. **Commit** — creates a commit attributed to your GitHub username
+4. **Push** — pushes to `main`, which triggers a dashboard rebuild
+
+If there are no local changes in `data/` or `results/`, it exits early.
+
+---
+
+## `qebench doctor`
+
+Run preflight checks to verify your environment is set up correctly.
+
+```bash
+uv run qebench doctor
+```
+
+**Checks performed:**
+- GitHub CLI (`gh`) installed
+- GitHub authentication configured
+- Git installed and inside a repo
+- Remote origin configured
+- `config.yaml` found
+- Dataset has entries
+- `uv` package manager available
+
+Run this once after initial setup, or whenever something seems wrong.
+
+---
+
+## `qebench export`
+
+Export dataset statistics and results to JSON files for the dashboard website.
+
+```bash
+uv run qebench export
+```
+
+Writes 6 JSON files to `docs/_static/dashboard/data/`:
+- `coverage.json` — terms/sentences/paragraphs vs. targets
+- `domains.json` — per-domain entry counts
+- `difficulty.json` — basic/intermediate/advanced distribution
+- `leaderboard.json` — XP rankings across users
+- `activity.json` — recent translation attempts
+- `samples.json` — sample terms for the browse section
+
+This is run automatically by CI when changes are pushed.
 
 ---
 

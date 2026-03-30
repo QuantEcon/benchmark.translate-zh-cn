@@ -7,8 +7,10 @@ from typing import Optional
 import typer
 
 from qebench.commands.add import add
+from qebench.commands.doctor import doctor
 from qebench.commands.export import export
 from qebench.commands.stats import stats
+from qebench.commands.submit import submit
 from qebench.commands.translate import translate as translate_fn
 
 app = typer.Typer(
@@ -27,6 +29,8 @@ def main() -> None:
 app.command("stats", help="Show dataset coverage, domain breakdown, and progress.")(stats)
 app.command("add", help="Contribute new terms, sentences, or paragraphs.")(add)
 app.command("export", help="Export dataset and results to JSON for the dashboard.")(export)
+app.command("submit", help="Pull, commit, and push your data and results to GitHub.")(submit)
+app.command("doctor", help="Run preflight checks for qebench environment.")(doctor)
 
 
 @app.command("translate")
@@ -34,10 +38,9 @@ def translate_cmd(
     count: int = typer.Option(5, "--count", "-n", help="Number of entries per session."),
     domain: Optional[str] = typer.Option(None, "--domain", "-d", help="Filter by domain."),
     difficulty: Optional[str] = typer.Option(None, "--difficulty", help="Filter: basic/intermediate/advanced."),
-    username: str = typer.Option("anonymous", "--user", "-u", help="Your username for XP tracking."),
 ) -> None:
     """Practice translating English to Chinese — the main game loop."""
-    translate_fn(count=count, domain=domain, difficulty=difficulty, username=username)
+    translate_fn(count=count, domain=domain, difficulty=difficulty)
 
 
 if __name__ == "__main__":

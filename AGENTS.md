@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository.
 
 **benchmark.translate-zh-cn** is a CLI tool (`qebench`) and benchmark dataset for evaluating English-to-Chinese translation quality in economics and mathematics. Built with Python, Typer, Rich, Pydantic.
 
-**Current state**: Phase 2.5 complete — working CLI with `translate`, `add`, `stats`, `export` commands; dashboard website; 314 seeded terms; 69 tests passing.
+**Current state**: Phase 2.5 complete — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor` commands; GitHub identity auto-detection; per-user data files; dashboard website; 314 seeded terms; 87 tests passing.
 
 ---
 
@@ -20,7 +20,9 @@ src/qebench/
 │   ├── stats.py           # Dataset coverage display (Rich panels/tables)
 │   ├── add.py             # Interactive entry creation (questionary prompts)
 │   ├── translate.py       # Translation practice game loop with scoring
-│   └── export.py          # Export dataset + results to JSON for dashboard
+│   ├── export.py          # Export dataset + results to JSON for dashboard
+│   ├── submit.py          # Pull, commit, push data + results to GitHub
+│   └── doctor.py          # Preflight checks (gh, git, auth, data)
 ├── scoring/
 │   ├── elo.py             # Elo rating calculations for model comparison
 │   └── xp.py              # XP tracking per user (translate=10, add=15, judge=5)
@@ -28,7 +30,8 @@ src/qebench/
 │   └── __init__.py
 └── utils/
     ├── dataset.py         # Load/save JSON data, config, domains, targets
-    └── display.py         # Rich console singleton
+    ├── display.py         # Rich console singleton
+    └── github.py          # GitHub identity via gh CLI (get_github_username)
 ```
 
 ## Key Files by Task
