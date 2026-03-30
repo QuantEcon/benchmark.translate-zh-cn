@@ -61,6 +61,28 @@ uv run qebench submit
 
 Your GitHub username is detected automatically — no need to pass `--user`.
 
+## Daily Workflow
+
+Every time you sit down to work, follow this pattern:
+
+```
+update → work → submit
+```
+
+1. **`qebench update`** — pulls the latest code, data, and dependencies from GitHub
+2. **Do your work** — `translate`, `add`, or both
+3. **`qebench submit`** — commits and pushes your changes
+
+You never need to run `git` or `uv` commands directly — the CLI handles it.
+
+:::{note}
+Both the CLI tool and the dataset live in the same repository. Running
+`qebench update` pulls both the latest code and everyone else's data
+contributions in a single step, then syncs dependencies in case
+`pyproject.toml` changed. Tests run on every push to `main`, so the
+latest version is always safe to use.
+:::
+
 ## How It Works
 
 1. **You run commands** — `translate` or `add` save results to per-user files locally

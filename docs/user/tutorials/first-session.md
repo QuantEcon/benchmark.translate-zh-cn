@@ -10,7 +10,18 @@ Make sure you've completed [Getting Started](../getting-started.md):
 - Repo cloned and `uv sync` run
 - `uv run qebench doctor` passes all checks
 
-## Step 1: Check Your Dataset
+## Step 1: Update
+
+Always start by pulling the latest code and data:
+
+```bash
+uv run qebench update
+```
+
+This runs `git pull --rebase` and `uv sync` so you have everyone's latest
+contributions and any CLI updates.
+
+## Step 2: Check Your Dataset
 
 ```bash
 uv run qebench stats
@@ -19,7 +30,7 @@ uv run qebench stats
 You should see the coverage panel and domain table. The dataset is pre-seeded
 with 300+ economics terms — enough to start practicing immediately.
 
-## Step 2: Start a Short Session
+## Step 3: Start a Short Session
 
 Let's try a 3-entry session with basic-level terms:
 
@@ -29,7 +40,7 @@ uv run qebench translate -n 3 --difficulty basic
 
 Your GitHub username is detected automatically from `gh auth`.
 
-## Step 3: Translate Each Entry
+## Step 4: Translate Each Entry
 
 For each entry, you'll see a panel like:
 
@@ -46,7 +57,7 @@ For each entry, you'll see a panel like:
 
 Type your Chinese translation and press Enter.
 
-## Step 4: Rate Your Confidence
+## Step 5: Rate Your Confidence
 
 After typing your translation, you'll be asked how confident you are:
 
@@ -62,7 +73,7 @@ After typing your translation, you'll be asked how confident you are:
 Pick the level that matches your certainty. You can also add optional notes
 (context, reasoning, alternative phrasing) — just press Enter to skip.
 
-## Step 5: See the Reference
+## Step 6: See the Reference
 
 After you commit your answer, the reference translation is revealed with a
 similarity score:
@@ -95,7 +106,7 @@ This is the most valuable data you can provide. Chinese has formal and informal
 representations, regional variants, and context-dependent translations.
 Documenting *why* translations vary helps us improve the translator.
 
-## Step 6: Session Summary
+## Step 7: Session Summary
 
 After completing all entries, you'll see:
 
@@ -111,7 +122,7 @@ Each completed translation earns 10 XP. Your results are saved locally to
 `results/translations/{your-username}.jsonl` and your XP to
 `results/xp/{your-username}.json`.
 
-## Step 7: Submit Your Results
+## Step 8: Submit Your Results
 
 Push your work to GitHub so it appears on the dashboard:
 

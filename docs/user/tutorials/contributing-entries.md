@@ -14,6 +14,14 @@ a comprehensive benchmark, we need:
 
 Every entry you add earns **15 XP** and makes the benchmark more useful.
 
+## Before You Start
+
+Pull the latest data so you're working with the current dataset:
+
+```bash
+uv run qebench update
+```
+
 ## Adding a Term
 
 ```bash
