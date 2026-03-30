@@ -46,32 +46,53 @@ For each entry, you'll see a panel like:
 
 Type your Chinese translation and press Enter.
 
-## Step 4: Review Your Score
+## Step 4: Rate Your Confidence
 
-After each answer, you'll see a comparison:
+After typing your translation, you'll be asked how confident you are:
 
 ```
-╭────────── Result ──────────╮
-│  Your answer:  通货膨胀     │
-│  Reference:    通货膨胀     │
-│  Score:        ★ Exact!    │
-╰────────────────────────────╯
+? How confident are you?
+  1 — Guessing
+  2 — Uncertain
+❯ 3 — Reasonable
+  4 — Confident
+  5 — Very confident
 ```
 
-The scoring uses character-level overlap:
-- **★ Exact match** — you nailed it
-- **◉ Close (≥70%)** — most characters match
-- **○ Partial (≥40%)** — some overlap, review the reference
-- **△ Keep practicing** — quite different from reference
+Pick the level that matches your certainty. You can also add optional notes
+(context, reasoning, alternative phrasing) — just press Enter to skip.
 
-## Step 5: Session Summary
+## Step 5: See the Reference
+
+After you commit your answer, the reference translation is revealed:
+
+```
+╭────────── Reference ──────────╮
+│  Your answer:  通货膨胀        │
+│  Reference:    通货膨胀        │
+│  Matches the reference.       │
+╰───────────────────────────────╯
+```
+
+If your translation differs from the reference, that's perfectly fine:
+
+```
+│  Your answer:  通胀              │
+│  Reference:    通货膨胀           │
+│  A different translation —       │
+│  this is valuable data!          │
+```
+
+There is no accuracy score. Every human translation — especially ones that
+differ from the reference — helps us understand translation variation.
+
+## Step 6: Session Summary
 
 After completing all entries, you'll see:
 
 ```
 ╭─── Session Summary ───╮
 │  Completed:  3/3       │
-│  Avg overlap: 85%      │
 │  XP earned:  +30       │
 │  Total XP:   30        │
 ╰────────────────────────╯
@@ -81,7 +102,7 @@ Each completed translation earns 10 XP. Your results are saved locally to
 `results/translations/{your-username}.jsonl` and your XP to
 `results/xp/{your-username}.json`.
 
-## Step 6: Submit Your Results
+## Step 7: Submit Your Results
 
 Push your work to GitHub so it appears on the dashboard:
 
@@ -99,7 +120,7 @@ This pulls the latest changes, commits your results, and pushes — all in one c
 
 Once pushed, the CI workflow rebuilds the dashboard with your activity and XP.
 
-## Step 7: Try Different Filters
+## Step 8: Try Different Filters
 
 Focus on a specific domain:
 

@@ -21,7 +21,10 @@ No options — always shows the full dataset overview.
 
 ## `qebench translate`
 
-Interactive translation practice. Presents English text, collects your Chinese translation, then reveals the reference and scores your attempt.
+Collect human translations. Presents English text, collects your Chinese
+translation and a confidence rating, then reveals the reference for learning.
+Every translation — including ones that differ from the reference — is
+valuable data for understanding translation variation.
 
 ```bash
 uv run qebench translate [OPTIONS]
@@ -48,11 +51,13 @@ uv run qebench translate --difficulty advanced
 uv run qebench translate
 ```
 
-**Scoring:**
-- **★ Exact match** — your translation matches the reference or an accepted alternative
-- **◉ Close** — ≥70% character overlap
-- **○ Partial** — ≥40% character overlap
-- **△ Keep practicing** — <40% character overlap
+**What's recorded per entry:**
+- Your Chinese translation
+- Confidence level (1–5)
+- Optional notes (context, reasoning)
+- The reference translation (for comparison)
+
+There is no accuracy score — the goal is to collect diverse human translations.
 
 Each completed entry earns **10 XP**.
 

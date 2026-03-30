@@ -1,7 +1,11 @@
-"""translate command — Interactive translation practice mode.
+"""translate command — Interactive translation data collection.
 
-The main engagement loop: shows English text, collects user's Chinese
-translation, then reveals the reference translation and scores the attempt.
+The main engagement loop: shows English text, collects the user's Chinese
+translation and a confidence rating, then reveals the reference and known
+alternatives as educational feedback.  The goal is to collect diverse human
+translations that capture cultural nuance and variation — accuracy scoring
+is deliberately omitted so contributors aren't biased toward one "correct"
+answer.
 """
 
 from __future__ import annotations
@@ -12,36 +16,25 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import questionary
-from rich.columns import Columns
 from rich.panel import Panel
 from rich.table import Table
 
 from qebench.models import Difficulty, Paragraph, Sentence, Term
-from qebench.scoring.xp import XP_TRANSLATE, award_xp, load_xp
-from qebench.utils.dataset import DATA_DIR, get_domains, load_all
+from qebench.scoring.xp import award_xp, load_xp
+from qebench.utils.dataset import DATA_DIR, load_all
 from qebench.utils.display import console
 from qebench.utils.github import get_github_username
 
 
 RESULTS_DIR = DATA_DIR.parent / "results" / "translations"
 
-
-def _char_overlap(attempt: str, reference: str) -> float:
-    """Character-level Jaccard similarity between two Chinese strings.
-
-    Strips whitespace and punctuation for comparison.
-    Returns a value between 0.0 and 1.0.
-    """
-    strip_chars = set(" \t\n，。、；：！？（）""''《》【】")
-    a_chars = set(attempt) - strip_chars
-    r_chars = set(reference) - strip_chars
-    if not a_chars and not r_chars:
-        return 1.0
-    if not a_chars or not r_chars:
-        return 0.0
-    intersection = a_chars & r_chars
-    union = a_chars | r_chars
-    return len(intersection) / len(union)
+CONFIDENCE_CHOICES = [
+    questionary.Choice("1 — Guessing", value=1),
+    questionary.Choice("2 — Uncertain", value=2),
+    questionary.Choice("3 — Reasonable", value=3),
+    questionary.Choice("4 — Confident", value=4),
+    questionary.Choice("5 — Very confident", value=5),
+]
 
 
 def _pick_entries(
@@ -80,14 +73,8 @@ def _render_entry(entry: Term | Sentence | Paragraph) -> Panel:
     )
 
 
-def _score_panel(attempt: str, reference: str, alternatives: list[str]) -> Panel:
-    """Show scoring comparison between attempt and reference."""
-    overlap = _char_overlap(attempt, reference)
-
-    # Check for exact match with reference or alternatives
-    all_valid = [reference, *alternatives]
-    exact_match = attempt.strip() in [v.strip() for v in all_valid]
-
+def _reference_panel(attempt: str, reference: str, alternatives: list[str]) -> Panel:
+    """Show the user's answer alongside the reference and alternatives."""
     table = Table(show_header=False, border_style="dim", padding=(0, 2))
     table.add_column("Label", style="dim")
     table.add_column("Text")
@@ -97,25 +84,24 @@ def _score_panel(attempt: str, reference: str, alternatives: list[str]) -> Panel
     if alternatives:
         table.add_row("Alternatives:", f"[dim]{', '.join(alternatives)}[/dim]")
 
-    if exact_match:
-        score_text = "[bold green]★ Exact match![/bold green]"
-    elif overlap >= 0.7:
-        score_text = f"[bold yellow]◉ Close! ({overlap:.0%} overlap)[/bold yellow]"
-    elif overlap >= 0.4:
-        score_text = f"[yellow]○ Partial ({overlap:.0%} overlap)[/yellow]"
+    if attempt.strip() == reference.strip():
+        note = "[green]Matches the reference exactly.[/green]"
+    elif attempt.strip() in [a.strip() for a in alternatives]:
+        note = "[green]Matches a known alternative.[/green]"
     else:
-        score_text = f"[red]△ Keep practicing ({overlap:.0%} overlap)[/red]"
+        note = "[cyan]A different translation — this is valuable data![/cyan]"
 
-    table.add_row("Score:", score_text)
+    table.add_row("", note)
 
-    return Panel(table, title="[bold]Result[/bold]", border_style="green" if exact_match else "yellow")
+    return Panel(table, title="[bold]Reference[/bold]", border_style="green")
 
 
 def _save_attempt(
     entry_id: str,
     attempt: str,
     reference: str,
-    overlap: float,
+    confidence: int,
+    notes: str,
     username: str,
 ) -> None:
     """Save a translation attempt to results."""
@@ -126,7 +112,8 @@ def _save_attempt(
         "entry_id": entry_id,
         "attempt": attempt,
         "reference": reference,
-        "overlap": round(overlap, 4),
+        "confidence": confidence,
+        "notes": notes,
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
@@ -139,10 +126,12 @@ def translate(
     domain: str | None = None,
     difficulty: str | None = None,
 ) -> None:
-    """Practice translating English to Chinese — the main game loop.
+    """Translate English to Chinese — collecting human translation data.
 
-    Presents English text, collects your translation, then shows
-    the reference and a similarity score.
+    Presents English text, collects your translation and confidence level,
+    then shows the reference for learning.  Every translation — even ones
+    that differ from the reference — is valuable data that helps us
+    understand translation variation and cultural nuance.
     """
     username = get_github_username()
     terms, sentences, paragraphs = load_all()
@@ -169,7 +158,6 @@ def translate(
     )
 
     completed = 0
-    total_overlap = 0.0
 
     for i, entry in enumerate(entries, 1):
         console.print(f"\n[dim]── {i}/{len(entries)} ──[/dim]")
@@ -184,23 +172,39 @@ def translate(
             console.print("[dim]Skipped.[/dim]")
             continue
 
+        # Ask confidence level
+        confidence = questionary.select(
+            "How confident are you?",
+            choices=CONFIDENCE_CHOICES,
+        ).ask()
+        if confidence is None:
+            console.print("[yellow]Session ended early.[/yellow]")
+            break
+
+        # Optional notes (context, reasoning, alternative phrasing)
+        notes = questionary.text(
+            "Notes (optional — context, reasoning, etc.):",
+            default="",
+        ).ask()
+        if notes is None:
+            notes = ""
+
         # Get reference and alternatives
         reference = entry.zh
         alternatives = entry.alternatives if isinstance(entry, Term) else []
 
-        # Show score
-        console.print(_score_panel(attempt.strip(), reference, alternatives))
+        # Show reference as feedback (no scoring)
+        console.print(_reference_panel(attempt.strip(), reference, alternatives))
 
-        overlap = _char_overlap(attempt.strip(), reference)
-        total_overlap += overlap
         completed += 1
 
         # Save result
-        _save_attempt(entry.id, attempt.strip(), reference, overlap, username)
+        _save_attempt(
+            entry.id, attempt.strip(), reference, confidence, notes.strip(), username,
+        )
 
     # Session summary
     if completed > 0:
-        avg_overlap = total_overlap / completed
         xp_earned = award_xp(username, "translate", completed)
         total_xp = load_xp(username)
 
@@ -209,7 +213,6 @@ def translate(
         summary.add_column("Label", style="dim")
         summary.add_column("Value", style="bold")
         summary.add_row("Completed:", f"{completed}/{len(entries)}")
-        summary.add_row("Avg overlap:", f"{avg_overlap:.0%}")
         summary.add_row("XP earned:", f"+{xp_earned}")
         summary.add_row("Total XP:", str(total_xp))
 

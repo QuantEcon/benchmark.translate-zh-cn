@@ -53,9 +53,11 @@ dataset.py ──→ loads terms/sentences/paragraphs from data/**/*.json
     ▼
 translate.py ──→ picks entries, presents English, collects Chinese
     │
-    ├──→ _char_overlap() ──→ scores attempt vs reference
-    ├──→ _save_attempt() ──→ appends to results/translations/{username}.jsonl
-    └──→ xp.award_xp()  ──→ updates results/xp/{username}.json
+    ├──→ confidence prompt ──→ 1–5 rating of translator certainty
+    ├──→ notes prompt      ──→ optional context / reasoning
+    ├──→ _reference_panel() ─→ shows reference (educational, no score)
+    ├──→ _save_attempt()   ──→ appends to results/translations/{username}.jsonl
+    └──→ xp.award_xp()    ──→ updates results/xp/{username}.json
 ```
 
 ### Add Entry
@@ -117,10 +119,12 @@ No manual `--user` flags needed. Requires `gh auth login` as a one-time setup.
 Type safety + auto JSON Schema generation + validation in one place. Models serve
 double duty as the validation layer and the documentation of the data format.
 
-### Character-level overlap for scoring
-Simple Jaccard similarity on Chinese character sets. Not linguistically
-sophisticated, but fast, deterministic, and good enough for feedback during
-practice sessions. Neural metrics (BLEU, COMET) come in Phase 2.
+### No accuracy scoring in translate
+The translate command deliberately omits accuracy scoring.  The goal is to
+collect diverse human translations that reveal cultural nuance and variation,
+not to train users toward a single reference answer.  Confidence ratings
+(1–5) and optional notes capture the translator's certainty and reasoning,
+which is more useful for benchmark analysis than a character-overlap metric.
 
 ### XP stored per-user in JSON
 Each user gets a separate file (`results/xp/{username}.json`). Avoids write
