@@ -152,7 +152,7 @@ Everything else depends on having a working data layer.
 - [x] Pydantic models: `Term`, `Sentence`, `Paragraph` (in `src/qebench/models.py`)
 - [x] Dataset utilities: load/save/filter JSON data (in `src/qebench/utils/dataset.py`)
 - [x] Seed script: convert `action-translation/glossary/zh-cn.json` → benchmark format (314 terms seeded)
-- [ ] Schema validation script (CI-ready)
+- [x] Schema validation script (CI-ready)
 - [x] `qebench stats` command — Rich output with progress bars + domain table
 - [x] pytest tests for models and dataset loading (23 tests)
 
@@ -170,8 +170,8 @@ The interactive modes that make RAs want to contribute.
 - [x] `qebench doctor` — 8 preflight checks (gh, git, auth, remote, config, data, uv)
 - [x] `qebench update` — pull latest code + data (`git pull --rebase`) and sync dependencies (`uv sync`)
 - [x] Results committed to repo — XP + translations tracked in git, dashboard reads them
-- [ ] `qebench stats` — leaderboard display (current: coverage + domain table)
-- [x] 98 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, add: 2)
+- [x] `qebench stats` — leaderboard display (current: coverage + domain table + XP leaderboard)
+- [x] 109 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, add: 2, validate: 7, stats: 4)
 
 ### Phase 3: LLM Integration (Layer 4)
 

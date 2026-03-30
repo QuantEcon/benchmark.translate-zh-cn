@@ -38,6 +38,7 @@ uv run qebench stats
 **Output includes:**
 - Progress bars for terms, sentences, and paragraphs vs. targets
 - Domain breakdown table with entry counts
+- XP leaderboard ranked by total XP (with translate/add/judge breakdown)
 - Total entries summary
 
 No options — always shows the full dataset overview.
@@ -146,6 +147,24 @@ uv run qebench doctor
 - `uv` package manager available
 
 Run this once after initial setup, or whenever something seems wrong.
+
+---
+
+## `qebench validate`
+
+Validate all dataset JSON files against the Pydantic schemas. Useful for
+checking your contributed entries before submitting.
+
+```bash
+uv run qebench validate
+```
+
+Checks every file in `data/terms/`, `data/sentences/`, and `data/paragraphs/`
+against the corresponding model (Term, Sentence, Paragraph). Reports all
+validation errors with file names and entry IDs, then exits non-zero if any
+were found.
+
+This also runs automatically in CI on every push and PR.
 
 ---
 

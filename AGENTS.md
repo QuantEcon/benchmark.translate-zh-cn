@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository.
 
 **benchmark.translate-zh-cn** is a CLI tool (`qebench`) and benchmark dataset for evaluating English-to-Chinese translation quality in economics and mathematics. Built with Python, Typer, Rich, Pydantic.
 
-**Current state**: Phase 2.5 complete — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update` commands; GitHub identity auto-detection; per-user data files; cli_version stamping; dashboard website; 314 seeded terms; 98 tests passing.
+**Current state**: Phase 2 complete — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate` commands; GitHub identity auto-detection; per-user data files; cli_version stamping; dashboard website; 314 seeded terms; 109 tests passing.
 
 ---
 
@@ -23,7 +23,8 @@ src/qebench/
 │   ├── export.py          # Export dataset + results to JSON for dashboard
 │   ├── submit.py          # Pull, commit, push data + results to GitHub
 │   ├── doctor.py          # Preflight checks (gh, git, auth, data)
-│   └── update.py          # Pull latest code + uv sync dependencies
+│   ├── update.py          # Pull latest code + uv sync dependencies
+│   └── validate.py        # Schema validation for all dataset files
 ├── scoring/
 │   ├── elo.py             # Elo rating calculations for model comparison
 │   └── xp.py              # XP tracking per user (translate=10, add=15, judge=5)

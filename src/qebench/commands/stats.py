@@ -1,10 +1,13 @@
-"""stats command — Show dataset coverage, Elo rankings, and leaderboard."""
+"""stats command — Show dataset coverage, leaderboard, and domain breakdown."""
 
 from __future__ import annotations
+
+import json
 
 from rich.panel import Panel
 from rich.table import Table
 
+from qebench.scoring.xp import XP_DIR
 from qebench.utils.dataset import get_targets, load_all
 from qebench.utils.display import console
 
@@ -25,6 +28,27 @@ def _domain_summary(terms: list, sentences: list, paragraphs: list) -> dict[str,
         d = entry.domain
         counts[d] = counts.get(d, 0) + 1
     return dict(sorted(counts.items(), key=lambda x: -x[1]))
+
+
+def _load_leaderboard() -> list[dict]:
+    """Load XP data for all users, sorted by total XP descending."""
+    if not XP_DIR.exists():
+        return []
+    entries = []
+    for path in sorted(XP_DIR.glob("*.json")):
+        username = path.stem
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue
+        entries.append({
+            "username": username,
+            "total": data.get("total", 0),
+            "actions": data.get("actions", {}),
+        })
+    entries.sort(key=lambda e: -e["total"])
+    return entries
 
 
 def stats() -> None:
@@ -58,6 +82,29 @@ def stats() -> None:
         table.add_row("[bold]Total[/bold]", f"[bold]{sum(domain_counts.values())}[/bold]")
         console.print()
         console.print(table)
+
+    # Leaderboard
+    leaderboard = _load_leaderboard()
+    if leaderboard:
+        lb = Table(title="Leaderboard", border_style="dim")
+        lb.add_column("#", justify="right", style="dim", width=3)
+        lb.add_column("User", style="green")
+        lb.add_column("XP", justify="right", style="bold yellow")
+        lb.add_column("Translate", justify="right", style="cyan")
+        lb.add_column("Add", justify="right", style="cyan")
+        lb.add_column("Judge", justify="right", style="cyan")
+        for rank, entry in enumerate(leaderboard, 1):
+            actions = entry["actions"]
+            lb.add_row(
+                str(rank),
+                entry["username"],
+                str(entry["total"]),
+                str(actions.get("translate", 0)),
+                str(actions.get("add", 0)),
+                str(actions.get("judge", 0)),
+            )
+        console.print()
+        console.print(lb)
 
     # Quick totals
     console.print()

@@ -6,12 +6,12 @@ Use `Term.model_json_schema()` etc. to generate JSON Schema for CI validation.
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 from pydantic import BaseModel, Field
 
 
-class Difficulty(str, Enum):
+class Difficulty(StrEnum):
     basic = "basic"
     intermediate = "intermediate"
     advanced = "advanced"

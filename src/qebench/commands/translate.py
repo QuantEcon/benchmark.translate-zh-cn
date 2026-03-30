@@ -12,8 +12,7 @@ from __future__ import annotations
 
 import json
 import random
-from datetime import datetime, timezone
-from pathlib import Path
+from datetime import UTC, datetime
 
 import questionary
 from rich.panel import Panel
@@ -25,7 +24,6 @@ from qebench.scoring.xp import award_xp, load_xp
 from qebench.utils.dataset import DATA_DIR, load_all
 from qebench.utils.display import console
 from qebench.utils.github import get_github_username
-
 
 RESULTS_DIR = DATA_DIR.parent / "results" / "translations"
 
@@ -152,7 +150,7 @@ def _save_attempt(
         "reference": reference,
         "confidence": confidence,
         "similarity": round(similarity, 4),
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "cli_version": __version__,
     }
     if diff_reason:
