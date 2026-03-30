@@ -1,0 +1,92 @@
+[
+  {
+    "domain": "economics",
+    "terms": 70,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "finance",
+    "terms": 39,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "mathematics",
+    "terms": 39,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "macroeconomics",
+    "terms": 32,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "statistics",
+    "terms": 32,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "probability",
+    "terms": 29,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "linear-algebra",
+    "terms": 17,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "stochastic-processes",
+    "terms": 12,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "other",
+    "terms": 11,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "dynamic-programming",
+    "terms": 10,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "numerical-methods",
+    "terms": 7,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "microeconomics",
+    "terms": 5,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "calculus",
+    "terms": 4,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "optimization",
+    "terms": 4,
+    "sentences": 0,
+    "paragraphs": 0
+  },
+  {
+    "domain": "game-theory",
+    "terms": 3,
+    "sentences": 0,
+    "paragraphs": 0
+  }
+]

@@ -145,7 +145,7 @@ The interactive modes that make RAs want to contribute.
 - [x] XP tracking system (`src/qebench/scoring/xp.py`) — 10/translate, 15/add, 5/judge
 - [x] Elo rating engine (`src/qebench/scoring/elo.py`)
 - [ ] `qebench stats` — leaderboard display (current: coverage + domain table)
-- [x] 53 pytest tests passing
+- [x] 69 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 17, xp: 11, export: 16)
 
 ### Phase 3: LLM Integration (Layer 4)
 
@@ -168,15 +168,30 @@ Human evaluation system.
 - [ ] Reference overlap scorer
 - [ ] Results persistence (elo.json, judgments/)
 
-### Phase 5: Website & Export (Layer 6)
+### Phase 2.5: Dashboard Website
 
-The public-facing results dashboard.
+Standalone dashboard page deployed alongside MyST docs on GitHub Pages.
 
-- [ ] `qebench export` — aggregate results into site-ready JSON
-- [ ] Static site: Dashboard, Leaderboard, Model Comparison
-- [ ] Chart.js visualizations
-- [ ] GitHub Actions: validate.yml, deploy-site.yml
-- [ ] Coverage map, Translation of the Week, Browse Dataset pages
+- [x] `qebench export` — aggregate dataset + results to 6 JSON files (`docs/_static/dashboard/data/`)
+- [x] Dashboard HTML page (`docs/_static/dashboard/index.html`) — Chart.js, dark theme
+- [x] Stats cards: total entries, terms, sentences, paragraphs with progress bars
+- [x] Domain bar chart + difficulty doughnut chart
+- [x] Leaderboard table (XP + action breakdown)
+- [x] Activity feed (recent translation attempts, color-coded scores)
+- [x] Sample terms browse grid
+- [x] Workflow updated: Python+uv export → MyST build → copy dashboard → deploy pages
+- [x] 16 pytest tests for export (domain stats, difficulty, XP leaderboard, activity feed, samples, integration)
+- [x] Dashboard link in docs sidebar and index page
+
+### Phase 5: Extended Website (Layer 6)
+
+Extended pages beyond the dashboard.
+
+- [ ] Model comparison page (requires Phase 3 LLM data)
+- [ ] Coverage map visualization
+- [ ] Translation of the Week picks
+- [ ] Browse/search dataset pages
+- [ ] GitHub Actions: validate.yml (PR validation, schema check)
 
 ### Documentation
 

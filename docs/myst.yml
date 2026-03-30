@@ -8,6 +8,8 @@ project:
 
   toc:
     - file: index.md
+    - title: Dashboard
+      url: /benchmark.translate-zh-cn/dashboard/
     - title: User Guide
       children:
         - file: user/getting-started.md

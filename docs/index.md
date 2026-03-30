@@ -1,5 +1,7 @@
 # Documentation
 
+**[Dashboard](dashboard/)** — Live leaderboard, dataset coverage, and activity feed.
+
 ## User Guide (`user/`)
 
 Documentation for RAs and contributors using `qebench`.

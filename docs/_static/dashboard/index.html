@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>qebench Dashboard — Translation Benchmark</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-hover: #334155;
+      --border: #334155;
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+      --accent: #38bdf8;
+      --accent-green: #4ade80;
+      --accent-yellow: #facc15;
+      --accent-purple: #a78bfa;
+      --accent-pink: #f472b6;
+      --accent-orange: #fb923c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .header h1 span { color: var(--accent); }
+
+    .header p {
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .nav-back {
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .nav-back:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Stats cards row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .stat-card .label {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+
+    .stat-card .bar-bg {
+      background: var(--bg);
+      border-radius: 4px;
+      height: 8px;
+      margin-top: 0.75rem;
+      overflow: hidden;
+    }
+
+    .stat-card .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.8s ease;
+    }
+
+    /* Section headers */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Chart grid */
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .chart-grid { grid-template-columns: 1fr; }
+    }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .chart-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-dim);
+    }
+
+    .chart-card canvas {
+      width: 100% !important;
+      max-height: 300px;
+    }
+
+    /* Leaderboard */
+    .leaderboard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .leaderboard h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-dim);
+    }
+
+    .leaderboard-empty {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-dim);
+    }
+
+    .leaderboard-empty .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+
+    .leaderboard table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .leaderboard th, .leaderboard td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    .leaderboard th {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .leaderboard td {
+      border-bottom: 1px solid var(--bg);
+    }
+
+    .leaderboard tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    .rank-1 { color: var(--accent-yellow); font-weight: 700; }
+    .rank-2 { color: var(--text); font-weight: 600; }
+    .rank-3 { color: var(--accent-orange); font-weight: 600; }
+
+    .xp-badge {
+      display: inline-block;
+      background: var(--bg);
+      color: var(--accent-green);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Browse samples */
+    .samples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .sample-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .sample-card:hover {
+      border-color: var(--accent);
+    }
+
+    .sample-card .en {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .sample-card .zh {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .sample-card .meta {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Activity feed */
+    .activity {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .activity h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-dim);
+    }
+
+    .activity-empty {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-dim);
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--bg);
+    }
+
+    .activity-item:last-child { border-bottom: none; }
+
+    .activity-user {
+      font-weight: 600;
+      color: var(--accent-purple);
+      min-width: 80px;
+    }
+
+    .activity-text {
+      flex: 1;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .activity-score {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .score-high { color: var(--accent-green); }
+    .score-mid { color: var(--accent-yellow); }
+    .score-low { color: var(--accent-orange); }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+<div class="header" style="position: relative;">
+  <a class="nav-back" href="../">&larr; Back to Docs</a>
+  <h1><span>qebench</span> Dashboard</h1>
+  <p>English &rarr; Chinese Translation Benchmark for Economics &amp; Mathematics</p>
+</div>
+
+<div class="container">
+
+  <!-- Coverage Stats -->
+  <div class="stats-row" id="stats-row">
+    <div class="loading">Loading data...</div>
+  </div>
+
+  <!-- Charts -->
+  <h2 class="section-title">Dataset Overview</h2>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Entries by Domain</h3>
+      <canvas id="chart-domains"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Difficulty Distribution</h3>
+      <canvas id="chart-difficulty"></canvas>
+    </div>
+  </div>
+
+  <!-- Leaderboard -->
+  <h2 class="section-title">Leaderboard</h2>
+  <div class="leaderboard" id="leaderboard">
+    <div class="loading">Loading...</div>
+  </div>
+
+  <!-- Activity Feed -->
+  <h2 class="section-title">Recent Activity</h2>
+  <div class="activity" id="activity">
+    <div class="loading">Loading...</div>
+  </div>
+
+  <!-- Browse Terms -->
+  <h2 class="section-title">Browse Sample Terms</h2>
+  <div class="samples-grid" id="samples">
+    <div class="loading">Loading...</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>
+    <a href="https://github.com/QuantEcon/benchmark.translate-zh-cn">GitHub</a> &middot;
+    <a href="../getting-started/">Get Started</a> &middot;
+    <a href="../cli-reference/">CLI Reference</a>
+  </p>
+  <p style="margin-top: 0.5rem;">Built with qebench &middot; QuantEcon</p>
+</div>
+
+<script>
+const DATA_BASE = './data';
+
+async function loadJSON(file) {
+  try {
+    const resp = await fetch(`${DATA_BASE}/${file}`);
+    if (!resp.ok) return null;
+    return await resp.json();
+  } catch {
+    return null;
+  }
+}
+
+function pct(current, target) {
+  return target > 0 ? Math.min(100, Math.round((current / target) * 100)) : 0;
+}
+
+function renderStats(coverage) {
+  const el = document.getElementById('stats-row');
+  if (!coverage) {
+    el.innerHTML = '<div class="loading">No data available</div>';
+    return;
+  }
+
+  const items = [
+    { label: 'Total Entries', number: coverage.total, color: var_accent },
+    {
+      label: `Terms (${pct(coverage.terms.current, coverage.terms.target)}%)`,
+      number: coverage.terms.current,
+      target: coverage.terms.target,
+      color: '#38bdf8',
+    },
+    {
+      label: `Sentences (${pct(coverage.sentences.current, coverage.sentences.target)}%)`,
+      number: coverage.sentences.current,
+      target: coverage.sentences.target,
+      color: '#a78bfa',
+    },
+    {
+      label: `Paragraphs (${pct(coverage.paragraphs.current, coverage.paragraphs.target)}%)`,
+      number: coverage.paragraphs.current,
+      target: coverage.paragraphs.target,
+      color: '#4ade80',
+    },
+  ];
+
+  el.innerHTML = items.map(item => {
+    const barHtml = item.target
+      ? `<div class="bar-bg"><div class="bar-fill" style="width: ${pct(item.number, item.target)}%; background: ${item.color};"></div></div>`
+      : '';
+    return `
+      <div class="stat-card">
+        <div class="number" style="color: ${item.color}">${item.number}</div>
+        <div class="label">${item.label}</div>
+        ${barHtml}
+      </div>
+    `;
+  }).join('');
+}
+
+const var_accent = '#38bdf8';
+
+function renderDomainChart(domains) {
+  if (!domains || !domains.length) return;
+  const ctx = document.getElementById('chart-domains');
+  const labels = domains.map(d => d.domain);
+  const data = domains.map(d => d.terms + d.sentences + d.paragraphs);
+
+  const colors = [
+    '#38bdf8', '#4ade80', '#a78bfa', '#facc15', '#fb923c',
+    '#f472b6', '#22d3ee', '#34d399', '#818cf8', '#fbbf24',
+    '#f87171', '#a3e635', '#2dd4bf', '#c084fc', '#fb7185',
+  ];
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data,
+        backgroundColor: colors.slice(0, labels.length),
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          ticks: { color: '#94a3b8' },
+          grid: { color: '#1e293b' },
+        },
+        y: {
+          ticks: { color: '#e2e8f0', font: { size: 11 } },
+          grid: { display: false },
+        },
+      },
+    },
+  });
+}
+
+function renderDifficultyChart(difficulty) {
+  if (!difficulty) return;
+  const ctx = document.getElementById('chart-difficulty');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Basic', 'Intermediate', 'Advanced'],
+      datasets: [{
+        data: [difficulty.basic, difficulty.intermediate, difficulty.advanced],
+        backgroundColor: ['#4ade80', '#facc15', '#f472b6'],
+        borderWidth: 0,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: '#e2e8f0', padding: 16 },
+        },
+      },
+    },
+  });
+}
+
+function rankEmoji(i) {
+  if (i === 0) return '🥇';
+  if (i === 1) return '🥈';
+  if (i === 2) return '🥉';
+  return `#${i + 1}`;
+}
+
+function renderLeaderboard(leaderboard) {
+  const el = document.getElementById('leaderboard');
+  if (!leaderboard || !leaderboard.length) {
+    el.innerHTML = `
+      <div class="leaderboard-empty">
+        <div class="emoji">🎮</div>
+        <p>No XP earned yet!</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+          Run <code style="color: #38bdf8;">qebench translate</code> to start earning XP.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  const rows = leaderboard.map((user, i) => `
+    <tr>
+      <td class="rank-${i + 1}">${rankEmoji(i)}</td>
+      <td style="font-weight: 600;">${esc(user.username)}</td>
+      <td><span class="xp-badge">${user.total_xp} XP</span></td>
+      <td style="color: #94a3b8; font-size: 0.85rem;">
+        ${Object.entries(user.actions || {}).map(([k, v]) => `${k}: ${v}`).join(' · ')}
+      </td>
+    </tr>
+  `).join('');
+
+  el.innerHTML = `
+    <table>
+      <thead><tr><th>Rank</th><th>User</th><th>XP</th><th>Breakdown</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+function renderActivity(activity) {
+  const el = document.getElementById('activity');
+  if (!activity || !activity.length) {
+    el.innerHTML = `
+      <div class="activity-empty">
+        <p>No translation attempts yet. Be the first!</p>
+      </div>
+    `;
+    return;
+  }
+
+  const items = activity.slice(0, 20).map(a => {
+    const scoreClass = a.overlap >= 0.7 ? 'score-high' : a.overlap >= 0.4 ? 'score-mid' : 'score-low';
+    const scoreText = Math.round(a.overlap * 100) + '%';
+    return `
+      <div class="activity-item">
+        <span class="activity-user">${esc(a.username)}</span>
+        <span class="activity-text">translated <strong>${esc(a.entry_id)}</strong></span>
+        <span class="activity-score ${scoreClass}">${scoreText}</span>
+      </div>
+    `;
+  }).join('');
+
+  el.innerHTML = `<h3>Latest Translations</h3>${items}`;
+}
+
+function renderSamples(samples) {
+  const el = document.getElementById('samples');
+  if (!samples || !samples.length) {
+    el.innerHTML = '<div class="loading">No samples available</div>';
+    return;
+  }
+
+  el.innerHTML = samples.slice(0, 18).map(s => `
+    <div class="sample-card">
+      <div class="en">${esc(s.en)}</div>
+      <div class="zh">${esc(s.zh)}</div>
+      <div class="meta">${esc(s.id)} · ${esc(s.difficulty)}</div>
+    </div>
+  `).join('');
+}
+
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+async function init() {
+  const [coverage, domains, difficulty, leaderboard, activity, samples] = await Promise.all([
+    loadJSON('coverage.json'),
+    loadJSON('domains.json'),
+    loadJSON('difficulty.json'),
+    loadJSON('leaderboard.json'),
+    loadJSON('activity.json'),
+    loadJSON('samples.json'),
+  ]);
+
+  renderStats(coverage);
+  renderDomainChart(domains);
+  renderDifficultyChart(difficulty);
+  renderLeaderboard(leaderboard);
+  renderActivity(activity);
+  renderSamples(samples);
+}
+
+init();
+</script>
+
+</body>
+</html>

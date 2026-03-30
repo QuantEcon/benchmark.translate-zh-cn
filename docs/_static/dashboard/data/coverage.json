@@ -1,0 +1,15 @@
+{
+  "terms": {
+    "current": 314,
+    "target": 500
+  },
+  "sentences": {
+    "current": 0,
+    "target": 100
+  },
+  "paragraphs": {
+    "current": 0,
+    "target": 30
+  },
+  "total": 314
+}

@@ -7,6 +7,7 @@ from typing import Optional
 import typer
 
 from qebench.commands.add import add
+from qebench.commands.export import export
 from qebench.commands.stats import stats
 from qebench.commands.translate import translate as translate_fn
 
@@ -25,6 +26,7 @@ def main() -> None:
 # Register commands
 app.command("stats", help="Show dataset coverage, domain breakdown, and progress.")(stats)
 app.command("add", help="Contribute new terms, sentences, or paragraphs.")(add)
+app.command("export", help="Export dataset and results to JSON for the dashboard.")(export)
 
 
 @app.command("translate")
