@@ -23,11 +23,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup MyST
-        uses: myst-tools/myst-action@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install MyST
+        run: npm install -g mystmd
 
       - name: Build docs
-        run: cd docs && myst build --html
+        working-directory: docs
+        run: myst build --html
+        env:
+          BASE_URL: /${{ github.event.repository.name }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
