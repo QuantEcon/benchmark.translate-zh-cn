@@ -64,27 +64,36 @@ Pick the level that matches your certainty. You can also add optional notes
 
 ## Step 5: See the Reference
 
-After you commit your answer, the reference translation is revealed:
+After you commit your answer, the reference translation is revealed with a
+similarity score:
 
 ```
 ╭────────── Reference ──────────╮
 │  Your answer:  通货膨胀        │
 │  Reference:    通货膨胀        │
-│  Matches the reference.       │
+│  Similarity:   100%              │
+│  Matches the reference.          │
 ╰───────────────────────────────╯
 ```
 
-If your translation differs from the reference, that's perfectly fine:
+If your translation differs (below 85% similarity), you'll be asked **why**:
 
 ```
-│  Your answer:  通胀              │
-│  Reference:    通货膨胀           │
-│  A different translation —       │
-│  this is valuable data!          │
+? Why does your translation differ?
+  Formal/written register (书面语)
+  Informal/spoken register (口语)
+❯ Regional preference
+  Contextual — depends on usage
+  Abbreviation or shorthand
+  Alternative technical term
+  Other (explain in notes)
+
+? Notes (optional — explain further):
 ```
 
-There is no accuracy score. Every human translation — especially ones that
-differ from the reference — helps us understand translation variation.
+This is the most valuable data you can provide. Chinese has formal and informal
+representations, regional variants, and context-dependent translations.
+Documenting *why* translations vary helps us improve the translator.
 
 ## Step 6: Session Summary
 

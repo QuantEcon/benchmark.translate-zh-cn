@@ -119,12 +119,13 @@ No manual `--user` flags needed. Requires `gh auth login` as a one-time setup.
 Type safety + auto JSON Schema generation + validation in one place. Models serve
 double duty as the validation layer and the documentation of the data format.
 
-### No accuracy scoring in translate
-The translate command deliberately omits accuracy scoring.  The goal is to
-collect diverse human translations that reveal cultural nuance and variation,
-not to train users toward a single reference answer.  Confidence ratings
-(1–5) and optional notes capture the translator's certainty and reasoning,
-which is more useful for benchmark analysis than a character-overlap metric.
+### Similarity as a trigger, not a grade
+Character-level Jaccard similarity (`_char_overlap`) is computed for each
+translation, but it's used as an informational metric and a trigger: when
+similarity falls below 85%, the user is prompted for *why* their translation
+differs (formal/informal register, regional preference, context, abbreviation,
+alternative technical term, etc.).  This captures the variation and the
+reasoning behind it — the most valuable data for improving the translator.
 
 ### XP stored per-user in JSON
 Each user gets a separate file (`results/xp/{username}.json`). Avoids write

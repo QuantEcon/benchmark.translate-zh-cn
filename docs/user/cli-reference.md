@@ -54,10 +54,11 @@ uv run qebench translate
 **What's recorded per entry:**
 - Your Chinese translation
 - Confidence level (1–5)
-- Optional notes (context, reasoning)
-- The reference translation (for comparison)
+- Character similarity to the reference (informational, not a grade)
+- If your translation differs: the reason why (formal/informal register, regional preference, contextual, abbreviation, alternative technical term, or other)
+- Optional notes for further explanation
 
-There is no accuracy score — the goal is to collect diverse human translations.
+Divergent translations are valuable — they help us understand cultural nuance and variation.
 
 Each completed entry earns **10 XP**.
 

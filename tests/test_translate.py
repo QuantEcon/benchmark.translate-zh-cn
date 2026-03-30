@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from qebench.commands.translate import _pick_entries, _save_attempt
+from qebench.commands.translate import _char_overlap, _pick_entries, _save_attempt
 from qebench.models import Difficulty, Term
 
 
@@ -84,37 +84,70 @@ class TestAddNextId:
         assert _next_id("term", terms) == "term-011"
 
 
+class TestCharOverlap:
+    def test_identical_strings(self):
+        assert _char_overlap("贝尔曼方程", "贝尔曼方程") == 1.0
+
+    def test_completely_different(self):
+        assert _char_overlap("你好", "世界") == 0.0
+
+    def test_partial_overlap(self):
+        overlap = _char_overlap("通货膨胀率", "通货膨胀")
+        assert 0.5 < overlap < 1.0
+
+    def test_empty_strings(self):
+        assert _char_overlap("", "") == 1.0
+
+    def test_one_empty(self):
+        assert _char_overlap("", "你好") == 0.0
+        assert _char_overlap("你好", "") == 0.0
+
+    def test_ignores_punctuation(self):
+        assert _char_overlap("你好，世界！", "你好世界") == 1.0
+
+    def test_symmetry(self):
+        a = _char_overlap("经济学", "经济")
+        b = _char_overlap("经济", "经济学")
+        assert a == b
+
+
 class TestSaveAttempt:
-    def test_saves_record_with_confidence(self, tmp_path, monkeypatch):
+    def test_saves_record_with_confidence_and_similarity(self, tmp_path, monkeypatch):
         monkeypatch.setattr("qebench.commands.translate.RESULTS_DIR", tmp_path)
-        _save_attempt("term-001", "通货膨胀", "通货膨胀", 4, "", "alice")
+        _save_attempt("term-001", "通货膨胀", "通货膨胀", 4, 1.0, "", "", "alice")
         filepath = tmp_path / "alice.jsonl"
         assert filepath.exists()
         record = json.loads(filepath.read_text(encoding="utf-8").strip())
         assert record["entry_id"] == "term-001"
         assert record["confidence"] == 4
-        assert record["notes"] == ""
+        assert record["similarity"] == 1.0
+        assert "diff_reason" not in record  # omitted when empty
+        assert "notes" not in record  # omitted when empty
         assert "timestamp" in record
 
-    def test_saves_notes(self, tmp_path, monkeypatch):
+    def test_saves_diff_reason(self, tmp_path, monkeypatch):
         monkeypatch.setattr("qebench.commands.translate.RESULTS_DIR", tmp_path)
-        _save_attempt("term-002", "均衡", "均衡", 3, "common econ term", "alice")
+        _save_attempt("term-002", "通胀", "通货膨胀", 3, 0.5, "abbreviation", "shorter form", "alice")
         filepath = tmp_path / "alice.jsonl"
         record = json.loads(filepath.read_text(encoding="utf-8").strip())
-        assert record["notes"] == "common econ term"
+        assert record["diff_reason"] == "abbreviation"
+        assert record["notes"] == "shorter form"
+        assert record["similarity"] == 0.5
 
     def test_appends_multiple_records(self, tmp_path, monkeypatch):
         monkeypatch.setattr("qebench.commands.translate.RESULTS_DIR", tmp_path)
-        _save_attempt("term-001", "A", "B", 2, "", "bob")
-        _save_attempt("term-002", "C", "D", 5, "sure", "bob")
+        _save_attempt("term-001", "A", "B", 2, 0.0, "", "", "bob")
+        _save_attempt("term-002", "C", "D", 5, 1.0, "", "", "bob")
         filepath = tmp_path / "bob.jsonl"
         lines = [l for l in filepath.read_text(encoding="utf-8").splitlines() if l.strip()]
         assert len(lines) == 2
 
-    def test_no_overlap_field(self, tmp_path, monkeypatch):
-        """Overlap scoring was removed — records should not contain it."""
+    def test_omits_empty_optional_fields(self, tmp_path, monkeypatch):
+        """diff_reason and notes are omitted from JSON when empty."""
         monkeypatch.setattr("qebench.commands.translate.RESULTS_DIR", tmp_path)
-        _save_attempt("term-001", "X", "Y", 3, "", "carol")
+        _save_attempt("term-001", "X", "Y", 3, 0.8, "", "", "carol")
         filepath = tmp_path / "carol.jsonl"
         record = json.loads(filepath.read_text(encoding="utf-8").strip())
-        assert "overlap" not in record
+        assert "diff_reason" not in record
+        assert "notes" not in record
+        assert "similarity" in record
