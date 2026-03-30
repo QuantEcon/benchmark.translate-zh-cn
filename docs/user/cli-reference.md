@@ -85,7 +85,7 @@ uv run qebench translate
 
 Divergent translations are valuable — they help us understand cultural nuance and variation.
 
-Each completed entry earns **10 XP**.
+Each completed entry earns **10 XP**. A `cli_version` field is automatically saved with every record for future schema migration.
 
 ---
 
@@ -105,7 +105,7 @@ No options — the command walks you through the process:
 4. **Confirm** — save to the appropriate domain JSON file
 5. **Continue?** — option to add another entry
 
-Each contributed entry earns **15 XP**.
+Each contributed entry earns **15 XP**. A `cli_version` field is automatically saved with every entry.
 
 ---
 

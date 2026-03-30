@@ -25,6 +25,14 @@ All user-generated files are per-user to eliminate merge conflicts:
 
 The `qebench submit` command handles the full git ceremony (pull --rebase → add → commit → push). RAs push directly to `main` — per-user files prevent conflicts.
 
+## Versioning & Schema Migration
+
+RAs always run from `main` (no separate release installs). `qebench update` pulls latest code + data, then syncs dependencies. Tests protect `main` on every push.
+
+Every data record (`translate` JSONL lines, `add` JSON entries) includes a `cli_version` field stamped at write time. If the data schema changes in a future release, this field provides a migration path — we can identify which records were written by which version and transform them accordingly.
+
+Releases are tagged (`v0.1.0`, etc.) as milestones for the CHANGELOG. See [CHANGELOG.md](CHANGELOG.md).
+
 ## Technology Stack
 
 | Role | Library | Version | Why |
@@ -163,7 +171,7 @@ The interactive modes that make RAs want to contribute.
 - [x] `qebench update` — pull latest code + data (`git pull --rebase`) and sync dependencies (`uv sync`)
 - [x] Results committed to repo — XP + translations tracked in git, dashboard reads them
 - [ ] `qebench stats` — leaderboard display (current: coverage + domain table)
-- [x] 96 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4)
+- [x] 98 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, add: 2)
 
 ### Phase 3: LLM Integration (Layer 4)
 

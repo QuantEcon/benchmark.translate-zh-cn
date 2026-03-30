@@ -19,6 +19,7 @@ import questionary
 from rich.panel import Panel
 from rich.table import Table
 
+from qebench import __version__
 from qebench.models import Difficulty, Paragraph, Sentence, Term
 from qebench.scoring.xp import award_xp, load_xp
 from qebench.utils.dataset import DATA_DIR, load_all
@@ -152,6 +153,7 @@ def _save_attempt(
         "confidence": confidence,
         "similarity": round(similarity, 4),
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "cli_version": __version__,
     }
     if diff_reason:
         record["diff_reason"] = diff_reason

@@ -58,6 +58,7 @@ translate.py ──→ picks entries, presents English, collects Chinese
     ├──→ notes prompt      ──→ optional context / reasoning
     ├──→ _reference_panel() ─→ shows reference (educational, no score)
     ├──→ _save_attempt()   ──→ appends to results/translations/{username}.jsonl
+    │                        (includes cli_version for schema migration)
     └──→ xp.award_xp()    ──→ updates results/xp/{username}.json
 ```
 

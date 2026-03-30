@@ -9,6 +9,7 @@ import questionary
 from rich.panel import Panel
 from rich.text import Text
 
+from qebench import __version__
 from qebench.models import Difficulty, Paragraph, Sentence, Term
 from qebench.utils.dataset import DATA_DIR, get_domains, load_all
 from qebench.utils.display import console
@@ -39,7 +40,9 @@ def _save_to_user_file(entry: Term | Sentence | Paragraph, entry_type: str, user
             data = json.load(f)
         entries = data if isinstance(data, list) else data.get("entries", [])
 
-    entries.append(entry.model_dump(exclude_none=True))
+    entry_dict = entry.model_dump(exclude_none=True)
+    entry_dict["cli_version"] = __version__
+    entries.append(entry_dict)
 
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, indent=2)

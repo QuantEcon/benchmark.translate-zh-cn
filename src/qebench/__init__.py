@@ -1,3 +1,5 @@
 """qebench — Benchmark CLI for translation quality evaluation."""
 
-__version__ = "0.1.0"
+from importlib.metadata import version
+
+__version__ = version("qebench")

@@ -124,6 +124,7 @@ class TestSaveAttempt:
         assert "diff_reason" not in record  # omitted when empty
         assert "notes" not in record  # omitted when empty
         assert "timestamp" in record
+        assert "cli_version" in record
 
     def test_saves_diff_reason(self, tmp_path, monkeypatch):
         monkeypatch.setattr("qebench.commands.translate.RESULTS_DIR", tmp_path)
