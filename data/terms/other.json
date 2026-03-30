@@ -1,0 +1,101 @@
+[
+  {
+    "id": "term-231",
+    "en": "Balance sheet equation",
+    "zh": "资产负债表等式",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (accounting)"
+  },
+  {
+    "id": "term-232",
+    "en": "Exercise",
+    "zh": "练习",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (educational content)"
+  },
+  {
+    "id": "term-233",
+    "en": "FRED",
+    "zh": "美联储经济数据",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (data source)"
+  },
+  {
+    "id": "term-234",
+    "en": "Federal Reserve Economic Data",
+    "zh": "美联储经济数据",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (data source)"
+  },
+  {
+    "id": "term-235",
+    "en": "Lecture",
+    "zh": "讲座",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (educational content)"
+  },
+  {
+    "id": "term-236",
+    "en": "NBER",
+    "zh": "美国国家经济研究局",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (institution)"
+  },
+  {
+    "id": "term-237",
+    "en": "National Bureau of Economic Research",
+    "zh": "美国国家经济研究局",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (institution)"
+  },
+  {
+    "id": "term-238",
+    "en": "Survey of Consumer Finances",
+    "zh": "消费者财务调查",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (data source)"
+  },
+  {
+    "id": "term-239",
+    "en": "University of Michigan",
+    "zh": "密歇根大学",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (institution)"
+  },
+  {
+    "id": "term-240",
+    "en": "Violin plot",
+    "zh": "小提琴图",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (data visualization)"
+  },
+  {
+    "id": "term-241",
+    "en": "World Bank",
+    "zh": "世界银行",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (institution)"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "term-124",
+    "en": "Folk theorem",
+    "zh": "无名氏定理",
+    "domain": "game-theory",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (game theory)"
+  },
+  {
+    "id": "term-125",
+    "en": "Grim trigger strategy",
+    "zh": "冷酷策略",
+    "domain": "game-theory",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (game theory)"
+  },
+  {
+    "id": "term-126",
+    "en": "Zero-sum game",
+    "zh": "零和博弈",
+    "domain": "game-theory",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (game theory)"
+  }
+]

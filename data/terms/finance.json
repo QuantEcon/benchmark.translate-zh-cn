@@ -1,0 +1,353 @@
+[
+  {
+    "id": "term-085",
+    "en": "Annuity",
+    "zh": "年金",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-086",
+    "en": "Arrow securities",
+    "zh": "阿罗证券",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-087",
+    "en": "Barrier option",
+    "zh": "障碍期权",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-088",
+    "en": "Corporate bond",
+    "zh": "公司债券",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-089",
+    "en": "Deposit receipt",
+    "zh": "存款收据",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (banking)"
+  },
+  {
+    "id": "term-090",
+    "en": "Discounting",
+    "zh": "贴现",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-091",
+    "en": "European call option",
+    "zh": "欧式看涨期权",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-092",
+    "en": "Expiry date",
+    "zh": "到期日",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-093",
+    "en": "Fiat money",
+    "zh": "法定货币",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-094",
+    "en": "Fiscal theory of price levels",
+    "zh": "价格水平的财政理论",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-095",
+    "en": "Fractional reserve banking",
+    "zh": "部分准备金银行制度",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (banking)"
+  },
+  {
+    "id": "term-096",
+    "en": "Gordon formula",
+    "zh": "戈登公式",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-097",
+    "en": "Gross rate of return",
+    "zh": "总回报率",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-098",
+    "en": "Hyperinflation",
+    "zh": "恶性通货膨胀",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-099",
+    "en": "Inflation-indexed bonds",
+    "zh": "通胀指数化债券",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-100",
+    "en": "Inflation-tax theory",
+    "zh": "通货膨胀税理论",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-101",
+    "en": "Knockout barrier",
+    "zh": "敲出障碍",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (options)"
+  },
+  {
+    "id": "term-102",
+    "en": "Legal restrictions theory",
+    "zh": "法律限制理论",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-103",
+    "en": "Money demand",
+    "zh": "货币需求",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-104",
+    "en": "Money multiplier",
+    "zh": "货币乘数",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-105",
+    "en": "Money supply",
+    "zh": "货币供给",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-106",
+    "en": "Mutual fund",
+    "zh": "共同基金",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-107",
+    "en": "Open market operations",
+    "zh": "公开市场操作",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary policy)"
+  },
+  {
+    "id": "term-108",
+    "en": "Present discounted value",
+    "zh": "现值",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-109",
+    "en": "Present value",
+    "zh": "现值",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-110",
+    "en": "Present value model",
+    "zh": "现值模型",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-111",
+    "en": "Quantity theory of money",
+    "zh": "货币数量论",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-112",
+    "en": "Real bills theory",
+    "zh": "实物票据理论",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-113",
+    "en": "Real money balances",
+    "zh": "实际货币余额",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-114",
+    "en": "Reserve-deposit ratio",
+    "zh": "准备金存款比率",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (banking)"
+  },
+  {
+    "id": "term-115",
+    "en": "Risk-neutral pricing",
+    "zh": "风险中性定价",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-116",
+    "en": "Spot price",
+    "zh": "现货价格",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-117",
+    "en": "State-contingent claims",
+    "zh": "或有债权",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-118",
+    "en": "Stochastic volatility",
+    "zh": "随机波动率",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-119",
+    "en": "Strike price",
+    "zh": "行权价",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (options)"
+  },
+  {
+    "id": "term-120",
+    "en": "Terminal price",
+    "zh": "终端价格",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  },
+  {
+    "id": "term-121",
+    "en": "Underlying asset",
+    "zh": "标的资产",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (derivatives)"
+  },
+  {
+    "id": "term-122",
+    "en": "Unpleasant monetarist arithmetic",
+    "zh": "不愉快的货币主义算术",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (monetary economics)"
+  },
+  {
+    "id": "term-123",
+    "en": "Volatility",
+    "zh": "波动率",
+    "domain": "finance",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (finance)"
+  }
+]

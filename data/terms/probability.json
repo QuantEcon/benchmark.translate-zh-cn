@@ -1,0 +1,263 @@
+[
+  {
+    "id": "term-242",
+    "en": "Beta distribution",
+    "zh": "贝塔分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-243",
+    "en": "Bivariate uniform distribution",
+    "zh": "二元均匀分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-244",
+    "en": "Cauchy distribution",
+    "zh": "柯西分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-245",
+    "en": "Central limit theorem",
+    "zh": "中心极限定理",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-246",
+    "en": "Characteristic function",
+    "zh": "特征函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-247",
+    "en": "Conditional probability",
+    "zh": "条件概率",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-248",
+    "en": "Convergence in distribution",
+    "zh": "依分布收敛",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-249",
+    "en": "Counter CDF",
+    "zh": "互补累积分布函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-250",
+    "en": "CCDF",
+    "zh": "互补累积分布函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability abbreviation)"
+  },
+  {
+    "id": "term-251",
+    "en": "Cumulative distribution function",
+    "zh": "累积分布函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-252",
+    "en": "Exponential distribution",
+    "zh": "指数分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-253",
+    "en": "Heavy-tailed distribution",
+    "zh": "重尾分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-254",
+    "en": "Independent and identically distributed",
+    "zh": "独立同分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-255",
+    "en": "Law of large numbers",
+    "zh": "大数定律",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-256",
+    "en": "Law of total probability",
+    "zh": "全概率公式",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-257",
+    "en": "Light-tailed distribution",
+    "zh": "轻尾分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-258",
+    "en": "Log-normal distribution",
+    "zh": "对数正态分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-259",
+    "en": "Marginal distribution",
+    "zh": "边缘分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-260",
+    "en": "Moment generating function",
+    "zh": "矩生成函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-261",
+    "en": "Moments",
+    "zh": "矩",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-262",
+    "en": "Multivariate normal distributions",
+    "zh": "多元正态分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-263",
+    "en": "Normal distribution",
+    "zh": "正态分布",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-264",
+    "en": "Pareto tail",
+    "zh": "帕累托尾",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-265",
+    "en": "Power law",
+    "zh": "幂律",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-266",
+    "en": "Probability density function",
+    "zh": "概率密度函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-267",
+    "en": "Probability mass function",
+    "zh": "概率质量函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-268",
+    "en": "Strong law of large numbers",
+    "zh": "强大数定律",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-269",
+    "en": "Support",
+    "zh": "支持",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  },
+  {
+    "id": "term-270",
+    "en": "Tail index",
+    "zh": "尾指数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (probability)"
+  }
+]

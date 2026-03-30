@@ -1,0 +1,26 @@
+language_pair:
+  source: en
+  target: zh-cn
+
+glossary_path: null  # Set to path of action-translation/glossary/zh-cn.json
+
+domains:
+  - economics
+  - macroeconomics
+  - microeconomics
+  - dynamic-programming
+  - mathematics
+  - linear-algebra
+  - calculus
+  - statistics
+  - probability
+  - finance
+  - game-theory
+  - optimization
+  - stochastic-processes
+  - numerical-methods
+
+targets:
+  terms: 500
+  sentences: 100
+  paragraphs: 30

@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# uv
+uv.lock
+
+# Results (user-generated, not git-tracked by default)
+results/translations/*.json
+results/judgments/*.json
+results/model-outputs/*.json
+results/elo.json
+results/leaderboard.json
+results/weekly.json
+!results/.gitkeep
+
+# Site generated data
+site/data/*.json
+
+# Environment
+.env

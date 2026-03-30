@@ -1,0 +1,290 @@
+[
+  {
+    "id": "term-271",
+    "en": "AR(1) processes",
+    "zh": "AR(1)过程",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-272",
+    "en": "Asymptotic stationarity",
+    "zh": "渐近平稳性",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-273",
+    "en": "Autoregressive model",
+    "zh": "自回归模型",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-274",
+    "en": "Autoregressive representation",
+    "zh": "自回归表示",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-275",
+    "en": "Bandwidth",
+    "zh": "带宽",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (kernel density estimation)"
+  },
+  {
+    "id": "term-276",
+    "en": "Central moment",
+    "zh": "中心矩",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-277",
+    "en": "Empirical Distribution",
+    "zh": "经验分布",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-278",
+    "en": "First Moment",
+    "zh": "一阶矩",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-279",
+    "en": "Forecast errors",
+    "zh": "预测误差",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-280",
+    "en": "Gaussian kernel",
+    "zh": "高斯核",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (kernel methods)"
+  },
+  {
+    "id": "term-281",
+    "en": "Histogram",
+    "zh": "直方图",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-282",
+    "en": "Kernel density estimate",
+    "zh": "核密度估计",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-283",
+    "en": "Kernel density estimator",
+    "zh": "核密度估计器",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-284",
+    "en": "Kolmogorov-Smirnov test",
+    "zh": "科尔莫戈罗夫-斯米尔诺夫检验",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-285",
+    "en": "Log likelihood function",
+    "zh": "对数似然函数",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-286",
+    "en": "Maximum likelihood estimation",
+    "zh": "最大似然估计",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-287",
+    "en": "Moving average representation",
+    "zh": "移动平均表示",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-288",
+    "en": "Non-stationary univariate time series",
+    "zh": "非平稳单变量时间序列",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-289",
+    "en": "Ordinary Least Squares",
+    "zh": "普通最小二乘法",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (econometrics)"
+  },
+  {
+    "id": "term-290",
+    "en": "OLS",
+    "zh": "普通最小二乘法",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (econometrics abbreviation)"
+  },
+  {
+    "id": "term-291",
+    "en": "Residuals",
+    "zh": "残差",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (econometrics)"
+  },
+  {
+    "id": "term-292",
+    "en": "Sample mean",
+    "zh": "样本均值",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-293",
+    "en": "Sample variance",
+    "zh": "样本方差",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-294",
+    "en": "Scatter plot",
+    "zh": "散点图",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-295",
+    "en": "Silverman's rule",
+    "zh": "西尔弗曼法则",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (kernel density estimation)"
+  },
+  {
+    "id": "term-296",
+    "en": "Simple regression model",
+    "zh": "简单回归模型",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (econometrics)"
+  },
+  {
+    "id": "term-297",
+    "en": "Stationarity",
+    "zh": "平稳性",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-298",
+    "en": "Statistical stationarity",
+    "zh": "统计平稳性",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (time series)"
+  },
+  {
+    "id": "term-299",
+    "en": "Sum of the squared residuals",
+    "zh": "残差平方和",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (econometrics)"
+  },
+  {
+    "id": "term-300",
+    "en": "SSR",
+    "zh": "残差平方和",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (econometrics abbreviation)"
+  },
+  {
+    "id": "term-301",
+    "en": "Time series",
+    "zh": "时间序列",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  },
+  {
+    "id": "term-302",
+    "en": "Weighted average",
+    "zh": "加权平均",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (statistics)"
+  }
+]

@@ -1,0 +1,353 @@
+[
+  {
+    "id": "term-176",
+    "en": "Adjacency matrix",
+    "zh": "邻接矩阵",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (graph theory)"
+  },
+  {
+    "id": "term-177",
+    "en": "Authority centrality",
+    "zh": "权威中心性",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (network science)"
+  },
+  {
+    "id": "term-178",
+    "en": "Calculus",
+    "zh": "微积分",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-179",
+    "en": "Centrality measure",
+    "zh": "中心性度量",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (network science)"
+  },
+  {
+    "id": "term-180",
+    "en": "Complex conjugate",
+    "zh": "共轭复数",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (complex analysis)"
+  },
+  {
+    "id": "term-181",
+    "en": "Complex number",
+    "zh": "复数",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-182",
+    "en": "Complex plane",
+    "zh": "复平面",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (complex analysis)"
+  },
+  {
+    "id": "term-183",
+    "en": "Contractions",
+    "zh": "压缩",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (functional analysis)"
+  },
+  {
+    "id": "term-184",
+    "en": "Convergence",
+    "zh": "收敛",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-185",
+    "en": "de Moivre's theorem",
+    "zh": "棣莫弗定理",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (complex analysis)"
+  },
+  {
+    "id": "term-186",
+    "en": "Degree centrality",
+    "zh": "度中心性",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (network science)"
+  },
+  {
+    "id": "term-187",
+    "en": "Distance matrix",
+    "zh": "距离矩阵",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (graph theory)"
+  },
+  {
+    "id": "term-188",
+    "en": "Dynamic process",
+    "zh": "动态过程",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-189",
+    "en": "Eigenvector centrality",
+    "zh": "特征向量中心性",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (network science)"
+  },
+  {
+    "id": "term-190",
+    "en": "Euclidean distance",
+    "zh": "欧几里得距离",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-191",
+    "en": "Euler's formula",
+    "zh": "欧拉公式",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (complex analysis)"
+  },
+  {
+    "id": "term-192",
+    "en": "Forcing variable",
+    "zh": "强制变量",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (difference equations)"
+  },
+  {
+    "id": "term-193",
+    "en": "Hub centrality",
+    "zh": "枢纽中心性",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (network science)"
+  },
+  {
+    "id": "term-194",
+    "en": "Imaginary part",
+    "zh": "虚部",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (complex analysis)"
+  },
+  {
+    "id": "term-195",
+    "en": "Indicator function",
+    "zh": "指示函数",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-196",
+    "en": "Initial condition",
+    "zh": "初始条件",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (differential equations)"
+  },
+  {
+    "id": "term-197",
+    "en": "Katz centrality",
+    "zh": "卡茨中心性",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (network science)"
+  },
+  {
+    "id": "term-198",
+    "en": "Kernel",
+    "zh": "核",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (functional analysis)"
+  },
+  {
+    "id": "term-199",
+    "en": "Linear algebra",
+    "zh": "线性代数",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-200",
+    "en": "Linear differential equation",
+    "zh": "线性微分方程",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-201",
+    "en": "Log transform",
+    "zh": "对数转换",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-202",
+    "en": "Network science",
+    "zh": "网络科学",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-203",
+    "en": "Neumann Series Lemma",
+    "zh": "诺伊曼级数引理",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (functional analysis)"
+  },
+  {
+    "id": "term-204",
+    "en": "PageRank algorithm",
+    "zh": "网页排名算法",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (network science)"
+  },
+  {
+    "id": "term-205",
+    "en": "Real part",
+    "zh": "实部",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (complex analysis)"
+  },
+  {
+    "id": "term-206",
+    "en": "Recursive expressions",
+    "zh": "递归表达式",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-207",
+    "en": "Second-order linear difference equation",
+    "zh": "二阶线性差分方程",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (difference equations)"
+  },
+  {
+    "id": "term-208",
+    "en": "Strongly connected",
+    "zh": "强连通的",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (graph theory)"
+  },
+  {
+    "id": "term-209",
+    "en": "Trigonometric form",
+    "zh": "三角形式",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (complex analysis)"
+  },
+  {
+    "id": "term-210",
+    "en": "Vector field",
+    "zh": "向量场",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  },
+  {
+    "id": "term-211",
+    "en": "Vector linear difference equations",
+    "zh": "向量线性差分方程",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (difference equations)"
+  },
+  {
+    "id": "term-212",
+    "en": "Vertices",
+    "zh": "顶点",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (graph theory)"
+  },
+  {
+    "id": "term-213",
+    "en": "Weighted directed graph",
+    "zh": "加权有向图",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (graph theory)"
+  },
+  {
+    "id": "term-214",
+    "en": "Weight function",
+    "zh": "权重函数",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (mathematics)"
+  }
+]

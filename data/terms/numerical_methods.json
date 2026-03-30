@@ -1,0 +1,65 @@
+[
+  {
+    "id": "term-220",
+    "en": "Method of successive approximations",
+    "zh": "连续近似法",
+    "domain": "numerical-methods",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (numerical methods)"
+  },
+  {
+    "id": "term-221",
+    "en": "Monte Carlo",
+    "zh": "蒙特卡洛",
+    "domain": "numerical-methods",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (simulation methods)"
+  },
+  {
+    "id": "term-222",
+    "en": "Newton's method",
+    "zh": "牛顿法",
+    "domain": "numerical-methods",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (numerical methods)"
+  },
+  {
+    "id": "term-223",
+    "en": "Numerical integration",
+    "zh": "数值积分",
+    "domain": "numerical-methods",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (numerical methods)"
+  },
+  {
+    "id": "term-224",
+    "en": "Path simulation",
+    "zh": "路径模拟",
+    "domain": "numerical-methods",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (simulation)"
+  },
+  {
+    "id": "term-225",
+    "en": "Successive approximation",
+    "zh": "逐次近似",
+    "domain": "numerical-methods",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (numerical methods)"
+  },
+  {
+    "id": "term-226",
+    "en": "Vectorization",
+    "zh": "向量化",
+    "domain": "numerical-methods",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (numerical computation)"
+  }
+]

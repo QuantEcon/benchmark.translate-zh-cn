@@ -1,0 +1,632 @@
+[
+  {
+    "id": "term-015",
+    "en": "Adaptive expectations",
+    "zh": "适应性预期",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-016",
+    "en": "Autarky equilibrium",
+    "zh": "自给自足均衡",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-017",
+    "en": "Budget constraint",
+    "zh": "预算约束",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-018",
+    "en": "Capital depreciation",
+    "zh": "资本折旧",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-019",
+    "en": "Capital dynamics",
+    "zh": "资本动态",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-020",
+    "en": "Cobb-Douglas production function",
+    "zh": "科布-道格拉斯生产函数",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-021",
+    "en": "Cobweb model",
+    "zh": "蛛网模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-022",
+    "en": "Competitive equilibrium",
+    "zh": "竞争均衡",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-023",
+    "en": "Consumer sentiment index",
+    "zh": "消费者信心指数",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-024",
+    "en": "Consumer surplus",
+    "zh": "消费者剩余",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-025",
+    "en": "Consumption-smoothing model",
+    "zh": "消费平滑模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-026",
+    "en": "Core consumer price index",
+    "zh": "核心消费者价格指数",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-027",
+    "en": "Corporate tax rate",
+    "zh": "企业税率",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-028",
+    "en": "Cost function",
+    "zh": "成本函数",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-029",
+    "en": "Cyclical price dynamics",
+    "zh": "周期性价格动态",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-030",
+    "en": "Development economics",
+    "zh": "发展经济学",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-031",
+    "en": "Discount factor",
+    "zh": "贴现因子",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-032",
+    "en": "Discounted payoff",
+    "zh": "贴现收益",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-033",
+    "en": "Distribution dynamics",
+    "zh": "分布动态",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-034",
+    "en": "Dynamic Laffer curve",
+    "zh": "动态拉弗曲线",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-035",
+    "en": "Dynamic model",
+    "zh": "动态模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-036",
+    "en": "Elasticity of substitution",
+    "zh": "替代弹性",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-037",
+    "en": "Equalizing Difference Model",
+    "zh": "均衡差异模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (labor economics)"
+  },
+  {
+    "id": "term-038",
+    "en": "Equilibrium",
+    "zh": "均衡",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-039",
+    "en": "Euler equation",
+    "zh": "欧拉方程",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-040",
+    "en": "Exogenous",
+    "zh": "外生的",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-041",
+    "en": "Exogenous initial capital stock",
+    "zh": "外生初始资本存量",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-042",
+    "en": "Financial repression",
+    "zh": "金融压抑",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-043",
+    "en": "First fundamental welfare theorem",
+    "zh": "福利经济学第一定理",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (welfare economics)"
+  },
+  {
+    "id": "term-044",
+    "en": "Fiscal theory",
+    "zh": "财政理论",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-045",
+    "en": "Flow utility function",
+    "zh": "流量效用函数",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-046",
+    "en": "Forward-looking difference equation",
+    "zh": "前瞻性差分方程",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-047",
+    "en": "Geary–Khamis dollar",
+    "zh": "吉尔里-卡米斯元",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (international comparison)"
+  },
+  {
+    "id": "term-048",
+    "en": "Global Financial Crisis",
+    "zh": "全球金融危机",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economic history)"
+  },
+  {
+    "id": "term-049",
+    "en": "GFC",
+    "zh": "全球金融危机",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economic history abbreviation)"
+  },
+  {
+    "id": "term-050",
+    "en": "Government budget constraint",
+    "zh": "政府预算约束",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-051",
+    "en": "Greek debt crisis",
+    "zh": "希腊债务危机",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economic history)"
+  },
+  {
+    "id": "term-052",
+    "en": "Human wealth",
+    "zh": "人力财富",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-053",
+    "en": "Industrial Revolution",
+    "zh": "工业革命",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economic history)"
+  },
+  {
+    "id": "term-054",
+    "en": "Inflation tax",
+    "zh": "通货膨胀税",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-055",
+    "en": "Input-output model",
+    "zh": "投入产出模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-056",
+    "en": "Jump variable",
+    "zh": "跳跃变量",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-057",
+    "en": "Laffer curve",
+    "zh": "拉弗曲线",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-058",
+    "en": "Lake model",
+    "zh": "湖泊模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (labor economics)"
+  },
+  {
+    "id": "term-059",
+    "en": "Leontief Inverse",
+    "zh": "列昂惕夫逆矩阵",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (input-output economics)"
+  },
+  {
+    "id": "term-060",
+    "en": "Lorenz curve",
+    "zh": "洛伦兹曲线",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (income distribution)"
+  },
+  {
+    "id": "term-061",
+    "en": "Marginal product of capital",
+    "zh": "资本边际产量",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-062",
+    "en": "Marginal utility of wealth",
+    "zh": "财富的边际效用",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-063",
+    "en": "Market clearing",
+    "zh": "市场出清",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-064",
+    "en": "Money-financed government deficit",
+    "zh": "货币融资的政府赤字",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-065",
+    "en": "Multiple consumer economy",
+    "zh": "多消费者经济",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-066",
+    "en": "Naive expectations",
+    "zh": "简单预期",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-067",
+    "en": "Non-financial income",
+    "zh": "非金融收入",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-068",
+    "en": "Numeraire",
+    "zh": "计价商品",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-069",
+    "en": "Oil Crisis",
+    "zh": "石油危机",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economic history)"
+  },
+  {
+    "id": "term-070",
+    "en": "Output elasticity of capital",
+    "zh": "资本产出弹性",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (production economics)"
+  },
+  {
+    "id": "term-071",
+    "en": "Perfect foresight",
+    "zh": "完全预见",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-072",
+    "en": "Perfect foresight model",
+    "zh": "完全预见模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-073",
+    "en": "Projected corporate tax revenue",
+    "zh": "预计企业税收",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-074",
+    "en": "Purchasing power parity",
+    "zh": "购买力平价",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (international economics)"
+  },
+  {
+    "id": "term-075",
+    "en": "Reform and liberalization",
+    "zh": "改革开放",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economic policy)"
+  },
+  {
+    "id": "term-076",
+    "en": "Second fundamental welfare theorem",
+    "zh": "福利经济学第二定理",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (welfare economics)"
+  },
+  {
+    "id": "term-077",
+    "en": "Seigniorage",
+    "zh": "铸币税",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-078",
+    "en": "Social welfare",
+    "zh": "社会福利",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (welfare economics)"
+  },
+  {
+    "id": "term-079",
+    "en": "Stochastic productivity",
+    "zh": "随机生产率",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (economics)"
+  },
+  {
+    "id": "term-080",
+    "en": "Tax farming",
+    "zh": "包税制",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-081",
+    "en": "Tax-smoothing model",
+    "zh": "税收平滑模型",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (public finance)"
+  },
+  {
+    "id": "term-082",
+    "en": "Wage gap",
+    "zh": "工资差距",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (labor economics)"
+  },
+  {
+    "id": "term-083",
+    "en": "Welfare criterion",
+    "zh": "福利标准",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (welfare economics)"
+  },
+  {
+    "id": "term-084",
+    "en": "Welfare maximization problem",
+    "zh": "福利最大化问题",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (welfare economics)"
+  }
+]

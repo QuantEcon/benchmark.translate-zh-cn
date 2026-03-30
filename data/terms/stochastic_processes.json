@@ -1,0 +1,110 @@
+[
+  {
+    "id": "term-303",
+    "en": "Accessible state",
+    "zh": "可达状态",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (Markov chains)"
+  },
+  {
+    "id": "term-304",
+    "en": "Communicating states",
+    "zh": "互通状态",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (Markov chains)"
+  },
+  {
+    "id": "term-305",
+    "en": "Ergodicity",
+    "zh": "遍历性",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (stochastic processes)"
+  },
+  {
+    "id": "term-306",
+    "en": "Jump Chain Algorithm",
+    "zh": "跳跃链算法",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (Markov chains)"
+  },
+  {
+    "id": "term-307",
+    "en": "Markov chain",
+    "zh": "马尔可夫链",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (stochastic processes)"
+  },
+  {
+    "id": "term-308",
+    "en": "State space",
+    "zh": "状态空间",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (stochastic processes)"
+  },
+  {
+    "id": "term-309",
+    "en": "State transition matrix",
+    "zh": "状态转移矩阵",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (Markov chains)"
+  },
+  {
+    "id": "term-310",
+    "en": "Stationary distribution",
+    "zh": "平稳分布",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (Markov chains)"
+  },
+  {
+    "id": "term-311",
+    "en": "Stochastic difference equation",
+    "zh": "随机差分方程",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (stochastic processes)"
+  },
+  {
+    "id": "term-312",
+    "en": "Stochastic linear difference equation",
+    "zh": "随机线性差分方程",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (stochastic processes)"
+  },
+  {
+    "id": "term-313",
+    "en": "Stochastic matrix",
+    "zh": "随机矩阵",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (Markov chains)"
+  },
+  {
+    "id": "term-314",
+    "en": "Transition probability",
+    "zh": "转移概率",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (Markov chains)"
+  }
+]

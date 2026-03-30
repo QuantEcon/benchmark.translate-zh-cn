@@ -1,0 +1,92 @@
+[
+  {
+    "id": "term-005",
+    "en": "Asymptotic stability",
+    "zh": "渐近稳定性",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamical systems)"
+  },
+  {
+    "id": "term-006",
+    "en": "Bellman operator",
+    "zh": "贝尔曼算子",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamic programming)"
+  },
+  {
+    "id": "term-007",
+    "en": "Continuation value",
+    "zh": "延续值",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamic programming)"
+  },
+  {
+    "id": "term-008",
+    "en": "Cost-to-go function",
+    "zh": "代价函数",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamic programming)"
+  },
+  {
+    "id": "term-009",
+    "en": "Finite horizon",
+    "zh": "有限视界",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamic programming)"
+  },
+  {
+    "id": "term-010",
+    "en": "Global stability",
+    "zh": "全局稳定性",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamical systems)"
+  },
+  {
+    "id": "term-011",
+    "en": "Stable cycle",
+    "zh": "稳定循环",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamical systems)"
+  },
+  {
+    "id": "term-012",
+    "en": "State variable",
+    "zh": "状态变量",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamic systems)"
+  },
+  {
+    "id": "term-013",
+    "en": "Steady state",
+    "zh": "稳态",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamical systems)"
+  },
+  {
+    "id": "term-014",
+    "en": "Terminal condition",
+    "zh": "终端条件",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (dynamic programming)"
+  }
+]

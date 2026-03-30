@@ -1,0 +1,38 @@
+[
+  {
+    "id": "term-001",
+    "en": "Angle sum identities",
+    "zh": "和角恒等式",
+    "domain": "calculus",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (trigonometry)"
+  },
+  {
+    "id": "term-002",
+    "en": "Partial derivative",
+    "zh": "偏导数",
+    "domain": "calculus",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (calculus)"
+  },
+  {
+    "id": "term-003",
+    "en": "Taylor series",
+    "zh": "泰勒级数",
+    "domain": "calculus",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (calculus)"
+  },
+  {
+    "id": "term-004",
+    "en": "Trigonometric integrals",
+    "zh": "三角积分",
+    "domain": "calculus",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (calculus)"
+  }
+]

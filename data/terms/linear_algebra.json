@@ -1,0 +1,155 @@
+[
+  {
+    "id": "term-127",
+    "en": "Characteristic equation",
+    "zh": "特征方程",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-128",
+    "en": "Characteristic polynomial",
+    "zh": "特征多项式",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-129",
+    "en": "Complex eigenvalues",
+    "zh": "复特征值",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-130",
+    "en": "Dominant eigenvalue",
+    "zh": "主特征值",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-131",
+    "en": "Eigenvector",
+    "zh": "特征向量",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-132",
+    "en": "Eigenvector decomposition",
+    "zh": "特征向量分解",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-133",
+    "en": "Gershgorin Circle Theorem",
+    "zh": "格什戈林圆盘定理",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-134",
+    "en": "Invariant subspace",
+    "zh": "不变子空间",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-135",
+    "en": "Irreducible matrix",
+    "zh": "不可约矩阵",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-136",
+    "en": "Matrix inversion",
+    "zh": "矩阵求逆",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-137",
+    "en": "Matrix multiplication",
+    "zh": "矩阵乘法",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-138",
+    "en": "Perron projection",
+    "zh": "佩龙投影",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-139",
+    "en": "Perron-Frobenius theorem",
+    "zh": "佩龙-弗罗贝尼乌斯定理",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-140",
+    "en": "Primitive matrix",
+    "zh": "原始矩阵",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-141",
+    "en": "Spectral gap",
+    "zh": "谱隙",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-142",
+    "en": "Spectral radius",
+    "zh": "谱半径",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  },
+  {
+    "id": "term-143",
+    "en": "Spectral theory",
+    "zh": "谱理论",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "alternatives": [],
+    "source": "glossary/zh-cn (linear algebra)"
+  }
+]
