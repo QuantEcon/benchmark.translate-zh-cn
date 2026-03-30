@@ -122,6 +122,24 @@ uv run qebench doctor
 
 Run this once after initial setup, or whenever something seems wrong.
 
+## `qebench update`
+
+Pull the latest code, data, and dependencies from GitHub. Run this when
+returning to the project after time away to ensure you have everyone's
+latest contributions and any code updates.
+
+```bash
+uv run qebench update
+```
+
+No options — it runs two steps:
+
+1. **Pull** — `git pull --rebase` to get latest code and data
+2. **Sync** — `uv sync` to install any new or updated dependencies
+
+If already up to date, it tells you so. If the pull fails (e.g. you have
+uncommitted changes), resolve them first then try again.
+
 ---
 
 ## `qebench export`

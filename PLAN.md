@@ -160,9 +160,10 @@ The interactive modes that make RAs want to contribute.
 - [x] Per-user data files — `data/terms/{username}.json` (seed data in `_seed_*.json`)
 - [x] `qebench submit` — pull --rebase, commit data/ + results/, push to GitHub
 - [x] `qebench doctor` — 8 preflight checks (gh, git, auth, remote, config, data, uv)
+- [x] `qebench update` — pull latest code + data (`git pull --rebase`) and sync dependencies (`uv sync`)
 - [x] Results committed to repo — XP + translations tracked in git, dashboard reads them
 - [ ] `qebench stats` — leaderboard display (current: coverage + domain table)
-- [x] 87 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 17, xp: 11, export: 16, github: 6, submit: 6, doctor: 6)
+- [x] 96 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4)
 
 ### Phase 3: LLM Integration (Layer 4)
 

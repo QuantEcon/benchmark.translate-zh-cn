@@ -12,6 +12,7 @@ from qebench.commands.export import export
 from qebench.commands.stats import stats
 from qebench.commands.submit import submit
 from qebench.commands.translate import translate as translate_fn
+from qebench.commands.update import update
 
 app = typer.Typer(
     name="qebench",
@@ -31,6 +32,7 @@ app.command("add", help="Contribute new terms, sentences, or paragraphs.")(add)
 app.command("export", help="Export dataset and results to JSON for the dashboard.")(export)
 app.command("submit", help="Pull, commit, and push your data and results to GitHub.")(submit)
 app.command("doctor", help="Run preflight checks for qebench environment.")(doctor)
+app.command("update", help="Pull latest code, data, and dependencies from GitHub.")(update)
 
 
 @app.command("translate")

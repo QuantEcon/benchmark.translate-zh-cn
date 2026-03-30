@@ -43,6 +43,9 @@ The doctor command checks that everything is configured correctly:
 ## Quick Start
 
 ```bash
+# Pull latest code and data (run this each time you start a session)
+uv run qebench update
+
 # Check dataset status
 uv run qebench stats
 

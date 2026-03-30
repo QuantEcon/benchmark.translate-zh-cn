@@ -18,7 +18,7 @@
 
 ```
 src/qebench/
-├── cli.py                 # Typer app — 6 commands: stats, add, translate, export, submit, doctor
+├── cli.py                 # Typer app — 7 commands: stats, add, translate, export, submit, doctor, update
 ├── models.py              # Pydantic models: Term, Sentence, Paragraph, DataFile
 ├── commands/
 │   ├── stats.py           # Dataset coverage display (Rich panels/tables)
@@ -26,7 +26,8 @@ src/qebench/
 │   ├── translate.py       # Translation practice game loop
 │   ├── export.py          # Export 6 JSON files for the dashboard
 │   ├── submit.py          # Git pull/commit/push workflow
-│   └── doctor.py          # 8 preflight checks (gh, git, repo, data, etc.)
+│   ├── doctor.py          # 8 preflight checks (gh, git, repo, data, etc.)
+│   └── update.py          # Pull latest code + uv sync dependencies
 ├── scoring/
 │   ├── elo.py             # Elo rating for model comparison
 │   └── xp.py              # XP tracking per user
