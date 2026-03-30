@@ -1,4 +1,10 @@
-"""submit command — Pull, commit, and push local changes to GitHub."""
+"""submit command — Pull, commit, and push local changes to GitHub.
+
+Pulls with --rebase before pushing so concurrent work from other RAs
+is incorporated automatically.  Per-user data files mean rebase will
+always succeed without conflicts.  If push still fails (e.g. another RA
+pushed in the same second), just run `qebench submit` again.
+"""
 
 from __future__ import annotations
 
@@ -71,7 +77,7 @@ def submit() -> None:
     push = _run_git("push")
     if push.returncode != 0:
         console.print(f"[red]Error pushing:[/red]\n{push.stderr}")
-        console.print("You may need to pull again: [bold]git pull --rebase[/bold]")
+        console.print("Another RA may have pushed first. Run [bold]qebench submit[/bold] again.")
         raise SystemExit(1)
 
     # 8. Success summary

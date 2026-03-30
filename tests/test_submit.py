@@ -89,3 +89,20 @@ class TestSubmit:
             patch("qebench.commands.submit.subprocess.run", side_effect=lambda args, **kw: responses.get(args[1], subprocess.CompletedProcess(args=args, returncode=0, stdout="", stderr=""))),
         ):
             submit()  # Should complete without error
+
+    def test_push_failure_exits(self) -> None:
+        """If push fails, submit exits and tells RA to try again."""
+        responses = {
+            "status": subprocess.CompletedProcess(args=[], returncode=0, stdout=" M data/terms/alice.json\n", stderr=""),
+            "pull": subprocess.CompletedProcess(args=[], returncode=0, stdout="", stderr=""),
+            "add": subprocess.CompletedProcess(args=[], returncode=0, stdout="", stderr=""),
+            "diff": subprocess.CompletedProcess(args=[], returncode=0, stdout="data/terms/alice.json\n", stderr=""),
+            "commit": subprocess.CompletedProcess(args=[], returncode=0, stdout="", stderr=""),
+            "push": subprocess.CompletedProcess(args=[], returncode=1, stdout="", stderr="rejected"),
+        }
+        with (
+            patch("qebench.commands.submit.get_github_username", return_value="alice"),
+            patch("qebench.commands.submit.subprocess.run", side_effect=lambda args, **kw: responses.get(args[1], subprocess.CompletedProcess(args=args, returncode=0, stdout="", stderr=""))),
+        ):
+            with pytest.raises(SystemExit):
+                submit()
