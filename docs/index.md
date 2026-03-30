@@ -7,6 +7,7 @@
 Documentation for RAs and contributors using `qebench`.
 
 - [Getting Started](user/getting-started.md) — Install, configure, run your first command
+- [Working with uv](user/uv-guide.md) — Python package manager intro and common workflows
 - [CLI Reference](user/cli-reference.md) — All commands, options, and examples
 - **Tutorials**
   - [Your First Translation Session](user/tutorials/first-session.md) — Walk through `qebench translate`
