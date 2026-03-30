@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository.
 
 **benchmark.translate-zh-cn** is a CLI tool (`qebench`) and benchmark dataset for evaluating English-to-Chinese translation quality in economics and mathematics. Built with Python, Typer, Rich, Pydantic.
 
-**Current state**: Phase 2 complete — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate` commands; GitHub identity auto-detection; per-user data files; cli_version stamping; dashboard website; 314 seeded terms; 109 tests passing.
+**Current state**: Phase 3 in progress — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate`, `run` commands; LLM provider interface with Claude + OpenAI providers; prompt template system; 128 tests passing.
 
 ---
 
@@ -24,12 +24,17 @@ src/qebench/
 │   ├── submit.py          # Pull, commit, push data + results to GitHub
 │   ├── doctor.py          # Preflight checks (gh, git, auth, data)
 │   ├── update.py          # Pull latest code + uv sync dependencies
-│   └── validate.py        # Schema validation for all dataset files
+│   ├── validate.py        # Schema validation for all dataset files
+│   └── run.py             # Batch translate via LLM providers
 ├── scoring/
 │   ├── elo.py             # Elo rating calculations for model comparison
 │   └── xp.py              # XP tracking per user (translate=10, add=15, judge=5)
-├── providers/             # LLM API wrappers (future)
-│   └── __init__.py
+├── providers/
+│   ├── __init__.py
+│   ├── base.py            # Abstract TranslationProvider + TranslationResult
+│   ├── claude.py          # Anthropic Claude provider
+│   ├── openai.py          # OpenAI provider
+│   └── prompts.py         # Prompt template loading/validation
 └── utils/
     ├── dataset.py         # Load/save JSON data, config, domains, targets
     ├── display.py         # Rich console singleton

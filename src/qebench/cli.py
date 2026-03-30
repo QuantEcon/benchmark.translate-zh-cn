@@ -7,6 +7,7 @@ import typer
 from qebench.commands.add import add
 from qebench.commands.doctor import doctor
 from qebench.commands.export import export
+from qebench.commands.run import run
 from qebench.commands.stats import stats
 from qebench.commands.submit import submit
 from qebench.commands.translate import translate as translate_fn
@@ -33,6 +34,7 @@ app.command("submit", help="Pull, commit, and push your data and results to GitH
 app.command("doctor", help="Run preflight checks for qebench environment.")(doctor)
 app.command("update", help="Pull latest code, data, and dependencies from GitHub.")(update)
 app.command("validate", help="Validate all dataset files against Pydantic schemas.")(validate)
+app.command("run", help="Batch translate dataset entries via an LLM provider.")(run)
 
 
 @app.command("translate")
