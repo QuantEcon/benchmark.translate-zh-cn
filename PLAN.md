@@ -123,27 +123,29 @@ Everything else depends on having a working data layer.
 **Layer 1: Project scaffold**
 - [x] Initialize git repo
 - [x] Create directory structure
-- [ ] `pyproject.toml` with dependencies and `[project.scripts]` entry
-- [ ] `.gitignore` for Python
-- [ ] `config.yaml` with zh-cn language settings
-- [ ] README.md
+- [x] `pyproject.toml` with dependencies and `[project.scripts]` entry
+- [x] `.gitignore` for Python
+- [x] `config.yaml` with zh-cn language settings
+- [x] README.md
 
 **Layer 2: Data layer**
-- [ ] Pydantic models: `Term`, `Sentence`, `Paragraph` (in `data/schema/models.py`)
-- [ ] Dataset utilities: load/save/filter JSON data (in `src/qebench/utils/dataset.py`)
-- [ ] Seed script: convert `action-translation/glossary/zh-cn.json` → benchmark format
+- [x] Pydantic models: `Term`, `Sentence`, `Paragraph` (in `src/qebench/models.py`)
+- [x] Dataset utilities: load/save/filter JSON data (in `src/qebench/utils/dataset.py`)
+- [x] Seed script: convert `action-translation/glossary/zh-cn.json` → benchmark format (314 terms seeded)
 - [ ] Schema validation script (CI-ready)
-- [ ] `qebench stats` command — proves data layer works, Rich output
-- [ ] pytest tests for models and dataset loading
+- [x] `qebench stats` command — Rich output with progress bars + domain table
+- [x] pytest tests for models and dataset loading (23 tests)
 
 ### Phase 2: CLI Core (Layer 3)
 
 The interactive modes that make RAs want to contribute.
 
-- [ ] `qebench translate` — main game loop (show English → collect translation → compare)
-- [ ] `qebench add` — contribute new entries (questionary prompts)
-- [ ] XP tracking system (`src/qebench/scoring/xp.py`)
-- [ ] `qebench stats` — leaderboard display with Rich tables
+- [x] `qebench translate` — game loop with char-overlap scoring, domain/difficulty filters, XP tracking
+- [x] `qebench add` — interactive entry creation with questionary prompts, preview, auto-ID
+- [x] XP tracking system (`src/qebench/scoring/xp.py`) — 10/translate, 15/add, 5/judge
+- [x] Elo rating engine (`src/qebench/scoring/elo.py`)
+- [ ] `qebench stats` — leaderboard display (current: coverage + domain table)
+- [x] 53 pytest tests passing
 
 ### Phase 3: LLM Integration (Layer 4)
 
@@ -160,7 +162,7 @@ Model benchmarking and comparison.
 
 Human evaluation system.
 
-- [ ] Elo rating engine (`src/qebench/scoring/elo.py`)
+- [x] Elo rating engine (`src/qebench/scoring/elo.py`) — moved to Phase 1
 - [ ] `qebench judge` — anonymous head-to-head comparisons
 - [ ] Glossary compliance scorer
 - [ ] Reference overlap scorer
@@ -175,6 +177,17 @@ The public-facing results dashboard.
 - [ ] Chart.js visualizations
 - [ ] GitHub Actions: validate.yml, deploy-site.yml
 - [ ] Coverage map, Translation of the Week, Browse Dataset pages
+
+### Documentation
+
+Docs hosted on GitHub Pages via MyST.
+
+- [x] `docs/index.md` — documentation index
+- [x] User guide: getting-started, cli-reference, tutorials (first-session, contributing-entries)
+- [x] Developer guide: architecture, data-models, contributing
+- [x] `myst.yml` — MyST build configuration
+- [x] `.github/workflows/docs.yml` — auto-deploy to gh-pages
+- [x] `AGENTS.md` — Copilot agent instructions
 
 ## Data Models
 

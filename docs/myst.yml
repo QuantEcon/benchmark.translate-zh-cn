@@ -1,0 +1,26 @@
+version: 1
+
+project:
+  title: qebench
+  subtitle: Benchmark CLI for evaluating English-Chinese translation quality
+  github: https://github.com/QuantEcon/benchmark.translate-zh-cn
+  license: MIT
+
+  toc:
+    - file: index.md
+    - title: User Guide
+      children:
+        - file: user/getting-started.md
+        - file: user/cli-reference.md
+        - title: Tutorials
+          children:
+            - file: user/tutorials/first-session.md
+            - file: user/tutorials/contributing-entries.md
+    - title: Developer Guide
+      children:
+        - file: developer/architecture.md
+        - file: developer/data-models.md
+        - file: developer/contributing.md
+
+site:
+  template: book-theme

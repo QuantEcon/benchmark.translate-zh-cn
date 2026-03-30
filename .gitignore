@@ -26,8 +26,10 @@ uv.lock
 
 # Results (user-generated, not git-tracked by default)
 results/translations/*.json
+results/translations/*.jsonl
 results/judgments/*.json
 results/model-outputs/*.json
+results/xp/*.json
 results/elo.json
 results/leaderboard.json
 results/weekly.json
@@ -35,6 +37,14 @@ results/weekly.json
 
 # Site generated data
 site/data/*.json
+
+# MyST build output
+_build/
+docs/_build/
+
+# Temp working files
+.tmp/*
+!.tmp/.gitkeep
 
 # Environment
 .env
