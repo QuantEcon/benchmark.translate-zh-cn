@@ -1,0 +1,6 @@
+{"entry_id": "term-278", "attempt": "一阶矩", "reference": "一阶矩", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-01T22:23:55.698454+00:00", "cli_version": "0.1.1"}
+{"entry_id": "term-052", "attempt": "人类的健康", "reference": "人力财富", "confidence": 4, "similarity": 0.125, "timestamp": "2026-04-01T22:25:11.339242+00:00", "cli_version": "0.1.1", "diff_reason": "contextual"}
+{"entry_id": "term-013", "attempt": "稳态", "reference": "稳态", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-01T22:25:27.192049+00:00", "cli_version": "0.1.1"}
+{"entry_id": "term-208", "attempt": "强连通", "reference": "强连通的", "confidence": 5, "similarity": 0.75, "timestamp": "2026-04-01T22:26:41.405564+00:00", "cli_version": "0.1.1", "diff_reason": "abbreviation"}
+{"entry_id": "term-299", "attempt": "残差平方和", "reference": "残差平方和", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-01T22:27:17.483210+00:00", "cli_version": "0.1.1"}
+{"entry_id": "term-194", "attempt": "虚部", "reference": "虚部", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-01T22:27:26.713754+00:00", "cli_version": "0.1.1"}
