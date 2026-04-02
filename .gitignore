@@ -44,5 +44,8 @@ docs/_build/
 .tmp/*
 !.tmp/.gitkeep
 
+# Cached lecture repos (cloned by `qebench update`)
+.cache/
+
 # Environment
 .env

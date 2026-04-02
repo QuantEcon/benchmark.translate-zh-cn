@@ -22,6 +22,13 @@ class HumanScores(BaseModel):
     fluency: int = Field(ge=1, le=10)
 
 
+class TermContext(BaseModel):
+    """A sentence from a lecture that uses a term in context."""
+
+    text: str = Field(min_length=1, description="Sentence containing the term")
+    source: str = Field(default="", description="Lecture file path, e.g. lectures/intro.md")
+
+
 class Term(BaseModel):
     id: str = Field(pattern=r"^term-\d{3,}$", description="Unique term ID, e.g. term-001")
     en: str = Field(min_length=1, description="English term")
@@ -29,6 +36,7 @@ class Term(BaseModel):
     domain: str = Field(min_length=1, description="Subject domain, e.g. dynamic-programming")
     difficulty: Difficulty
     alternatives: list[str] = Field(default_factory=list, description="Alternative valid translations")
+    contexts: list[TermContext] = Field(default_factory=list, description="Example sentences showing usage")
     source: str = Field(default="", description="Origin reference, e.g. quantecon/dp-intro")
 
 
