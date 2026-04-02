@@ -13,6 +13,8 @@ Documentation for RAs and contributors using `qebench`.
   - [Your First Translation Session](user/tutorials/first-session.md) — Walk through `qebench translate`
   - [Contributing Entries](user/tutorials/contributing-entries.md) — Grow the benchmark with `qebench add`
   - [Updating Datasets](user/tutorials/updating-datasets.md) — Keep data current with `qebench update`
+  - [Judging Translations](user/tutorials/judging-translations.md) — Compare translations and build Elo ratings with `qebench judge`
+  - [Running LLM Benchmarks](user/tutorials/running-llm-benchmarks.md) — Batch translate with Claude or OpenAI via `qebench run`
 
 ## Developer Guide (`developer/`)
 

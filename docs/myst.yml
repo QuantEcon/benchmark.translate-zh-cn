@@ -19,6 +19,9 @@ project:
           children:
             - file: user/tutorials/first-session.md
             - file: user/tutorials/contributing-entries.md
+            - file: user/tutorials/updating-datasets.md
+            - file: user/tutorials/judging-translations.md
+            - file: user/tutorials/running-llm-benchmarks.md
     - title: Developer Guide
       children:
         - file: developer/architecture.md
