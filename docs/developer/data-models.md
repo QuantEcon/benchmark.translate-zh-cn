@@ -16,6 +16,7 @@ class Term(BaseModel):
     domain: str      # "dynamic-programming"
     difficulty: Difficulty  # basic | intermediate | advanced
     alternatives: list[str] = []   # ["贝尔曼等式"]
+    contexts: list[TermContext] = []  # usage sentences from lectures
     source: str = ""               # "quantecon/dp-intro"
 ```
 
@@ -23,6 +24,21 @@ class Term(BaseModel):
 - `id` must match pattern `^term-\d{3,}$`
 - `en` and `zh` must be non-empty
 - `domain` must be non-empty (checked against config at runtime)
+
+### TermContext
+
+A supporting model that stores a usage sentence from a QuantEcon lecture.
+Populated by `qebench update` when it scans lecture repositories.
+
+```python
+class TermContext(BaseModel):
+    text: str    # "Dynamic programming is a powerful technique for solving..."
+    source: str  # "lecture-python-intro/intro.md"
+```
+
+Up to 5 context sentences are stored per term (deterministic selection for
+stable version-controlled output). During `qebench translate`, one random
+context is shown to help the translator understand how the term is used.
 
 ### Sentence
 

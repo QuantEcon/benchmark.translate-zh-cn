@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository.
 
 **benchmark.translate-zh-cn** is a CLI tool (`qebench`) and benchmark dataset for evaluating English-to-Chinese translation quality in economics and mathematics. Built with Python, Typer, Rich, Pydantic.
 
-**Current state**: Phase 4 complete — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate`, `run`, `judge` commands; LLM provider interface with Claude + OpenAI providers; judge mode with Elo ratings; glossary compliance + reference overlap scoring; 161 tests passing.
+**Current state**: Phase 4 complete + context enrichment — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate`, `run`, `judge` commands; LLM provider interface with Claude + OpenAI providers; judge mode with Elo ratings; glossary compliance + reference overlap scoring; context sentence enrichment from QuantEcon lectures; 207 tests passing.
 
 ---
 
@@ -15,7 +15,7 @@ Instructions for AI coding agents working on this repository.
 ```
 src/qebench/
 ├── cli.py                 # Typer app — command routing + argument parsing
-├── models.py              # Pydantic models: Term, Sentence, Paragraph, HumanScores, Difficulty
+├── models.py              # Pydantic models: Term, TermContext, Sentence, Paragraph, HumanScores, Difficulty
 ├── commands/
 │   ├── stats.py           # Dataset coverage display (Rich panels/tables)
 │   ├── add.py             # Interactive entry creation (questionary prompts)
@@ -23,7 +23,7 @@ src/qebench/
 │   ├── export.py          # Export dataset + results to JSON for dashboard
 │   ├── submit.py          # Pull, commit, push data + results to GitHub
 │   ├── doctor.py          # Preflight checks (gh, git, auth, data)
-│   ├── update.py          # Pull latest code + uv sync dependencies
+│   ├── update.py          # Pull latest code + uv sync + context enrichment from lectures
 │   ├── validate.py        # Schema validation for all dataset files
 │   ├── run.py             # Batch translate via LLM providers
 │   └── judge.py           # Anonymous head-to-head translation judging
@@ -39,6 +39,7 @@ src/qebench/
 │   ├── openai.py          # OpenAI provider
 │   └── prompts.py         # Prompt template loading/validation
 └── utils/
+    ├── context.py         # Context sentence extraction from lecture repos
     ├── dataset.py         # Load/save JSON data, config, domains, targets
     ├── display.py         # Rich console singleton
     └── github.py          # GitHub identity via gh CLI (get_github_username)
@@ -50,6 +51,7 @@ src/qebench/
 |---|---|
 | Add a new CLI command | `cli.py` (register) + `commands/yourcommand.py` |
 | Data models / validation | `models.py` |
+| Context sentence extraction | `utils/context.py` |
 | Load/save dataset | `utils/dataset.py` |
 | Scoring logic | `scoring/elo.py`, `scoring/glossary.py`, `scoring/judgments.py`, `scoring/xp.py` |
 | Config (domains, targets) | `config.yaml` |
@@ -121,6 +123,9 @@ data/
 ├── terms/*.json        # Term entries grouped by domain (314 seeded)
 ├── sentences/*.json    # Sentence entries grouped by domain
 └── paragraphs/*.json   # Paragraph entries grouped by domain
+
+.cache/
+└── lectures/           # Shallow clones of QuantEcon lecture repos (gitignored)
 
 results/
 ├── translations/       # User translation attempts (JSONL per user)
