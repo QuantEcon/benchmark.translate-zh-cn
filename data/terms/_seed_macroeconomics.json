@@ -6,6 +6,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "If neither the original box nor the new box contains the other, then it is possible that the utility allocation surfaces for the two boxes may *cross*, in which case there exists no ordering of aggregate consumption that is independent of the utility weights assigned to individual households.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      },
+      {
+        "text": "In a little more detail, when conditions for Gorman aggregation of preferences are satisfied, we can compute a competitive equilibrium of a heterogeneous-household economy in two steps: solve a representative-agent linear-quadratic planning problem for aggregates, then recover household allocations via a sharing-formula that makes each  household's consumption a household-specific constant share of aggregate consumption. * a household's share parameter will depend on the implicit Pareto weight implied by the initial distribution of endowment.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      },
+      {
+        "text": "Preferences for aggregate consumption define a community preference ordering.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      },
+      {
+        "text": "The allocation of aggregate consumption across goods and the associated gradient are determined independently of how aggregate utility is divided among consumers.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      },
+      {
+        "text": "The allocation rule for consumption has the form or equivalently, Here  is household 's proportional share of aggregate consumption and  is the *deviation* from this proportional share.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -15,6 +37,16 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Equating aggregate demand for capital  (see ) with our new aggregate supply function yields equilibrium capital.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "The profit maximization problem of the firm is The first-order conditions are obtained by taking the derivative of the objective function with respect to capital and labor respectively and setting them to zero: Using our assumption  allows us to write and Rearranging  gives the aggregate demand for capital at time In Python code this is The next figure plots the supply of capital, as in , as well as the demand for capital, as in , as functions of the interest rate . (For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.) In this section we derive equilibrium conditions and investigate an example.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -24,6 +56,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "For each integer , output  in period  is given by $Y_t = F(K_t, L_t)K_tL_tF$ is an aggregate production function.",
+        "source": "lecture-python-intro/lectures/solow.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -33,6 +71,7 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -42,6 +81,24 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "This provides a promising way to think about amplification mechanisms  in business cycle models.",
+        "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
+      },
+      {
+        "text": "In the following graph, please watch for - impact of trade policy (Navigation Act). - productivity changes brought by the Industrial Revolution. - how the US gradually approaches and then surpasses the UK, setting the stage for the ''American Century''. - the often unanticipated consequences of wars. - interruptions and scars left by business cycle recessions and depressions.",
+        "source": "lecture-python-intro/lectures/long_run_growth.md"
+      },
+      {
+        "text": "The model has a structure similar to ones used in the international real business cycle literature and is in the spirit of an analysis of distorting taxes by {cite:t}`mendoza1998international`.",
+        "source": "lecture-python.myst/lectures/cass_fiscal_2.md"
+      },
+      {
+        "text": "The model chosen for the data collection agency is an aspect of an econometric specification that can make big differences in inferences about the economic structure. {cite:t}`Sargent1989` describes two alternative models of data generation in a {doc}`permanent income ` economy in which the investment accelerator, the mechanism studied in these two quantecon lectures --  {doc}`samuelson` and {doc}`chow_business_cycles` --  shapes  business cycle fluctuations. - In Model 1, the data collecting agency simply reports the error-ridden data that it collects. - In Model 2, the data collection agents first collects error-ridden data that satisfy a classical errors-in-variables model, then filters the data,  and reports the filtered objects.",
+        "source": "lecture-python.myst/lectures/measurement_models.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -51,6 +108,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "In our closed economy, there is no foreign investment, so net savings equals total investment, which can be understood as supply of capital to firms.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "We assume a closed economy, so aggregate domestic investment equals aggregate domestic saving.",
+        "source": "lecture-python-intro/lectures/solow.md"
+      },
+      {
+        "text": "In a closed economy, they would save solely by accumulating extra domestic capital; with open capital markets, they can also lend to foreigners.",
+        "source": "lecture-python.myst/lectures/cass_fiscal_2.md"
+      },
+      {
+        "text": "This rigs a closed economy in which people are borrowing and lending with each other at a gross risk-free interest rate of .",
+        "source": "lecture-python.myst/lectures/perm_income_cons.md"
+      },
+      {
+        "text": "Under the small open economy assumption, factor prices are fixed at calibrated values; under the closed economy assumption, they are determined by Cobb-Douglas marginal products With `solve_riccati_step` and `forward_moment_step` in hand, the steady-state computation proceeds in three phases. *Phase 1.* The backward recursion scans from age  to , applying `solve_riccati_step` at each age *Phase 2.* The forward recursion propagates means and covariances from age  to *Phase 3.* Aggregating tax revenues, benefit payments, and accidental bequests across cohorts gives the government budget gap A steady state is found when the budget gap equals zero. `ss_imbalance` chains the three phases into a single JIT-compiled function: backward recursion, forward simulation, and budget gap A named tuple `SteadyState` collects value-function parameters, decision rules, moments, and aggregate statistics into a single object that the transition solver can unpack Given all other fiscal instruments, the equilibrium  is the value that zeroes the budget gap.",
+        "source": "lecture-python.myst/lectures/two_computation.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -60,6 +139,16 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "One example is domestic credit to the private sector by banks in the UK.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "The following graph shows the domestic credit to the private sector as a percentage of GDP by banks from 1970 to 2022 in the UK.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -69,6 +158,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Using elementary results from Hilbert space theory, it can be shown that *  is one-to-one --- if  and  are distinct in , then so are their expansions in . *  is onto --- if  then its preimage in  is the sequence  given by . *  is a linear isometry --- in particular, .",
+        "source": "lecture-python-advanced.myst/lectures/arma.md"
+      },
+      {
+        "text": "Note that the credit rises during economic expansions and stagnates or even contracts after recessions.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "The plot shows that * expansions and contractions of the labor market have been highly correlated with recessions. * cycles are, in general, asymmetric: sharp rises in unemployment are followed by slow recoveries.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "These include expansions (also called booms) and contractions (also called recessions).",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "We see that * consumer sentiment often remains high during expansions and drops before recessions. * there is a clear negative correlation between consumer sentiment and the CPI.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      }
+    ],
     "source": "glossary/zh-cn (business cycles)"
   },
   {
@@ -78,6 +189,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Now let's compute and plot consumption path variations We visualize variations for  and We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters. (We are actually discovering  the key idea beneath the **calculus of variations**.) First, we define the welfare with respect to  and Then we can visualize the relationship between welfare and  and compute its derivatives The same can be done on The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  \"fiscal policy multiplier\" that we  described in QuantEcon lecture {doc}`geometric series `.",
+        "source": "lecture-python-intro/lectures/cons_smooth.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -87,6 +204,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Let's differentiate  and solve using sympy.solve Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the Golden Rule savings rate. **Stochastic Productivity** To bring the Solow--Swan model closer to data, we need to think about handling random fluctuations in aggregate quantities.",
+        "source": "lecture-python-intro/lectures/solow.md"
+      }
+    ],
     "source": "glossary/zh-cn (growth theory)"
   },
   {
@@ -96,6 +219,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "If we generalize the model so that the national income identity becomes then a version of the preceding argument shows that the **government expenditures multiplier** is also , so that a permanent increase in government expenditures ultimately leads to an increase in national income equal to the multiplier times the increase in government expenditures.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -105,6 +234,16 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "We'll focus on total Gross Domestic Product (GDP) (as a proxy for ''national geopolitical-military power'') rather than focusing on GDP per capita (as a proxy for living standards).",
+        "source": "lecture-python-intro/lectures/long_run_growth.md"
+      },
+      {
+        "text": "In Samuelson's model,  stood for **national income** or perhaps a different measure of aggregate activity called **gross domestic product** (GDP) at time .",
+        "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -114,6 +253,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Despite the synchronization in GDP growth, the experience of individual countries during the recession often differs.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "First we look at GDP growth.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "For example, let's retrieve the GDP growth data ID to query GDP growth data.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "Greece experienced a very large drop in GDP growth around 2010-2011, during the peak of the Greek debt crisis.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "Here we compare the GDP growth rate of developed economies and developing economies.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics abbreviation)"
   },
   {
@@ -123,6 +284,20 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The price at which these exchanges occur is the gross nominal interest rate. - If I sell  dollars to you today, you pay me dollars tomorrow. - This means that you borrowed  dollars for me at a gross interest rate  and a net interest rate .",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "We assume that the net nominal interest rate  is fixed over time, so that  is the gross nominal interest rate at times .",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "We let  be a one-period **net nominal interest rate** - if the nominal interest rate is  percent, then A one-period **gross nominal interest rate**  is defined as - if , then **Remark:** The gross nominal interest rate  is an **exchange rate** or **relative price** of dollars at between times  and .",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -132,6 +307,20 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "And growth facts are important inputs into historians' studies of geopolitical forces and dynamics.",
+        "source": "lecture-python-intro/lectures/long_run_growth.md"
+      },
+      {
+        "text": "Explaining growth facts is a principal purpose of both \"development economics\" and \"economic history\".",
+        "source": "lecture-python-intro/lectures/long_run_growth.md"
+      },
+      {
+        "text": "Such \"growth facts\" are interesting for a variety of reasons.",
+        "source": "lecture-python-intro/lectures/long_run_growth.md"
+      }
+    ],
     "source": "glossary/zh-cn (growth theory)"
   },
   {
@@ -141,6 +330,16 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Real industrial output is highly correlated with recessions in the economy.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "We plot the real industrial output change from the previous year from 1919 to 2022 in the US to show this trend.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -150,6 +349,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Solving this equation for  gives The quantity  is called the **investment multiplier** or simply the **multiplier**.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -159,6 +364,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "We will now go back to the case of the Keynesian multiplier and plot the time path of , given that consumption is a constant fraction of national income, and investment is fixed.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -168,6 +379,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "We next ask whether the long-run growth rates of  and also dominated by  as labor force.",
+        "source": "lecture-python-intro/lectures/lake_model.md"
+      },
+      {
+        "text": "First let's import the packages needed to explore what the data says about long-run growth A project initiated by Angus Maddison has collected many historical time series related to economic growth, some dating back to the first century.",
+        "source": "lecture-python-intro/lectures/long_run_growth.md"
+      },
+      {
+        "text": "In this lecture we study the famous overlapping generations (OLG) model, which is used by policy makers and researchers to examine * fiscal policy * monetary policy * long-run growth and many other topics.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "To see why this is important, suppose, for example, that we are interested in predicting the effect of a new tax on long-run growth.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "We will present a simple version of the OLG model that clarifies the decision problem of households and studies the implications for long-run growth.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      }
+    ],
     "source": "glossary/zh-cn (growth theory)"
   },
   {
@@ -177,6 +410,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The first equation is a national income identity asserting that consumption  plus investment  equals national income : The second equation is a Keynesian consumption function asserting that people consume a fraction  of their income: The fraction  is called the **marginal propensity to consume**.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "We modify our consumption function to assume the form so that  is the marginal propensity to consume (now) out of last period's income.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "We now examine what will happen if we vary the so-called **marginal propensity to consume**, i.e., the fraction of income that is consumed Increasing the marginal propensity to consume  increases the path of output over time.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "The model consists of: - Consumption:  where  is the marginal propensity to consume - Investment:  where  is the accelerator coefficient - Government spending:  (constant) We have the national income identity Equations yields the second-order difference equation: With  and , we have: To fit into our discussion, we write it into state-space representation.",
+        "source": "lecture-python.myst/lectures/likelihood_var.md"
+      },
+      {
+        "text": "Data contradicted the constancy of the marginal propensity to consume.",
+        "source": "lecture-python.myst/lectures/lqcontrol.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -186,6 +441,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The fraction  is called the **marginal propensity to save**.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -195,6 +456,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Thus, This example provides  machinery that is at the heard of Samuelson's analysis of his multiplier-accelerator model {cite}`Samuelson1939`.",
+        "source": "lecture-python-intro/lectures/complex_and_trig.md"
+      },
+      {
+        "text": "As a running example, we’ll study a **second-order linear difference equation** that was the key technical tool in Paul Samuelson’s 1939 article {cite}`Samuelson1939` that introduced the *multiplier-accelerator model*.",
+        "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
+      },
+      {
+        "text": "Let’s put Python to work on an example that captures the flavor of Samuelson’s multiplier-accelerator model.",
+        "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
+      },
+      {
+        "text": "Chow provides precise answers for the Hansen-Samuelson model. {cite:t}`Chow1968` provides a detailed spectral analysis of the Hansen-Samuelson multiplier-accelerator model, deriving exact conditions for when spectral peaks occur.",
+        "source": "lecture-python.myst/lectures/chow_business_cycles.md"
+      },
+      {
+        "text": "The {doc}`samuelson` lecture explores this mechanism in detail through the Hansen-Samuelson multiplier-accelerator model.",
+        "source": "lecture-python.myst/lectures/chow_business_cycles.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -204,6 +487,16 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "We assume that the net nominal interest rate  is fixed over time, so that  is the gross nominal interest rate at times .",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "We let  be a one-period **net nominal interest rate** - if the nominal interest rate is  percent, then A one-period **gross nominal interest rate**  is defined as - if , then **Remark:** The gross nominal interest rate  is an **exchange rate** or **relative price** of dollars at between times  and .",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -213,6 +506,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The **output multiplier** of sector  denoted by  is usually defined as the total sector-wide impact of a unit change of demand in sector .",
+        "source": "lecture-python-intro/lectures/input_output.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -222,6 +521,16 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "In addition to what's in Anaconda, this lecture will need the following library This lecture describes an  overlapping generations model with these features: - A competitive equilibrium with incomplete markets determines prices and quantities - Agents live many periods as in   {cite}`auerbach1987dynamic` - Agents receive idiosyncratic labor productivity shocks that cannot be fully insured as in  {cite}`Aiyagari1994` - Government fiscal policy instruments include tax rates, debt, and transfers as in chapter 2 of {cite}`auerbach1987dynamic` and {doc}`Transitions in an Overlapping Generations Model` - Among other equilibrium objects, a competitive equilibrium determines a sequence of cross-section densities of heterogeneous agents' consumptions, labor incomes, and savings We use the model to study: - How fiscal policies affect different generations - How market incompleteness promotes precautionary savings - How life-cycle savings and buffer-stock savings motives interact - How fiscal policies  redistribute resources across and within generations As prerequisites for this lecture, we recommend two quantecon lectures: 1. {doc}`advanced:discrete_dp` 2. {doc}`ak2` as well as the optional reading {doc}`aiyagari` As usual, let's start by importing some Python modules We start by introducing the economic environment we are operating in.",
+        "source": "lecture-python.myst/lectures/ak_aiyagari.md"
+      },
+      {
+        "text": "To study possibilities quantitatively, this lecture employs a general equilibrium overlapping generations model that modifies  the {cite:t}`auerbach1987dynamic` environment by incorporating * risk-sensitive preferences * uncertainty about lifetimes * uninsurable labor income risk * a theory of consumption distributions within and across cohorts By employing the discounted risk-sensitive linear-quadratic preferences of {cite:t}`hansen1995discounted`, the model yields linear decision rules for individual consumption and savings.",
+        "source": "lecture-python.myst/lectures/two_computation.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -231,6 +540,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "At the same time, the OLG model adds an important new feature: the choice of how much to save is endogenous.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "In particular, households in the model should decide how much to save and how much to consume, given the environment that they face (technology, taxes, prices, etc.) The OLG model takes up this challenge.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "Our aim is to gain a good understanding of a simple version of the OLG model.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "The dynamics of the OLG model are quite similar to those of the [Solow-Swan growth model](https://intro.quantecon.org/solow.html).",
+        "source": "lecture-python-intro/lectures/olg.md"
+      },
+      {
+        "text": "The first rigorous version of the OLG model was developed by Paul Samuelson {cite}`samuelson1958exact`.",
+        "source": "lecture-python-intro/lectures/olg.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics abbreviation)"
   },
   {
@@ -240,6 +571,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Let: -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a discrete time version of Sargent and Wallace's {cite}`sargent1973stability` perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+      },
+      {
+        "text": "A consequence of that choice is a (rational expectations equilibrium)  sequence   of gross rates of increase in the price level that  we call inflation rates. {cite}`Calvo1978` showed that  a  Ramsey plan  would not emerge from  alternative timing protocols and associated supplementary assumptions about what government authorities who set  at time  believe how future government authorities who set  for  will respond to their decisions.",
+        "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
+      },
+      {
+        "text": "Let -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
+      },
+      {
+        "text": "In particular, the inflation rate  satisfies where **Parameters:** * Demand for money parameter is ; we set its default value * Induced demand function for money parameter is * Utility function parameters are    and * Cost parameter of tax distortions associated with setting  is * A horizon truncation parameter: a positive integer **Variables:** *  where  is log of price level *  where  is log of money supply To prepare the way for our calculations, we'll remind ourselves of the  mathematical objects in play. * sequences of inflation rates and money creation rates: * A planner's value function where we set    to match with To make our parameters  match as we want, we   set A Ramsey planner chooses  to maximize the government's value function {eq}`eq:Ramseyvalue` subject to equations  {eq}`eq:inflation101`.",
+        "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
+      },
+      {
+        "text": "Let: -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -249,6 +602,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "BCG give credit to Makowski for emphasizing and clarifying how rational conjectures are components of  rational expectations equilibria.",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
+      },
+      {
+        "text": "In a rational expectations equilibrium,  and We form consumer ’s Lagrangian: Consumer ’s first-order necessary conditions for an optimum include: We can combine and rearrange consumer ’s first-order conditions to become: These inequalities imply that in a symmetric rational expectations equilibrium  consumption allocations and prices  satisfy When individual firms solve their optimization problems, they take big ’s as fixed objects that they don’t influence.",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
+      },
+      {
+        "text": "It is also interesting to look at the equilibrium price functions and  faced by firms in our rational expectations equilibrium.",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
+      },
+      {
+        "text": "The initial value of a representative firm is  (an object to be determined in a rational expectations equilibrium).",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
+      },
+      {
+        "text": "The model focuses  on intertemporal tradeoffs between - benefits that anticipations of future  deflation generate  by decreasing  costs of holding real money balances and thereby increasing a representative agent's *liquidity*, as measured by his or her holdings of real money balances, and - costs associated with the  distorting taxes that the government must levy in order to acquire the paper money that it will  destroy  in order to generate anticipated deflation Model features include - rational expectations - alternative possible  timing protocols for government choices of a sequence of money growth rates - costly government actions at all dates  that increase household utilities at dates before - alternative possible sets of Bellman equations, one set for each timing protocol - for example, in a timing protocol used to pose a **Ramsey plan**, a government chooses an infinite sequence of money supply growth rates once and for all at time . - in this timing protocol, there are  two value functions and associated Bellman equations, one that expresses a representative  private expectation of future inflation as a function of current and future government actions, another that describes  the value function of a  Ramsey planner - in other timing protocols, other Bellman equations and associated  value functions will appear A theme of this lecture is that  timing protocols for government decisions affect  outcomes.",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -258,6 +633,28 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The model yields outcomes that help interpret sovereign default experiences, including * countercyclical interest rates on sovereign debt * countercyclical trade balances * high volatility of consumption relative to output Notably, long recessions caused by bad draws in the income process increase the government's incentive to default.",
+        "source": "lecture-python-advanced.myst/lectures/arellano.md"
+      },
+      {
+        "text": "This can lead to * spikes in interest rates * temporary losses of access to international credit markets * large drops in output, consumption, and welfare * large capital outflows during recessions Such dynamics are consistent with experiences of many countries.",
+        "source": "lecture-python-advanced.myst/lectures/arellano.md"
+      },
+      {
+        "text": "At the same time, Argentina's growth rate did not fall during the two developed economy recessions in the 1970s and 1990s.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "Credit contractions often occur during recessions, as lenders become more cautious and borrowers become more hesitant to take on additional debt.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "Here's a first look at the data We write a function to generate plots for individual countries taking into account the recessions.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      }
+    ],
     "source": "glossary/zh-cn (business cycles)"
   },
   {
@@ -267,6 +664,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The dynamics of the OLG model are quite similar to those of the [Solow-Swan growth model](https://intro.quantecon.org/solow.html).",
+        "source": "lecture-python-intro/lectures/olg.md"
+      }
+    ],
     "source": "glossary/zh-cn (growth theory)"
   },
   {
@@ -276,6 +679,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "This trend is more significant during stagflation.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
@@ -285,6 +694,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "This lecture presents a model of the college-high-school wage gap in which the \"time to build\" a college graduate plays a key role.",
+        "source": "lecture-python-intro/lectures/equalizing_difference.md"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   }
 ]

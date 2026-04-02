@@ -6,6 +6,12 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Bank 's loans , deposits , and reserves  must satisfy the balance sheet equation (because **balance sheets balance**): The left side of the above equation is the sum of the bank's **assets**, namely, the loans  it has outstanding plus its reserves of cash .",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      }
+    ],
     "source": "glossary/zh-cn (accounting)"
   },
   {
@@ -15,6 +21,28 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "For the same martingale  (take  as in the previous exercise), 1.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "This exercise shows that only the squared norm  and  matters for the moments of .",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "You can try writing these matrices down now as an exercise --- correct expressions appear in the code below.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "It is useful to link the outcome of our reverse engineering exercise to limiting approximations constructed by BEGS {cite}`BEGS1`.",
+        "source": "lecture-python-advanced.myst/lectures/amss2.md"
+      },
+      {
+        "text": "To recover and print out To complete the reverse engineering exercise by jointly determining ,  we set up a function that returns two simultaneous equations.",
+        "source": "lecture-python-advanced.myst/lectures/amss2.md"
+      }
+    ],
     "source": "glossary/zh-cn (educational content)"
   },
   {
@@ -24,6 +52,28 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "For our study, we will use economic indicators from the World Bank and FRED.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "We study unemployment using rate data from FRED spanning from 1929-1942 to 1948-2022, combined unemployment rate data over 1942-1948 estimated by the Census Bureau.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "An important database for economists is FRED --- a vast collection of time series data maintained by the St.",
+        "source": "lecture-python-programming/lectures/pandas.md"
+      },
+      {
+        "text": "The hidden cell below pulls the relevant FRED series, constructs per capita real consumption, and joins with Ken French market returns via `pandas-datareader`.",
+        "source": "lecture-python.myst/lectures/hansen_singleton_1982.md"
+      },
+      {
+        "text": "We focus on their ND+VWR specification using FRED nondurables consumption and the Ken French value-weighted market return as a proxy for CRSP, on the same 1959:2--1978:12 sample period.",
+        "source": "lecture-python.myst/lectures/hansen_singleton_1982.md"
+      }
+    ],
     "source": "glossary/zh-cn (data source)"
   },
   {
@@ -33,6 +83,7 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (data source)"
   },
   {
@@ -42,6 +93,28 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Jupyter notebook versions of each lecture are available for download via the website.",
+        "source": "lecture-python-advanced.myst/README.md"
+      },
+      {
+        "text": "In addition to what's in Anaconda, this lecture will need the following libraries: This is a prolegomenon to another lecture {doc}`Equilibrium Capital Structures with Incomplete Markets ` about a model with incomplete markets authored by Bisin, Clementi, and Gottardi {cite}`BCG_2018`.",
+        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
+      },
+      {
+        "text": "This simplification of BCG’s setup helps us by - creating a benchmark economy to compare with outcomes in BCG’s incomplete markets economy - creating a good guess for initial values of some equilibrium objects to be computed in BCG’s incomplete markets economy via an iterative algorithm - illustrating classic complete markets outcomes that include - indeterminacy of consumers’ portfolio choices - indeterminacy of firms' financial structures that underlies a Modigliani-Miller theorem {cite}`Modigliani_Miller_1958` - introducing `Big K, little k` issues in a simple context that will recur in the BCG incomplete markets environment A Big K, little k analysis also played roles in this quantecon lecture as well  as here and {doc}`here `.",
+        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
+      },
+      {
+        "text": "A  `Big K, little k` analysis played an important role in the  previous lecture {doc}`Irrelevance of Capital Structure with Complete Markets `.",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
+      },
+      {
+        "text": "As in the companion lecture {doc}`Irrelevance of Capital Structure with Complete Markets ` that studies a complete markets version of the model, we follow BCG in assuming that there are unit measures of - consumers of type - consumers of type - firms with access to a production technology that converts units of time  good into units of the time  good in random state Thus, let  index a particular consumer of type .",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
+      }
+    ],
     "source": "glossary/zh-cn (educational content)"
   },
   {
@@ -51,6 +124,16 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Let's plot the unemployment rate in the US from 1929 to 2022 with recessions defined by the NBER.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "See, in particular * NBER Working Paper No. 26867 * COVID-19 Working papers and code The purpose of his notes is to introduce economists to quantitative modeling of infectious disease dynamics.",
+        "source": "lecture-python.myst/lectures/sir_model.md"
+      }
+    ],
     "source": "glossary/zh-cn (institution)"
   },
   {
@@ -60,6 +143,7 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (institution)"
   },
   {
@@ -69,6 +153,20 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The following code block imports a subset of the dataset `SCF_plus` for 2016, which is derived from the Survey of Consumer Finances (SCF).",
+        "source": "lecture-python-intro/lectures/inequality.md"
+      },
+      {
+        "text": "We will use US data from the {ref}`Survey of Consumer Finances` This notebook can be used to compute this information over the full dataset.",
+        "source": "lecture-python-intro/lectures/inequality.md"
+      },
+      {
+        "text": "The data is derived from the Survey of Consumer Finances (SCF).",
+        "source": "lecture-python-intro/lectures/mle.md"
+      }
+    ],
     "source": "glossary/zh-cn (data source)"
   },
   {
@@ -78,6 +176,16 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Here we plot the University of Michigan Consumer Sentiment Index and year-on-year core consumer price index (CPI) change from 1978-2022 in the US.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "One widely cited indicator for consumer confidence is the consumer sentiment index published by the University of Michigan.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      }
+    ],
     "source": "glossary/zh-cn (institution)"
   },
   {
@@ -87,6 +195,28 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Here is the code that generates the two samples, produces the violin plot and prints the mean and standard deviation of the two samples.",
+        "source": "lecture-python-intro/lectures/heavy_tails.md"
+      },
+      {
+        "text": "Now let's generate the violin plot.",
+        "source": "lecture-python-intro/lectures/heavy_tails.md"
+      },
+      {
+        "text": "Each distribution in the violin plot represents the distribution of  for some , calculated by simulation.",
+        "source": "lecture-python-intro/lectures/lln_clt.md"
+      },
+      {
+        "text": "We will use a violin plot to show the different distributions.",
+        "source": "lecture-python-intro/lectures/lln_clt.md"
+      },
+      {
+        "text": "Another way to display an observed distribution is via a violin plot.",
+        "source": "lecture-python-intro/lectures/prob_dist.md"
+      }
+    ],
     "source": "glossary/zh-cn (data visualization)"
   },
   {
@@ -96,6 +226,28 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "For our study, we will use economic indicators from the World Bank and FRED.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "Let's source our data from the World Bank and clean it.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "We can use `wb.series.info` with the argument `q` to query available data from the World Bank.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "We will use the World Bank's data API `wbgapi` and `pandas_datareader` to retrieve data.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "Let's use the `wbgapi` package we imported earlier to search the World Bank data for Gini to find the Series ID.",
+        "source": "lecture-python-intro/lectures/inequality.md"
+      }
+    ],
     "source": "glossary/zh-cn (institution)"
   }
 ]

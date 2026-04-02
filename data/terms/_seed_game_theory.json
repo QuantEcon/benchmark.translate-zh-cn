@@ -6,6 +6,7 @@
     "domain": "game-theory",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (game theory)"
   },
   {
@@ -15,6 +16,7 @@
     "domain": "game-theory",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (game theory)"
   },
   {
@@ -24,6 +26,28 @@
     "domain": "game-theory",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "What we have done above can be interpreted in terms of  a two-person zero-sum game in which  are Nash equilibrium objects.",
+        "source": "lecture-python-advanced.myst/lectures/robustness.md"
+      },
+      {
+        "text": "Fix  and compute the solution of the two-player zero-sum game associated with .",
+        "source": "lecture-python.myst/lectures/von_neumann_model.md"
+      },
+      {
+        "text": "Fix  and compute the solution of the two-player zero-sum game associated with .",
+        "source": "lecture-python.myst/lectures/von_neumann_model.md"
+      },
+      {
+        "text": "From the above definition, it is clear that the value  has two alternative interpretations: * by playing the appropriate mixed strategy, the maximizing player can assure himself at least (no matter what the column player chooses) * by playing the appropriate mixed strategy, the minimizing player can make sure that the maximizing player will not get more than  (irrespective of what is the maximizing player’s choice) A famous theorem of Nash (1951) tells us that there always exists a mixed strategy Nash equilibrium for any *finite* two-player zero-sum game.",
+        "source": "lecture-python.myst/lectures/von_neumann_model.md"
+      },
+      {
+        "text": "Moreover, von Neumann’s Minmax Theorem {cite}`neumann1928theorie` implies that Nash equilibria of a finite two-player zero-sum game solve a linear programming problem.",
+        "source": "lecture-python.myst/lectures/von_neumann_model.md"
+      }
+    ],
     "source": "glossary/zh-cn (game theory)"
   }
 ]

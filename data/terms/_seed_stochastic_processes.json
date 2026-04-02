@@ -6,6 +6,7 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -15,6 +16,7 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -24,6 +26,28 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Asymptotic stationarity and ergodicity are key assumptions needed to make it possible to learn by applying statistical methods.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "Answering these questions will lead us to revisit many of the topics that occupied us in the finite state case, such as simulation, distribution dynamics, stability, ergodicity, etc.",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "In our lecture on finite Markov chains, we also studied stationarity, stability and ergodicity.",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "So what are these conditions we require to get global stability and ergodicity?",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "Under very similar conditions, we get *ergodicity*, which means that for any (measurable) function   such that the right-hand side is finite.",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      }
+    ],
     "source": "glossary/zh-cn (stochastic processes)"
   },
   {
@@ -33,6 +57,7 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -42,6 +67,28 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Furthermore, when the Markov chain  and the government expenditure function  are such that  is perpetually random,  almost surely converges to zero.",
+        "source": "lecture-python-advanced.myst/lectures/amss.md"
+      },
+      {
+        "text": "This lecture studies a special  AMSS model in which * The exogenous state variable  is governed by  a finite-state Markov chain. * With an arbitrary budget-feasible initial level of government debt, the measurability  constraints - bind for many periods, but . - eventually, they stop binding evermore, so that - in the tail of the Ramsey plan, the Lagrange multipliers  on the AMSS implementability constraints {eq}`TS_gov_wo4`  are zero. * After the implementability constraints {eq}`TS_gov_wo4` no longer bind in the tail of the AMSS Ramsey plan - history dependence of the AMSS state variable  vanishes and   becomes a time-invariant function of the Markov state . - the par value of government debt becomes **constant over time** so that  for  for a sufficiently large . - , so that the tail of the Ramsey plan instructs  the government always to make a constant par value of risk-free one-period loans **to** the private sector. - the one-period gross interest rate  on risk-free debt  converges to a time-invariant function of the Markov state . * For a **particular**  (i.e., a positive level of initial government **loans** to the private sector), the measurability constraints **never** bind. * In this special case - the **par value**   of government debt at time  and Markov state   is constant across time and states, but . - the **market value**  of government debt at time   varies as a time-invariant function of the Markov state . - fluctuations in the interest rate make gross earnings on government debt  fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures. - the state variable  in a recursive representation of a Ramsey plan is a time-invariant function of the Markov state for . * In this special case, the Ramsey allocation in the AMSS model agrees with that in a Lucas-Stokey {cite}`LucasStokey1983` complete markets model in which the same amount of state-contingent debt falls due in all states tomorrow - it is a situation in which  the Ramsey planner loses nothing from not being  able to  trade state-contingent debt and being restricted to exchange only risk-free debt  debt. * This outcome emerges only when we initialize government debt at a particular .",
+        "source": "lecture-python-advanced.myst/lectures/amss2.md"
+      },
+      {
+        "text": "Discrete case:  is a discrete state Markov chain with transition matrix . 1.",
+        "source": "lecture-python-advanced.myst/lectures/lqramsey.md"
+      },
+      {
+        "text": "Evidently, as the Markov chain becomes *more nearly periodic* (i.e., as ), the dynamic program adjusts capital faster in the low adjustment cost Markov state to take advantage of what is only temporarily a more favorable time to invest.",
+        "source": "lecture-python-advanced.myst/lectures/markov_jump_lq.md"
+      },
+      {
+        "text": "The idea is to replace the constant matrices that define a **linear quadratic dynamic programming problem** with  sets of matrices that are fixed functions of the state of an  state Markov chain.",
+        "source": "lecture-python-advanced.myst/lectures/markov_jump_lq.md"
+      }
+    ],
     "source": "glossary/zh-cn (stochastic processes)"
   },
   {
@@ -51,6 +98,28 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "We use it to convey the heart of what BCG call a **rational conjectures** equilibrium in which conjectures are about equilibrium pricing functions in regions of the state space that  an average consumer or firm does not visit in equilibrium.",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
+      },
+      {
+        "text": "A convenient way to do this is to construct an appropriate instance of a linear state space system by using LinearStateSpace from QuantEcon.py.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "A convenient way to represent our additive functional is to use a linear state space system.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "To do this, we set up state and observation vectors Next we construct a linear system This can be written as which is a standard linear state space system.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "To start, observe that, under the dynamics in {eq}`old1_additive_functionals` and {eq}`old2_additive_functionals` and with the definitions just given, and With we can write this as the linear state space system By picking out components of , we can track all variables of interest.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      }
+    ],
     "source": "glossary/zh-cn (stochastic processes)"
   },
   {
@@ -60,6 +129,16 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Denote the state transition matrix for Markov state as : Let We can represent the one-period payoff function as and the state-transition law as The continuous part of the state  consists of two variables, namely,  and a constant term.",
+        "source": "lecture-python-advanced.myst/lectures/markov_jump_lq.md"
+      },
+      {
+        "text": "Next, we'll  represent the preceding analysis by first vectorizing our second-order difference equation {eq}`eq:second_order` and then using  eigendecompositions of an  associated  state transition matrix.",
+        "source": "lecture-python-intro/lectures/greek_square.md"
+      }
+    ],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -69,6 +148,28 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Since this object is an instance of MarkovChain from  QuantEcon.py (see this lecture for more discussion), we can easily simulate it, compute its stationary distribution and so on.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "In the finite case, we learned that at least one stationary distribution exists, although there may be many.",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "A stationary distribution is a distribution that is a \"fixed point\" of the update rule for the AR(1) process.",
+        "source": "lecture-python-intro/lectures/ar1_processes.md"
+      },
+      {
+        "text": "In particular, averages over time series converge to expectations under the stationary distribution.",
+        "source": "lecture-python-intro/lectures/ar1_processes.md"
+      },
+      {
+        "text": "So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix ` and {ref}`Hamilton matrix ` converge to a stationary distribution, which is the Perron projection of the two matrices We can also verify other properties hinted by Perron-Frobenius in these stochastic matrices. +++ Another example is the relationship between convergence gap and convergence rate.",
+        "source": "lecture-python-intro/lectures/eigen_II.md"
+      }
+    ],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -78,6 +179,28 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "In the previous section, we made the connection between stochastic difference equation {eq}`statd_rw` and stochastic kernel {eq}`statd_rwsk`.",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "Thus, by converting a stochastic difference equation such as {eq}`statd_srs` into a stochastic kernel  and hence an operator , we convert a stochastic difference equation into a deterministic one (albeit in a much higher dimensional space).",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "To this end, consider the generic (scalar) stochastic difference equation given by Here we assume that * , where  is a given density on *  and  are given functions on , with  for all **Example 1:** The random walk {eq}`statd_rw` is a special case of {eq}`statd_srs`, with  and . **Example 2:** Consider the ARCH model Alternatively, we can write the model as This is a special case of {eq}`statd_srs` with  and . **Example 3:** With stochastic production and a constant savings rate, the one-sector neoclassical growth model leads to a law of motion for capital per worker such as Here *  is the rate of savings *  is a production shock * The  subscript indicates that  is not visible at time *  is a depreciation rate *  is a production function satisfying  whenever (The fixed savings rate can be rationalized as the optimal policy for a particular set of technologies and preferences (see {cite}`Ljungqvist2012`, section 3.1.2), although we omit the details here).",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "Let's start with some imports: The **AR(1) model** (autoregressive model of order 1) takes the form where  are scalar-valued parameters (Equation {eq}`can_ar1` is sometimes called a **stochastic difference equation**.) The specification {eq}`can_ar1` generates a time series  as soon as we specify an initial condition .",
+        "source": "lecture-python-intro/lectures/ar1_processes.md"
+      },
+      {
+        "text": "We create a *random* or *stochastic* version of the model by adding a random process of *shocks* or *disturbances* to the right side of equation {eq}`second_order`, leading to the *second-order scalar linear stochastic difference equation*: To get started, let's set , , and .",
+        "source": "lecture-python.myst/lectures/samuelson.md"
+      }
+    ],
     "source": "glossary/zh-cn (stochastic processes)"
   },
   {
@@ -87,6 +210,16 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "The {ref}`*steady state*` value  of  is obtained by setting $y_t = y_{t-1} = y_{t-2} = y^*$ in {eq}`tswm_1`, which yields If we set the initial values to , then  will be constant: To generate some excitement, we'll follow in the spirit of the great economists Eugen Slutsky and Ragnar Frisch and replace our original second-order difference equation with the following **second-order stochastic linear difference equation**: where  and is {ref}`IID `, meaning independent and identically distributed.",
+        "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
+      },
+      {
+        "text": "This modification makes national output become governed by a second-order **stochastic linear difference equation** that, with appropriate parameter values, gives rise to recurrent irregular business cycles. (To read about stochastic linear difference equations see chapter XI of {cite}`Sargent1987`.) Let's assume that *  is a sequence of levels of government expenditures -- we'll start by setting  for all . *  is a sequence of levels of aggregate consumption expenditures, a key endogenous variable in the model. *  is a sequence of rates of investment, another key endogenous variable. *  is a sequence of levels of national income, yet another endogenous variable. -  is the marginal propensity to consume in the Keynesian consumption function . -  is the \"accelerator coefficient\" in the \"investment accelerator\" . -  is an IID sequence standard normal random variables. -  is a \"volatility\" parameter --- setting  recovers the non-stochastic case that we'll start with.",
+        "source": "lecture-python.myst/lectures/samuelson.md"
+      }
+    ],
     "source": "glossary/zh-cn (stochastic processes)"
   },
   {
@@ -96,6 +229,28 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "If a decision-maker uses  a policy , then * the current reward at time  is * the probability that  is For each , define *  by ) *  by Notice that  is a stochastic matrix on .",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "If we think of  as a column vector, then so is , and the -th row of the latter has the interpretation Comments *  means that the state is generated by stochastic matrix . * See this discussion on computing expectations of Markov chains for an explanation of the expression in {eq}`ddp_expec`.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "Hence, by {eq}`statd_dv`, For example, the growth model in {eq}`statd_ss` has stochastic kernel where  is the density of . (Regarding the state space  for this model, a natural choice is  --- in which case is strictly positive for all  as required) In this section of our lecture on **finite** Markov chains, we asked the following question: If 1.  is a Markov chain with stochastic matrix 1. the distribution of  is known to be then what is the distribution of ?",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "In this setting, the dynamics of the model are described by a stochastic matrix --- a nonnegative square matrix  such that each row  sums to one.",
+        "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
+      },
+      {
+        "text": "As we have seen, the largest eigenvalue for a primitive stochastic matrix is one.",
+        "source": "lecture-python-intro/lectures/eigen_II.md"
+      }
+    ],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -105,6 +260,28 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Saying that  is a risk-adjusted martingale  means  that is a martingale with respect to the probability distribution over  sequences that are generated by the *twisted* transition probability matrix: Please verify that  is a valid Markov transition density, i.e., that its elements are all non-negative and that for each , the sum over  equals unity.",
+        "source": "lecture-python-advanced.myst/lectures/amss.md"
+      },
+      {
+        "text": "A *transition probability function* , where  is the set of probability distributions over . 1.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "An  transition probability array . 1.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "One of the advantages of this alternative set up is that it permits the use of a sparse matrix for `Q`. (An example of using sparse matrices is given in the exercises below) The call signature of the second formulation is `DiscreteDP(R, Q, β, s_indices, a_indices)` where * `s_indices` and `a_indices` are arrays of equal length `L` enumerating all feasible state-action pairs * `R` is an array of length `L` giving corresponding rewards * `Q` is an `L x n` transition probability array Here's how we could set up these objects for the preceding example For larger problems, you might need to write this code more efficiently by vectorizing or using Numba.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "The transition probability array `Q` will be highly sparse (in fact it is degenerate as the model is deterministic), so we formulate the problem with state-action pairs, to represent `Q` in [scipy sparse matrix format](http://docs.scipy.org/doc/scipy/reference/sparse.html).",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      }
+    ],
     "source": "glossary/zh-cn (Markov chains)"
   }
 ]

@@ -6,6 +6,7 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {
@@ -15,6 +16,7 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {
@@ -24,6 +26,7 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {
@@ -33,6 +36,7 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {
@@ -42,6 +46,28 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "That scalar innovation process is the additional state variable contributed by the problem of extracting a signal from equilibrium prices that decision makers face in Townsend’s model. [^footnote0]: {cite}`Pearlman_Sargent2005` verified this assertion using a different tactic, namely, by constructing analytic formulas for an equilibrium under the incomplete information structure and confirming that they match the pooling equilibrium formulas derived here. [^footnote3]: See {cite}`Sargent1987`, especially chapters IX and XIV, for  principles  that guide solving some roots backwards and others forwards. [^footnote4]: As noted by {cite}`Sargent1987`, this difference equation is the Euler equation for a planning problem   that maximizes the discounted sum of consumer plus producer surplus. [^footnote5]: {cite}`Pearlman_Sargent2005` verify the same claim by applying   machinery of  {cite}`PCL`. [^footnote1]: See {cite}`ahms` for an account of invariant subspace methods. [^footnote2]: See {cite}`ams` for a discussion of  information assumptions needed to create a situation in which higher order beliefs appear in equilibrium decision rules.",
+        "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
+      },
+      {
+        "text": "Evaluating the integral in the definition of producer surplus {eq}`eq:pdcr_spls` gives Sometimes economists measure social welfare by a **welfare criterion** that equals consumer surplus plus producer surplus, assuming that consumers and producers pay the same price: Evaluating the integrals gives Here is a Python function that evaluates this social welfare at a given quantity  and a fixed set of parameters.",
+        "source": "lecture-python-intro/lectures/intro_supply_demand.md"
+      },
+      {
+        "text": "How can we calculate the consumer and producer surplus in the continuous case?",
+        "source": "lecture-python-intro/lectures/intro_supply_demand.md"
+      },
+      {
+        "text": "Key infrastructure concepts that we will encounter in this lecture are: * inverse demand curves * inverse supply curves * consumer surplus * producer surplus * integration * social welfare as the sum of consumer and producer surpluses * the relationship between  equilibrium quantity and social welfare optimum In our exposition we will use the following Python imports.",
+        "source": "lecture-python-intro/lectures/intro_supply_demand.md"
+      },
+      {
+        "text": "Solving for  yields Let's remember the quantity  given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer surplus plus producer surplus.",
+        "source": "lecture-python-intro/lectures/intro_supply_demand.md"
+      }
+    ],
     "source": "glossary/zh-cn (microeconomics)"
   }
 ]

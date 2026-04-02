@@ -6,6 +6,28 @@
     "domain": "optimization",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "A sister lecture {doc}`calvo_machine_learn` studies some of the same models but does not use dynamic programming.",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+      },
+      {
+        "text": "In addition, we'll use ideas from linear-quadratic dynamic programming described in  Linear Quadratic Control as applied to Ramsey problems in {doc}`Stackelberg plans `.",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+      },
+      {
+        "text": "In the first stage, we take the initial inflation rate  as given and pose an  ordinary discounted dynamic programming problem that in our setting becomes an  LQ discounted dynamic programming problem.",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+      },
+      {
+        "text": "The first model describes a **Ramsey plan** chosen by a **Ramsey planner** The second model describes a **Ramsey plan** chosen by a **Ramsey planner constrained to choose a time-invariant ** The third model describes a **Markov perfect equilibrium** We'll begin with the timing protocol associated with a Ramsey plan and deploy an application of what we  nickname **dynamic programming squared**.",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+      },
+      {
+        "text": "We  specify model fundamentals  in  ways that allow us to use linear-quadratic discounted dynamic programming to compute an optimal government plan under each of our timing protocols.",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+      }
+    ],
     "source": "glossary/zh-cn (optimization)"
   },
   {
@@ -15,6 +37,28 @@
     "domain": "optimization",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "As with an earlier QuantEcon lecture on optimal transport, a key tool will be linear programming.",
+        "source": "lecture-python-advanced.myst/lectures/match_transport.md"
+      },
+      {
+        "text": "After  introducing the input-output model, we describe some of its connections to {doc}`linear programming lecture `.",
+        "source": "lecture-python-intro/lectures/input_output.md"
+      },
+      {
+        "text": "By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem. 1.",
+        "source": "lecture-python-intro/lectures/lp_intro.md"
+      },
+      {
+        "text": "Install ortools using `pip`. **Linear programming** problems either maximize or minimize a linear objective function subject to a set of  linear equality and/or inequality constraints.",
+        "source": "lecture-python-intro/lectures/lp_intro.md"
+      },
+      {
+        "text": "Let's start with some examples of linear programming problem.",
+        "source": "lecture-python-intro/lectures/lp_intro.md"
+      }
+    ],
     "source": "glossary/zh-cn (optimization)"
   },
   {
@@ -24,6 +68,28 @@
     "domain": "optimization",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "As we shall see below, a side condition on the path of  that together with {eq}`onefour` is sufficient for an optimum is All paths that satisfy the Euler equations, except the one that we shall select below, violate this condition and, therefore, evidently lead to (much) lower values of {eq}`oneone` than does the optimal path selected by the solution procedure below.",
+        "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
+      },
+      {
+        "text": "Finally, here's a function that uses the cost-to-go function to obtain the optimal path (and its cost).",
+        "source": "lecture-python-intro/lectures/short_path.md"
+      },
+      {
+        "text": "Your task is to use the algorithm given above to find the optimal path and its cost.",
+        "source": "lecture-python-intro/lectures/short_path.md"
+      },
+      {
+        "text": "We can approximate the optimal path by starting from an arbitrary initial and shooting towards the optimal steady state at a large but finite .",
+        "source": "lecture-python.myst/lectures/cass_koopmans_1.md"
+      },
+      {
+        "text": "The case  never arises along the optimal path because .",
+        "source": "lecture-python.myst/lectures/ifp_egm.md"
+      }
+    ],
     "source": "glossary/zh-cn (optimization)"
   },
   {
@@ -33,6 +99,28 @@
     "domain": "optimization",
     "difficulty": "intermediate",
     "alternatives": [],
+    "contexts": [
+      {
+        "text": "Thus, we guess that under the optimal policy .",
+        "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
+      },
+      {
+        "text": "Given , the value iteration algorithm * terminates in a finite number of iterations * returns an -approximation of the optimal value function and an -optimal policy function (unless `iter_max` is reached) (While not explicit, in the actual implementation each algorithm is terminated if the number of iterations reaches `iter_max`) The `DiscreteDP` policy iteration method runs as follows 1.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "In other words, it gives the dynamics of the state when the agent follows the optimal policy.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "In the current setting, policy iteration computes an exact optimal policy in finitely many iterations. * See theorem 10.2.6 of EDTC for a proof.",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "It returns an -approximation of the optimal value function and an -optimal policy function (unless `iter_max` is reached).",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      }
+    ],
     "source": "glossary/zh-cn (optimization)"
   }
 ]
