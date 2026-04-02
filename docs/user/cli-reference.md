@@ -110,6 +110,44 @@ Each contributed entry earns **15 XP**. A `cli_version` field is automatically s
 
 ---
 
+## `qebench judge`
+
+Judge anonymous translations head-to-head. Shows two translations of the same
+source text, you rate each on accuracy and fluency, then pick a winner.
+Results update Elo ratings for the models.
+
+```bash
+uv run qebench judge                       # Default: 10 rounds
+uv run qebench judge -n 5                  # Quick 5-round session
+uv run qebench judge -d economics          # Filter to economics entries
+```
+
+### Options
+
+| Option | Short | Default | Description |
+|---|---|---|---|
+| `--count` | `-n` | `10` | Number of rounds per session |
+| `--domain` | `-d` | all | Filter by domain |
+
+### Prerequisites
+
+Model outputs must exist in `results/model-outputs/`. Generate them with `qebench run` first.
+
+### How It Works
+
+1. Entries are paired with model translations from `results/model-outputs/`
+2. Two translations are shown anonymously as **A** and **B**
+3. You rate each on accuracy (1–10) and fluency (1–10)
+4. You pick a winner (A, B, or tie)
+5. Elo ratings are updated; results saved to `results/judgments/`
+
+If two models have translated the same entry, they're paired directly.
+If only one model has output, it's paired against the human reference.
+
+Each judgment earns **5 XP**.
+
+---
+
 ## `qebench submit`
 
 Pull latest changes, commit your data and results, and push to GitHub. This is the primary way to share your contributions.

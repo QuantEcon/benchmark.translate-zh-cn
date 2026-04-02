@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository.
 
 **benchmark.translate-zh-cn** is a CLI tool (`qebench`) and benchmark dataset for evaluating English-to-Chinese translation quality in economics and mathematics. Built with Python, Typer, Rich, Pydantic.
 
-**Current state**: Phase 3 in progress — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate`, `run` commands; LLM provider interface with Claude + OpenAI providers; prompt template system; 128 tests passing.
+**Current state**: Phase 4 complete — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate`, `run`, `judge` commands; LLM provider interface with Claude + OpenAI providers; judge mode with Elo ratings; glossary compliance + reference overlap scoring; 161 tests passing.
 
 ---
 
@@ -25,9 +25,12 @@ src/qebench/
 │   ├── doctor.py          # Preflight checks (gh, git, auth, data)
 │   ├── update.py          # Pull latest code + uv sync dependencies
 │   ├── validate.py        # Schema validation for all dataset files
-│   └── run.py             # Batch translate via LLM providers
+│   ├── run.py             # Batch translate via LLM providers
+│   └── judge.py           # Anonymous head-to-head translation judging
 ├── scoring/
 │   ├── elo.py             # Elo rating calculations for model comparison
+│   ├── glossary.py        # Glossary compliance + reference overlap scoring
+│   ├── judgments.py       # Judgment persistence + Elo update orchestration
 │   └── xp.py              # XP tracking per user (translate=10, add=15, judge=5)
 ├── providers/
 │   ├── __init__.py
@@ -48,7 +51,7 @@ src/qebench/
 | Add a new CLI command | `cli.py` (register) + `commands/yourcommand.py` |
 | Data models / validation | `models.py` |
 | Load/save dataset | `utils/dataset.py` |
-| Scoring logic | `scoring/elo.py`, `scoring/xp.py` |
+| Scoring logic | `scoring/elo.py`, `scoring/glossary.py`, `scoring/judgments.py`, `scoring/xp.py` |
 | Config (domains, targets) | `config.yaml` |
 | Tests | `tests/` |
 
