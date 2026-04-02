@@ -62,7 +62,7 @@ class OpenAIProvider(TranslationProvider):
         )
         latency_ms = (time.monotonic() - start) * 1000
 
-        translated = response.choices[0].message.content.strip()
+        translated = (response.choices[0].message.content or "").strip()
         usage = response.usage
         input_tokens = usage.prompt_tokens
         output_tokens = usage.completion_tokens
