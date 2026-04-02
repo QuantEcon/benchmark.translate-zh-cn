@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import json
 import subprocess
-import textwrap
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
 
-from qebench.commands.update import update, _sync_lecture_repos, _enrich_term_contexts, CACHE_DIR
+from qebench.commands.update import _enrich_term_contexts, _sync_lecture_repos, update
 
 
 class TestUpdate:

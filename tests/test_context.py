@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from qebench.models import Term, TermContext
+from qebench.models import Term, TermContext  # noqa: F401
 from qebench.utils.context import (
     MAX_CONTEXTS,
     _extract_prose,
@@ -15,7 +15,6 @@ from qebench.utils.context import (
     enrich_terms,
     find_contexts,
 )
-
 
 # ---------------------------------------------------------------------------
 # _split_sentences
