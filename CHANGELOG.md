@@ -5,14 +5,26 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.2.0] - 2026-04-02
 
 ### Added
 
-- **Context sentence enrichment**: `qebench update` now clones/updates 4 QuantEcon lecture repos into `.cache/lectures/` and extracts up to 5 usage sentences per term
-- **`TermContext` model**: New Pydantic model (`text`, `source`) for contextual usage sentences; `Term.contexts` field holds up to 5 per term
-- **Context display in translate**: `qebench translate` shows a random context sentence alongside terms to help translators understand usage
-- 45 new tests (207 total) for context extraction, enrichment, and model validation
+- **Phase 3 — LLM provider integration** (PR #3):
+  - `qebench run`: Batch LLM translation with provider selection (`--provider claude|openai`)
+  - Provider abstraction layer (`providers/base.py`) with Claude and OpenAI implementations
+  - Structured prompt templates (`providers/prompts.py`) for term/sentence/paragraph translation
+  - 30 new tests (providers, prompts, run command)
+- **Phase 4 — Judge mode & Elo ratings** (PR #4):
+  - `qebench judge`: Side-by-side comparison of human vs LLM translations with LLM-as-judge
+  - Glossary compliance scoring (`scoring/glossary.py`) — checks translations against the official glossary
+  - Judgments persistence (`scoring/judgments.py`) — Elo rating updates, per-pair tracking
+  - 32 new tests (judge, glossary scoring, judgments)
+- **Context sentence enrichment** (PR #5):
+  - `qebench update` now clones/updates 4 QuantEcon lecture repos into `.cache/lectures/` and extracts up to 5 usage sentences per term
+  - `TermContext` model (`text`, `source`) for contextual usage sentences; `Term.contexts` field holds up to 5 per term
+  - `qebench translate` shows a random context sentence alongside terms to help translators understand usage
+  - New tutorial: [Updating Datasets](docs/user/tutorials/updating-datasets.md)
+  - 45 new tests (context extraction, enrichment, model validation)
 
 ### Fixed
 
@@ -21,6 +33,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Context selection is deterministic (sorted, first N) to avoid VCS churn; randomness is only at display time
 - Multi-line `$$...$$` math blocks properly skipped during prose extraction
 - Rich markup in context sentences is escaped to prevent broken rendering
+
+### Changed
+
+- Tests: 109 → 207 (98 new across 3 PRs)
 
 ## [0.1.1] - 2026-03-30
 
@@ -71,5 +87,6 @@ First release — ready for RA testing.
 - **Documentation**: MyST-based, 10 pages — getting started, uv guide, CLI reference, tutorials, architecture, data models, contributing
 - **Tests**: 98 pytest tests across 12 test files
 
+[0.2.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.2.0
 [0.1.1]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.1.1
 [0.1.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.1.0
