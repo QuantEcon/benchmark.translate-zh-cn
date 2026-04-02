@@ -5,6 +5,23 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **Context sentence enrichment**: `qebench update` now clones/updates 4 QuantEcon lecture repos into `.cache/lectures/` and extracts up to 5 usage sentences per term
+- **`TermContext` model**: New Pydantic model (`text`, `source`) for contextual usage sentences; `Term.contexts` field holds up to 5 per term
+- **Context display in translate**: `qebench translate` shows a random context sentence alongside terms to help translators understand usage
+- 45 new tests (207 total) for context extraction, enrichment, and model validation
+
+### Fixed
+
+- `_enrich_term_contexts()` only rewrites seed files containing enriched terms (not all files)
+- Wrapper format (`{version, entries}`) is preserved when writing back enriched terms
+- Context selection is deterministic (sorted, first N) to avoid VCS churn; randomness is only at display time
+- Multi-line `$$...$$` math blocks properly skipped during prose extraction
+- Rich markup in context sentences is escaped to prevent broken rendering
+
 ## [0.1.1] - 2026-03-30
 
 ### Added

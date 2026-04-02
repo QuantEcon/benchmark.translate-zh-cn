@@ -171,7 +171,7 @@ The interactive modes that make RAs want to contribute.
 - [x] `qebench update` — pull latest code + data (`git pull --rebase`) and sync dependencies (`uv sync`)
 - [x] Results committed to repo — XP + translations tracked in git, dashboard reads them
 - [x] `qebench stats` — leaderboard display (current: coverage + domain table + XP leaderboard)
-- [x] 161 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, add: 2, validate: 7, stats: 4, providers: 6, prompts: 5, run: 8, glossary-scoring: 13, judgments: 8, judge: 11)
+- [x] 207 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, update-enrichment: 11, add: 2, validate: 7, stats: 4, providers: 6, prompts: 5, run: 8, glossary-scoring: 13, judgments: 8, judge: 11, context: 24, term-context: 8)
 
 ### Phase 3: LLM Integration (Layer 4)
 
@@ -235,6 +235,10 @@ Docs hosted on GitHub Pages via MyST.
 ### Term
 
 ```python
+class TermContext(BaseModel):
+    text: str                        # "Dynamic programming is a powerful..."
+    source: str = ""                 # "lecture-python-intro/intro.md"
+
 class Term(BaseModel):
     id: str                          # "term-001"
     en: str                          # "Bellman equation"
@@ -242,6 +246,7 @@ class Term(BaseModel):
     domain: str                      # "dynamic-programming"
     difficulty: Difficulty           # basic | intermediate | advanced
     alternatives: list[str] = []    # ["贝尔曼等式"]
+    contexts: list[TermContext] = [] # up to 5 usage sentences from lectures
     source: str = ""                # "quantecon/dp-intro"
 ```
 
@@ -333,3 +338,6 @@ targets:
 4. **Pydantic for schemas** — type safety + auto JSON Schema generation + validation in one place
 5. **uv for packaging** — fast, handles Python versions, replaces pip+venv+pip-tools
 6. **config.yaml for language settings** — keeps tool code language-agnostic from day one
+
+
+I have also had some feedback on the `judge` command It is suggested that we have A/B and then the option to provide a new translation. What do you think about this? I want to think a bit about this suggestion as I'm not sure how to make use of the data. 

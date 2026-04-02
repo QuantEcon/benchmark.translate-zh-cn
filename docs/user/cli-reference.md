@@ -4,18 +4,27 @@ All commands available in `qebench`, organized by the typical daily workflow.
 
 ## `qebench update`
 
-Pull the latest code, data, and dependencies from GitHub. **Run this at the
-start of every session** to ensure you have everyone's latest contributions
-and any CLI updates.
+Pull the latest code, data, and dependencies from GitHub, then enrich term
+contexts from QuantEcon lecture repos. **Run this at the start of every
+session** to ensure you have everyone's latest contributions and any CLI
+updates.
 
 ```bash
 uv run qebench update
 ```
 
-No options — it runs two steps:
+No options — it runs three steps:
 
 1. **Pull** — `git pull --rebase` to get the latest code and data
 2. **Sync** — `uv sync` to install any new or updated dependencies
+3. **Enrich** — clone/update QuantEcon lecture repos into `.cache/lectures/`
+   and add context sentences to terms that don't have them yet
+
+The enrichment step scans four lecture repositories for sentences that use
+each term, storing up to 5 example sentences per term. These context sentences
+are shown during `qebench translate` to help you choose the right Chinese
+translation. The lecture repos are cached locally (shallow clones, gitignored)
+so subsequent runs only pull changes.
 
 If already up to date, it tells you so. If the pull fails (e.g. you have
 uncommitted changes), resolve them first then try again.
@@ -85,6 +94,11 @@ uv run qebench translate
 - Optional notes for further explanation
 
 Divergent translations are valuable — they help us understand cultural nuance and variation.
+
+For **terms** that have context sentences (populated by `qebench update`),
+a random example sentence from a QuantEcon lecture is shown alongside the
+term. This helps you understand how the term is used in practice and choose
+the most appropriate Chinese translation.
 
 Each completed entry earns **10 XP**. A `cli_version` field is automatically saved with every record for future schema migration.
 

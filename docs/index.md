@@ -12,6 +12,7 @@ Documentation for RAs and contributors using `qebench`.
 - **Tutorials**
   - [Your First Translation Session](user/tutorials/first-session.md) — Walk through `qebench translate`
   - [Contributing Entries](user/tutorials/contributing-entries.md) — Grow the benchmark with `qebench add`
+  - [Updating Datasets](user/tutorials/updating-datasets.md) — Keep data current with `qebench update`
 
 ## Developer Guide (`developer/`)
 
