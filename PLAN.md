@@ -171,17 +171,17 @@ The interactive modes that make RAs want to contribute.
 - [x] `qebench update` — pull latest code + data (`git pull --rebase`) and sync dependencies (`uv sync`)
 - [x] Results committed to repo — XP + translations tracked in git, dashboard reads them
 - [x] `qebench stats` — leaderboard display (current: coverage + domain table + XP leaderboard)
-- [x] 109 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, add: 2, validate: 7, stats: 4)
+- [x] 128 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, add: 2, validate: 7, stats: 4, providers: 6, prompts: 5, run: 8)
 
 ### Phase 3: LLM Integration (Layer 4)
 
 Model benchmarking and comparison.
 
-- [ ] Abstract provider interface (`src/qebench/providers/base.py`)
-- [ ] Claude provider (Anthropic SDK)
-- [ ] OpenAI provider
-- [ ] `qebench run` — batch translate dataset entries via selected models
-- [ ] Prompt template loading from `prompts/`
+- [x] Abstract provider interface (`src/qebench/providers/base.py`)
+- [x] Claude provider (Anthropic SDK)
+- [x] OpenAI provider
+- [x] `qebench run` — batch translate dataset entries via selected models
+- [x] Prompt template loading from `prompts/`
 - [ ] Rate limiting and cost tracking
 
 ### Phase 4: Judge Mode & Elo (Layer 5)

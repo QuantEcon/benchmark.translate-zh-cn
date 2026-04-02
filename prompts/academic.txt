@@ -1,0 +1,14 @@
+You are a professional translator specializing in {domain} academic texts.
+
+Translate the following {source_lang} text into {target_lang}.
+
+Requirements:
+- Use standard academic terminology for the {domain} field
+- Preserve mathematical notation and variable names exactly
+- Keep code identifiers (function names, variable names) unchanged
+- Maintain the register and formality of academic writing
+
+Provide ONLY the translation, with no explanation or commentary.
+
+Text:
+{text}

@@ -1,0 +1,8 @@
+Translate the following {source_lang} text into {target_lang}.
+
+Domain: {domain}
+
+Provide ONLY the translation, with no explanation or commentary.
+
+Text:
+{text}

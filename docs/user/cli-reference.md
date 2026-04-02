@@ -168,6 +168,44 @@ This also runs automatically in CI on every push and PR.
 
 ---
 
+## `qebench run`
+
+Batch translate dataset entries using an LLM provider. Results are saved to
+`results/model-outputs/` as JSONL files.
+
+```bash
+uv run qebench run                             # Default: claude, all terms
+uv run qebench run --provider openai            # Use OpenAI
+uv run qebench run --model gpt-4o-mini          # Override model
+uv run qebench run --prompt academic            # Use academic prompt template
+uv run qebench run --type sentences --domain economics  # Filter entries
+uv run qebench run --count 10 --dry-run         # Preview without API calls
+```
+
+### Options
+
+| Option | Default | Description |
+|---|---|---|
+| `--provider`, `-p` | `claude` | LLM provider: `claude`, `openai` |
+| `--model`, `-m` | *(provider default)* | Override the default model |
+| `--prompt` | `default` | Prompt template name from `prompts/` |
+| `--count`, `-n` | `0` (all) | Max entries to translate |
+| `--domain`, `-d` | *(all)* | Filter entries by domain |
+| `--type`, `-t` | `terms` | Entry type: `terms`, `sentences`, `paragraphs` |
+| `--dry-run` | `false` | Preview entries without calling the API |
+
+### Prerequisites
+
+Install LLM dependencies:
+
+```bash
+uv sync --extra llm
+```
+
+Set your API key via environment variable (`ANTHROPIC_API_KEY` or `OPENAI_API_KEY`).
+
+---
+
 ## `qebench export`
 
 Export dataset statistics and results to JSON files for the dashboard website.
