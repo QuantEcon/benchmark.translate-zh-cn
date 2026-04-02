@@ -26,7 +26,7 @@ class TermContext(BaseModel):
     """A sentence from a lecture that uses a term in context."""
 
     text: str = Field(min_length=1, description="Sentence containing the term")
-    source: str = Field(default="", description="Lecture file path, e.g. lectures/intro.md")
+    source: str = Field(default="", description="Lecture source path in repo, e.g. lecture-python-intro/intro.md")
 
 
 class Term(BaseModel):

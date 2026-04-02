@@ -248,7 +248,7 @@ class TestEnrichTerms:
             self._make_term("term-002", "optimization"),
         ]
         enriched = enrich_terms(terms, [repo])
-        assert enriched == 2
+        assert enriched == {"term-001", "term-002"}
         assert len(terms[0].contexts) >= 1
         assert len(terms[1].contexts) >= 1
 
@@ -260,7 +260,7 @@ class TestEnrichTerms:
         existing = [TermContext(text="Already have this.", source="manual")]
         terms = [self._make_term("term-001", "dynamic programming", contexts=existing)]
         enriched = enrich_terms(terms, [repo])
-        assert enriched == 0
+        assert enriched == set()
         assert len(terms[0].contexts) == 1
         assert terms[0].contexts[0].text == "Already have this."
 
@@ -271,10 +271,10 @@ class TestEnrichTerms:
 
         terms = [self._make_term("term-001", "quantum entanglement")]
         enriched = enrich_terms(terms, [repo])
-        assert enriched == 0
+        assert enriched == set()
         assert terms[0].contexts == []
 
     def test_empty_terms_list(self, tmp_path: Path) -> None:
         repo = tmp_path / "lecture-test"
         repo.mkdir()
-        assert enrich_terms([], [repo]) == 0
+        assert enrich_terms([], [repo]) == set()

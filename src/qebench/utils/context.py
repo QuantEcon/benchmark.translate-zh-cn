@@ -8,7 +8,6 @@ with real-world usage examples.
 
 from __future__ import annotations
 
-import random
 import re
 from pathlib import Path
 
@@ -55,6 +54,7 @@ def _extract_prose(md_content: str) -> str:
     result: list[str] = []
     in_fence = False
     in_frontmatter = False
+    in_math = False
 
     for i, line in enumerate(lines):
         stripped = line.strip()
@@ -75,10 +75,15 @@ def _extract_prose(md_content: str) -> str:
         if in_fence:
             continue
 
+        # Multi-line math blocks ($$...$$)
+        if stripped.startswith("$$"):
+            in_math = not in_math
+            continue
+        if in_math:
+            continue
+
         # Skip headings, labels, targets, and empty lines
         if stripped.startswith("#") or stripped.startswith("(") and stripped.endswith(")="):
-            continue
-        if stripped.startswith("$$") or stripped.startswith("```{"):
             continue
         if not stripped:
             continue
@@ -147,24 +152,23 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
     if not matches:
         return []
 
-    # Return up to MAX_CONTEXTS random choices
-    if len(matches) <= MAX_CONTEXTS:
-        return matches
+    # Deterministic selection: sort by (source, text) for stable output,
+    # then take first MAX_CONTEXTS.  Randomness is only at display time.
+    matches.sort(key=lambda ctx: (ctx.source, ctx.text))
+    return matches[:MAX_CONTEXTS]
 
-    return random.sample(matches, MAX_CONTEXTS)
 
-
-def enrich_terms(terms: list[Term], lecture_dirs: list[Path]) -> int:
+def enrich_terms(terms: list[Term], lecture_dirs: list[Path]) -> set[str]:
     """Add context sentences to terms that don't have them yet.
 
-    Modifies terms in-place. Returns the number of terms enriched.
+    Modifies terms in-place. Returns the set of enriched term IDs.
     """
-    enriched = 0
+    enriched_ids: set[str] = set()
     for term in terms:
         if term.contexts:
             continue
         contexts = find_contexts(term.en, lecture_dirs)
         if contexts:
             term.contexts = contexts
-            enriched += 1
-    return enriched
+            enriched_ids.add(term.id)
+    return enriched_ids

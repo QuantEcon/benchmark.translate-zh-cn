@@ -15,7 +15,7 @@ from pathlib import Path
 from rich.panel import Panel
 
 from qebench.utils.context import GITHUB_ORG, LECTURE_REPOS, enrich_terms
-from qebench.utils.dataset import DATA_DIR, load_terms, save_entries
+from qebench.utils.dataset import DATA_DIR, load_terms
 from qebench.utils.display import console
 
 # Lecture repos are cached here (gitignored)
@@ -71,26 +71,38 @@ def _enrich_term_contexts(lecture_dirs: list[Path]) -> int:
     if not terms:
         return 0
 
-    enriched = enrich_terms(terms, lecture_dirs)
-    if enriched == 0:
+    enriched_ids = enrich_terms(terms, lecture_dirs)
+    if not enriched_ids:
         return 0
 
-    # Group terms by source file and write back
+    # Only rewrite files that contain enriched terms
     terms_dir = DATA_DIR / "terms"
     for path in sorted(terms_dir.glob("*.json")):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
 
-        items = data if isinstance(data, list) else data.get("entries", [])
+        is_wrapper = isinstance(data, dict) and "entries" in data
+        items = data.get("entries", []) if is_wrapper else data
         ids_in_file = {item["id"] for item in items}
-        terms_for_file = [t for t in terms if t.id in ids_in_file]
 
-        if not terms_for_file:
+        # Skip files with no enriched terms
+        if not ids_in_file & enriched_ids:
             continue
 
-        save_entries(terms_for_file, path)
+        terms_for_file = [t for t in terms if t.id in ids_in_file]
+        entries_data = [t.model_dump(exclude_none=True) for t in terms_for_file]
 
-    return enriched
+        # Preserve wrapper format if original file used it
+        if is_wrapper:
+            output = {**data, "entries": entries_data}
+        else:
+            output = entries_data
+
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(output, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+
+    return len(enriched_ids)
 
 
 def update() -> None:

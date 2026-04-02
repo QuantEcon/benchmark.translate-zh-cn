@@ -15,6 +15,7 @@ import random
 from datetime import UTC, datetime
 
 import questionary
+from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 
@@ -100,7 +101,7 @@ def _render_entry(entry: Term | Sentence | Paragraph) -> Panel:
     # Show a random context sentence for terms that have them
     if isinstance(entry, Term) and entry.contexts:
         ctx = random.choice(entry.contexts)
-        body += f"\n\n[dim italic]Context: \"{ctx.text}\"[/dim italic]"
+        body += f"\n\n[dim italic]Context: \"{escape(ctx.text)}\"[/dim italic]"
 
     return Panel(
         f"{body}\n\n{meta}",

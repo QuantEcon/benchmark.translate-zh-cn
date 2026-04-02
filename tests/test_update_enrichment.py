@@ -87,7 +87,7 @@ class TestUpdate:
                 args=[], returncode=0, stdout="", stderr=""
             ),
         }
-        mock_enrich = MagicMock(return_value=5)
+        mock_enrich = MagicMock(return_value=2)
         with (
             patch("qebench.commands.update.subprocess.run", side_effect=lambda args, **kw: responses.get(args[0])),
             patch("qebench.commands.update._sync_lecture_repos", return_value=[Path("/fake")]),
