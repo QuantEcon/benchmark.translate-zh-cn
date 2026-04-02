@@ -35,7 +35,7 @@ def reference_overlap(translated: str, reference: str) -> float:
     Strips common Chinese punctuation and whitespace before comparison.
     Returns a value between 0.0 and 1.0.
     """
-    strip_chars = set(" \t\n，。、；：！？（）""''《》【】·—…")
+    strip_chars = set(" \t\n，。、；：！？（）\u201c\u201d\u2018\u2019《》【】·\u2014\u2026\"'")
     a_chars = set(translated) - strip_chars
     r_chars = set(reference) - strip_chars
 

@@ -77,7 +77,13 @@ def update_model_elos(model_a: str, model_b: str, winner: str) -> tuple[float, f
 
     Returns:
         Tuple of (new_rating_a, new_rating_b).
+
+    Raises:
+        ValueError: If winner is not 'a', 'b', or 'tie'.
     """
+    if winner not in ("a", "b", "tie"):
+        raise ValueError(f"Invalid winner '{winner}'. Must be 'a', 'b', or 'tie'.")
+
     ratings = load_elo_ratings()
     rating_a = ratings.get(model_a, DEFAULT_RATING)
     rating_b = ratings.get(model_b, DEFAULT_RATING)

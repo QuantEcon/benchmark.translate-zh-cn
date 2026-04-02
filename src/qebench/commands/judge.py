@@ -173,7 +173,12 @@ def _render_result(
     table.add_column("", style="dim")
     table.add_column(f"A ({label_a})", justify="center")
     table.add_column(f"B ({label_b})", justify="center")
-    table.add_row("Winner", winner_text, "")
+    if winner == "a":
+        table.add_row("Winner", winner_text, "")
+    elif winner == "b":
+        table.add_row("Winner", "", winner_text)
+    else:
+        table.add_row("Winner", winner_text, winner_text)
     table.add_row("Elo", f"{elo_a:.0f}", f"{elo_b:.0f}")
     table.add_row("Ref. overlap", f"{overlap_a:.0%}", f"{overlap_b:.0%}")
     if term_translations:
@@ -289,8 +294,12 @@ def judge(
             console.print("[yellow]Session ended early.[/yellow]")
             break
 
-        # Update Elo
-        elo_a, elo_b = update_model_elos(label_a, label_b, winner_answer)
+        # Update Elo (skip when one side is the human reference)
+        is_reference = label_a == "human-reference" or label_b == "human-reference"
+        if is_reference:
+            elo_a = elo_b = 0.0
+        else:
+            elo_a, elo_b = update_model_elos(label_a, label_b, winner_answer)
 
         # Save judgment
         record_judgment(

@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 from qebench.scoring.judgments import (
     load_elo_ratings,
     record_judgment,
@@ -48,6 +50,12 @@ class TestEloRatings:
         ratings = load_elo_ratings()
         assert "claude" in ratings
         assert "gpt-4o" in ratings
+
+    def test_invalid_winner_raises(self, tmp_path, monkeypatch) -> None:
+        elo_path = tmp_path / "elo.json"
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        with pytest.raises(ValueError, match="Invalid winner"):
+            update_model_elos("claude", "gpt-4o", "invalid")
 
 
 class TestRecordJudgment:
