@@ -10,47 +10,17 @@ import pytest
 from qebench.models import Term, TermContext  # noqa: F401
 from qebench.utils.context import (
     MAX_CONTEXTS,
-    _extract_prose,
-    _split_sentences,
+    MAX_SENTENCE_LENGTH,
+    _extract_paragraphs,
     enrich_terms,
     find_contexts,
 )
 
 # ---------------------------------------------------------------------------
-# _split_sentences
+# _extract_paragraphs
 # ---------------------------------------------------------------------------
 
-class TestSplitSentences:
-    def test_simple_sentences(self) -> None:
-        text = "This is first. This is second. And third."
-        result = _split_sentences(text)
-        assert result == ["This is first.", "This is second.", "And third."]
-
-    def test_single_sentence(self) -> None:
-        assert _split_sentences("Just one sentence.") == ["Just one sentence."]
-
-    def test_empty_string(self) -> None:
-        assert _split_sentences("") == []
-
-    def test_question_and_exclamation(self) -> None:
-        text = "What is a matrix? It is important! Matrices are everywhere."
-        result = _split_sentences(text)
-        assert len(result) == 3
-        assert "What is a matrix?" in result[0]
-
-    def test_abbreviation_not_split(self) -> None:
-        # "e.g." should not cause a split mid-sentence
-        text = "Use methods e.g. dynamic programming for optimization. Another sentence follows."
-        result = _split_sentences(text)
-        # Should not split on "e.g."
-        assert any("e.g." in s for s in result)
-
-
-# ---------------------------------------------------------------------------
-# _extract_prose
-# ---------------------------------------------------------------------------
-
-class TestExtractProse:
+class TestExtractParagraphs:
     def test_strips_code_blocks(self) -> None:
         md = textwrap.dedent("""\
         Some prose here.
@@ -61,10 +31,10 @@ class TestExtractProse:
 
         More prose after.
         """)
-        prose = _extract_prose(md)
-        assert "x = 1" not in prose
-        assert "Some prose here" in prose
-        assert "More prose after" in prose
+        paras = _extract_paragraphs(md)
+        assert "x = 1" not in " ".join(paras)
+        assert any("Some prose here" in p for p in paras)
+        assert any("More prose after" in p for p in paras)
 
     def test_strips_frontmatter(self) -> None:
         md = textwrap.dedent("""\
@@ -74,9 +44,9 @@ class TestExtractProse:
 
         Actual content here.
         """)
-        prose = _extract_prose(md)
-        assert "title" not in prose
-        assert "Actual content" in prose
+        paras = _extract_paragraphs(md)
+        assert not any("title" in p for p in paras)
+        assert any("Actual content" in p for p in paras)
 
     def test_strips_headings(self) -> None:
         md = textwrap.dedent("""\
@@ -88,28 +58,73 @@ class TestExtractProse:
 
         More body.
         """)
-        prose = _extract_prose(md)
-        assert "Heading One" not in prose
-        assert "Body text" in prose
+        paras = _extract_paragraphs(md)
+        assert not any("Heading One" in p for p in paras)
+        assert any("Body text" in p for p in paras)
 
     def test_strips_inline_math(self) -> None:
         md = "The formula $x^2 + y^2 = z^2$ is Pythagorean."
-        prose = _extract_prose(md)
-        assert "x^2" not in prose
-        assert "Pythagorean" in prose
+        paras = _extract_paragraphs(md)
+        assert not any("x^2" in p for p in paras)
+        assert any("Pythagorean" in p for p in paras)
 
     def test_strips_links_keeps_text(self) -> None:
         md = "See [dynamic programming](https://example.com) for details."
-        prose = _extract_prose(md)
-        assert "dynamic programming" in prose
-        assert "https://example.com" not in prose
+        paras = _extract_paragraphs(md)
+        assert any("dynamic programming" in p for p in paras)
+        assert not any("https://example.com" in p for p in paras)
 
     def test_empty_input(self) -> None:
-        assert _extract_prose("") == ""
+        assert _extract_paragraphs("") == []
 
     def test_only_code(self) -> None:
         md = "```python\nx = 1\n```"
-        assert _extract_prose(md) == ""
+        assert _extract_paragraphs(md) == []
+
+    def test_blank_lines_split_paragraphs(self) -> None:
+        md = textwrap.dedent("""\
+        First paragraph here.
+
+        Second paragraph here.
+
+        Third paragraph here.
+        """)
+        paras = _extract_paragraphs(md)
+        assert len(paras) == 3
+        assert paras[0] == "First paragraph here."
+        assert paras[1] == "Second paragraph here."
+        assert paras[2] == "Third paragraph here."
+
+    def test_multi_line_paragraph_joined(self) -> None:
+        md = textwrap.dedent("""\
+        This is a paragraph
+        that spans two lines.
+
+        Next paragraph.
+        """)
+        paras = _extract_paragraphs(md)
+        assert len(paras) == 2
+        assert paras[0] == "This is a paragraph that spans two lines."
+
+    def test_long_paragraph_discarded(self) -> None:
+        md = "x " * (MAX_SENTENCE_LENGTH + 1)
+        paras = _extract_paragraphs(md)
+        assert paras == []
+
+    def test_math_blocks_skipped(self) -> None:
+        md = textwrap.dedent("""\
+        Before math.
+
+        $$
+        x = y + z
+        $$
+
+        After math.
+        """)
+        paras = _extract_paragraphs(md)
+        assert not any("x = y" in p for p in paras)
+        assert any("Before math" in p for p in paras)
+        assert any("After math" in p for p in paras)
 
 
 # ---------------------------------------------------------------------------
@@ -130,7 +145,10 @@ class TestFindContexts:
 
         # Introduction
 
-        Dynamic programming is a powerful technique. It solves many optimization problems.
+        Dynamic programming is a powerful technique.
+
+        It solves many optimization problems.
+
         The Bellman equation is central to dynamic programming.
 
         ```python
@@ -161,7 +179,7 @@ class TestFindContexts:
         repo = tmp_path / "lecture-test"
         repo.mkdir()
         md = repo / "test.md"
-        md.write_text("Matrices are useful. A matrix is a rectangular array.")
+        md.write_text("Matrices are useful.\n\nA matrix is a rectangular array.")
         results = find_contexts("matrix", [repo])
         texts = [ctx.text for ctx in results]
         # Should match "A matrix is..." but not just "Matrices are useful"
@@ -172,9 +190,9 @@ class TestFindContexts:
         repo = tmp_path / "lecture-test"
         repo.mkdir()
         md = repo / "test.md"
-        # Write many sentences containing "optimization"
-        sentences = [f"Optimization approach {i} is useful." for i in range(20)]
-        md.write_text(" ".join(sentences))
+        # Write many paragraphs containing "optimization"
+        paragraphs = [f"Optimization approach {i} is useful." for i in range(20)]
+        md.write_text("\n\n".join(paragraphs))
         results = find_contexts("optimization", [repo])
         assert len(results) <= MAX_CONTEXTS
 
@@ -241,7 +259,7 @@ class TestEnrichTerms:
     def test_enriches_terms_without_contexts(self, tmp_path: Path) -> None:
         repo = tmp_path / "lecture-test"
         repo.mkdir()
-        (repo / "test.md").write_text("Dynamic programming is great. Optimization is key.")
+        (repo / "test.md").write_text("Dynamic programming is great.\n\nOptimization is key.")
 
         terms = [
             self._make_term("term-001", "dynamic programming"),

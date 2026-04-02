@@ -8,23 +8,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Annuity:  the fund can  pay a same amount of new capital at the beginning of each of three years and receive a payoff of 130\\% of total capital invested  at the end of the third year.",
+        "text": "1. At the beginning of the first year, the mutual fund decides how much to invest in the annuity and how much to deposit in the bank. This decision is subject to the constraint:",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "At the beginning of the first year, the mutual fund decides how much to invest in the annuity and how much to deposit in the bank.",
+        "text": "2. At the beginning of the second year, the mutual fund has a bank balance  of . It must keep  in the annuity. It can choose to put  into the corporate bond, and put  in the bank. These decisions are restricted by",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "At the beginning of the third year, the mutual fund should borrow 20,000$ from the bank and invest in the annuity. 4.",
+        "text": "3. At the beginning of the third year, the mutual fund has a bank account balance equal to . It must again invest   in the annuity, leaving it with  a bank account balance equal to . This situation is summarized by the restriction:",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank.",
+        "text": "3. At the beginning of the third year, the mutual fund should borrow 20,000$ from the bank and invest in the annuity.",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank.",
+        "text": "4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own 141,018.24  41.02\\% $.",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       }
     ],
@@ -39,15 +39,15 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "- equities (also known as stocks) issued by firms - one-period Arrow securities that pay one unit of consumption at time when the shock  assumes a particular value",
+        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
+      },
+      {
         "text": "As a price taker, each consumer faces a given Arrow securities pricing kernel , a given value of a firm  that has chosen capital stock , a price of equity , and  prospective next period random dividends  .",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "At the Arrow securities prices  given by {eq}`arrowprices` and equity value  given by {eq}`tildeV2`, consumer  choose consumption allocations and portolios that satisfy the first-order necessary conditions It can be verified directly that the following choices satisfy these equations for an  that  depends on consumers’ endowments . **Remark:** Multiple arrangements of endowments associated with the same distribution of wealth .",
-        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
-      },
-      {
-        "text": "Consumers of types  are endowed with shares of a firm and At time , consumers trade the following assets with  other consumers and with firms: - equities (also known as stocks) issued by firms - one-period Arrow securities that pay one unit of consumption at time when the shock  assumes a particular value Later, we’ll allow the firm to issue bonds too, but not now.",
+        "text": "At the Arrow securities prices  given by {eq}`arrowprices` and equity value  given by {eq}`tildeV2`, consumer  choose consumption allocations and portolios that satisfy the first-order necessary conditions",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
@@ -55,7 +55,7 @@
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Let -  be consumer  ’s purchases of claims on time  consumption in state -  be a pricing kernel for one-period Arrow securities -  be consumer 's intial share of the firm, -  be the fraction of a firm’s shares purchased by consumer  at time -  be the value of the representative firm -  be the value of equity issued by the representative firm -  be two scalars and  a function that we use to construct a guess about an equilibrium  pricing kernel for Arrow securities We proceed  to describe constrained optimum problems faced by consumers and a representative firm in a competitive equilibrium.",
+        "text": "Let  be the value of equity implied by Arrow securities price function {eq}`arrowprices` and formula {eq}`tildeV2`.",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       }
     ],
@@ -80,19 +80,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank.",
+        "text": "2. At the beginning of the second year, the mutual fund has a bank balance  of . It must keep  in the annuity. It can choose to put  into the corporate bond, and put  in the bank. These decisions are restricted by",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank.",
+        "text": "3. Corporate bond: At the beginning of the second year, a  corporate bond becomes available. The fund can buy an amount that is no more than  $50,000 of this bond at the beginning of the second year and  at the end of the third year receive a payout of 130\\% of the amount invested in the bond.",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "Corporate bond: At the beginning of the second year, a  corporate bond becomes available.",
+        "text": "4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own 141,018.24  41.02\\% $.",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "It can choose to put  into the corporate bond, and put  in the bank.",
+        "text": "4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own 141,018.24  41.02\\%$.",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
@@ -111,7 +111,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In a fractional reserve banking system, banks hold only a fraction of cash behind each **deposit receipt** that they issue * In recent times - cash consists of pieces of paper issued by the government and called dollars or pounds or - a *deposit* is a balance in a checking or savings account that entitles the owner to ask the bank for immediate payment in cash * When the UK and France and the US were on either a gold or silver standard (before 1914, for example) - cash was a gold or silver coin - a *deposit receipt* was a *bank note* that the bank promised to convert into gold or silver on demand; (sometimes it was also a checking or savings account balance) Economists and financiers often define the **supply of money** as an economy-wide sum of **cash** plus **deposits**.",
+        "text": "In a fractional reserve banking system, banks hold only a fraction of cash behind each **deposit receipt** that they issue",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -126,11 +126,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The figure shows that * Higher levels of debt (larger ) induce larger discounts on the face value, which correspond to higher interest rates. * Lower income also causes more discounting, as foreign creditors anticipate greater likelihood of default.",
+        "text": "* Higher levels of debt (larger ) induce larger discounts on the face value, which correspond to higher interest rates. * Lower income also causes more discounting, as foreign creditors anticipate greater likelihood of default.",
         "source": "lecture-python-advanced.myst/lectures/arellano.md"
       },
       {
-        "text": "We will implement discounting by * multiplying a payment in one period by * multiplying a payment in  periods by , etc.",
+        "text": "We will implement discounting by",
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       },
       {
@@ -138,12 +138,12 @@
         "source": "lecture-python-intro/lectures/pv.md"
       },
       {
-        "text": "Using {eq}`eq_rn_ratio`, we can express the SDF {eq}`eq_sdf` as Then the condition $\\mathbb{E}^P_t\\bigl(\\exp(-r_t)\\, \\tfrac{\\xi^Q_{t+1}}{\\xi^Q_t}\\, R_{j,t+1}\\bigr) = 1$ is equivalent to *Under the risk-neutral measure, expected returns on all assets equal the risk-free return.* Bond prices can be computed by discounting at  under : We can verify that this agrees with {eq}`eq_bondprice` by iterating the affine recursion under the risk-neutral VAR.",
+        "text": "Bond prices can be computed by discounting at  under :",
         "source": "lecture-python.myst/lectures/affine_risk_prices.md"
       },
       {
-        "text": "Systems in which  eigenvalues (properly adjusted for discounting) fail to occur in reciprocal pairs arise when the system being solved is an equilibrium of a model in which there are distortions that prevent there being any optimum problem that the equilibrium solves.",
-        "source": "lecture-python.myst/lectures/lagrangian_lqdp.md"
+        "text": "Taking the expectation of both sides and then discounting, this becomes",
+        "source": "lecture-python.myst/lectures/mccall_model_with_separation.md"
       }
     ],
     "source": "glossary/zh-cn (finance)"
@@ -157,11 +157,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Thus, if  is realized in  periods, then the risk-neutral price is Now let's price a European call option.",
+        "text": "Next we are going to price a European call option under risk neutrality.",
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       },
       {
-        "text": "We can increase  to get more accuracy and still have reasonable speed: Next we are going to price a European call option under risk neutrality.",
+        "text": "Now let's price a European call option.",
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       },
       {
@@ -169,7 +169,7 @@
         "source": "lecture-python-programming/lectures/jax_intro.md"
       },
       {
-        "text": "The first few exercises concern pricing a European call option under the assumption of risk neutrality.",
+        "text": "The first few exercises concern pricing a European call option under the assumption of risk neutrality.  The price satisfies",
         "source": "lecture-python-programming/lectures/scipy.md"
       }
     ],
@@ -184,11 +184,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The option is described by three things: 2. , the **expiry date**, 2. , the **strike price**, and 3. , the price of the **underlying** asset at date .",
+        "text": "2. , the **expiry date**, 2. , the **strike price**, and 3. , the price of the **underlying** asset at date .",
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       },
       {
-        "text": "The price satisfies where 1.  is a discount factor, 2.  is the expiry date, 2.  is the strike price and 3.  is the price of the underlying asset at each time .",
+        "text": "1.  is a discount factor, 2.  is the expiry date, 2.  is the strike price and 3.  is the price of the underlying asset at each time .",
         "source": "lecture-python-programming/lectures/scipy.md"
       }
     ],
@@ -203,6 +203,10 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "A paper currency or \"fiat money\" system disposes of all reserves behind a currency.",
+        "source": "lecture-python-intro/lectures/inflation_history.md"
+      },
+      {
         "text": "Actually, earlier economists and statesmen knew about the possibility of fiat money systems long before Keynes and Fisher advocated them in the early 20th century.",
         "source": "lecture-python-intro/lectures/inflation_history.md"
       },
@@ -211,11 +215,7 @@
         "source": "lecture-python-intro/lectures/inflation_history.md"
       },
       {
-        "text": "They said that central bank could achieve price level stability by * issuing  **limited supplies** of paper currency * refusing to print money to finance government expenditures This logic prompted John Maynard Keynes to call a commodity standard a \"barbarous relic.\" A paper currency or \"fiat money\" system disposes of all reserves behind a currency.",
-        "source": "lecture-python-intro/lectures/inflation_history.md"
-      },
-      {
-        "text": "To anchor the price level, a pure paper or fiat money system replaces that automatic mechanism with a central bank with the authority and determination to limit the supply of money (and to deter counterfeiters!) Now let's see what happened to the price level in the four countries after 1914, when one after another of them left the gold/silver standard by showing the complete graph that originally appeared on page 35 of {cite}`sargent2002big`. {numref}`lrpl_lg` shows the logarithm of price levels over four \"hard currency\" countries from 1600 to 2000.",
+        "text": "To anchor the price level, a pure paper or fiat money system replaces that automatic mechanism with a central bank with the authority and determination to limit the supply of money (and to deter counterfeiters!)",
         "source": "lecture-python-intro/lectures/inflation_history.md"
       }
     ],
@@ -234,7 +234,7 @@
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       },
       {
-        "text": "The \"monetarist\" or \"fiscal theory of price levels\" asserts that * to _start_ a persistent inflation the government begins persistently to run a money-financed government deficit * to _stop_ a persistent inflation the government stops persistently running a money-financed government deficit The model in this lecture is a \"rational expectations\" (or \"perfect foresight\") version of a model that Philip Cagan {cite}`Cagan` used to study the monetary dynamics of hyperinflations.",
+        "text": "The \"monetarist\" or \"fiscal theory of price levels\" asserts that",
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       }
     ],
@@ -249,7 +249,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Among these are - the Keynesian **multiplier** - the money **multiplier** that prevails in fractional reserve banking systems - interest rates and present values of streams of payouts from assets (As we shall see below, the term **multiplier** comes down to meaning **sum of a convergent geometric series**) These and other applications prove the truth of the wise crack that Below we'll use the following imports: To start, let  be a real number that lies strictly between and . - We often write this as . - Here  denotes the collection of all real numbers that are strictly less than  and strictly greater than . - The symbol  means *in* or *belongs to the set after the symbol*.",
+        "text": "- the Keynesian **multiplier** - the money **multiplier** that prevails in fractional reserve banking systems - interest rates and present values of streams of payouts from assets",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
@@ -257,7 +257,7 @@
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "In a fractional reserve banking system, banks hold only a fraction of cash behind each **deposit receipt** that they issue * In recent times - cash consists of pieces of paper issued by the government and called dollars or pounds or - a *deposit* is a balance in a checking or savings account that entitles the owner to ask the bank for immediate payment in cash * When the UK and France and the US were on either a gold or silver standard (before 1914, for example) - cash was a gold or silver coin - a *deposit receipt* was a *bank note* that the bank promised to convert into gold or silver on demand; (sometimes it was also a checking or savings account balance) Economists and financiers often define the **supply of money** as an economy-wide sum of **cash** plus **deposits**.",
+        "text": "In a fractional reserve banking system, banks hold only a fraction of cash behind each **deposit receipt** that they issue",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -272,11 +272,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The approximation is known as the **Gordon formula** for the present value or current price of an infinite payment stream  when the nominal one-period interest rate is  and when .",
+        "text": "is known as the **Gordon formula** for the present value or current price of an infinite payment stream  when the nominal one-period interest rate is  and when .",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "Since , we have a unique positive solution: The price is then If, in this example, we take  and let , then the price becomes This is called the **Gordon formula**.",
+        "text": "This is called the **Gordon formula**.",
         "source": "lecture-python.myst/lectures/markov_asset.md"
       }
     ],
@@ -291,23 +291,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let  be a stochastic discount factor,  a gross one-period return on a risky security, and  be the reciprocal of a risk-free one-period gross rate of return.",
+        "text": "Let  be a stochastic discount factor,  a gross one-period return on a risky security, and  be the reciprocal of a risk-free one-period gross rate of return. Then",
         "source": "lecture-python-advanced.myst/lectures/entropy.md"
       },
       {
-        "text": "The particular choice of \"Pay\" used below means that we are pricing a perpetual claim on the endowment process The graph below plots the price of this claim over time: The next plot displays the realized gross rate of return on this \"Lucas tree\" as well as on a risk-free one-period bond: Above we have also calculated the correlation coefficient between these two returns.",
+        "text": "The next plot displays the realized gross rate of return on this \"Lucas tree\" as well as on a risk-free one-period bond:",
         "source": "lecture-python-advanced.myst/lectures/lucas_asset_pricing_dles.md"
       },
       {
-        "text": "We now plot the realized gross rate of return on a \"Lucas tree\" as well as on a risk-free one-period bond when the autoregressive parameter for the endowment process is reduced to 0.4: The correlation between these two gross rates is now more negative.",
+        "text": "We now plot the realized gross rate of return on a \"Lucas tree\" as well as on a risk-free one-period bond when the autoregressive parameter for the endowment process is reduced to 0.4:",
         "source": "lecture-python-advanced.myst/lectures/lucas_asset_pricing_dles.md"
       },
       {
-        "text": "Let *  be the gross rate of return on a one-period bond *  denote the years that a person either works or attends college *  denote the first period after high school that a person can work if he does not go to college *  denote the last period  that a person  works *  be the wage at time  of a high school graduate *  be the wage at time  of a college graduate *  be the (gross) rate of growth of wages of a  high school graduate, so that *  be the (gross) rate of growth of wages of a  college  graduate, so that *  be the upfront monetary costs of going to college We now compute present values that a new high school graduate earns if * he goes to work immediately and earns wages paid to someone without a college education * he goes to college for four years and after graduating earns wages paid to a college graduate If someone goes to work immediately after high school  and  works for the   years , she earns present value where The present value  is the \"human wealth\" at the beginning of time  of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.",
+        "text": "*  be the gross rate of return on a one-period bond",
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       },
       {
-        "text": "Let *  be the supply of currency at the end of time *  be the supply  of currency brought into time  from time *  be the government deficit that is financed by printing currency at *  be the demand at time  for currency  to bring into time *  be  the price level at time *  is real balances at the end of time *  be the gross rate of return on currency held from time  to time It is often helpful to state units in which quantities are measured: *  and  are measured in dollars *  is measured in time  goods *  is measured in dollars per time  goods *  is measured in time  goods per unit of time  goods *  is measured in time  goods Our job now is to specify demand and supply functions for money.",
+        "text": "A steady state gross rate of return   solves quadratic equation {eq}`eq:steadyquadratic`.",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       }
     ],
@@ -322,11 +322,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Both show a prounced inverse relationship that is the hallmark of the hyperinflations studied by Cagan {cite}`Cagan`. {numref}`fr_fig104e` shows the results of regressing inflation on real balances during the period of the hyperinflation. {numref}`fr_fig104e` shows the results of regressing  real money balances on inflation during the period of the hyperinflation. {cite}`sargent_velde1995` tell how in 1797 the Revolutionary government abruptly ended the inflation by * repudiating 2/3 of the national debt, and thereby * eliminating the net-of-interest government defict * no longer printing money, but instead * using gold and silver coins as money In 1799, Napoleon Bonaparte became first consul and for the next 15 years used resources confiscated from conquered territories to help pay for French government expenditures.",
+        "text": "*  a *backing* or *real bills* theory (the classic text for this theory is  Adam Smith  {cite}`smith2010wealth`) * a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` ) * a classical hyperinflation theory ({cite}`Cagan`) *",
         "source": "lecture-python-intro/lectures/french_rev.md"
       },
       {
-        "text": "Only the cloud for the third period has the inverse relationship familiar to us now from twentieth-century hyperinflations. * subperiod 1: (\"*real bills* period): January 1791 to July 1793 * subperiod 2: (\"terror\"):  August 1793 - July 1794 * subperiod 3: (\"classic Cagan hyperinflation\"): August 1794 - March 1796 The three clouds of points in {numref}`fr_fig104` evidently depict different real balance-inflation relationships.",
+        "text": "* subperiod 3: (\"classic Cagan hyperinflation\"): August 1794 - March 1796",
         "source": "lecture-python-intro/lectures/french_rev.md"
       },
       {
@@ -334,12 +334,12 @@
         "source": "lecture-python-intro/lectures/french_rev.md"
       },
       {
-        "text": "We interpret these three episodes in terms of distinct  theories *  a *backing* or *real bills* theory (the classic text for this theory is  Adam Smith  {cite}`smith2010wealth`) * a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` ) * a classical hyperinflation theory ({cite}`Cagan`) * We view these theories not as competitors but as alternative collections of ''if-then'' statements about government note issues, each of which finds its conditions more nearly met in one of these episodes than in the other two.",
+        "text": "{numref}`fr_fig104e` shows the results of regressing  real money balances on inflation during the period of the hyperinflation.",
         "source": "lecture-python-intro/lectures/french_rev.md"
       },
       {
-        "text": "The sources of our data are: * Table 3.3, retail price level * Table 3.4, exchange rate with US Staring at {numref}`pi_xrate_austria` and {numref}`inflationrate_austria` conveys the following impressions to the authors of this lecture at QuantEcon. * an episode of \"hyperinflation\" with rapidly rising log price level and very high monthly inflation rates * a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation * a US dollar exchange rate that shadows the price level.",
-        "source": "lecture-python-intro/lectures/inflation_history.md"
+        "text": "{numref}`fr_fig104e` shows the results of regressing inflation on real balances during the period of the hyperinflation.",
+        "source": "lecture-python-intro/lectures/french_rev.md"
       }
     ],
     "source": "glossary/zh-cn (monetary economics)"
@@ -388,7 +388,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We interpret these three episodes in terms of distinct  theories *  a *backing* or *real bills* theory (the classic text for this theory is  Adam Smith  {cite}`smith2010wealth`) * a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` ) * a classical hyperinflation theory ({cite}`Cagan`) * We view these theories not as competitors but as alternative collections of ''if-then'' statements about government note issues, each of which finds its conditions more nearly met in one of these episodes than in the other two.",
+        "text": "*  a *backing* or *real bills* theory (the classic text for this theory is  Adam Smith  {cite}`smith2010wealth`) * a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` ) * a classical hyperinflation theory ({cite}`Cagan`) *",
         "source": "lecture-python-intro/lectures/french_rev.md"
       }
     ],
@@ -403,11 +403,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The  government  values  a representative household's utility of real balances at time  according to the utility function The money demand function {eq}`eq_old1` and the utility function {eq}`eq_old5` imply that According to {eq}`eq_old5a`, the ``bliss level`` of real balances is   and the inflation rate that attains it is Milton Friedman recommended that  the government  withdraw and destroy money at a rate that implies an inflation rate given by  {eq}`eq:Friedmantheta`.",
+        "text": "The money demand function {eq}`eq_old1` and the utility function {eq}`eq_old5` imply that",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "Then the linear difference equation {eq}`eq_grad_old2` can be solved forward to get: The  government  values  a representative household's utility of real balances at time  according to the utility function The money demand function {eq}`eq_grad_old1` and the utility function {eq}`eq_grad_old5` imply that Via equation {eq}`eq_grad_old3`, a government plan leads to a sequence of inflation rates .",
+        "text": "The money demand function {eq}`eq_grad_old1` and the utility function {eq}`eq_grad_old5` imply that",
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       }
     ],
@@ -422,11 +422,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Combining equation {eq}`fraction` with equation {eq}`deposits` tells us that which implies that Equation {eq}`geomseries` expresses  as the  th term in the product of  and the geometric series Therefore, the sum of all deposits in our banking system is The **money multiplier** is a number that tells the multiplicative factor by which an exogenous injection of cash into bank  leads to an increase in the total deposits in the banking system.",
+        "text": "Equation {eq}`sumdeposits` asserts that the **money multiplier** is",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "Equation {eq}`sumdeposits` asserts that the **money multiplier** is - An initial deposit of cash of  in bank  leads the banking system to create total deposits of . - The initial deposit  is held as reserves, distributed throughout the banking system according to .",
+        "text": "The **money multiplier** is a number that tells the multiplicative factor by which an exogenous injection of cash into bank  leads to an increase in the total deposits in the banking system.",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
@@ -445,11 +445,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Given , the time  government  chooses  to maximize: where  is given by formula  {eq}`eq:barvdef` for  the time  value  of recursion {eq}`eq_old8` under a money supply growth rate that is forever constant at .",
+        "text": "- for example, in a timing protocol used to pose a **Ramsey plan**, a government chooses an infinite sequence of money supply growth rates once and for all at time .",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "The model focuses  on intertemporal tradeoffs between - benefits that anticipations of future  deflation generate  by decreasing  costs of holding real money balances and thereby increasing a representative agent's *liquidity*, as measured by his or her holdings of real money balances, and - costs associated with the  distorting taxes that the government must levy in order to acquire the paper money that it will  destroy  in order to generate anticipated deflation Model features include - rational expectations - alternative possible  timing protocols for government choices of a sequence of money growth rates - costly government actions at all dates  that increase household utilities at dates before - alternative possible sets of Bellman equations, one set for each timing protocol - for example, in a timing protocol used to pose a **Ramsey plan**, a government chooses an infinite sequence of money supply growth rates once and for all at time . - in this timing protocol, there are  two value functions and associated Bellman equations, one that expresses a representative  private expectation of future inflation as a function of current and future government actions, another that describes  the value function of a  Ramsey planner - in other timing protocols, other Bellman equations and associated  value functions will appear A theme of this lecture is that  timing protocols for government decisions affect  outcomes.",
+        "text": "where  is given by formula  {eq}`eq:barvdef` for  the time  value  of recursion {eq}`eq_old8` under a money supply growth rate that is forever constant at .",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
@@ -457,11 +457,11 @@
         "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
       },
       {
-        "text": "In particular, the inflation rate  satisfies where **Parameters:** * Demand for money parameter is ; we set its default value * Induced demand function for money parameter is * Utility function parameters are    and * Cost parameter of tax distortions associated with setting  is * A horizon truncation parameter: a positive integer **Variables:** *  where  is log of price level *  where  is log of money supply To prepare the way for our calculations, we'll remind ourselves of the  mathematical objects in play. * sequences of inflation rates and money creation rates: * A planner's value function where we set    to match with To make our parameters  match as we want, we   set A Ramsey planner chooses  to maximize the government's value function {eq}`eq:Ramseyvalue` subject to equations  {eq}`eq:inflation101`.",
+        "text": "*  where  is log of money supply",
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       },
       {
-        "text": "Chang works with  a set of competitive equilibria defined as follows. **Definition:**   such that {eq}`eqn_chang_ramsey2`, {eq}`eqn_chang_ramsey3`,  and {eq}`eqn_chang_ramsey4` are satisfied . is not empty because there exists a competitive equilibrium with  for all , namely, an equilibrium with a constant money supply and constant price level.",
+        "text": "is not empty because there exists a competitive equilibrium with  for all , namely, an equilibrium with a constant money supply and constant price level.",
         "source": "lecture-python-advanced.myst/lectures/chang_ramsey.md"
       }
     ],
@@ -476,19 +476,19 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "1. Household  sells all shares of its own endowment security. 2. Household  purchases  shares of all securities (equivalently,  shares of a mutual fund holding the aggregate endowment). 3. Household  takes position  in the one-period bond.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      },
+      {
+        "text": "3. Implement the  Arrow-Debreu allocation by allowing households to trade  a risk-free one-period bond and a single mutual fund that owns all of the economy's physical capital.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      },
+      {
         "text": "Holding  shares of the mutual fund thus finances exactly the proportional component  (together with rolling over the proportional capital position), while the bond handles the deviation .",
         "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
       },
       {
-        "text": "Household  purchases  shares of all securities (equivalently,  shares of a mutual fund holding the aggregate endowment). 3.",
-        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
-      },
-      {
         "text": "Household 's time- resources are its mutual fund dividend  plus the return on its bond position .",
-        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
-      },
-      {
-        "text": "Implement the  Arrow-Debreu allocation by allowing households to trade  a risk-free one-period bond and a single mutual fund that owns all of the economy's physical capital.",
         "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
       },
       {
@@ -507,7 +507,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Some of those theories about monetary and fiscal policies still interest us today. * a **tax-smoothing** model like Robert Barro's {cite}`Barro1979` * this normative (i.e., prescriptive model) advises a government to finance temporary war-time surges in expenditures mostly by issuing government debt, raising taxes by just enough to service the additional debt issued during the wary; then,   after the war,  to roll over whatever debt the government had accumulated during the war;  and  to increase taxes after the war permanently by just enough to finance interest payments on that post-war government  debt *  **unpleasant monetarist arithmetic** like that described in this quanteon lecture  {doc}`unpleasant` * mathematics involving compound interest  governed French government debt dynamics in the decades preceding 1789; according to leading historians, that arithmetic set the stage for the French Revolution * a *real bills* theory of the effects of government open market operations in which the government *backs* new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money. * The Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations {cite}`smith2010wealth` and other contemporary sources * It shaped how the Revolutionaries issued a paper money called **assignats** from 1789 to 1791 * a classical **gold**  or **silver standard** * Napoleon Bonaparte became head of the French government in 1799.",
+        "text": "* a *real bills* theory of the effects of government open market operations in which the government *backs* new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money.",
         "source": "lecture-python-intro/lectures/french_rev.md"
       },
       {
@@ -530,7 +530,7 @@
         "source": "lecture-python.myst/lectures/ifp_advanced.md"
       },
       {
-        "text": "Compute the present discounted value of one lifetime earnings path, from a given wage path. 2.",
+        "text": "1. Compute the present discounted value of one lifetime earnings path, from a given wage path. 2. Average over a large number of such calculations to approximate expected discounted value.",
         "source": "lecture-python.myst/lectures/mccall_model.md"
       }
     ],
@@ -545,15 +545,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "If the consumer could afford an arbitrarily high present value of  consumption by setting  to an arbitrarily large **negative** number.",
+        "text": "The right side of inequality {eq}`noarb` is the present value of consumer ’s consumption while the left side is the present value of consumer ’s endowment when consumer  buys shares of equity.",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "If the consumer could afford an arbitrarily high present value of consumption by setting  to be arbitrarily large **positive** number.",
+        "text": "the consumer could afford an arbitrarily high present value of  consumption by setting  to an arbitrarily large **negative** number.",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Notice that  defined in {eq}`debtlimit` depends on * his endowment  at time  in state * his share  of a representive firm's dividends These constitute  two sources of **collateral** that back the consumer's issues of Arrow securities that pay off in state Consumer  chooses a scalar  and a function to maximize subject to  time  and time  budget constraints Attach Lagrange multiplier  to the budget constraint at time  and scaled Lagrange multiplier to the budget constraint at time  and state , then  form the Lagrangian Off corners, first-order necessary conditions for an optimum with respect to and  are These equations imply that consumer  adjusts its consumption plan to satisfy To deduce a restriction on equilibrium prices,  we solve the period  budget constraint to express as then substitute the expression on the right side into the time budget constraint and rearrange to get the single intertemporal budget constraint The right side of inequality {eq}`noarb` is the present value of consumer ’s consumption while the left side is the present value of consumer ’s endowment when consumer  buys shares of equity.",
+        "text": "the consumer could afford an arbitrarily high present value of consumption by setting  to be arbitrarily large **positive** number.",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
@@ -620,20 +620,20 @@
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "The model focuses  on intertemporal tradeoffs between - benefits that anticipations of future  deflation generate  by decreasing  costs of holding real money balances and thereby increasing a representative agent's *liquidity*, as measured by his or her holdings of real money balances, and - costs associated with the  distorting taxes that the government must levy in order to acquire the paper money that it will  destroy  in order to generate anticipated deflation Model features include - rational expectations - alternative possible  timing protocols for government choices of a sequence of money growth rates - costly government actions at all dates  that increase household utilities at dates before - alternative possible sets of Bellman equations, one set for each timing protocol - for example, in a timing protocol used to pose a **Ramsey plan**, a government chooses an infinite sequence of money supply growth rates once and for all at time . - in this timing protocol, there are  two value functions and associated Bellman equations, one that expresses a representative  private expectation of future inflation as a function of current and future government actions, another that describes  the value function of a  Ramsey planner - in other timing protocols, other Bellman equations and associated  value functions will appear A theme of this lecture is that  timing protocols for government decisions affect  outcomes.",
-        "source": "lecture-python-advanced.myst/lectures/calvo.md"
-      },
-      {
-        "text": "Calvo's model focuses  on intertemporal tradeoffs between - utility accruing from  a representative  agent's anticipations of future  deflation that lower the agent's  cost of holding real money balances and prompt him to  increase his   *liquidity*, as  measured by his   stock  of real money balances, and - social costs associated with the  distorting taxes that a government  levies  to acquire the paper money that it   destroys  in order to generate prospective deflation The model features - rational expectations - costly government actions at all dates  that increase the representative agent's  utilities at dates before The model combines ideas from  papers by Cagan {cite}`Cagan`, {cite}`sargent1973stability`,  and  Calvo {cite}`Calvo1978`.",
-        "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
-      },
-      {
-        "text": "Given  and , the household’s problem is First-order conditions with respect to  and , respectively, are Using  and  in these first-order conditions and rearranging implies Define the following key variable This is real money balances at time  measured in units of marginal utility, which Chang refers to as ‘the marginal utility of real balances’.",
+        "text": "This is real money balances at time  measured in units of marginal utility, which Chang refers to as ‘the marginal utility of real balances’.",
         "source": "lecture-python-advanced.myst/lectures/chang_credible.md"
       },
       {
-        "text": "Using  and  in these first-order conditions and rearranging implies Define the following key variable This is real money balances at time  measured in units of marginal utility, which Chang refers to as ‘the marginal utility of real balances’.",
+        "text": "This is real money balances at time  measured in units of marginal utility, which Chang refers to as ‘the marginal utility of real balances’.",
         "source": "lecture-python-advanced.myst/lectures/chang_ramsey.md"
+      },
+      {
+        "text": "* a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public's expected rate of inflation",
+        "source": "lecture-python-intro/lectures/cagan_adaptive.md"
+      },
+      {
+        "text": "{numref}`fr_fig104e` shows the results of regressing  real money balances on inflation during the period of the hyperinflation.",
+        "source": "lecture-python-intro/lectures/french_rev.md"
       }
     ],
     "source": "glossary/zh-cn (monetary economics)"
@@ -647,7 +647,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Each bank  sets its reserves to satisfy the equation where  is its **reserve-deposit ratio** or **reserve ratio** for short - the reserve ratio is either set by a government or chosen by banks for precautionary reasons Next we add a theory stating that bank 's deposits depend entirely on loans made by bank , namely Thus, we can think of the banks as being arranged along a line with loans from bank  being immediately deposited in - in this way, the debtors to bank  become creditors of bank Finally, we add an *initial condition* about an exogenous level of bank 's deposits We can think of  as being the amount of cash that a first depositor put into the first bank in the system, bank number .",
+        "text": "where  is its **reserve-deposit ratio** or **reserve ratio** for short",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -662,16 +662,12 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "When we use risk-neutral pricing, we determine the price of a given asset according to its expected payoff: For example, suppose someone promises to pay you - 1,000,000 dollars if \"heads\" is the outcome of a fair coin flip - 0 dollars if \"tails\" is the outcome Let's denote the payoff as , so that Suppose in addition that you can sell this promise to anyone who wants it. - First they pay you , the price at which you sell it - Then they get , which could be either 1,000,000 or 0.",
+        "text": "When we use risk-neutral pricing, we determine the price of a given asset according to its expected payoff:",
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       },
       {
         "text": "Our first scenario is risk-neutral pricing.",
         "source": "lecture-python.myst/lectures/markov_asset.md"
-      },
-      {
-        "text": "This lecture connects to several others in the series: - {ref}`Doubts or Variability? ` studies how a preference for robustness generates worst-case likelihood ratios that look like stochastic discount factor shocks, complementing the analysis here with Hansen-Jagannathan bounds and detection-error probabilities. - {ref}`Asset Pricing: Finite State Models ` introduces stochastic discount factors and risk-neutral pricing in a finite-state Markov setting, the discrete-state counterpart of the continuous Gaussian framework used here. - {ref}`Heterogeneous Beliefs and Bubbles ` examines how heterogeneous and possibly mistaken beliefs generate speculative asset price bubbles, providing another perspective on how beliefs affect asset prices. - {ref}`Likelihood Ratio Processes ` develops the mathematical properties of likelihood ratios, the central device organising this lecture, including their martingale structure and statistical applications. - {ref}`Divergence Measures ` covers Kullback-Leibler divergence and relative entropy in detail, providing the information-theoretic foundations for the entropy constraints used in the robust control sections. - {ref}`Affine Models of Asset Prices ` extends the linear Gaussian state-space framework to affine and exponential-quadratic stochastic discount factors, developing risk-neutral pricing formulas closely related to those derived here.",
-        "source": "lecture-python.myst/lectures/risk_aversion_or_mistaken_beliefs.md"
       }
     ],
     "source": "glossary/zh-cn (finance)"
@@ -693,7 +689,7 @@
         "source": "lecture-python-intro/lectures/cobweb.md"
       },
       {
-        "text": "The spot price of an asset depends primarily on * the anticipated  income stream * attitudes about risk * rates of time preference In this lecture, we consider some standard pricing models and dividend stream specifications.",
+        "text": "The spot price of an asset depends primarily on",
         "source": "lecture-python.myst/lectures/markov_asset.md"
       }
     ],
@@ -708,7 +704,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Using the pricing kernel assumed in {eq}`cs_14`, the value at of  is evidently In our complete markets setting, the consumer faces a sequence of budget constraints Please note that or which verifies that  is the **value** of time  state-contingent claims on time  consumption issued by the consumer at time We can solve the time  budget constraint forward to obtain The consumer cares about the expected value of In the incomplete markets version of the model, we assumed that , so that the above utility functional became But in the complete markets version, it is tractable to assume a more general utility function that satisfies  and .",
+        "text": "which verifies that  is the **value** of time  state-contingent claims on time  consumption issued by the consumer at time",
         "source": "lecture-python-advanced.myst/lectures/smoothing.md"
       },
       {
@@ -720,7 +716,7 @@
         "source": "lecture-python-advanced.myst/lectures/smoothing_tax.md"
       },
       {
-        "text": "Thus,  a government  faces a sequence of budget constraints where  is tax revenues,  are receipts at  from contingent claims that the government had *purchased* at time , and is the value of time  state-contingent claims purchased  by the government  at time .",
+        "text": "is the value of time  state-contingent claims purchased  by the government  at time .",
         "source": "lecture-python-advanced.myst/lectures/smoothing_tax.md"
       }
     ],
@@ -745,15 +741,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The option is described by three things: 2. , the **expiry date**, 2. , the **strike price**, and 3. , the price of the **underlying** asset at date .",
+        "text": "2. , the **expiry date**, 2. , the **strike price**, and 3. , the price of the **underlying** asset at date .",
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       },
       {
-        "text": "For example, if the call option is to buy stock in Amazon at strike price , the owner has the right (but not the obligation) to buy 1 share in Amazon at price  after  days.",
+        "text": "1.  is a discount factor, 2.  is the expiry date, 2.  is the strike price and 3.  is the price of the underlying asset at each time .",
         "source": "lecture-python-programming/lectures/scipy.md"
       },
       {
-        "text": "The price satisfies where 1.  is a discount factor, 2.  is the expiry date, 2.  is the strike price and 3.  is the price of the underlying asset at each time .",
+        "text": "For example, if the call option is to buy stock in Amazon at strike price , the owner has the right (but not the obligation) to buy 1 share in Amazon at price  after  days.",
         "source": "lecture-python-programming/lectures/scipy.md"
       },
       {
@@ -772,7 +768,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let *  be a sequence of dividends or \"payouts\" *  be a sequence of prices of a claim on the continuation of the asset's payout  stream from date  on, namely, *  be a one-period \"discount factor\" *  be a terminal price of the asset at time We  assume that the dividend stream  and the terminal price are both exogenous.",
+        "text": "*  be a sequence of dividends or \"payouts\" *  be a sequence of prices of a claim on the continuation of the asset's payout  stream from date  on, namely, *  be a one-period \"discount factor\" *  be a terminal price of the asset at time",
+        "source": "lecture-python-intro/lectures/pv.md"
+      },
+      {
+        "text": "We  assume that the dividend stream  and the terminal price are both exogenous.",
         "source": "lecture-python-intro/lectures/pv.md"
       },
       {
@@ -780,7 +780,7 @@
         "source": "lecture-python-intro/lectures/pv.md"
       },
       {
-        "text": "Following {prf:ref}`equilibrium_asset_price`, we use the discount factor parameterization  and compute dollar prices  via: We set the terminal price  equal to the perpetuity value under the most optimistic belief.",
+        "text": "We set the terminal price  equal to the perpetuity value under the most optimistic belief.",
         "source": "lecture-python.myst/lectures/morris_learn.md"
       }
     ],
@@ -795,7 +795,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The price satisfies where 1.  is a discount factor, 2.  is the expiry date, 2.  is the strike price and 3.  is the price of the underlying asset at each time .",
+        "text": "1.  is a discount factor, 2.  is the expiry date, 2.  is the strike price and 3.  is the price of the underlying asset at each time .",
         "source": "lecture-python-programming/lectures/scipy.md"
       }
     ],
@@ -810,15 +810,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Economists call it a \"monetary\" or \"monetarist\" theory of price levels because effects on price levels occur via a central bank's decisions to print money supply. * a goverment's fiscal policies determine whether its _expenditures_ exceed its _tax collections_ * if its expenditures exceed its tax collections, the government can instruct the central bank to cover the difference by _printing money_ * that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of {cite}`sargent2013rational`, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled \"Unpleasant Monetarist Arithmetic\".",
+        "text": "Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of {cite}`sargent2013rational`, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled \"Unpleasant Monetarist Arithmetic\".",
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       },
       {
-        "text": "Some of those theories about monetary and fiscal policies still interest us today. * a **tax-smoothing** model like Robert Barro's {cite}`Barro1979` * this normative (i.e., prescriptive model) advises a government to finance temporary war-time surges in expenditures mostly by issuing government debt, raising taxes by just enough to service the additional debt issued during the wary; then,   after the war,  to roll over whatever debt the government had accumulated during the war;  and  to increase taxes after the war permanently by just enough to finance interest payments on that post-war government  debt *  **unpleasant monetarist arithmetic** like that described in this quanteon lecture  {doc}`unpleasant` * mathematics involving compound interest  governed French government debt dynamics in the decades preceding 1789; according to leading historians, that arithmetic set the stage for the French Revolution * a *real bills* theory of the effects of government open market operations in which the government *backs* new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money. * The Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations {cite}`smith2010wealth` and other contemporary sources * It shaped how the Revolutionaries issued a paper money called **assignats** from 1789 to 1791 * a classical **gold**  or **silver standard** * Napoleon Bonaparte became head of the French government in 1799.",
+        "text": "*  **unpleasant monetarist arithmetic** like that described in this quanteon lecture  {doc}`unpleasant`",
         "source": "lecture-python-intro/lectures/french_rev.md"
       },
       {
-        "text": "That lecture will show that * replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that * it reverses the perverse dynamics by making the *lower* stationary inflation rate the one to which the system typically converges * a more plausible comparative dynamic outcome emerges in which now inflation can be *reduced* by running *lower*  government deficits This outcome will be used to justify a selection of a stationary inflation rate that underlies the analysis of unpleasant monetarist arithmetic to be studied in this lecture {doc}`unpleasant`.",
+        "text": "This outcome will be used to justify a selection of a stationary inflation rate that underlies the analysis of unpleasant monetarist arithmetic to be studied in this lecture {doc}`unpleasant`.",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
@@ -841,15 +841,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The model yields outcomes that help interpret sovereign default experiences, including * countercyclical interest rates on sovereign debt * countercyclical trade balances * high volatility of consumption relative to output Notably, long recessions caused by bad draws in the income process increase the government's incentive to default.",
+        "text": "* countercyclical interest rates on sovereign debt * countercyclical trade balances * high volatility of consumption relative to output",
         "source": "lecture-python-advanced.myst/lectures/arellano.md"
       },
       {
-        "text": "Among the senses of entropy, we'll encounter these * A measure of **uncertainty** of a random variable advanced by Claude Shannon {cite}`Shannon_1949` * A key object governing thermodynamics * Kullback and Leibler's measure of the statistical divergence between two probability distributions * A measure of the volatility of stochastic discount factors that appear in asset pricing theory * Measures of unpredictability that occur in classical Wiener-Kolmogorov linear prediction theory * A frequency domain criterion for constructing robust decision rules The concept of entropy plays an important role in robust control formulations described in this lecture Risk and Model Uncertainty and in this lecture Robustness.",
-        "source": "lecture-python-advanced.myst/lectures/entropy.md"
-      },
-      {
-        "text": "The von Neumann entropy of a density matrix  is After flipping signs, {cite}`Backus_Chernov_Zin`  use Kullback-Leibler relative entropy as a measure of volatility of stochastic discount factors that they assert is useful for characterizing features of both the data and various theoretical models of stochastic discount factors.",
+        "text": "After flipping signs, {cite}`Backus_Chernov_Zin`  use Kullback-Leibler relative entropy as a measure of volatility of stochastic discount factors that they assert is useful for characterizing features of both the data and various theoretical models of stochastic discount factors.",
         "source": "lecture-python-advanced.myst/lectures/entropy.md"
       },
       {
@@ -857,7 +853,11 @@
         "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
       },
       {
-        "text": "Here we set the robustness and volatility matrix parameters as follows: - - - Because we have set  we know that - both firms fear that the baseline specification of the state transition dynamics are incorrect. - firm  fears misspecification more than firm .",
+        "text": "*  is the usual *volatility matrix* that appears in stochastic versions of optimal linear regulator problems. *  is a possibly history-dependent vector of distortions to the dynamics of the state that agent  uses to  represent misspecification of the original model.",
+        "source": "lecture-python-advanced.myst/lectures/rob_markov_perf.md"
+      },
+      {
+        "text": "Here we set the robustness and volatility matrix parameters as follows:",
         "source": "lecture-python-advanced.myst/lectures/rob_markov_perf.md"
       }
     ],

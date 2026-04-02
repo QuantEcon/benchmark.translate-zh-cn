@@ -1,9 +1,12 @@
 """Context sentence extraction from QuantEcon lecture repos.
 
-Scans Markdown files in cloned lecture repositories, splits text into
-sentences, and finds sentences that contain a given term.  Up to
-MAX_CONTEXTS random sentences are stored per term, providing translators
-with real-world usage examples.
+Scans Markdown files in cloned lecture repositories, extracts prose
+paragraphs, and finds paragraphs that contain a given term.  Up to
+MAX_CONTEXTS are stored per term, providing translators with real-world
+usage examples.
+
+QuantEcon lectures follow a single-sentence-per-paragraph style, so
+each blank-line-delimited prose block is treated as one sentence.
 """
 
 from __future__ import annotations
@@ -16,6 +19,10 @@ from qebench.models import Term, TermContext
 # Maximum context sentences stored per term
 MAX_CONTEXTS = 5
 
+# Discard paragraphs longer than this — they are lists, tables, or
+# multi-sentence blocks that slipped through, not clean single sentences.
+MAX_SENTENCE_LENGTH = 300
+
 # Lecture repos to scan (under QuantEcon GitHub org)
 LECTURE_REPOS = [
     "lecture-python-programming",
@@ -27,34 +34,35 @@ LECTURE_REPOS = [
 GITHUB_ORG = "QuantEcon"
 
 
-def _split_sentences(text: str) -> list[str]:
-    """Split text into sentences on period, exclamation, or question mark.
+def _extract_paragraphs(md_content: str) -> list[str]:
+    """Extract prose paragraphs from MyST Markdown.
 
-    Preserves sentence boundaries while handling common abbreviations
-    (e.g., i.e., Dr., etc.) by requiring sentence-ending punctuation
-    to be followed by whitespace and a capital letter or end-of-string.
-    """
-    # Split on sentence-ending punctuation followed by whitespace+capital or end
-    parts = re.split(r'(?<=[.!?])\s+(?=[A-Z])', text)
-    return [s.strip() for s in parts if s.strip()]
-
-
-def _extract_prose(md_content: str) -> str:
-    """Extract prose text from MyST Markdown, stripping code blocks and directives.
+    Each blank-line-separated block of prose becomes one entry.
+    QuantEcon lectures use single-sentence paragraphs, so each
+    returned string is typically one sentence.
 
     Removes:
     - Fenced code blocks (``` ... ```)
     - MyST directives ({directive} ... ```)
     - YAML frontmatter (--- ... ---)
+    - Multi-line math blocks ($$ ... $$)
     - HTML tags
     - Markdown image/link syntax noise
     - Lines that are purely headings, labels, or targets
     """
     lines = md_content.splitlines()
-    result: list[str] = []
+    current_para: list[str] = []
+    paragraphs: list[str] = []
     in_fence = False
     in_frontmatter = False
     in_math = False
+
+    def _flush() -> None:
+        if current_para:
+            text = " ".join(current_para)
+            if len(text) <= MAX_SENTENCE_LENGTH:
+                paragraphs.append(text)
+            current_para.clear()
 
     for i, line in enumerate(lines):
         stripped = line.strip()
@@ -70,6 +78,7 @@ def _extract_prose(md_content: str) -> str:
 
         # Fenced code blocks and directives
         if stripped.startswith("```"):
+            _flush()
             in_fence = not in_fence
             continue
         if in_fence:
@@ -77,15 +86,20 @@ def _extract_prose(md_content: str) -> str:
 
         # Multi-line math blocks ($$...$$)
         if stripped.startswith("$$"):
+            _flush()
             in_math = not in_math
             continue
         if in_math:
             continue
 
-        # Skip headings, labels, targets, and empty lines
+        # Skip headings, labels, targets
         if stripped.startswith("#") or stripped.startswith("(") and stripped.endswith(")="):
+            _flush()
             continue
+
+        # Blank line = paragraph boundary
         if not stripped:
+            _flush()
             continue
 
         # Strip inline math notation for matching (keep prose around it)
@@ -98,27 +112,27 @@ def _extract_prose(md_content: str) -> str:
         cleaned = cleaned.strip()
 
         if cleaned:
-            result.append(cleaned)
+            current_para.append(cleaned)
 
-    return " ".join(result)
+    _flush()
+    return paragraphs
 
 
 def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
-    """Find sentences containing a term across lecture Markdown files.
+    """Find paragraphs containing a term across lecture Markdown files.
 
-    Scans all .md files in the given directories, extracts prose text,
-    splits into sentences, and returns up to MAX_CONTEXTS random
-    sentences that contain the term (case-insensitive, whole-word match).
+    Scans all .md files in the given directories, extracts prose
+    paragraphs, and returns up to MAX_CONTEXTS paragraphs that contain
+    the term (case-insensitive, whole-word match).
 
     Args:
         term_en: English term to search for.
         lecture_dirs: List of paths to cloned lecture repositories.
 
     Returns:
-        List of TermContext objects with matching sentences and source paths.
+        List of TermContext objects with matching paragraphs and source paths.
     """
     # Build a regex for whole-word matching (case-insensitive)
-    # Escape regex special chars in the term
     pattern = re.compile(
         r'\b' + re.escape(term_en) + r'\b',
         re.IGNORECASE,
@@ -141,13 +155,12 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
             except (OSError, UnicodeDecodeError):
                 continue
 
-            prose = _extract_prose(content)
-            sentences = _split_sentences(prose)
+            paragraphs = _extract_paragraphs(content)
 
-            for sentence in sentences:
-                if pattern.search(sentence):
+            for para in paragraphs:
+                if pattern.search(para):
                     source = f"{repo_name}/{rel}"
-                    matches.append(TermContext(text=sentence, source=source))
+                    matches.append(TermContext(text=para, source=source))
 
     if not matches:
         return []

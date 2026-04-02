@@ -16,15 +16,15 @@
         "source": "lecture-python-intro/lectures/lln_clt.md"
       },
       {
-        "text": "We can obtain the moments, PDF, and CDF of the exponential density as follows: The **beta distribution** is a distribution on  with density where  is the gamma function. (The role of the gamma function is just to normalize the density, so that it integrates to one.) This distribution has two parameters,  and .",
+        "text": "The **beta distribution** is a distribution on  with density",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       },
       {
-        "text": "But the VI approximation doesn't look so good. * even though we use the beta distribution as our guide, the VI approximated posterior distributions do not closely resemble the posteriors that we had just computed analytically. (Here, our initial parameter for Beta guide is (0.5, 0.5).) But if we increase the number of steps from 5000 to 100000 in VI as we now shall do, we'll get VI-approximated posteriors that will be more accurate, as we shall see next. (Increasing the step size increases computational time though).",
+        "text": "* even though we use the beta distribution as our guide, the VI approximated posterior distributions do not closely resemble the posteriors that we had just computed analytically.",
         "source": "lecture-python.myst/lectures/bayes_nonconj.md"
       },
       {
-        "text": "Having assured ourselves that our MCMC and VI methods can work well when we have a conjugate prior and so can also compute analytically, we next proceed to situations in which our prior is not a beta distribution, so we don't have a conjugate prior.",
+        "text": "- Learnable parameters for the Beta distribution are (, ), both of which are positive. - Learnable parameters for the Truncated Normal distribution are (loc, scale).",
         "source": "lecture-python.myst/lectures/bayes_nonconj.md"
       }
     ],
@@ -39,7 +39,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In particular, we assume that the initial location of each agent is an independent draw from a bivariate uniform distribution on the unit square . * First their  coordinate is drawn from a uniform distribution on * Then, independently, their  coordinate is drawn from the same distribution.",
+        "text": "In particular, we assume that the initial location of each agent is an independent draw from a bivariate uniform distribution on the unit square .",
         "source": "lecture-python-intro/lectures/schelling.md"
       }
     ],
@@ -66,11 +66,11 @@
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
-        "text": "The Cauchy distribution has the following property: If  are IID and Cauchy, then so is .",
+        "text": "The Cauchy distribution has the following property:",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       },
       {
-        "text": "The LLN fails to hold here because the assumption  is violated by the Cauchy distribution. +++ The LLN can also fail to hold when the IID assumption is violated.",
+        "text": "The LLN fails to hold here because the assumption  is violated by the Cauchy distribution.",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       }
     ],
@@ -85,15 +85,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In particular, the sequence  is not independent. +++ Next, we turn to the central limit theorem (CLT), which tells us about the distribution of the deviation between sample averages and population means.",
+        "text": "1. the law of large numbers (LLN) and 2. the central limit theorem (CLT).",
+        "source": "lecture-python-intro/lectures/lln_clt.md"
+      },
+      {
+        "text": "Next, we turn to the central limit theorem (CLT), which tells us about the distribution of the deviation between sample averages and population means.",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       },
       {
         "text": "The central limit theorem is one of the most remarkable results in all of mathematics.",
-        "source": "lecture-python-intro/lectures/lln_clt.md"
-      },
-      {
-        "text": "This lecture illustrates two of the most important results in probability and statistics: 1. the law of large numbers (LLN) and 2. the central limit theorem (CLT).",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       },
       {
@@ -116,7 +116,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "By independence, the characteristic function of the sample mean becomes In view of {eq}`lln_cch`, this is just .",
+        "text": "By independence, the characteristic function of the sample mean becomes",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       }
     ],
@@ -131,7 +131,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Conditional entropy  is defined as Here , the reciprocal of the conditional probability of  given , can be defined as the **conditional surprisal**.",
+        "text": "Here , the reciprocal of the conditional probability of  given , can be defined as the **conditional surprisal**.",
         "source": "lecture-python-advanced.myst/lectures/entropy.md"
       },
       {
@@ -139,7 +139,7 @@
         "source": "lecture-python-advanced.myst/lectures/robustness.md"
       },
       {
-        "text": "In particular, the *state*    follows a Markov chain with transition probability matrix where  means conditional probability Nonfinancial income  obeys A consumer wishes to maximize Here  is a bliss level of consumption Our complete and incomplete markets models  differ in how thoroughly the market structure allows a consumer to transfer resources across time and Markov states, there being more transfer opportunities in the complete markets setting than in the incomplete markets setting.",
+        "text": "where  means conditional probability",
         "source": "lecture-python-advanced.myst/lectures/smoothing.md"
       },
       {
@@ -147,7 +147,7 @@
         "source": "lecture-python.myst/lectures/ar1_bayes.md"
       },
       {
-        "text": "We studied how the agent would then use the laws of conditional probability and an observed history  to form However, in the  setting of this lecture, that rule imputes to the agent an incorrect model.",
+        "text": "We studied how the agent would then use the laws of conditional probability and an observed history  to form",
         "source": "lecture-python.myst/lectures/mix_model.md"
       }
     ],
@@ -162,11 +162,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In the IID setting, it tells us the following: :label: lln_clt \\sqrt{n} ( \\bar X_n - \\mu ) \\stackrel { d } {\\to} N(0, \\sigma^2) \\quad \\text{as} \\quad n \\to \\infty Here  indicates convergence in distribution to a centered (i.e., zero mean) normal with standard deviation .",
+        "text": "Here  indicates convergence in distribution to a centered (i.e., zero mean) normal with standard deviation .",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       },
       {
-        "text": "In the classical IID setting, it tells us the following: If the sequence  is IID, with common mean and common variance , then Here  indicates convergence in distribution to a centered (i.e, zero mean) normal with standard deviation .",
+        "text": "Here  indicates convergence in distribution to a centered (i.e, zero mean) normal with standard deviation .",
         "source": "lecture-python.myst/lectures/lln_clt.md"
       }
     ],
@@ -200,7 +200,7 @@
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
-        "text": "For a random variable  with CDF , the CCDF is the function (Some authors call  the \"survival\" function.) The CCDF shows how fast the upper tail goes to zero as .",
+        "text": "For a random variable  with CDF , the CCDF is the function",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
@@ -208,11 +208,11 @@
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
-        "text": "Given a sample , the empirical CCDF is given by Thus,  shows the fraction of the sample that exceeds .",
+        "text": "Given a sample , the empirical CCDF is given by",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
-        "text": "If  is exponentially distributed with rate parameter , then the CCDF is This function goes to zero relatively quickly as  gets large.",
+        "text": "If  is exponentially distributed with rate parameter , then the CCDF is",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       }
     ],
@@ -227,23 +227,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "First, we generate random types  and Then we generate random quantities for each type so that there are  agents for each side. +++ {\"user_expressions\": []} <!-- We will use   (resp. ) to denote the probability mass function associated to the measure  (resp. ) and with  (resp. ) the corresponding cumulative distribution function.",
+        "text": "<!-- We will use   (resp. ) to denote the probability mass function associated to the measure  (resp. ) and with  (resp. ) the corresponding cumulative distribution function.",
         "source": "lecture-python-advanced.myst/lectures/match_transport.md"
       },
       {
-        "text": "Thus,  and  for   --> We use   (resp. ) to denote the cumulative distribution function associated to the measure  (resp. ) Thus,  and  for Notice that we not normalizing the measures so The following method plots the marginals on the real line * blue for  types, * red for  types.",
+        "text": "We use   (resp. ) to denote the cumulative distribution function associated to the measure  (resp. )",
         "source": "lecture-python-advanced.myst/lectures/match_transport.md"
       },
       {
-        "text": "For example, the mean of  is The **cumulative distribution function** (CDF) of  is defined by Perhaps the most famous distribution is the **normal distribution**, which has density This distribution has two parameters,  and .",
+        "text": "The **cumulative distribution function** (CDF) of  is defined by",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       },
       {
-        "text": "The **cumulative distribution function** (CDF) of  is defined by Here  if \"statement\" is true and zero otherwise.",
+        "text": "The **cumulative distribution function** (CDF) of  is defined by",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       },
       {
-        "text": "The empirical cumulative distribution function (ecdf) corresponding to a sample  is defined as Here  is an indicator function (one if  and zero otherwise) and hence  is the fraction of the sample that falls below .",
+        "text": "The empirical cumulative distribution function (ecdf) corresponding to a sample  is defined as",
         "source": "lecture-python-programming/lectures/python_oop.md"
       }
     ],
@@ -258,7 +258,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "For example, every random variable with bounded support is light-tailed. (Why?) As another example, if  has the exponential distribution, with cdf  for some , then its moment generating function is In particular,  is finite whenever , so  is light-tailed.",
+        "text": "As another example, if  has the exponential distribution, with cdf  for some , then its moment generating function is",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
@@ -312,11 +312,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Thus, for each , The sample mean is The next theorem is called Kolmogorov's strong law of large numbers. :label: lln_as \\mathbb P \\left\\{ \\bar X_n \\to \\mu \\text{ as } n \\to \\infty \\right\\} = 1 Here * IID means independent and identically distributed and * What does the probability one statement in the theorem mean?",
+        "text": "* IID means independent and identically distributed and *",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       },
       {
-        "text": "The {ref}`*steady state*` value  of  is obtained by setting $y_t = y_{t-1} = y_{t-2} = y^*$ in {eq}`tswm_1`, which yields If we set the initial values to , then  will be constant: To generate some excitement, we'll follow in the spirit of the great economists Eugen Slutsky and Ragnar Frisch and replace our original second-order difference equation with the following **second-order stochastic linear difference equation**: where  and is {ref}`IID `, meaning independent and identically distributed.",
+        "text": "where  and is {ref}`IID `, meaning independent and identically distributed.",
         "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
       },
       {
@@ -351,7 +351,7 @@
         "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
       },
       {
-        "text": "The idea is that, by the strong law of large numbers, with probability one as .",
+        "text": "The idea is that, by the strong law of large numbers,",
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
@@ -359,7 +359,7 @@
         "source": "lecture-python-intro/lectures/ar1_processes.md"
       },
       {
-        "text": "To understand this point better, recall {doc}`our earlier discussion ` of the law of large numbers, which considered IID  with common distribution If  is finite, then the sample mean  satisfies where  is the common mean of the sample.",
+        "text": "1. heavy tails are frequent in economics and 2. the law of large numbers fails when tails are very heavy.",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       }
     ],
@@ -374,11 +374,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "This leads to (We are using the law of total probability.) Rewriting this statement in terms of  marginal and conditional probabilities gives There are  such equations, one for each .",
+        "text": "(We are using the law of total probability.)",
         "source": "lecture-python-intro/lectures/markov_chains_I.md"
       },
       {
-        "text": "Using the law of total probability, we can decompose the probability that  as follows: In words, to get the probability of being at  tomorrow, we account for all  ways this can happen and sum their probabilities.",
+        "text": "Using the law of total probability, we can decompose the probability that  as follows:",
         "source": "lecture-python.myst/lectures/finite_markov.md"
       }
     ],
@@ -412,11 +412,11 @@
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
-        "text": "Suppose that  has the log-normal distribution with parameters  and .",
+        "text": "Suppose that  has the log-normal distribution with parameters  and .  Let  denote the density of this distribution.  Then",
         "source": "lecture-python-programming/lectures/scipy.md"
       },
       {
-        "text": "We will use the following priors: - a uniform distribution on , where . - a truncated log-normal distribution with support on  with parameters . - To implement this, let  and  be truncated normal with support , then  has a log normal distribution with bounded support .",
+        "text": "- a truncated log-normal distribution with support on  with parameters .",
         "source": "lecture-python.myst/lectures/bayes_nonconj.md"
       }
     ],
@@ -431,7 +431,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The firm acts as a price taker with respect to output price , and maximizes Demand in industry  is described by the inverse demand curve where  is the price of good  at , is output in market , is a persistent component of a demand shock that is common across the two industries, and  is an industry specific component of the demand shock that is i.i.d. and whose time marginal distribution is .",
+        "text": "where  is the price of good  at , is output in market , is a persistent component of a demand shock that is common across the two industries, and  is an industry specific component of the demand shock that is i.i.d. and whose time marginal distribution is .",
         "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
       },
       {
@@ -439,15 +439,15 @@
         "source": "lecture-python-intro/lectures/markov_chains_I.md"
       },
       {
-        "text": "The next function computes the stationary distribution for a given policy  via the following steps: * Compute the stationary distribution  of , which defines the Markov chain of the state  under policy . * Sum out  to get the marginal distribution for .",
+        "text": "* Compute the stationary distribution  of , which defines the Markov chain of the state  under policy . * Sum out  to get the marginal distribution for .",
         "source": "lecture-python.myst/lectures/aiyagari.md"
       },
       {
-        "text": "By postmultiplying  times, we move a marginal distribution forward  steps into the future.",
+        "text": "*  if  and zero otherwise * convergence is with probability one * the result does not depend on the marginal distribution  of",
         "source": "lecture-python.myst/lectures/finite_markov.md"
       },
       {
-        "text": "For any initial marginal distribution , we have  as .",
+        "text": "* draw  from a marginal distribution * for each , draw  from",
         "source": "lecture-python.myst/lectures/finite_markov.md"
       }
     ],
@@ -462,15 +462,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In particular, a principal constinuent of the  operator, namely, is evidently a **moment generating function** for the random variable , while is a **cumulant generating function**, where  is the th cumulant of the random variable .",
-        "source": "lecture-python-advanced.myst/lectures/five_preferences.md"
-      },
-      {
         "text": "The risk-sensitivity operator  is intimately connected to a moment generating function.",
         "source": "lecture-python-advanced.myst/lectures/five_preferences.md"
       },
       {
-        "text": "For example, every random variable with bounded support is light-tailed. (Why?) As another example, if  has the exponential distribution, with cdf  for some , then its moment generating function is In particular,  is finite whenever , so  is light-tailed.",
+        "text": "is evidently a **moment generating function** for the random variable , while",
+        "source": "lecture-python-advanced.myst/lectures/five_preferences.md"
+      },
+      {
+        "text": "As another example, if  has the exponential distribution, with cdf  for some , then its moment generating function is",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
@@ -493,19 +493,19 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "2. Compare your results to a larger value, such as , and comment on how quickly the higher-order moments grow.",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
         "text": "Because  is Gaussian, the moments of  have simple closed forms.",
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "Compare your results to a larger value, such as , and comment on how quickly the higher-order moments grow.",
+        "text": "In particular,  for all , while higher-order moments grow rapidly in  whenever .",
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "Let Then for any , In particular,  for all , while higher-order moments grow rapidly in  whenever .",
-        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
-      },
-      {
-        "text": "The following functions compute  and , , and Let's illustrate the growth of th-order raw moments on a log scale for Next we plot the growth of variance, skewness, and kurtosis These plots help explain the *peculiar property* of the multiplicative martingale.",
+        "text": "Let's illustrate the growth of th-order raw moments on a log scale for",
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
@@ -524,16 +524,16 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We can apply standard formulas for multivariate normal distributions to compute the mean vector and covariance matrix for our time series model You can read about multivariate normal distributions in this lecture Multivariate Normal Distribution.",
+        "text": "We can apply standard formulas for multivariate normal distributions to compute the mean vector and covariance matrix for our time series model",
+        "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
+      },
+      {
+        "text": "You can read about multivariate normal distributions in this lecture Multivariate Normal Distribution.",
         "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
       },
       {
         "text": "Required knowledge: Familiarity with matrix manipulations, multivariate normal distributions, covariance matrices, etc.",
         "source": "lecture-python.myst/lectures/kalman.md"
-      },
-      {
-        "text": "In particular, and To confirm that these formulas give the same answers that we computed earlier, we can compare the means and variances of conditional on  with what we obtained above using the formulas implemented in the class `MultivariateNormal` built on our original representation of conditional distributions for multivariate normal distributions.",
-        "source": "lecture-python.myst/lectures/multivariate_normal.md"
       }
     ],
     "source": "glossary/zh-cn (probability)"
@@ -547,23 +547,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Default value is 0.96. - bound: Bound for truncated normal distribution.",
-        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
-      },
-      {
         "text": "The agent takes the standard normal distribution  as the baseline conditional distribution, while admitting the possibility that other \"nearby\" distributions prevail.",
         "source": "lecture-python-advanced.myst/lectures/robustness.md"
       },
       {
-        "text": "The parameters are The standard normal distribution for  is understood as the agent's baseline, with uncertainty parameterized by .",
+        "text": "The standard normal distribution for  is understood as the agent's baseline, with uncertainty parameterized by .",
         "source": "lecture-python-advanced.myst/lectures/robustness.md"
       },
       {
-        "text": "To make things even simpler, we will assume that * the process  is {ref}`IID ` and standard normal, * the initial condition  is drawn from the normal distribution  and * the initial condition  is independent of .",
+        "text": "* the process  is {ref}`IID ` and standard normal, * the initial condition  is drawn from the normal distribution  and * the initial condition  is independent of .",
         "source": "lecture-python-intro/lectures/ar1_processes.md"
       },
       {
         "text": "For example, the [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) is heavy-tailed because its moment generating function is infinite everywhere on .",
+        "source": "lecture-python-intro/lectures/heavy_tails.md"
+      },
+      {
+        "text": "If the data is drawn from a normal distribution, the plot would look like:",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       }
     ],
@@ -578,7 +578,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "A random variable  is said to have a **power law** if, for some , We can write this more mathematically as It is also common to say that a random variable  with this property has a **Pareto tail** with **tail index** .",
+        "text": "It is also common to say that a random variable  with this property has a **Pareto tail** with **tail index** .",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
@@ -594,7 +594,7 @@
         "source": "lecture-python.myst/lectures/kesten_processes.md"
       },
       {
-        "text": "First we generate the observations: Now we produce the rank-size plot: The plot produces a straight line, consistent with a Pareto tail.",
+        "text": "The plot produces a straight line, consistent with a Pareto tail.",
         "source": "lecture-python.myst/lectures/kesten_processes.md"
       }
     ],
@@ -609,7 +609,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "A random variable  is said to have a **power law** if, for some , We can write this more mathematically as It is also common to say that a random variable  with this property has a **Pareto tail** with **tail index** .",
+        "text": "A random variable  is said to have a **power law** if, for some ,",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
@@ -628,11 +628,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Here's the PMF: A continuous distribution is represented by a **probability density function**, which is a function  over  (the set of all real numbers) such that  for all  and We say that random variable  has distribution  if for all .",
+        "text": "A continuous distribution is represented by a **probability density function**, which is a function  over  (the set of all real numbers) such that  for all  and",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       },
       {
-        "text": "We can compute limits for a given expression using the `limit` function We can differentiate any SymPy expression using the `diff` function We can compute definite and indefinite integrals using the `integrate` function Let's use this function to compute the moment-generating function of exponential distribution with the probability density function: Note that we can also use `Stats` module to compute the moment Using the `integrate` function, we can derive the cumulative density function of the exponential distribution with Using `cdf` in `Stats` module gives the same solution SymPy provides a powerful plotting feature.",
+        "text": "Let's use this function to compute the moment-generating function of exponential distribution with the probability density function:",
         "source": "lecture-python-programming/lectures/sympy.md"
       },
       {
@@ -659,23 +659,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Where  and A consumer of type  orders period  consumption and state , period  consumption by and the one-period utility function is Following BCG, we shall employ the following parameterizations: Sometimes instead of asuming , we’ll assume that  is a probability mass function that serves as a discrete approximation to a standardized normal density.",
+        "text": "Sometimes instead of asuming , we’ll assume that  is a probability mass function that serves as a discrete approximation to a standardized normal density.",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Following BCG, we shall employ the following parameterizations: Sometimes instead of asuming , we’ll assume that  is a probability mass function that serves as a discrete approximation to a standardized normal density.",
+        "text": "Sometimes instead of asuming , we’ll assume that  is a probability mass function that serves as a discrete approximation to a standardized normal density.",
         "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
       },
       {
-        "text": "First, we generate random types  and Then we generate random quantities for each type so that there are  agents for each side. +++ {\"user_expressions\": []} <!-- We will use   (resp. ) to denote the probability mass function associated to the measure  (resp. ) and with  (resp. ) the corresponding cumulative distribution function.",
+        "text": "<!-- We will use   (resp. ) to denote the probability mass function associated to the measure  (resp. ) and with  (resp. ) the corresponding cumulative distribution function.",
         "source": "lecture-python-advanced.myst/lectures/match_transport.md"
       },
       {
-        "text": "A **distribution**  on  is a probability mass function of length , where  is the amount of probability allocated to state .",
+        "text": "1. a stochastic matrix  and 1. a probability mass function  of length  from which to draw an initial realization of .",
         "source": "lecture-python-intro/lectures/markov_chains_I.md"
       },
       {
-        "text": "A **stochastic matrix** (or **Markov matrix**)  is an  square matrix such that each row of  is a probability mass function over  outcomes.",
+        "text": "A **distribution**  on  is a probability mass function of length , where  is the amount of probability allocated to state .",
         "source": "lecture-python-intro/lectures/markov_chains_I.md"
       }
     ],
@@ -690,11 +690,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The idea is that, by the strong law of large numbers, with probability one as .",
+        "text": "The idea is that, by the strong law of large numbers,",
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "Thus, for each , The sample mean is The next theorem is called Kolmogorov's strong law of large numbers. :label: lln_as \\mathbb P \\left\\{ \\bar X_n \\to \\mu \\text{ as } n \\to \\infty \\right\\} = 1 Here * IID means independent and identically distributed and * What does the probability one statement in the theorem mean?",
+        "text": "The next theorem is called Kolmogorov's strong law of large numbers.",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       }
     ],
@@ -709,19 +709,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We study an AMSS economy {cite}`aiyagari2002optimal`  with  three Markov states driving government expenditures. * In a {doc}`previous lecture `, we showed that with only two Markov states, it is possible that  endogenous interest rate fluctuations eventually can support complete markets allocations and Ramsey outcomes. * The presence of three states  prevents the full spanning that eventually prevails in the two-state example featured in {doc}`Fiscal Insurance via Fluctuating Interest Rates `.",
-        "source": "lecture-python-advanced.myst/lectures/amss3.md"
-      },
-      {
-        "text": "For example, every random variable with bounded support is light-tailed. (Why?) As another example, if  has the exponential distribution, with cdf  for some , then its moment generating function is In particular,  is finite whenever , so  is light-tailed.",
+        "text": "For example, every random variable with bounded support is light-tailed. (Why?)",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
-        "text": "The geometric distribution has infinite support  and its PMF is given by where  is a parameter (A discrete distribution has infinite support if the set of points to which it assigns positive probability is infinite.) To understand the distribution, think of repeated independent random trials, each with success probability .",
+        "text": "(A discrete distribution has infinite support if the set of points to which it assigns positive probability is infinite.)",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       },
       {
-        "text": "For example, with NumPy we can write and then mutate the data in memory: In JAX this fails: In line with immutability, JAX does not support inplace operations: The designers of JAX chose to make arrays immutable because JAX uses a functional programming style.",
+        "text": "The geometric distribution has infinite support  and its PMF is given by",
+        "source": "lecture-python-intro/lectures/prob_dist.md"
+      },
+      {
+        "text": "In line with immutability, JAX does not support inplace operations:",
         "source": "lecture-python-programming/lectures/jax_intro.md"
       },
       {
@@ -740,23 +740,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "A random variable  is said to have a **power law** if, for some , We can write this more mathematically as It is also common to say that a random variable  with this property has a **Pareto tail** with **tail index** .",
-        "source": "lecture-python-intro/lectures/heavy_tails.md"
-      },
-      {
         "text": "Here are some draws from the Pareto distribution with tail index  and minimum .",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
-        "text": "If  has the Pareto distribution, then there are positive constants and  such that The parameter  is called the **tail index** and  is called the **minimum**.",
-        "source": "lecture-python-intro/lectures/heavy_tails.md"
-      },
-      {
-        "text": "In particular, if  is exponentially distributed with rate parameter , then is Pareto-distributed with minimum  and tail index .",
+        "text": "It is also common to say that a random variable  with this property has a **Pareto tail** with **tail index** .",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
         "text": "Let  have a Pareto tail with tail index  and let  be its cdf.",
+        "source": "lecture-python-intro/lectures/heavy_tails.md"
+      },
+      {
+        "text": "Notice that every Pareto distribution with tail index has a **Pareto tail** with **tail index** .",
+        "source": "lecture-python-intro/lectures/heavy_tails.md"
+      },
+      {
+        "text": "The parameter  is called the **tail index** and  is called the **minimum**.",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       }
     ],

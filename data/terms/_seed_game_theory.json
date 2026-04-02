@@ -32,19 +32,19 @@
         "source": "lecture-python-advanced.myst/lectures/robustness.md"
       },
       {
-        "text": "Fix  and compute the solution of the two-player zero-sum game associated with .",
+        "text": "- Finding 1. Fix  and compute the solution of the two-player zero-sum game associated with . We can use either the primal or the dual LP problem. 1. If , then set , otherwise let . 1. Iterate on 1. and 2. until .",
         "source": "lecture-python.myst/lectures/von_neumann_model.md"
       },
       {
-        "text": "Fix  and compute the solution of the two-player zero-sum game associated with .",
+        "text": "- Finding 1. Fix  and compute the solution of the two-player zero-sum game associated with . We can use either the primal or the dual LP problem. 1. If , then set , otherwise let . 1. Iterate on 1. and 2. until .",
         "source": "lecture-python.myst/lectures/von_neumann_model.md"
       },
       {
-        "text": "From the above definition, it is clear that the value  has two alternative interpretations: * by playing the appropriate mixed strategy, the maximizing player can assure himself at least (no matter what the column player chooses) * by playing the appropriate mixed strategy, the minimizing player can make sure that the maximizing player will not get more than  (irrespective of what is the maximizing player’s choice) A famous theorem of Nash (1951) tells us that there always exists a mixed strategy Nash equilibrium for any *finite* two-player zero-sum game.",
+        "text": "A famous theorem of Nash (1951) tells us that there always exists a mixed strategy Nash equilibrium for any *finite* two-player zero-sum game.",
         "source": "lecture-python.myst/lectures/von_neumann_model.md"
       },
       {
-        "text": "Moreover, von Neumann’s Minmax Theorem {cite}`neumann1928theorie` implies that Nash equilibria of a finite two-player zero-sum game solve a linear programming problem.",
+        "text": "In order to (re)state {prf:ref}`theorem1` in terms of a particular two-player zero-sum game, we define a matrix for",
         "source": "lecture-python.myst/lectures/von_neumann_model.md"
       }
     ],

@@ -12,6 +12,10 @@
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
+        "text": "2. Find the associated adjacency matrix  for .",
+        "source": "lecture-python-intro/lectures/networks.md"
+      },
+      {
         "text": "Consider a graph  with  nodes and  adjacency matrix .",
         "source": "lecture-python-intro/lectures/networks.md"
       },
@@ -20,11 +24,7 @@
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "Find the associated adjacency matrix  for . 3.",
-        "source": "lecture-python-intro/lectures/networks.md"
-      },
-      {
-        "text": "Fixing  in , the **Katz centrality** of a weighted directed graph with adjacency matrix  is defined as the vector that solves Here  is a parameter that we can choose.",
+        "text": "Fixing  in , the **Katz centrality** of a weighted directed graph with adjacency matrix  is defined as the vector that solves",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
@@ -39,11 +39,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Other pages have high **authority centrality**, meaning that they contain valuable information, as indicated by the number and significance of incoming links (e.g., websites of respected news organizations).",
+        "text": "If we care more about authority centrality, we can use the same definitions except that we take the transpose of the adjacency matrix.",
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "The eigenvector centrality and Katz centrality measures we discussed above measure hub centrality. (Nodes have high centrality if they point to other nodes with high centrality.) If we care more about authority centrality, we can use the same definitions except that we take the transpose of the adjacency matrix.",
+        "text": "Other pages have high **authority centrality**, meaning that they contain valuable information, as indicated by the number and significance of incoming links (e.g., websites of respected news organizations).",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
@@ -58,11 +58,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "First, using matrix calculus, you will be able to verify that where and  is a  identity matrix.",
+        "text": "First, using matrix calculus, you will be able to verify that",
         "source": "lecture-python-advanced.myst/lectures/robustness.md"
       },
       {
-        "text": "Now let's compute and plot consumption path variations We visualize variations for  and We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters. (We are actually discovering  the key idea beneath the **calculus of variations**.) First, we define the welfare with respect to  and Then we can visualize the relationship between welfare and  and compute its derivatives The same can be done on The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  \"fiscal policy multiplier\" that we  described in QuantEcon lecture {doc}`geometric series `.",
+        "text": "(We are actually discovering  the key idea beneath the **calculus of variations**.)",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
@@ -112,24 +112,24 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "- the roots  of the characteristic polynomial of the difference equation form a complex conjugate pair - the values  are given initial conditions",
+        "source": "lecture-python-intro/lectures/complex_and_trig.md"
+      },
+      {
         "text": "Let  and  be another complex conjugate pair.",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "Let  and  so that  is the **complex conjugate** of . form a **complex conjugate pair** of complex numbers.",
+        "text": "Let  and  so that  is the **complex conjugate** of .",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "The complex conjugate  of  is defined as The value  is the **real** part of  and  is the **imaginary** part of .",
+        "text": "The complex conjugate  of  is defined as",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "Under the following circumstances, we can apply our example 2 formula to solve the difference equation - the roots  of the characteristic polynomial of the difference equation form a complex conjugate pair - the values  are given initial conditions To solve the difference equation, recall from example 2 that where  are coefficients to be determined from information encoded in the initial conditions .",
+        "text": "form a **complex conjugate pair** of complex numbers.",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
-      },
-      {
-        "text": "The complex conjugate pair  has modulus .",
-        "source": "lecture-python.myst/lectures/chow_business_cycles.md"
       }
     ],
     "source": "glossary/zh-cn (complex analysis)"
@@ -155,7 +155,7 @@
         "source": "lecture-python-advanced.myst/lectures/arma.md"
       },
       {
-        "text": "The most common estimator of the spectral density of this process is the *periodogram* of , which is defined as (Recall that  denotes the modulus of complex number ) Alternatively,  can be expressed as It is straightforward to show that the function  is even and $2 \\piI(\\omega) = I(-\\omega)I(\\omega + 2\\pi) = I(\\omega)\\omega \\in \\mathbb R$).",
+        "text": "(Recall that  denotes the modulus of complex number )",
         "source": "lecture-python-advanced.myst/lectures/estspec.md"
       },
       {
@@ -174,7 +174,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "It turns out that * lag operators facilitate  succinct representations for linear stochastic processes * algebraic manipulations that treat the lag operator as an ordinary scalar  are legitimate Using , we can rewrite {eq}`arma` as If we let  and  be the polynomials then {eq}`arma_lag`  becomes In what follows we **always assume** that the roots of the polynomial  lie outside the unit circle in the complex plane.",
+        "text": "In what follows we **always assume** that the roots of the polynomial  lie outside the unit circle in the complex plane.",
         "source": "lecture-python-advanced.myst/lectures/arma.md"
       },
       {
@@ -205,11 +205,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Credit contractions often occur during recessions, as lenders become more cautious and borrowers become more hesitant to take on additional debt.",
+        "text": "* expansions and contractions of the labor market have been highly correlated with recessions. * cycles are, in general, asymmetric: sharp rises in unemployment are followed by slow recoveries.",
         "source": "lecture-python-intro/lectures/business_cycle.md"
       },
       {
-        "text": "The plot shows that * expansions and contractions of the labor market have been highly correlated with recessions. * cycles are, in general, asymmetric: sharp rises in unemployment are followed by slow recoveries.",
+        "text": "Credit contractions often occur during recessions, as lenders become more cautious and borrowers become more hesitant to take on additional debt.",
         "source": "lecture-python-intro/lectures/business_cycle.md"
       },
       {
@@ -236,15 +236,15 @@
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
       },
       {
-        "text": "Expressing formula {eq}`prelim_formula` in terms of  our notation tells us that  should approximately equal BEGS also derive the following  approximation to the rate of convergence to  from an arbitrary initial condition. (See the equation above equation (47) in {cite}`BEGS1`) For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it.",
+        "text": "BEGS also derive the following  approximation to the rate of convergence to  from an arbitrary initial condition.",
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
       },
       {
-        "text": "Now let's compute the implied meantime to get to within 0.01 of the limit The slow rate of convergence and the implied time of getting within one percent of the limiting value do a good job of approximating our long simulation above.",
+        "text": "For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it.",
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
       },
       {
-        "text": "We  shall use the BEGS approximating limiting distribution and their approximating  rate of convergence   to help interpret  outcomes here.",
+        "text": "Now let's compute the ingredient of the approximating limit and the approximating rate of convergence",
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
       }
     ],
@@ -259,11 +259,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Therefore, Three elementary trigonometric functions are We'll need the following imports: Let's use Python to plot the trigonometric form of the complex number . de Moivre's theorem states that: To prove de Moivre's theorem, note that and compute.",
+        "text": "To prove de Moivre's theorem, note that",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
         "text": "We can use de Moivre's theorem to show that .",
+        "source": "lecture-python-intro/lectures/complex_and_trig.md"
+      },
+      {
+        "text": "de Moivre's theorem states that:",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       }
     ],
@@ -277,6 +281,10 @@
     "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
+      {
+        "text": "3. Use the functions defined above to compute in-degree centrality, out-degree centrality and eigenvector centrality of G.",
+        "source": "lecture-python-intro/lectures/networks.md"
+      },
       {
         "text": "In-degree centrality is a vector containing the in-degree of each node in the graph.",
         "source": "lecture-python-intro/lectures/networks.md"
@@ -292,10 +300,6 @@
       {
         "text": "The following plot displays the in-degree centrality of each country.",
         "source": "lecture-python-intro/lectures/networks.md"
-      },
-      {
-        "text": "The main principle is that links from important nodes (as measured by degree centrality) are worth more than links from unimportant nodes.",
-        "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
     "source": "glossary/zh-cn (network science)"
@@ -309,15 +313,15 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "1. a \"Bellman operator\" function that takes a distance matrix and current guess of J and returns an updated guess of J, and 1. a function that takes a distance matrix and returns a cost-to-go function.",
+        "source": "lecture-python-intro/lectures/short_path.md"
+      },
+      {
         "text": "First let's write a function that reads in the graph data above and builds a distance matrix.",
         "source": "lecture-python-intro/lectures/short_path.md"
       },
       {
-        "text": "First, for the cost function , we'll implement it as a matrix , where a typical element is In this context  is usually called the **distance matrix**.",
-        "source": "lecture-python-intro/lectures/short_path.md"
-      },
-      {
-        "text": "In addition, let's write 1. a \"Bellman operator\" function that takes a distance matrix and current guess of J and returns an updated guess of J, and 1. a function that takes a distance matrix and returns a cost-to-go function.",
+        "text": "In this context  is usually called the **distance matrix**.",
         "source": "lecture-python-intro/lectures/short_path.md"
       }
     ],
@@ -332,15 +336,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "It follows that and and and more generally or Evidently, as , **Remark 1:** The above formula is often applied to assert that an exogenous increase in investment of  at time ignites a dynamic process of increases in national income by successive amounts at times . **Remark 2** Let  be an exogenous sequence of government expenditures.",
+        "text": "**Remark 1:** The above formula is often applied to assert that an exogenous increase in investment of  at time ignites a dynamic process of increases in national income by successive amounts",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "So we arrive at the following equivalent expressions for the multiplier: The expression  motivates an interpretation of the multiplier as the outcome of a dynamic process that we describe next.",
+        "text": "The expression  motivates an interpretation of the multiplier as the outcome of a dynamic process that we describe next.",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "The workers'  output  is  described by the following dynamic process: Here *  is the logarithm of human capital at time *  is the logarithm of the worker's effort at accumulating human capital at *  is the logarithm of the worker's output at time * * Parameters of the model are .",
+        "text": "The workers'  output  is  described by the following dynamic process:",
         "source": "lecture-python.myst/lectures/kalman_2.md"
       }
     ],
@@ -359,19 +363,19 @@
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
-        "text": "Eigenvector centrality of a node  is measured by We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {numref}`us_15sectors`.",
+        "text": "Eigenvector centrality of a node  is measured by",
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
+        "text": "We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {numref}`us_15sectors`.",
+        "source": "lecture-python-intro/lectures/input_output.md"
+      },
+      {
+        "text": "3. Use the functions defined above to compute in-degree centrality, out-degree centrality and eigenvector centrality of G.",
+        "source": "lecture-python-intro/lectures/networks.md"
+      },
+      {
         "text": "A variant of eigenvector centrality is at the core of Google's PageRank algorithm, which is used to rank web pages.",
-        "source": "lecture-python-intro/lectures/networks.md"
-      },
-      {
-        "text": "Later, when we study demand shocks  in production networks, there will be a more concrete interpretation of eigenvector centrality.",
-        "source": "lecture-python-intro/lectures/networks.md"
-      },
-      {
-        "text": "Let's compute eigenvector centrality for the graph generated in {numref}`sample_gph_1`.",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
@@ -386,15 +390,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The value  is the Euclidean distance of vector  from the origin: The value  is the angle of  with respect to the real axis.",
+        "text": "The value  is the Euclidean distance of vector  from the origin:",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "For example, *  if an agent is orange and 5 of her 10 nearest neighbors are orange, then she is happy. *  if an agent is green and 8 of her 10 nearest neighbors are orange, then she is unhappy. 'Nearest' is in terms of Euclidean distance.",
+        "text": "'Nearest' is in terms of Euclidean distance.",
         "source": "lecture-python-intro/lectures/schelling.md"
       },
       {
-        "text": "Now we build two lists of nodes, each one containing one type (factories or locations) For the cost matrix , we use the Euclidean distance between each factory and location.",
+        "text": "For the cost matrix , we use the Euclidean distance between each factory and location.",
         "source": "lecture-python.myst/lectures/opt_transport.md"
       }
     ],
@@ -409,15 +413,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "For example, we want to solve the following integral: Using Euler's formula, we have: and thus: We can verify the analytical as well as numerical results using `integrate` in the `sympy` package: Let's import symbolic  from `sympy`",
+        "text": "The second equality above is known as **Euler's formula**",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "The Euclidean, polar, and trigonometric forms of a complex number  are: The second equality above is known as **Euler's formula** - Euler contributed many other formulas too!",
+        "text": "Using Euler's formula, we have:",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "We demonstrate this using Euler's formula If you are interested, we encourage you to read the lecture on trigonometry and complex numbers.",
+        "text": "We demonstrate this using Euler's formula",
         "source": "lecture-python-programming/lectures/sympy.md"
       }
     ],
@@ -432,7 +436,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The preceding equations then imply To fill in details about what it means for private agents to have perfect foresight, we subtract equation {eq}`eq:cagan` at time  from the same equation at  to get which we rewrite as a forward-looking first-order linear difference equation in  with  as a \"forcing variable\": where .",
+        "text": "which we rewrite as a forward-looking first-order linear difference equation in  with  as a \"forcing variable\":",
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       }
     ],
@@ -451,7 +455,7 @@
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "The eigenvector centrality and Katz centrality measures we discussed above measure hub centrality. (Nodes have high centrality if they point to other nodes with high centrality.) If we care more about authority centrality, we can use the same definitions except that we take the transpose of the adjacency matrix.",
+        "text": "The eigenvector centrality and Katz centrality measures we discussed above measure hub centrality.",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
@@ -474,7 +478,7 @@
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "In fact, it contains more, as the following example shows When Python creates this integer object, it stores with it various auxiliary information, such as the imaginary part, and the type.",
+        "text": "When Python creates this integer object, it stores with it various auxiliary information, such as the imaginary part, and the type.",
         "source": "lecture-python-programming/lectures/oop_intro.md"
       }
     ],
@@ -489,11 +493,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "U = np.random.rand() X = 1 if U < p else 0 print(X) We can write  as  where  is the indicator function (i.e., 1 if the statement is true and zero otherwise).",
+        "text": "We can write  as  where  is the indicator function (i.e., 1 if the statement is true and zero otherwise).",
         "source": "lecture-python-intro/lectures/lln_clt.md"
       },
       {
-        "text": "The empirical cumulative distribution function (ecdf) corresponding to a sample  is defined as Here  is an indicator function (one if  and zero otherwise) and hence  is the fraction of the sample that falls below .",
+        "text": "Here  is an indicator function (one if  and zero otherwise) and hence  is the fraction of the sample that falls below .",
         "source": "lecture-python-programming/lectures/python_oop.md"
       }
     ],
@@ -508,24 +512,24 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Hansen and Sargent {cite}`Hans_Sarg_book` (ch. 8) describe the following two properties of the  martingale component of the multiplicative decomposition * while  for all , nevertheless * as ,  converges to zero almost surely The first property follows from the fact that  is a multiplicative martingale with initial condition .",
+        "text": "*  is an  vector, *  is an  stable matrix (all eigenvalues lie within the open unit circle), *  is an  IID shock, *  is an  matrix, and *  is a random initial condition for",
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "In doing so we'll assume that  is scalar and that  follows a 4th-order scalar autoregression. in which the zeros   of the polynomial are strictly greater than unity in absolute value. (Being a zero of  means that ) Let the increment in  obey with an initial condition for .",
+        "text": "Here  is a random initial condition for .",
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "We construct our  additive functional from two pieces, the first of which is a **first-order vector autoregression** (VAR) Here *  is an  vector, *  is an  stable matrix (all eigenvalues lie within the open unit circle), *  is an  IID shock, *  is an  matrix, and *  is a random initial condition for The second piece is an equation that expresses increments of  as linear functions of * a scalar constant , * the vector , and * the same Gaussian vector  that appears in the VAR {eq}`old1_additive_functionals` In particular, Here  is a random initial condition for .",
+        "text": "The first property follows from the fact that  is a multiplicative martingale with initial condition .",
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "Expressing formula {eq}`prelim_formula` in terms of  our notation tells us that  should approximately equal BEGS also derive the following  approximation to the rate of convergence to  from an arbitrary initial condition. (See the equation above equation (47) in {cite}`BEGS1`) For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it.",
+        "text": "with an initial condition for .",
+        "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
+      },
+      {
+        "text": "BEGS also derive the following  approximation to the rate of convergence to  from an arbitrary initial condition.",
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
-      },
-      {
-        "text": "BEGS also derive the following  approximation to the rate of convergence to  from an arbitrary initial condition. > ```{math} > :label: rate_of_convergence_1 > > \\frac{ E_t  ( {\\mathcal B}_{t+1} - {\\mathcal B}^{*} )} { ( {\\mathcal B}_{t} - {\\mathcal B}^{*} )} \\approx \\frac{1}{1 + \\beta^2 {\\rm var}^\\infty ({\\mathcal R} )} > ``` > > (See the equation above equation (47) in BEGS {cite}`BEGS1`) The remainder of this lecture is about  technical material based on  formulas from BEGS {cite}`BEGS1`.",
-        "source": "lecture-python-advanced.myst/lectures/amss3.md"
       }
     ],
     "source": "glossary/zh-cn (differential equations)"
@@ -539,7 +543,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Fixing  in , the **Katz centrality** of a weighted directed graph with adjacency matrix  is defined as the vector that solves Here  is a parameter that we can choose.",
+        "text": "Fixing  in , the **Katz centrality** of a weighted directed graph with adjacency matrix  is defined as the vector that solves",
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
@@ -551,11 +555,11 @@
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "The eigenvector centrality and Katz centrality measures we discussed above measure hub centrality. (Nodes have high centrality if they point to other nodes with high centrality.) If we care more about authority centrality, we can use the same definitions except that we take the transpose of the adjacency matrix.",
+        "text": "The eigenvector centrality and Katz centrality measures we discussed above measure hub centrality.",
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "The parameter  is used to ensure that  is finite When , we use  as the default for Katz centrality computations.",
+        "text": "When , we use  as the default for Katz centrality computations.",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
@@ -574,11 +578,7 @@
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Let -  be consumer  ’s purchases of claims on time  consumption in state -  be a pricing kernel for one-period Arrow securities -  be consumer 's intial share of the firm, -  be the fraction of a firm’s shares purchased by consumer  at time -  be the value of the representative firm -  be the value of equity issued by the representative firm -  be two scalars and  a function that we use to construct a guess about an equilibrium  pricing kernel for Arrow securities We proceed  to describe constrained optimum problems faced by consumers and a representative firm in a competitive equilibrium.",
-        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
-      },
-      {
-        "text": "To pose a consumer’s problem in a competitive equilibrium, we require not only the above guess for the Arrow securities pricing kernel but the value of equity : Let  be the value of equity implied by Arrow securities price function {eq}`arrowprices` and formula {eq}`tildeV2`.",
+        "text": "To pose a consumer’s problem in a competitive equilibrium, we require not only the above guess for the Arrow securities pricing kernel but the value of equity :",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
@@ -588,6 +588,10 @@
       {
         "text": "The sequence  is described by a Markov process with stochastic density kernel .",
         "source": "lecture-python-advanced.myst/lectures/arellano.md"
+      },
+      {
+        "text": "The price  of such a claim depends on state  because the prices of the -contingent securities depend on  through the pricing kernel .",
+        "source": "lecture-python-advanced.myst/lectures/smoothing.md"
       }
     ],
     "source": "glossary/zh-cn (functional analysis)"
@@ -605,7 +609,7 @@
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       },
       {
-        "text": "We use linear algebra formulas for differentiating linear and quadratic forms to compute the gradient of  with respect to Setting , the maximizing  is The associated optimal inflation sequence is With the more structured approach, we can update our gradient descent exercise with `compute_J` We find that by exploiting more knowledge about  the structure of the problem, we can significantly speed up our computation.",
+        "text": "We use linear algebra formulas for differentiating linear and quadratic forms to compute the gradient of  with respect to",
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       },
       {
@@ -613,7 +617,7 @@
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
-        "text": "Applying formula {eq}`eq_40`  of the proposition to evaluating  {eq}`eq_38`  with  and  gives or Thus, we have This formula is useful in solving stochastic versions of problem 1 of lecture {doc}`Classical Control with Linear Algebra ` in which the randomness emerges because  is a stochastic process.",
+        "text": "Here's the code that computes solutions to LQ control and filtering problems using the methods described here and in {doc}`Classical Control with Linear Algebra `.",
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
@@ -632,7 +636,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Substituting into  leads to the linear differential equation This equation, which is a linear ordinary differential equation/17%3A_Differential_Equations/17.01%3A_First_Order_Differential_Equations), has the solution (You can confirm that this function  satisfies {eq}`xsolow` by differentiating it with respect to .) Converting back to  yields Since  and , we see immediately that $k_t \\to k^*t \\to \\inftyk_0$.",
+        "text": "Substituting into  leads to the linear differential equation",
         "source": "lecture-python-intro/lectures/solow.md"
       }
     ],
@@ -647,7 +651,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Countries with higher GDP per capita tend to have higher life expectancy outcomes Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables.",
+        "text": "Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables.",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       }
     ],
@@ -705,7 +709,7 @@
         "source": "lecture-python-intro/lectures/eigen_I.md"
       },
       {
-        "text": "Since we have  we can thus find the solution using the Neumann Series Lemma.",
+        "text": "2. Use the {ref}`Neumann Series Lemma ` to find the solution  if it exists.",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       }
     ],
@@ -758,7 +762,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We can pin down these values from {eq}`ar1_ma` or we can use the following recursive expressions: These expressions are obtained from {eq}`can_ar1` by taking, respectively, the expectation and variance of both sides of the equality.",
+        "text": "We can pin down these values from {eq}`ar1_ma` or we can use the following recursive expressions:",
         "source": "lecture-python-intro/lectures/ar1_processes.md"
       }
     ],
@@ -773,15 +777,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Thus, consider a **second-order linear difference equation** whose **characteristic polynomial** is or has roots .",
+        "text": "Thus, consider a **second-order linear difference equation**",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
-        "text": "We can cast this set of  equations as a single  matrix equation Multiplying both sides of {eq}`eq:first_order_lin_diff`  by the  inverse of the matrix on the left provides the solution A second-order linear difference equation for  is where now  and  are two given initial equations determined outside the model.",
+        "text": "A second-order linear difference equation for  is",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "We'll study  the following second-order linear difference equation where  is a pair of given initial conditions.",
+        "text": "We'll study  the following second-order linear difference equation",
         "source": "lecture-python-intro/lectures/greek_square.md"
       },
       {
@@ -789,7 +793,7 @@
         "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
       },
       {
-        "text": "Equation {eq}`tswm_1` is called a *second-order linear difference equation*.",
+        "text": "Equation {eq}`tswm_1` is called a *second-order linear difference equation*. It is called second order because it depends on two lags.",
         "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
       }
     ],
@@ -823,7 +827,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Therefore, Three elementary trigonometric functions are We'll need the following imports: Let's use Python to plot the trigonometric form of the complex number . de Moivre's theorem states that: To prove de Moivre's theorem, note that and compute.",
+        "text": "Let's use Python to plot the trigonometric form of the complex number .",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       }
     ],
@@ -838,7 +842,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let's use a vector field to visualize the transformation brought by A. (This is a more advanced topic in linear algebra, please step ahead if you are comfortable with the math.) Note that the vector field converges to the eigenvector of  with the largest eigenvalue and diverges from the eigenvector of  with the smallest eigenvalue.",
+        "text": "Let's use a vector field to visualize the transformation brought by A.",
+        "source": "lecture-python-intro/lectures/eigen_I.md"
+      },
+      {
+        "text": "Note that the vector field converges to the eigenvector of  with the largest eigenvalue and diverges from the eigenvector of  with the smallest eigenvalue.",
         "source": "lecture-python-intro/lectures/eigen_I.md"
       }
     ],
@@ -871,7 +879,7 @@
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "The size of the vertices in the figure are proportional to - capacity, for the factories, and - demand (amount required) for the target locations.",
+        "text": "The size of the vertices in the figure are proportional to",
         "source": "lecture-python.myst/lectures/opt_transport.md"
       }
     ],
@@ -890,19 +898,19 @@
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
+        "text": "A **weighted directed graph** is a directed graph to which we have added a **weight function**  that assigns a positive number to each edge.",
+        "source": "lecture-python-intro/lectures/networks.md"
+      },
+      {
         "text": "Consider a weighted directed graph with adjacency matrix .",
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "Consider the following weighted directed graph. +++ We first create the above network as a Networkx `DiGraph` object.",
+        "text": "Consider the following weighted directed graph.",
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "Fixing  in , the **Katz centrality** of a weighted directed graph with adjacency matrix  is defined as the vector that solves Here  is a parameter that we can choose.",
-        "source": "lecture-python-intro/lectures/networks.md"
-      },
-      {
-        "text": "For example, with poor, middle, rich mapped to  respectively, the adjacency matrix corresponding to the weighted directed graph in {numref}`poverty_trap_weighted` is In QuantEcon's `DiGraph` implementation, weights are recorded via the keyword `weighted`: One of the key points to remember about adjacency matrices is that taking the transpose _reverses all the arrows_ in the associated directed graph.",
+        "text": "Fixing  in , the **Katz centrality** of a weighted directed graph with adjacency matrix  is defined as the vector that solves",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
@@ -917,15 +925,19 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "A **weighted directed graph** is a directed graph to which we have added a **weight function**  that assigns a positive number to each edge.",
+        "source": "lecture-python-intro/lectures/networks.md"
+      },
+      {
         "text": "For the weight function we set   for all edges .",
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "The **adjacency matrix** of a weighted directed graph with nodes , edges  and weight function  is the matrix Once the nodes in  are enumerated, the weight function and adjacency matrix provide essentially the same information.",
+        "text": "Once the nodes in  are enumerated, the weight function and adjacency matrix provide essentially the same information.",
         "source": "lecture-python-intro/lectures/networks.md"
       },
       {
-        "text": "The correct data structure for recording this information is a \"weighted directed graph\". +++ A **weighted directed graph** is a directed graph to which we have added a **weight function**  that assigns a positive number to each edge.",
+        "text": "The **adjacency matrix** of a weighted directed graph with nodes , edges  and weight function  is the matrix",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],

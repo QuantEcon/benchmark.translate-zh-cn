@@ -8,7 +8,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Using the sine and cosine formulas presented at the beginning of this lecture, we have: We can also obtain the trigonometric identities as follows: Since both real and imaginary parts of the above formula should be equal, we get: The equations above are also known as the **angle sum identities**.",
+        "text": "The equations above are also known as the **angle sum identities**. We can verify the equations using the `simplify` function in the `sympy` package:",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       }
     ],
@@ -23,7 +23,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "First taking the partial derivative with respect to and setting it equal to we can remove the constant  from the summation by dividing both sides by Now we can split this equation up into the components The middle term is a straight forward sum from  by a constant and rearranging terms We observe that both fractions resolve to the means  and Now let's take the partial derivative of the cost function  with respect to and setting it equal to we can again take the constant outside of the summation and divide both sides by which becomes now substituting for and rearranging terms This can be split into two summations and solving for  yields We can now use {eq}`eq:optimal-alpha` and {eq}`eq:optimal-beta` to calculate the optimal values for  and Calculating Now computing across the 10 observations and then summing the numerator and denominator Calculating Now we can plot the OLS solution :::{exercise} :label: slr-ex1 Now that you know the equations that solve the simple linear regression model using OLS you can now run your own regressions to build a model between  and .",
+        "text": "First taking the partial derivative with respect to",
+        "source": "lecture-python-intro/lectures/simple_linear_regression.md"
+      },
+      {
+        "text": "Now let's take the partial derivative of the cost function  with respect to",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       }
     ],
@@ -38,11 +42,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let the payment stream on the lease now be  for , where again The present value of this lease is: Applying the Taylor series to  about  we get: Similarly, applying the Taylor series to  about : Thus, we get the following approximation: Expanding: We could have also approximated by removing the second term when  is relatively small compared to to get  as in the finite stream approximation.",
+        "text": "Applying the Taylor series to  about  we get:",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "Use the Taylor series of  about , namely, and the fact that  is small to approximate .",
+        "text": "Similarly, applying the Taylor series to  about :",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "Use the Taylor series of  about , namely,",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -57,7 +65,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We can verify the equations using the `simplify` function in the `sympy` package: We can also compute the trigonometric integrals using polar forms of complex numbers.",
+        "text": "We can also compute the trigonometric integrals using polar forms of complex numbers.",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       }
     ],

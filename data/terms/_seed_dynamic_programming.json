@@ -27,7 +27,7 @@
         "source": "lecture-python-advanced.myst/lectures/coase.md"
       },
       {
-        "text": "It is useful to define the following operators: - The *Bellman operator* is defined by - For any policy function , the operator  is defined by This can be written more succinctly in operator notation as The two operators are both monotone *   implies  pointwise on , and similarly for They are also contraction mappings with modulus *  and similarly for , where  is the max norm For any policy , its value  is the unique fixed point of .",
+        "text": "- The *Bellman operator* is defined by",
         "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
       },
       {
@@ -35,11 +35,11 @@
         "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
       },
       {
-        "text": "Iterating on the Bellman operator leads to where  and  satisfy the equations We can now state the planning problem as a dynamic programming problem where  maximization is subject to where **Lagrange multipliers as gradient of value function** A useful fact is that Lagrange multipliers equal gradients of the  planner’s value function We will use this fact and these equations to compute competitive equilibrium prices.",
+        "text": "Iterating on the Bellman operator leads to",
         "source": "lecture-python-advanced.myst/lectures/hs_recursive_models.md"
       },
       {
-        "text": "Substituting this minimizer back into {eq}`rb_owb` and working through the algebra gives for all , or, equivalently, where  is the operator defined in {eq}`rb_d` and The operator  is the standard (i.e., non-robust) LQ Bellman operator, and  is the standard matrix Riccati equation coming from the Bellman equation --- see this discussion.",
+        "text": "The operator  is the standard (i.e., non-robust) LQ Bellman operator, and  is the standard matrix Riccati equation coming from the Bellman equation --- see this discussion.",
         "source": "lecture-python-advanced.myst/lectures/robustness.md"
       }
     ],
@@ -54,7 +54,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let *  be the continuation value of a continuation Ramsey plan at  for *  be the value of the Ramsey plan at time  at and We distinguish between two types of planners: For , the value function for a **continuation Ramsey planner** satisfies the Bellman equation subject to the following collection of implementability constraints, one for each : A continuation Ramsey planner at  takes as given and before is realized chooses for .",
+        "text": "*  be the continuation value of a continuation Ramsey plan at  for *  be the value of the Ramsey plan at time  at and",
         "source": "lecture-python-advanced.myst/lectures/amss.md"
       },
       {
@@ -62,16 +62,16 @@
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "In the above figure, notice that * the orange  value function lies above the blue  value function except at * the maximizer   of    occurs at the top of the orange curve * the maximizer  of  occurs at the top of the blue curve * the \"timeless perspective\"  inflation and money creation  rate  occurs where  is tangent to * the Markov perfect inflation and money creation  rate  exceeds . * the value  of the Markov perfect rate of money creation rate  is less than the value  of the worst continuation Ramsey plan *  the continuation  value  of the Markov perfect rate of money creation rate  is greater  than the value  and of the continuation value   of the worst continuation Ramsey plan Now  let's present some graphs that teach us   how outcomes change when we assume   different values of The horizontal dotted lines indicate values of time-invariant money growth rates  and , respectfully.",
+        "text": "The government's time  continuation value  is",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "The government's time  continuation value  is We can represent dependence of  on  recursively via the difference equation It is useful to evaluate {eq}`eq_old8` under a time-invariant money growth rate that according to equation {eq}`eq_old3` would bring forth a constant inflation rate equal to .",
-        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+        "text": "The third equation of {eq}`eq_old11`  updates the continuation value in a way that depends on whether the government at  confirms the representative agent's expectations by setting  equal to the recommended value , or whether it disappoints those expectations.",
+        "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
       },
       {
-        "text": "Values of  computed according to formula {eq}`eq:barvdef` for three different  values of  will play important roles below. *  is the value of attained by the government in a **Markov perfect equilibrium** *  is the  value that  a continuation Ramsey planner attains at * We shall discover that  is the worst continuation value attained along a Ramsey plan *  is the value of attained by the government in a **constrained to constant  equilibrium** The following structure is induced by a representative  agent's behavior as summarized by the demand function for money {eq}`eq_old1` that leads to equation {eq}`eq_old3`, which  tells how future settings of  affect the current value of .",
-        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+        "text": "We can represent a sustainable plan recursively by taking the continuation value  as a state variable.",
+        "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
       }
     ],
     "source": "glossary/zh-cn (dynamic programming)"
@@ -85,15 +85,15 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "1. a \"Bellman operator\" function that takes a distance matrix and current guess of J and returns an updated guess of J, and 1. a function that takes a distance matrix and returns a cost-to-go function.",
+        "source": "lecture-python-intro/lectures/short_path.md"
+      },
+      {
         "text": "But how can we find the cost-to-go function ?",
         "source": "lecture-python-intro/lectures/short_path.md"
       },
       {
         "text": "Finally, here's a function that uses the cost-to-go function to obtain the optimal path (and its cost).",
-        "source": "lecture-python-intro/lectures/short_path.md"
-      },
-      {
-        "text": "In addition, let's write 1. a \"Bellman operator\" function that takes a distance matrix and current guess of J and returns an updated guess of J, and 1. a function that takes a distance matrix and returns a cost-to-go function.",
         "source": "lecture-python-intro/lectures/short_path.md"
       }
     ],
@@ -112,7 +112,7 @@
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
-        "text": "Later we will study an infinite horizon problem solution as a limiting version of a finite horizon problem. (This will require being careful because the limits as  of the necessary and sufficient conditions for maximizing finite  versions of {eq}`oneone` are not sufficient for maximizing {eq}`oneone`) We begin by 1. fixing , 1. differentiating the finite version of {eq}`oneone` with respect to , and 1. setting these derivatives to zero.",
+        "text": "Later we will study an infinite horizon problem solution as a limiting version of a finite horizon problem.",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
@@ -143,19 +143,19 @@
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "With additional conditions, we can also get a unique stationary density (),  and also global convergence in the sense that This combination of existence, uniqueness and global convergence in the sense of {eq}`statd_dca` is often referred to as *global stability*.",
+        "text": "This combination of existence, uniqueness and global convergence in the sense of {eq}`statd_dca` is often referred to as *global stability*.",
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
-      },
-      {
-        "text": "For example, we have the following result This situation is often referred to as **asymptotic stationarity** or **global stability**.",
-        "source": "lecture-python-intro/lectures/markov_chains_I.md"
       },
       {
         "text": "Moreover, we can see that global stability does not hold.",
         "source": "lecture-python-intro/lectures/markov_chains_I.md"
       },
       {
-        "text": "Once again, high marginal returns to savings at low levels of capital combined with low rates of return at high levels of capital combine to yield global stability.",
+        "text": "This situation is often referred to as **asymptotic stationarity** or **global stability**.",
+        "source": "lecture-python-intro/lectures/markov_chains_I.md"
+      },
+      {
+        "text": "This is a form of {ref}`global stability `.",
         "source": "lecture-python-intro/lectures/solow.md"
       }
     ],
@@ -180,24 +180,24 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "* a counterpart to  is time-invariant and equal to the Lagrange multiplier on the Lucas-Stokey implementability constraint * time invariance of   is the source of a key feature of the Lucas-Stokey model, namely, **state variable degeneracy** in which  is an exact time-invariant function of .",
+        "source": "lecture-python-advanced.myst/lectures/amss.md"
+      },
+      {
         "text": "Along a Ramsey plan, the state variable becomes a function of the history  and initial government debt .",
         "source": "lecture-python-advanced.myst/lectures/amss.md"
-      },
-      {
-        "text": "In {doc}`Lucas-Stokey model `, we found that * a counterpart to  is time-invariant and equal to the Lagrange multiplier on the Lucas-Stokey implementability constraint * time invariance of   is the source of a key feature of the Lucas-Stokey model, namely, **state variable degeneracy** in which  is an exact time-invariant function of .",
-        "source": "lecture-python-advanced.myst/lectures/amss.md"
-      },
-      {
-        "text": "This lecture studies a special  AMSS model in which * The exogenous state variable  is governed by  a finite-state Markov chain. * With an arbitrary budget-feasible initial level of government debt, the measurability  constraints - bind for many periods, but . - eventually, they stop binding evermore, so that - in the tail of the Ramsey plan, the Lagrange multipliers  on the AMSS implementability constraints {eq}`TS_gov_wo4`  are zero. * After the implementability constraints {eq}`TS_gov_wo4` no longer bind in the tail of the AMSS Ramsey plan - history dependence of the AMSS state variable  vanishes and   becomes a time-invariant function of the Markov state . - the par value of government debt becomes **constant over time** so that  for  for a sufficiently large . - , so that the tail of the Ramsey plan instructs  the government always to make a constant par value of risk-free one-period loans **to** the private sector. - the one-period gross interest rate  on risk-free debt  converges to a time-invariant function of the Markov state . * For a **particular**  (i.e., a positive level of initial government **loans** to the private sector), the measurability constraints **never** bind. * In this special case - the **par value**   of government debt at time  and Markov state   is constant across time and states, but . - the **market value**  of government debt at time   varies as a time-invariant function of the Markov state . - fluctuations in the interest rate make gross earnings on government debt  fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures. - the state variable  in a recursive representation of a Ramsey plan is a time-invariant function of the Markov state for . * In this special case, the Ramsey allocation in the AMSS model agrees with that in a Lucas-Stokey {cite}`LucasStokey1983` complete markets model in which the same amount of state-contingent debt falls due in all states tomorrow - it is a situation in which  the Ramsey planner loses nothing from not being  able to  trade state-contingent debt and being restricted to exchange only risk-free debt  debt. * This outcome emerges only when we initialize government debt at a particular .",
-        "source": "lecture-python-advanced.myst/lectures/amss2.md"
       },
       {
         "text": "In the present context, a symptom of time inconsistency is that the Ramsey plannner chooses to make  a non-constant function of time  despite the fact that, other than time itself, there is no other state variable.",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "We can also verify the inequalities required for  to be self-confirming numerically as follows Given that plan  is self-enforcing, we can check that the Ramsey plan  is credible by verifying that: We can represent a sustainable plan recursively by taking the continuation value  as a state variable.",
+        "text": "We can represent a sustainable plan recursively by taking the continuation value  as a state variable.",
         "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
+      },
+      {
+        "text": "For a Ramsey plan, this is encoded in the dynamics of the state variable , a promised marginal utility that the Ramsey plan delivers to the private sector.",
+        "source": "lecture-python-advanced.myst/lectures/chang_credible.md"
       }
     ],
     "source": "glossary/zh-cn (dynamic systems)"
@@ -211,11 +211,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Expressing formula {eq}`prelim_formula` in terms of  our notation tells us that  should approximately equal BEGS also derive the following  approximation to the rate of convergence to  from an arbitrary initial condition. (See the equation above equation (47) in {cite}`BEGS1`) For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it.",
+        "text": "For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it.",
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
       },
       {
-        "text": "Thus, from equations associated with the **Kalman filter**, it can be verified that the steady-state Kalman gain  and the steady state conditional covariance In a little more detail, let  and form the state-space representation and assume that  for convenience Let's compute the steady-state Kalman filter for this system.",
+        "text": "Thus, from equations associated with the **Kalman filter**, it can be verified that the steady-state Kalman gain  and the steady state conditional covariance",
         "source": "lecture-python-advanced.myst/lectures/cons_news.md"
       },
       {
@@ -242,23 +242,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "It satisfies **two boundary conditions:** - an initial condition that , which is given - a terminal condition requiring that Using the lag operators described in {cite}`Sargent1987`, chapter IX, difference equation {eq}`sstack1` can be written as The polynomial in the lag operator on the left side can be **factored** as where .",
+        "text": "- an initial condition that , which is given - a terminal condition requiring that",
         "source": "lecture-python-advanced.myst/lectures/dyn_stack.md"
       },
       {
-        "text": "The first element differs from the remaining diagonal elements, reflecting the terminal condition. 1.",
+        "text": "1. The first element differs from the remaining diagonal elements, reflecting the terminal condition. 1. The sub-diagonal elements equal  time the super-diagonal elements.",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
-        "text": "First, we store parameters in a `namedtuple`: Now we can solve the model to compute ,  and  for  using the matrix equation above In the experiments below, we'll use formula {eq}`eq:piterm` as our terminal condition for expected inflation.",
+        "text": "In the experiments below, we'll use formula {eq}`eq:piterm` as our terminal condition for expected inflation.",
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       },
       {
-        "text": "By iterating on equation {eq}`eq:a_t` and imposing the terminal condition it is possible to convert a sequence of budget constraints {eq}`eq:a_t` into a single intertemporal constraint Equation {eq}`eq:budget_intertemp`  says that the present value of the consumption stream equals the sum of financial and non-financial (or human) wealth.",
+        "text": "Because we have built into  our calculations that the consumer leaves the model  with exactly zero assets, just barely satisfying the terminal condition that , it should turn out   that",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "Let *   be a positive integer that constitutes a time-horizon. *  be an exogenous  sequence of non-negative non-financial incomes . *  be a sequence of financial wealth. *  be a sequence of non-negative consumption rates. *  be a fixed gross one period rate of return on financial assets. *  be a fixed discount factor. *  be a given initial level of financial assets *   be a terminal condition on final assets.",
+        "text": "By iterating on equation {eq}`eq:a_t` and imposing the terminal condition",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       }
     ],

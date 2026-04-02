@@ -8,24 +8,24 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Consider the *characteristic equation* associated with the Euler equation Notice that if  is a root of equation {eq}`oneseven`, then so is .",
+        "text": "Consider the *characteristic equation* associated with the Euler equation",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
-        "text": "By applying the quadratic formula to solve for the roots  the characteristic equation {eq}`eq:cha_eq0`, we find that Formulas {eq}`eq:secretweapon` indicate that   and   are each functions of a single variable, namely,  , the object that we along with some Ancient Greeks want to compute.",
+        "text": "By applying the quadratic formula to solve for the roots  the characteristic equation {eq}`eq:cha_eq0`, we find that",
         "source": "lecture-python-intro/lectures/greek_square.md"
       },
       {
-        "text": "For initial condition that satisfy {eq}`eq:2diff3` equation {eq}`eq:2diff1` impllies that We want which we can rewrite as the *characteristic equation* Applying the quadratic formula to solve for the roots of {eq}`eq:2diff6` we find that For either of the two 's that satisfy equation {eq}`eq:2diff7`, a solution of difference equation {eq}`eq:2diff1` is provided that we set The *general* solution of difference equation {eq}`eq:2diff1` takes the form where  are the two solutions {eq}`eq:2diff7` of the characteristic equation {eq}`eq:2diff6`, and   are two constants chosen to satisfy or Sometimes we are free to choose the initial conditions , in which case we use system {eq}`eq:2diff10` to find the associated .",
+        "text": "The characteristic equation associated with difference equation {eq}`eq:second_order` is",
         "source": "lecture-python-intro/lectures/greek_square.md"
       },
       {
-        "text": "The characteristic equation associated with difference equation {eq}`eq:second_order` is (Notice how this is an instance of equation {eq}`eq:2diff6` above.) Factoring the right side of   equation {eq}`eq:cha_eq0`, we obtain where for  or .",
+        "text": "where  are the two solutions {eq}`eq:2diff7` of the characteristic equation {eq}`eq:2diff6`, and   are two constants chosen to satisfy",
         "source": "lecture-python-intro/lectures/greek_square.md"
       },
       {
-        "text": "This negative coefficient is also what makes complex roots possible in the characteristic equation.",
-        "source": "lecture-python.myst/lectures/chow_business_cycles.md"
+        "text": "which we can rewrite as the *characteristic equation*",
+        "source": "lecture-python-intro/lectures/greek_square.md"
       }
     ],
     "source": "glossary/zh-cn (linear algebra)"
@@ -39,23 +39,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In this case, the Euler equation is The factorization of the characteristic polynomial {eq}`oneten` becomes where The solution of the problem becomes Discounted problems can always be converted into undiscounted problems via a simple transformation.",
+        "text": "In sum, we have constructed a factorization {eq}`oneten` of the characteristic polynomial for the Euler equation in which the zeros of exceed  in modulus, and the zeros of are less than  in modulus.",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
-        "text": "Therefore, the characteristic polynomial on the left side of {eq}`oneseven` can be expressed as where  is a constant.",
+        "text": "The factorization of the characteristic polynomial {eq}`oneten` becomes",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
-        "text": "To exhibit the solution in a form paralleling that of {cite}`Sargent1987`, we use {eq}`oneeleven` to write {eq}`onethirteen` as Using partial fractions, we can write the characteristic polynomial on the right side of {eq}`JUNK` as Then {eq}`JUNK` can be written or Equation {eq}`onefifteen` expresses the optimum sequence for  in terms of  lagged 's, and  weighted infinite geometric sums of future 's.",
+        "text": "Therefore, the characteristic polynomial on the left side of {eq}`oneseven` can be expressed as",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
-        "text": "Using {eq}`oneeleven`, we can express the factorization {eq}`oneten` as In sum, we have constructed a factorization {eq}`oneten` of the characteristic polynomial for the Euler equation in which the zeros of exceed  in modulus, and the zeros of are less than  in modulus.",
+        "text": "Using partial fractions, we can write the characteristic polynomial on the right side of {eq}`JUNK` as",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
-        "text": "Thus, consider a **second-order linear difference equation** whose **characteristic polynomial** is or has roots .",
+        "text": "- the roots  of the characteristic polynomial of the difference equation form a complex conjugate pair - the values  are given initial conditions",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       }
     ],
@@ -74,15 +74,15 @@
         "source": "lecture-python-intro/lectures/eigen_I.md"
       },
       {
+        "text": "- In deterministic models, oscillations indicate  complex eigenvalues of a transition matrix. - In stochastic models, a \"cycle\" shows up as a local peak in a (univariate) spectral density. - Spectral peaks depend on eigenvalues, but also on how shocks enter and on how observables load on eigenmodes.",
+        "source": "lecture-python.myst/lectures/chow_business_cycles.md"
+      },
+      {
         "text": "This illustrates that acceleration creates complex eigenvalues, which are necessary for oscillatory dynamics in deterministic systems.",
         "source": "lecture-python.myst/lectures/chow_business_cycles.md"
       },
       {
         "text": "We saw earlier that acceleration creates complex eigenvalues, which enable oscillatory impulse responses.",
-        "source": "lecture-python.myst/lectures/chow_business_cycles.md"
-      },
-      {
-        "text": "We will keep returning to three ideas: - In deterministic models, oscillations indicate  complex eigenvalues of a transition matrix. - In stochastic models, a \"cycle\" shows up as a local peak in a (univariate) spectral density. - Spectral peaks depend on eigenvalues, but also on how shocks enter and on how observables load on eigenmodes.",
         "source": "lecture-python.myst/lectures/chow_business_cycles.md"
       }
     ],
@@ -97,23 +97,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "A non-negative and nonzero eigenvector is associated with the dominant eigenvalue. 4.",
+        "text": "(Also note that we are taking the nonnegative value of the eigenvector of {ref}`dominant eigenvalue `, this is because `eig` automatically normalizes the eigenvectors.)",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "A non-negative and nonzero eigenvector is associated with the dominant eigenvalue. 4.",
+        "text": "For a square nonnegative matrix , the behavior of  as  is controlled by the eigenvalue with the largest absolute value, often called the **dominant eigenvalue**.",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "All other eigenvalues have absolute values less than or equal to the dominant eigenvalue. 3.",
+        "text": "For any such matrix , the Perron-Frobenius theorem characterizes certain properties of the dominant eigenvalue and its corresponding eigenvector.",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "All other eigenvalues have absolute values strictly less than the dominant eigenvalue. 3.",
+        "text": "We can compute the dominant eigenvalue and the corresponding eigenvector",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "As the matrix is irreducible, the eigenvector associated with the dominant eigenvalue is strictly positive. 5.",
+        "text": "We compute the dominant eigenvalue and the corresponding eigenvector",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       }
     ],
@@ -128,11 +128,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "If  is scalar and  is a non-zero -vector such that Then we say that  is an *eigenvalue* of , and  is the corresponding *eigenvector*.",
-        "source": "lecture-python-intro/lectures/eigen_I.md"
-      },
-      {
-        "text": "Let's use a vector field to visualize the transformation brought by A. (This is a more advanced topic in linear algebra, please step ahead if you are comfortable with the math.) Note that the vector field converges to the eigenvector of  with the largest eigenvalue and diverges from the eigenvector of  with the smallest eigenvalue.",
+        "text": "Note that the vector field converges to the eigenvector of  with the largest eigenvalue and diverges from the eigenvector of  with the smallest eigenvalue.",
         "source": "lecture-python-intro/lectures/eigen_I.md"
       },
       {
@@ -145,6 +141,10 @@
       },
       {
         "text": "The result seems to converge to the eigenvector of  with the largest eigenvalue.",
+        "source": "lecture-python-intro/lectures/eigen_I.md"
+      },
+      {
+        "text": "Then we can look at the trajectory of the eigenvector approximation.",
         "source": "lecture-python-intro/lectures/eigen_I.md"
       }
     ],
@@ -159,11 +159,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Compute the eigenvector decomposition where  is a diagonal matrix of eigenvalues and the columns of  are eigenvectors corresponding to those eigenvalues.",
+        "text": "Compute the eigenvector decomposition",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
-        "text": "Let's write the stabilizing solution that we have computed using the eigenvector decomposition of  as , where Then from  and  we can deduce the recursion  and create the stacked system or where .",
+        "text": "Let's write the stabilizing solution that we have computed using the eigenvector decomposition of  as , where",
         "source": "lecture-python.myst/lectures/re_with_feedback.md"
       },
       {
@@ -197,11 +197,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "That scalar innovation process is the additional state variable contributed by the problem of extracting a signal from equilibrium prices that decision makers face in Townsend’s model. [^footnote0]: {cite}`Pearlman_Sargent2005` verified this assertion using a different tactic, namely, by constructing analytic formulas for an equilibrium under the incomplete information structure and confirming that they match the pooling equilibrium formulas derived here. [^footnote3]: See {cite}`Sargent1987`, especially chapters IX and XIV, for  principles  that guide solving some roots backwards and others forwards. [^footnote4]: As noted by {cite}`Sargent1987`, this difference equation is the Euler equation for a planning problem   that maximizes the discounted sum of consumer plus producer surplus. [^footnote5]: {cite}`Pearlman_Sargent2005` verify the same claim by applying   machinery of  {cite}`PCL`. [^footnote1]: See {cite}`ahms` for an account of invariant subspace methods. [^footnote2]: See {cite}`ams` for a discussion of  information assumptions needed to create a situation in which higher order beliefs appear in equilibrium decision rules.",
+        "text": "The computational method of {cite}`Pearlman_Sargent2005` is recursive: it enlists the Kalman filter and invariant subspace methods for solving systems of Euler equations [^footnote1] .",
         "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
       },
       {
-        "text": "The computational method of {cite}`Pearlman_Sargent2005` is recursive: it enlists the Kalman filter and invariant subspace methods for solving systems of Euler equations [^footnote1] .",
+        "text": "[^footnote1]: See {cite}`ahms` for an account of invariant subspace methods.",
         "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
       },
       {
@@ -228,15 +228,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Consider the following irreducible matrix : We can compute the dominant eigenvalue and the corresponding eigenvector Now we can see the claims of the Perron-Frobenius theorem holds for the irreducible matrix : 1.",
+        "text": "1. Since  is a nonnegative irreducible matrix, find the Perron-Frobenius eigenvalue of .",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "Since  is a nonnegative irreducible matrix, find the Perron-Frobenius eigenvalue of . 2.",
+        "text": "Consider the following irreducible matrix :",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "Since  is a nonnegative and irreducible matrix, the Perron-Frobenius theorem implies that: - the spectral radius  is an eigenvalue of , where - any other eigenvalue  in absolute value is strictly smaller than : , - there exist unique and everywhere positive right eigenvector  (column vector) and left eigenvector  (row vector): - if further  is positive, then with  we have The last statement implies that the magnitude of  is identical to the magnitude of  in the long run, where  can be considered as the dominant eigenvalue in this lecture.",
+        "text": "Now we can see the claims of the Perron-Frobenius theorem holds for the irreducible matrix :",
+        "source": "lecture-python-intro/lectures/eigen_II.md"
+      },
+      {
+        "text": "Since  is a nonnegative and irreducible matrix, the Perron-Frobenius theorem implies that:",
         "source": "lecture-python-intro/lectures/lake_model.md"
       }
     ],
@@ -259,7 +263,7 @@
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       },
       {
-        "text": "Our model has the following logical flow. * start with an exogenous non-financial income sequence , an initial financial wealth , and a candidate consumption path . * use the system of equations {eq}`eq:a_t` for  to compute a path  of financial wealth * verify that  satisfies the terminal wealth constraint . * If it does, declare that the candidate path is **budget feasible**. * if the candidate consumption path is not budget feasible, propose a less greedy consumption  path and start over Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.",
+        "text": "Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
@@ -267,7 +271,7 @@
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "We'll study what is often  called the \"consumption-smoothing model.\" We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values `.",
+        "text": "We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values `.",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       }
     ],
@@ -294,11 +298,11 @@
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "We'll study what is often  called the \"consumption-smoothing model.\" We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values `.",
+        "text": "We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values `.",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "Viewing matrix multiplication as composition of maps helps us understand why, under matrix multiplication,  is generally not equal to . (After all, when we compose functions, the order usually matters.) Let  be the  clockwise rotation matrix given by and let  be a shear matrix along the x-axis given by .",
+        "text": "Viewing matrix multiplication as composition of maps helps us understand why, under matrix multiplication,  is generally not equal to .",
         "source": "lecture-python-intro/lectures/eigen_I.md"
       }
     ],
@@ -313,7 +317,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix ` and {ref}`Hamilton matrix ` converge to a stationary distribution, which is the Perron projection of the two matrices We can also verify other properties hinted by Perron-Frobenius in these stochastic matrices. +++ Another example is the relationship between convergence gap and convergence rate.",
+        "text": "So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix ` and {ref}`Hamilton matrix ` converge to a stationary distribution, which is the Perron projection of the two matrices",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       }
     ],
@@ -328,23 +332,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Consider the following irreducible matrix : We can compute the dominant eigenvalue and the corresponding eigenvector Now we can see the claims of the Perron-Frobenius theorem holds for the irreducible matrix : 1.",
+        "text": "For any such matrix , the Perron-Frobenius theorem characterizes certain properties of the dominant eigenvalue and its corresponding eigenvector.",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "For any such matrix , the Perron-Frobenius theorem characterizes certain properties of the dominant eigenvalue and its corresponding eigenvector. (This is a relatively simple version of the theorem --- for more details see here).",
+        "text": "Now let's give some examples to see if the claims of the Perron-Frobenius theorem hold for the primitive matrix :",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "Now let's step back to the primitive matrices part of the Perron-Frobenius theorem Consider the following primitive matrix : We compute the dominant eigenvalue and the corresponding eigenvector Now let's give some examples to see if the claims of the Perron-Frobenius theorem hold for the primitive matrix : 1.",
+        "text": "Now let's step back to the primitive matrices part of the Perron-Frobenius theorem",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix ` and {ref}`Hamilton matrix ` converge to a stationary distribution, which is the Perron projection of the two matrices We can also verify other properties hinted by Perron-Frobenius in these stochastic matrices. +++ Another example is the relationship between convergence gap and convergence rate.",
+        "text": "Now we can see the claims of the Perron-Frobenius theorem holds for the irreducible matrix :",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "So by the statement (6) of Perron-Frobenius theorem,  for all , and  when  is primitive.",
+        "text": "So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix ` and {ref}`Hamilton matrix ` converge to a stationary distribution, which is the Perron projection of the two matrices",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       }
     ],
@@ -363,7 +367,11 @@
         "source": "lecture-python-intro/lectures/eigen_II.md"
       },
       {
-        "text": "Now let's step back to the primitive matrices part of the Perron-Frobenius theorem Consider the following primitive matrix : We compute the dominant eigenvalue and the corresponding eigenvector Now let's give some examples to see if the claims of the Perron-Frobenius theorem hold for the primitive matrix : 1.",
+        "text": "Consider the following primitive matrix :",
+        "source": "lecture-python-intro/lectures/eigen_II.md"
+      },
+      {
+        "text": "Now let's give some examples to see if the claims of the Perron-Frobenius theorem hold for the primitive matrix :",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       }
     ],
@@ -401,15 +409,15 @@
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
+        "text": "- the spectral radius  is an eigenvalue of , where",
+        "source": "lecture-python-intro/lectures/lake_model.md"
+      },
+      {
         "text": "Let  and , so that the spectral radius is a dominant eigenvalue.",
         "source": "lecture-python-intro/lectures/lake_model.md"
       },
       {
-        "text": "Recall that the spectral radius is bounded by column sums: for , we have Note that  for  and by {eq}`PF_bounds` we can thus conclude that the dominant eigenvalue is .",
-        "source": "lecture-python-intro/lectures/lake_model.md"
-      },
-      {
-        "text": "Since  is a nonnegative and irreducible matrix, the Perron-Frobenius theorem implies that: - the spectral radius  is an eigenvalue of , where - any other eigenvalue  in absolute value is strictly smaller than : , - there exist unique and everywhere positive right eigenvector  (column vector) and left eigenvector  (row vector): - if further  is positive, then with  we have The last statement implies that the magnitude of  is identical to the magnitude of  in the long run, where  can be considered as the dominant eigenvalue in this lecture.",
+        "text": "Recall that the spectral radius is bounded by column sums: for , we have",
         "source": "lecture-python-intro/lectures/lake_model.md"
       }
     ],
@@ -424,7 +432,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In addition to what's in Anaconda, this lecture will need the following libraries: In this lecture we will begin with the foundational concepts in spectral theory.",
+        "text": "In this lecture we will begin with the foundational concepts in spectral theory.",
         "source": "lecture-python-intro/lectures/eigen_II.md"
       }
     ],

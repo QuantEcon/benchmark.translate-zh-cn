@@ -8,23 +8,23 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "In his first paper about rational expectations, John F. Muth {cite}`Muth1960` reverse-engineered a univariate stochastic process for which Milton Friedman’s adaptive expectations scheme gives linear least forecasts of  for any horizon .",
+        "source": "lecture-python-advanced.myst/lectures/muth_kalman.md"
+      },
+      {
+        "text": "Milton Friedman {cite}`Friedman1956` (1956) posited that consumer’s forecast their future disposable income with the adaptive expectations scheme",
+        "source": "lecture-python-advanced.myst/lectures/muth_kalman.md"
+      },
+      {
         "text": "Muth used *classical* prediction methods to reverse engineer a stochastic process that renders optimal Milton Friedman’s {cite}`Friedman1956` “adaptive expectations” scheme.",
         "source": "lecture-python-advanced.myst/lectures/muth_kalman.md"
       },
       {
-        "text": "Muth {cite}`Muth1960` reverse-engineered a univariate stochastic process for which Milton Friedman’s adaptive expectations scheme gives linear least forecasts of  for any horizon .",
-        "source": "lecture-python-advanced.myst/lectures/muth_kalman.md"
-      },
-      {
-        "text": "We'll also need the following imports: Milton Friedman {cite}`Friedman1956` (1956) posited that consumer’s forecast their future disposable income with the adaptive expectations scheme where  and  is a forecast of future  over horizon .",
-        "source": "lecture-python-advanced.myst/lectures/muth_kalman.md"
-      },
-      {
-        "text": "But now, let's dive in and do some computations with the adaptive expectations version of the model.",
+        "text": "* an **adaptive expectations** model that describes how the public's anticipated rate of inflation responds to past values of actual inflation",
         "source": "lecture-python-intro/lectures/cagan_adaptive.md"
       },
       {
-        "text": "Equating the logarithm  of the demand for money  to the logarithm   of the supply of money in equation {eq}`eq:caganmd_ad` and solving for the logarithm of the price level gives Taking the difference between equation {eq}`eq:eqfiscth1` at time  and at time gives We assume that the expected rate of inflation  is governed by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {cite}`Cagan`, where  denotes the weight on expected inflation.",
+        "text": "But now, let's dive in and do some computations with the adaptive expectations version of the model.",
         "source": "lecture-python-intro/lectures/cagan_adaptive.md"
       }
     ],
@@ -49,24 +49,24 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "If we evaluate consumer 's time  budget constraint at zero consumption  and solve for we obtain The quantity  is the maximum amount that it is feasible for  consumer  to repay to his Arrow security creditors at time  in state .",
+        "text": "* `opt_c` computes optimal consumptions , and : - The function first computes weight  using the budget constraint for agent 1:",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "It consists of 4 functions that do the following things: * `opt_k` computes the planner's optimal capital - First, create a grid for capital. - Then for each value of capital stock in the grid, compute the left side of the planner's first-order necessary condition for  , that is, - Find  that solves this equation. * `q` computes Arrow security prices as a function of the productivity shock  and capital : * `V` solves for the firm value given capital : * `opt_c` computes optimal consumptions , and : - The function first computes weight  using the budget constraint for agent 1: where - It computes consumption for each agent as The list of parameters includes: - , : Correlation parameters for agents 1 and 2.",
+        "text": "Attach Lagrange multiplier  to the budget constraint at time  and scaled Lagrange multiplier to the budget constraint at time  and state , then  form the Lagrangian",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Notice that  defined in {eq}`debtlimit` depends on * his endowment  at time  in state * his share  of a representive firm's dividends These constitute  two sources of **collateral** that back the consumer's issues of Arrow securities that pay off in state Consumer  chooses a scalar  and a function to maximize subject to  time  and time  budget constraints Attach Lagrange multiplier  to the budget constraint at time  and scaled Lagrange multiplier to the budget constraint at time  and state , then  form the Lagrangian Off corners, first-order necessary conditions for an optimum with respect to and  are These equations imply that consumer  adjusts its consumption plan to satisfy To deduce a restriction on equilibrium prices,  we solve the period  budget constraint to express as then substitute the expression on the right side into the time budget constraint and rearrange to get the single intertemporal budget constraint The right side of inequality {eq}`noarb` is the present value of consumer ’s consumption while the left side is the present value of consumer ’s endowment when consumer  buys shares of equity.",
+        "text": "If we evaluate consumer 's time  budget constraint at zero consumption  and solve for we obtain",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "If we replace  on the right side of equation {eq}`TS_gov_wo2` by the right side of next period’s budget constraint (associated with a particular realization ) we get After making similar repeated substitutions for all future occurrences of government indebtedness, and by invoking a natural debt limit, we arrive at: Notice how the conditioning sets in equation {eq}`TS_gov_wo3` differ: they are  on the left side and on the right side.",
-        "source": "lecture-python-advanced.myst/lectures/amss.md"
+        "text": "To deduce a restriction on equilibrium prices,  we solve the period  budget constraint to express as",
+        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "The consumption Euler equation for a representative household able to trade only one-period risk-free debt with one-period gross interest rate  is Substituting this expression into the government’s budget constraint {eq}`TS_gov_wo` yields: Components of  on the right side depend on , but the left side is required to depend only on  . **This is what it means for one-period government debt to be risk-free**.",
-        "source": "lecture-python-advanced.myst/lectures/amss.md"
+        "text": "then substitute the expression on the right side into the time budget constraint and rearrange to get the single intertemporal budget constraint",
+        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       }
     ],
     "source": "glossary/zh-cn (economics)"
@@ -80,7 +80,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "From {eq}`feasibility-constraint` the steady state saving rate equals The steady state saving rate  is the amount required to offset capital depreciation each period.",
+        "text": "The steady state saving rate  is the amount required to offset capital depreciation each period.",
         "source": "lecture-python.myst/lectures/cass_koopmans_1.md"
       }
     ],
@@ -95,7 +95,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Setting  and using homogeneity of degree one now yields With  , the final expression for capital dynamics is Our aim is to learn about the evolution of  over time, given an exogenous initial capital stock  .",
+        "text": "With  , the final expression for capital dynamics is",
         "source": "lecture-python-intro/lectures/solow.md"
       }
     ],
@@ -110,19 +110,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "For each integer , output  in period  is given by the **Cobb-Douglas production function** Here  is capital,  is labor, and   is a parameter (sometimes called the \"output elasticity of capital\").",
+        "text": "For each integer , output  in period  is given by the **Cobb-Douglas production function**",
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
-        "text": "Now we plot the results As in our in the one-country model in  {doc}`cass_fiscal`, we assume a Cobb-Douglas production function: Similarly, we define the capital rental rate The figure below presents transition dynamics after an increase in  in the domestic economy from 0.2 to 0.4 that is announced ten periods in advance.",
+        "text": "As in our in the one-country model in  {doc}`cass_fiscal`, we assume a Cobb-Douglas production function:",
         "source": "lecture-python.myst/lectures/cass_fiscal_2.md"
       },
       {
-        "text": "The theorem applies to the Cobb-Douglas production function because we it  displays constant returns to scale: for .",
+        "text": "The theorem applies to the Cobb-Douglas production function because we it  displays constant returns to scale:",
         "source": "lecture-python.myst/lectures/cass_koopmans_2.md"
       },
       {
-        "text": "We consider two alternative assumptions about factor prices: * *Small open economy:*  and  are exogenous and constant. * *Closed economy:* Factor prices are determined by marginal products from a Cobb-Douglas production function: where  is aggregate labor input in efficiency units and  is capital's share of income.",
+        "text": "* *Small open economy:*  and  are exogenous and constant. * *Closed economy:* Factor prices are determined by marginal products from a Cobb-Douglas production function:",
         "source": "lecture-python.myst/lectures/two_computation.md"
       }
     ],
@@ -160,11 +160,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Having computed an allocation that solves the planning problem, we can readily compute a competitive equilibrium via the following steps that, as we’ll see, relies heavily on the `Big K, little k`, `Big C, little c` logic mentioned earlier: - a competitive equilbrium allocation equals the allocation chosen by the planner - competitive equilibrium prices and the value of a firm’s equity are encoded in shadow prices from the planning problem that depend on Big  and Big .",
+        "text": "- a competitive equilbrium allocation equals the allocation chosen by the planner - competitive equilibrium prices and the value of a firm’s equity are encoded in shadow prices from the planning problem that depend on Big  and Big .",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Let -  be consumer  ’s purchases of claims on time  consumption in state -  be a pricing kernel for one-period Arrow securities -  be consumer 's intial share of the firm, -  be the fraction of a firm’s shares purchased by consumer  at time -  be the value of the representative firm -  be the value of equity issued by the representative firm -  be two scalars and  a function that we use to construct a guess about an equilibrium  pricing kernel for Arrow securities We proceed  to describe constrained optimum problems faced by consumers and a representative firm in a competitive equilibrium.",
+        "text": "Having computed an allocation that solves the planning problem, we can readily compute a competitive equilibrium via the following steps that, as we’ll see, relies heavily on the `Big K, little k`, `Big C, little c` logic mentioned earlier:",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
@@ -172,7 +172,7 @@
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "To pose a consumer’s problem in a competitive equilibrium, we require not only the above guess for the Arrow securities pricing kernel but the value of equity : Let  be the value of equity implied by Arrow securities price function {eq}`arrowprices` and formula {eq}`tildeV2`.",
+        "text": "To pose a consumer’s problem in a competitive equilibrium, we require not only the above guess for the Arrow securities pricing kernel but the value of equity :",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
@@ -210,23 +210,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Evaluating the integral in the definition of consumer surplus {eq}`eq:cstm_spls` gives Let a quantity  be given and let  be the corresponding price on the inverse supply curve.",
+        "text": "* inverse demand curves * inverse supply curves * consumer surplus * producer surplus * integration * social welfare as the sum of consumer and producer surpluses * the relationship between  equilibrium quantity and social welfare optimum",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "Evaluating the integral in the definition of producer surplus {eq}`eq:pdcr_spls` gives Sometimes economists measure social welfare by a **welfare criterion** that equals consumer surplus plus producer surplus, assuming that consumers and producers pay the same price: Evaluating the integrals gives Here is a Python function that evaluates this social welfare at a given quantity  and a fixed set of parameters.",
+        "text": "Consumer surplus provides a measure of total consumer welfare at quantity .",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "Key infrastructure concepts that we will encounter in this lecture are: * inverse demand curves * inverse supply curves * consumer surplus * producer surplus * integration * social welfare as the sum of consumer and producer surpluses * the relationship between  equilibrium quantity and social welfare optimum In our exposition we will use the following Python imports.",
+        "text": "Evaluating the integral in the definition of consumer surplus {eq}`eq:cstm_spls` gives",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "Solving for  yields Let's remember the quantity  given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer surplus plus producer surplus.",
+        "text": "Let's remember the quantity  given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer surplus plus producer surplus.",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "The **consumer surplus** of the -th consumer is * if , then the consumer buys and gets surplus * if , then the consumer does not buy and gets surplus For example, if the price is , then consumer 1 gets surplus .",
+        "text": "Reasoning by analogy with the discrete case, the area under the demand curve and above the price is called the **consumer surplus**, and is a measure of total gains from trade on the part of consumers.",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       }
     ],
@@ -249,7 +249,7 @@
         "source": "lecture-python-advanced.myst/lectures/smoothing.md"
       },
       {
-        "text": "As above with the consumption-smoothing model, we can solve the time  budget constraint forward to obtain which can be rearranged to become which states that the present value of government purchases equals the value of government assets at  plus the present value of tax receipts.",
+        "text": "As above with the consumption-smoothing model, we can solve the time  budget constraint forward to obtain",
         "source": "lecture-python-advanced.myst/lectures/smoothing_tax.md"
       },
       {
@@ -257,7 +257,7 @@
         "source": "lecture-python-advanced.myst/lectures/smoothing_tax.md"
       },
       {
-        "text": "For each version of a consumption-smoothing model,  a tax-smoothing counterpart can be obtained simply by relabeling * consumption as tax collections * a consumer's one-period utility function as a government's one-period loss function from collecting taxes that impose deadweight welfare losses * a consumer's  nonfinancial income as a government's purchases * a consumer's *debt* as a government's *assets* Thus, we can convert  the consumption-smoothing models in lecture {doc}`Consumption Smoothing with Complete and Incomplete Markets ` into  tax-smoothing models by setting , , and ,  where  is total tax collections,  is an exogenous government expenditures process, and  is the government's holdings of one-period risk-free bonds coming maturing at the due at the beginning of time .",
+        "text": "For each version of a consumption-smoothing model,  a tax-smoothing counterpart can be obtained simply by relabeling",
         "source": "lecture-python-advanced.myst/lectures/smoothing_tax.md"
       }
     ],
@@ -301,19 +301,19 @@
         "source": "lecture-python-advanced.myst/lectures/coase.md"
       },
       {
-        "text": "Given a **cost function** , the (discrete) **optimal transport problem** is Given our discreteness  assumptions about  and , the problem admits an integer solution , i.e.,  is a non-negative integer for each .",
+        "text": "* store the cost function as a  matrix with entry  equal to  if  and  or  and  or equal to  if  and  belong to the same side",
         "source": "lecture-python-advanced.myst/lectures/match_transport.md"
       },
       {
-        "text": "In the following implementation we assume that the cost function is  for  i.e.  for Hence, our problem is Let's start setting up some Python code.",
+        "text": "Given a **cost function** , the (discrete) **optimal transport problem** is",
         "source": "lecture-python-advanced.myst/lectures/match_transport.md"
       },
       {
-        "text": "The cost function is stored as an  matrix with -entry equal to  i.e., the cost of matching an agent of type  with an agent of type +++ {\"user_expressions\": []} Let's consider a random instance with given numbers of types  and  and a given number of agents.",
+        "text": "In the following implementation we assume that the cost function is  for  i.e.  for",
         "source": "lecture-python-advanced.myst/lectures/match_transport.md"
       },
       {
-        "text": "We focus on  a specific instance of an  optimal transport problem: We assume that  and  are finite subsets of  and that the cost function satisfies  for all  for an  that  is *strictly concave* and *strictly increasing* and *grounded* (i.e., ).",
+        "text": "The cost function is stored as an  matrix with -entry equal to  i.e., the cost of matching an agent of type  with an agent of type",
         "source": "lecture-python-advanced.myst/lectures/match_transport.md"
       }
     ],
@@ -358,24 +358,24 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Default values are -0.025 and 0.4, respectively. - : time preference discount factor.",
-        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
-      },
-      {
-        "text": "Default values are respectively -0.025 and 0.4 - : Discount factor.",
-        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
-      },
-      {
-        "text": "In the complete markets economy in {doc}`Irrelevance of Capital Structure with Complete Markets ` - there is a unique  stochastic discount factor that prices all assets - consumers’ portfolio choices are indeterminate - firms' financial structures are indeterminate, so the model embodies an instance of a Modigliani-Miller irrelevance theorem {cite}`Modigliani_Miller_1958` - the aggregate of all firms' financial structures are indeterminate, a consequence of there being redundant assets In the incomplete markets economy studied here - there is a not a unique equilibrium stochastic discount factor - different stochastic discount factors price different assets - consumers’ portfolio choices are determinate - while **individual** firms' financial structures are indeterminate, thus conforming to part of a Modigliani-Miller theorem, {cite}`Modigliani_Miller_1958`, the **aggregate**  of all firms' financial structures **is** determinate.",
-        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
-      },
-      {
-        "text": "As in lectures {doc}`optimal taxation without state-contingent debt ` and {doc}`optimal taxation with state-contingent debt `, we assume that the representative agent has utility function and set  , , and the  discount factor .",
+        "text": "and set  , , and the  discount factor .",
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
       },
       {
-        "text": "BEGS call the **effective return** on risk-free debt and they call the **effective government deficit**. **Step 3:** With the preceding objects in hand, for a given , we seek a  that satisfies This equation says that at a constant discount factor ,  equivalent government debt  equals the present value of the mean effective government **surplus**. **Another typo alert**: there is a sign error in equation (46) of BEGS {cite}`BEGS1` --the left side should be multiplied by . * We have made this correction in the above equation.",
+        "text": "This equation says that at a constant discount factor ,  equivalent government debt  equals the present value of the mean effective government **surplus**.",
         "source": "lecture-python-advanced.myst/lectures/amss3.md"
+      },
+      {
+        "text": "*  is a time discount factor *  is an increasing and strictly concave utility function",
+        "source": "lecture-python-advanced.myst/lectures/arellano.md"
+      },
+      {
+        "text": "*  is a (population) least squares regression coefficient of gross return  on stochastic discount factor",
+        "source": "lecture-python-advanced.myst/lectures/asset_pricing_lph.md"
+      },
+      {
+        "text": "* assets whose returns are **positively** correlated with the stochastic discount factor (SDF)  have expected returns **lower** than the risk-free rate * assets whose returns are **negatively** correlated with the SDF  have expected returns **higher** than the risk-free rate",
+        "source": "lecture-python-advanced.myst/lectures/asset_pricing_lph.md"
       }
     ],
     "source": "glossary/zh-cn (economics)"
@@ -389,7 +389,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Under the assumption of risk neutrality,  the price of the option is the expected discounted payoff: \\mathbb E \\max\\{ S_n - K, 0 \\} \\approx \\frac{1}{M} \\sum_{m=1}^M \\max \\{S_n^m - K, 0 \\} where *  is lognormally distributed and *  is IID and standard normal.",
+        "text": "Under the assumption of risk neutrality,  the price of the option is the expected discounted payoff:",
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       }
     ],
@@ -408,7 +408,7 @@
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "The distribution dynamics in {eq}`statd_fdd` are then replaced by Here  and  are cdfs representing the distribution of the current state and next period state.",
+        "text": "The distribution dynamics in {eq}`statd_fdd` are then replaced by",
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
@@ -416,7 +416,7 @@
         "source": "lecture-python.myst/lectures/perm_income.md"
       },
       {
-        "text": "In addition to what's in Anaconda, this lecture will need the following libraries: This notebook gives an introduction to wealth distribution dynamics, with a focus on * modeling and computing the wealth distribution via simulation, * measures of inequality such as the Lorenz curve and Gini coefficient, and * how inequality is affected by the properties of wage income and returns on assets.",
+        "text": "This notebook gives an introduction to wealth distribution dynamics, with a focus on",
         "source": "lecture-python.myst/lectures/wealth_dynamics.md"
       }
     ],
@@ -431,7 +431,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In particular, to initiate a fixed point of the dynamic Laffer curve dynamics, we set To start, let's write some code to verify that if we initial   appropriately, the inflation rate  will be constant for all  (at either  or  depending on the initial condition) The following code verifies this.",
+        "text": "In particular, to initiate a fixed point of the dynamic Laffer curve dynamics, we set",
         "source": "lecture-python-intro/lectures/laffer_adaptive.md"
       },
       {
@@ -454,7 +454,7 @@
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "For example, if a dynamic model predicts that inflation always converges to some kind of steady state, then the model gives a sharp prediction. (The prediction might be wrong, but even this is helpful, because we can judge the quality of the model.) Notice that, in the figure above, the sequence  seems to be converging to a limiting distribution, suggesting some kind of stability.",
+        "text": "For example, if a dynamic model predicts that inflation always converges to some kind of steady state, then the model gives a sharp prediction.",
         "source": "lecture-python-intro/lectures/ar1_processes.md"
       },
       {
@@ -466,7 +466,7 @@
         "source": "lecture-python-intro/lectures/monte_carlo.md"
       },
       {
-        "text": "Recall that, in our lecture on {ref}`Markov chains ` we studied a dynamic model of business cycles where the states are * \"ng\" = \"normal growth\" * \"mr\" = \"mild recession\" * \"sr\" = \"severe recession\" Let's examine the following figure This is an example of a network, where the set of nodes  equals the states: The edges between the nodes show the one month transition probabilities.",
+        "text": "Recall that, in our lecture on {ref}`Markov chains ` we studied a dynamic model of business cycles where the states are",
         "source": "lecture-python-intro/lectures/networks.md"
       }
     ],
@@ -489,11 +489,11 @@
         "source": "lecture-python-intro/lectures/solow.md"
       },
       {
-        "text": "The Epstein--Zin--Weil specification combines current consumption with a certainty equivalent of future utility through a CES aggregator: where  is the intertemporal elasticity of substitution and the certainty equivalent uses the risk-aversion parameter : Let , so .",
+        "text": "*Type I agent (Kreps--Porteus--Epstein--Zin--Tallarini)* with - a discount factor ; - an intertemporal elasticity of substitution fixed at ; - a risk-aversion parameter ; and - an approximating conditional density  for shocks and its implied joint distribution .",
         "source": "lecture-python.myst/lectures/doubts_or_variability.md"
       },
       {
-        "text": "We compare four preference specifications over consumption plans . *Type I agent (Kreps--Porteus--Epstein--Zin--Tallarini)* with - a discount factor ; - an intertemporal elasticity of substitution fixed at ; - a risk-aversion parameter ; and - an approximating conditional density  for shocks and its implied joint distribution . *Type II agent (multiplier preferences)* with - ; - IES ; - unit risk aversion; - an approximating model ; and - a penalty parameter  that discourages probability distortions using relative entropy. *Type III agent (constraint preferences)* with - ; - IES ; - unit risk aversion; - an approximating model ; and - a bound  on discounted relative entropy. *Type IV agent (pessimistic ex post Bayesian)* with - ; - IES ; - unit risk aversion; and - a single pessimistic joint distribution  induced by the type II worst-case distortion.",
+        "text": "where  is the intertemporal elasticity of substitution and the certainty equivalent uses the risk-aversion parameter :",
         "source": "lecture-python.myst/lectures/doubts_or_variability.md"
       }
     ],
@@ -508,7 +508,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap  solves an \"equalizing\" equation that sets the present value not going to college equal to the present value of going to college: or This \"indifference condition\"  is the heart of the model.",
+        "text": "We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap  solves an \"equalizing\" equation that sets the present value not going to college equal to the present value of going to college:",
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       },
       {
@@ -527,23 +527,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "A version of the  no-arbitrage-in-equilibrium argument that we presented earlier implies that the value of equity and the price of bonds are Consequently, the value of the firm is which is the same expression that we obtained above when we assumed that the firm issued only equity.",
+        "text": "- a competitive equilbrium allocation equals the allocation chosen by the planner - competitive equilibrium prices and the value of a firm’s equity are encoded in shadow prices from the planning problem that depend on Big  and Big .",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Having computed an allocation that solves the planning problem, we can readily compute a competitive equilibrium via the following steps that, as we’ll see, relies heavily on the `Big K, little k`, `Big C, little c` logic mentioned earlier: - a competitive equilbrium allocation equals the allocation chosen by the planner - competitive equilibrium prices and the value of a firm’s equity are encoded in shadow prices from the planning problem that depend on Big  and Big .",
+        "text": "- an individual consumer chooses its own (infinesimal) part of  taking prices as given - an individual firm chooses its own (infinitesmimal) part of  taking prices as - equilibrium prices depend on the `Big K, Big C` objects and",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "In addition to what's in Anaconda, this lecture will need the following libraries: This is a prolegomenon to another lecture {doc}`Equilibrium Capital Structures with Incomplete Markets ` about a model with incomplete markets authored by Bisin, Clementi, and Gottardi {cite}`BCG_2018`.",
+        "text": "A version of the  no-arbitrage-in-equilibrium argument that we presented earlier implies that the value of equity and the price of bonds are",
+        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
+      },
+      {
+        "text": "Having computed an allocation that solves the planning problem, we can readily compute a competitive equilibrium via the following steps that, as we’ll see, relies heavily on the `Big K, little k`, `Big C, little c` logic mentioned earlier:",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
         "text": "In {doc}`Equilibrium Capital Structures with Incomplete Markets `, we will assume that markets are (very) incomplete – we’ll shut down markets in almost all Arrow securities.",
-        "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
-      },
-      {
-        "text": "Let -  be consumer  ’s purchases of claims on time  consumption in state -  be a pricing kernel for one-period Arrow securities -  be consumer 's intial share of the firm, -  be the fraction of a firm’s shares purchased by consumer  at time -  be the value of the representative firm -  be the value of equity issued by the representative firm -  be two scalars and  a function that we use to construct a guess about an equilibrium  pricing kernel for Arrow securities We proceed  to describe constrained optimum problems faced by consumers and a representative firm in a competitive equilibrium.",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       }
     ],
@@ -558,7 +558,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The consumption Euler equation for a representative household able to trade only one-period risk-free debt with one-period gross interest rate  is Substituting this expression into the government’s budget constraint {eq}`TS_gov_wo` yields: Components of  on the right side depend on , but the left side is required to depend only on  . **This is what it means for one-period government debt to be risk-free**.",
+        "text": "The consumption Euler equation for a representative household able to trade only one-period risk-free debt with one-period gross interest rate  is",
         "source": "lecture-python-advanced.myst/lectures/amss.md"
       },
       {
@@ -566,7 +566,7 @@
         "source": "lecture-python-advanced.myst/lectures/chang_credible.md"
       },
       {
-        "text": "To bring out a recursive structure inherent in the Ramsey problem, Chang defines the set Equation {eq}`eqn_chang_ramsey4` inherits from the household’s Euler equation for money holdings the property that the value of  consistent with the representative household’s choices depends on .",
+        "text": "Equation {eq}`eqn_chang_ramsey4` inherits from the household’s Euler equation for money holdings the property that the value of  consistent with the representative household’s choices depends on .",
         "source": "lecture-python-advanced.myst/lectures/chang_ramsey.md"
       },
       {
@@ -574,7 +574,7 @@
         "source": "lecture-python-advanced.myst/lectures/coase.md"
       },
       {
-        "text": "First order conditions for the nonstochastic problem are Substituting the demand function {eq}`town2` for , imposing the condition  that makes representative firm be representative, and using  definition {eq}`town7` of , the Euler equation {eq}`town4` lagged by one period can be expressed as or where we define  by We can write  Euler equation {eq}`town4` as: In addition, we have the law of motion for , {eq}`town2a`, and the demand equation {eq}`town2`.",
+        "text": "Substituting the demand function {eq}`town2` for , imposing the condition  that makes representative firm be representative, and using  definition {eq}`town7` of , the Euler equation {eq}`town4` lagged by one period can be expressed as or",
         "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
       }
     ],
@@ -589,11 +589,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "A scalar random variable  with probability density  affects both - the  return in period  from investing in physical capital in period . - exogenous period  endowments of the consumption good for agents of types  and .",
+        "text": "- the  return in period  from investing in physical capital in period . - exogenous period  endowments of the consumption good for agents of types  and .",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
-        "text": "Consumers of type  own the following exogenous quantities of the consumption good in periods  and : where Consumers also own shares in  a firm that operates the technology for converting nonnegative amounts of the time  consumption good one-for-one into a capital good  that produces units of the time  consumption good in time  state .",
+        "text": "Consumers of type  own the following exogenous quantities of the consumption good in periods  and :",
         "source": "lecture-python-advanced.myst/lectures/BCG_complete_mkts.md"
       },
       {
@@ -601,12 +601,12 @@
         "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
       },
       {
-        "text": "This lecture studies a special  AMSS model in which * The exogenous state variable  is governed by  a finite-state Markov chain. * With an arbitrary budget-feasible initial level of government debt, the measurability  constraints - bind for many periods, but . - eventually, they stop binding evermore, so that - in the tail of the Ramsey plan, the Lagrange multipliers  on the AMSS implementability constraints {eq}`TS_gov_wo4`  are zero. * After the implementability constraints {eq}`TS_gov_wo4` no longer bind in the tail of the AMSS Ramsey plan - history dependence of the AMSS state variable  vanishes and   becomes a time-invariant function of the Markov state . - the par value of government debt becomes **constant over time** so that  for  for a sufficiently large . - , so that the tail of the Ramsey plan instructs  the government always to make a constant par value of risk-free one-period loans **to** the private sector. - the one-period gross interest rate  on risk-free debt  converges to a time-invariant function of the Markov state . * For a **particular**  (i.e., a positive level of initial government **loans** to the private sector), the measurability constraints **never** bind. * In this special case - the **par value**   of government debt at time  and Markov state   is constant across time and states, but . - the **market value**  of government debt at time   varies as a time-invariant function of the Markov state . - fluctuations in the interest rate make gross earnings on government debt  fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures. - the state variable  in a recursive representation of a Ramsey plan is a time-invariant function of the Markov state for . * In this special case, the Ramsey allocation in the AMSS model agrees with that in a Lucas-Stokey {cite}`LucasStokey1983` complete markets model in which the same amount of state-contingent debt falls due in all states tomorrow - it is a situation in which  the Ramsey planner loses nothing from not being  able to  trade state-contingent debt and being restricted to exchange only risk-free debt  debt. * This outcome emerges only when we initialize government debt at a particular .",
-        "source": "lecture-python-advanced.myst/lectures/amss2.md"
-      },
-      {
         "text": "A small open economy is endowed with an exogenous stochastically fluctuating potential output stream .",
         "source": "lecture-python-advanced.myst/lectures/arellano.md"
+      },
+      {
+        "text": "At this point  is an arbitrary exogenous policy.",
+        "source": "lecture-python-advanced.myst/lectures/calvo.md"
       }
     ],
     "source": "glossary/zh-cn (economics)"
@@ -620,7 +620,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Setting  and using homogeneity of degree one now yields With  , the final expression for capital dynamics is Our aim is to learn about the evolution of  over time, given an exogenous initial capital stock  .",
+        "text": "Our aim is to learn about the evolution of  over time, given an exogenous initial capital stock  .",
         "source": "lecture-python-intro/lectures/solow.md"
       }
     ],
@@ -635,7 +635,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "He  used this theory to guide his monetary and fiscal policies * a classical **inflation-tax** theory of inflation in which Philip Cagan's ({cite}`Cagan`) demand for money studied in this lecture  {doc}`cagan_ree` is a key component * This theory helps  explain French price level and money supply data from 1794 to 1797 * a **legal restrictions**  or **financial repression** theory of the demand for real balances * The Twelve Members comprising the Committee of Public Safety who adminstered the Terror from June 1793 to July 1794 used this theory to shape their monetary policy We use matplotlib to replicate several of the graphs with which  {cite}`sargent_velde1995` portrayed outcomes of these experiments This lecture uses data from three spreadsheets assembled by {cite}`sargent_velde1995`: * datasets/fig_3.xlsx * datasets/dette.xlsx * datasets/assignat.xlsx We'll start by using `matplotlib` to construct several  graphs that will provide important historical context.",
+        "text": "* a **legal restrictions**  or **financial repression** theory of the demand for real balances",
         "source": "lecture-python-intro/lectures/french_rev.md"
       },
       {
@@ -654,11 +654,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The outcome that the quantity determined by equation {eq}`eq:old1` equates supply to demand brings us a *key finding*: *  a competitive equilibrium quantity maximizes our welfare criterion This is a version of the first fundamental welfare theorem, It also brings a useful **competitive equilibrium computation strategy:** * after solving the welfare problem for an optimal quantity, we can read a competitive equilibrium price from either supply price or demand price at the competitive equilibrium quantity In a {doc}`later lecture `, we'll derive generalizations of the above demand and supply curves from other objects.",
+        "text": "This is a version of the first fundamental welfare theorem,",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "Key infrastructure concepts that we'll encounter in this lecture are * inverse demand curves * marginal utilities of wealth * inverse supply curves * consumer surplus * producer surplus * social welfare as a sum of consumer and producer surpluses * competitive equilibrium We will provide a version of the first fundamental welfare theorem, which was formulated by * Leon Walras * Francis Ysidro Edgeworth * Vilfredo Pareto Important extensions to the key ideas were obtained by * Abba Lerner * Harold Hotelling * Paul Samuelson * Kenneth Arrow * Gerard Debreu We shall describe two classic welfare theorems: * **first welfare theorem:** for a given distribution of wealth among consumers, a competitive  equilibrium  allocation of goods solves a  social planning problem. * **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.",
+        "text": "We will provide a version of the first fundamental welfare theorem, which was formulated by",
         "source": "lecture-python-intro/lectures/supply_demand_multiple_goods.md"
       }
     ],
@@ -673,7 +673,15 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "* this lecture {doc}`fiscal theory of the price level with adaptive expectations ` describes a version of the model that does not impose \"rational expectations\" but instead uses what Cagan and his teacher Milton Friedman called \"adaptive expectations\"",
+        "source": "lecture-python-intro/lectures/cagan_ree.md"
+      },
+      {
         "text": "Elemental forces at work in the fiscal theory of the price level help to understand those episodes.",
+        "source": "lecture-python-intro/lectures/cagan_ree.md"
+      },
+      {
+        "text": "Some of our quantitative experiments with the rational expectations version of the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.",
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       },
       {
@@ -681,11 +689,7 @@
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       },
       {
-        "text": "The \"monetarist\" or \"fiscal theory of price levels\" asserts that * to _start_ a persistent inflation the government begins persistently to run a money-financed government deficit * to _stop_ a persistent inflation the government stops persistently running a money-financed government deficit The model in this lecture is a \"rational expectations\" (or \"perfect foresight\") version of a model that Philip Cagan {cite}`Cagan` used to study the monetary dynamics of hyperinflations.",
-        "source": "lecture-python-intro/lectures/cagan_ree.md"
-      },
-      {
-        "text": "While Cagan didn't use that \"rational expectations\" version of the model, Thomas Sargent {cite}`sargent1982ends` did when he studied the Ends of Four Big Inflations in Europe after World War I. * this lecture {doc}`fiscal theory of the price level with adaptive expectations ` describes a version of the model that does not impose \"rational expectations\" but instead uses what Cagan and his teacher Milton Friedman called \"adaptive expectations\" * a reader of both lectures will notice that the algebra is less complicated in the present rational expectations version of the model * the difference in algebra complications can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters Some of our quantitative experiments with the rational expectations version of the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.",
+        "text": "The \"monetarist\" or \"fiscal theory of price levels\" asserts that",
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       }
     ],
@@ -700,7 +704,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We write this as The precise form of the function  will depend on the choice of flow utility function .",
+        "text": "The precise form of the function  will depend on the choice of flow utility function .",
         "source": "lecture-python-intro/lectures/olg.md"
       }
     ],
@@ -769,15 +773,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "BEGS work with objects  that are related to our notation by In terms of their notation, equation (44) of {cite}`BEGS1` expresses the time  state  government budget constraint as where the dependence on  is to remind us that these objects depend on the tax rate and  is last period's Markov state.",
+        "text": "In terms of their notation, equation (44) of {cite}`BEGS1` expresses the time  state  government budget constraint as",
         "source": "lecture-python-advanced.myst/lectures/amss2.md"
       },
       {
-        "text": "Equation (44) of {cite}`BEGS1` expresses the time  state  government budget constraint as where the dependence on  is meant to remind us that these objects depend on the tax rate;   is last period's Markov state.",
+        "text": "Equation (44) of {cite}`BEGS1` expresses the time  state  government budget constraint as",
         "source": "lecture-python-advanced.myst/lectures/amss3.md"
       },
       {
-        "text": "It is required that time  components . **Definition:** Given , a government policy , price system , and allocation are said to be a *competitive equilibrium* if *  and . * The government budget constraint is satisfied. * Given ,  solves the household’s problem.",
+        "text": "*  and . * The government budget constraint is satisfied. * Given ,  solves the household’s problem.",
         "source": "lecture-python-advanced.myst/lectures/chang_credible.md"
       },
       {
@@ -785,7 +789,7 @@
         "source": "lecture-python-advanced.myst/lectures/chang_credible.md"
       },
       {
-        "text": "It is required that time  components . **Definition:** Given , a government policy , price system , and allocation are said to be a *competitive equilibrium* if *  and . * The government budget constraint is satisfied. * Given ,  solves the household’s problem.",
+        "text": "*  and . * The government budget constraint is satisfied. * Given ,  solves the household’s problem.",
         "source": "lecture-python-advanced.myst/lectures/chang_ramsey.md"
       }
     ],
@@ -819,11 +823,11 @@
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "If someone goes to college for the four years  during which she earns , but then goes to work  immediately after college   and  works for the  years , she earns present value where The present value   is the \"human wealth\" at the beginning of time  of someone who chooses to attend college for four years and then start to work at time  at the wage of a college graduate.",
+        "text": "The present value   is the \"human wealth\" at the beginning of time  of someone who chooses to attend college for four years and then start to work at time  at the wage of a college graduate.",
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       },
       {
-        "text": "Let *  be the gross rate of return on a one-period bond *  denote the years that a person either works or attends college *  denote the first period after high school that a person can work if he does not go to college *  denote the last period  that a person  works *  be the wage at time  of a high school graduate *  be the wage at time  of a college graduate *  be the (gross) rate of growth of wages of a  high school graduate, so that *  be the (gross) rate of growth of wages of a  college  graduate, so that *  be the upfront monetary costs of going to college We now compute present values that a new high school graduate earns if * he goes to work immediately and earns wages paid to someone without a college education * he goes to college for four years and after graduating earns wages paid to a college graduate If someone goes to work immediately after high school  and  works for the   years , she earns present value where The present value  is the \"human wealth\" at the beginning of time  of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.",
+        "text": "The present value  is the \"human wealth\" at the beginning of time  of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.",
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       }
     ],
@@ -842,19 +846,11 @@
         "source": "lecture-python-intro/lectures/long_run_growth.md"
       },
       {
-        "text": "In the following graph, please watch for - impact of trade policy (Navigation Act). - productivity changes brought by the Industrial Revolution. - how the US gradually approaches and then surpasses the UK, setting the stage for the ''American Century''. - the often unanticipated consequences of wars. - interruptions and scars left by business cycle recessions and depressions.",
-        "source": "lecture-python-intro/lectures/long_run_growth.md"
-      },
-      {
-        "text": "Let's look at the United States (USA), United Kingdom (GBR), and China (CHN) The preceding graph of per capita GDP strikingly reveals how the spread of the Industrial Revolution has over time gradually lifted the living standards of substantial groups of people - most of the growth happened in the past 150 years after the Industrial Revolution. - per capita GDP in the US and UK rose and diverged from that of China from 1820 to 1940. - the gap has closed rapidly after 1950 and especially after the late 1970s. - these outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify.",
+        "text": "The preceding graph of per capita GDP strikingly reveals how the spread of the Industrial Revolution has over time gradually lifted the living standards of substantial groups of people",
         "source": "lecture-python-intro/lectures/long_run_growth.md"
       },
       {
         "text": "These graphs will portray how the \"Industrial Revolution\" began in Britain in the late 18th century, then migrated to one country after another.",
-        "source": "lecture-python-intro/lectures/long_run_growth.md"
-      },
-      {
-        "text": "Thus, the graph indicates - a long economic downturn and stagnation after the Closed-door Policy by the Qing government. - China's very different experience than the UK's after the onset of the industrial revolution in the UK. - how the Self-Strengthening Movement seemed mostly to help China to grow. - how stunning have been the growth achievements of modern Chinese economic policies by the PRC that culminated with its late 1970s reform and liberalization.",
         "source": "lecture-python-intro/lectures/long_run_growth.md"
       }
     ],
@@ -873,19 +869,19 @@
         "source": "lecture-python-intro/lectures/laffer_adaptive.md"
       },
       {
-        "text": "As promised at the start of this lecture, we have encountered these concepts from macroeconomics: * an **inflation tax** that a government gathers by printing paper or electronic money * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria Staring at the paths of rates of return on the price level in  figure  {numref}`R0_path` and price levels in  {numref}`p0_path` show indicate that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve displayed in figure  {numref}`infl_tax`.",
+        "text": "* all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails * there is a unique equilibrium path associated with \"plausible\" statements about how reductions in government deficits affect a stationary  inflation rate",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
-        "text": "In this lecture, we'll roll up our sleeves and solve those equations in two different ways. (One of the methods for solving vector linear  difference equations will take advantage of a decomposition of a matrix that is studied in this lecture {doc}`eigen_I`.) In this lecture we will encounter these concepts from macroeconomics: * an **inflation tax** that a government gathers by printing paper or electronic money * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate * a peculiar comparative stationary-state outcome connected with that stationary inflation rate: it asserts that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources by printing money.",
+        "text": "* an **inflation tax** that a government gathers by printing paper or electronic money * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
-        "text": "The quantity  can be interpreted as an **inflation tax rate** that the government imposes on holders of its currency.",
+        "text": "On grounds of plausibility, we recommend following many macroeconomists in selecting the unique equilibrium that converges to the lower stationary inflation tax rate.",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
-        "text": "They satisfy  and are affiliated with a higher inflation tax rate  and a lower inflation tax rate .",
+        "text": "Staring at the paths of rates of return on the price level in  figure  {numref}`R0_path` and price levels in  {numref}`p0_path` show indicate that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve displayed in figure  {numref}`infl_tax`.",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       }
     ],
@@ -929,11 +925,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In particular, to initiate a fixed point of the dynamic Laffer curve dynamics, we set To start, let's write some code to verify that if we initial   appropriately, the inflation rate  will be constant for all  (at either  or  depending on the initial condition) The following code verifies this.",
+        "text": "As in our earlier lecture {doc}`money_inflation_nonlinear`, we can compute the two prospective limiting values for  by studying the steady-state Laffer curve.",
         "source": "lecture-python-intro/lectures/laffer_adaptive.md"
       },
       {
-        "text": "It will turn out that * if they exist, limiting values  and  will be equal * if  limiting values exist, there are two possible limiting values, one high, one low * unlike the outcome in lecture {doc}`money_inflation_nonlinear`, for almost all initial log price levels and expected inflation rates , the limiting  is  the **lower** steady state  value * for each of the two possible limiting values  ,there is a unique initial log price level  that implies that  for all * this unique initial log price level solves * the preceding equation for  comes from As in our earlier lecture {doc}`money_inflation_nonlinear`, we can compute the two prospective limiting values for  by studying the steady-state Laffer curve.",
+        "text": "In particular, to initiate a fixed point of the dynamic Laffer curve dynamics, we set",
         "source": "lecture-python-intro/lectures/laffer_adaptive.md"
       },
       {
@@ -941,11 +937,11 @@
         "source": "lecture-python-intro/lectures/laffer_adaptive.md"
       },
       {
-        "text": "We find two steady state  values The following figure plots the steady-state Laffer curve together with the two stationary inflation rates.",
+        "text": "The following figure plots the steady-state Laffer curve together with the two stationary inflation rates.",
         "source": "lecture-python-intro/lectures/laffer_adaptive.md"
       },
       {
-        "text": "As promised at the start of this lecture, we have encountered these concepts from macroeconomics: * an **inflation tax** that a government gathers by printing paper or electronic money * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria Staring at the paths of rates of return on the price level in  figure  {numref}`R0_path` and price levels in  {numref}`p0_path` show indicate that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve displayed in figure  {numref}`infl_tax`.",
+        "text": "* an **inflation tax** that a government gathers by printing paper or electronic money * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       }
     ],
@@ -960,11 +956,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In addition to what's in Anaconda, this lecture will need the following libraries: This model is sometimes called the **lake model** because there are two pools of workers: 1. those who are currently employed. 2. those who are currently unemployed but are seeking employment.",
+        "text": "The graph below illustrates the lake model.",
         "source": "lecture-python-intro/lectures/lake_model.md"
       },
       {
-        "text": "The graph below illustrates the lake model.",
+        "text": "This model is sometimes called the **lake model** because there are two pools of workers:",
         "source": "lecture-python-intro/lectures/lake_model.md"
       },
       {
@@ -972,11 +968,11 @@
         "source": "lecture-python-intro/lectures/lake_model.md"
       },
       {
-        "text": "Here we calculate  at the default parameters: In this section, we will put the lake model to work, examining outcomes associated with different levels of unemployment compensation.",
+        "text": "In the previous lecture, we studied a lake model of unemployment and employment where the transition rates between states were exogenous parameters.",
         "source": "lecture-python.myst/lectures/endogenous_lake.md"
       },
       {
-        "text": "In addition to what's in Anaconda, this lecture will need the following libraries: This lecture is a continuation of the {doc}`lake model lecture `.",
+        "text": "In this section, we will put the lake model to work, examining outcomes associated with different levels of unemployment compensation.",
         "source": "lecture-python.myst/lectures/endogenous_lake.md"
       }
     ],
@@ -991,15 +987,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "If we solve the first block of equations of {eq}`eq:inout_1` for gross output  we get where the matrix  is sometimes called  a **Leontief Inverse**.",
+        "text": "Now, let's compute the **Leontief inverse** matrix",
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
-        "text": "The dual problem can be graphically represented as follows. +++ {\"user_expressions\": []} We have discussed that gross output  is given by {eq}`eq:inout_2`, where  is called the Leontief Inverse.",
+        "text": "We have discussed that gross output  is given by {eq}`eq:inout_2`, where  is called the Leontief Inverse.",
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
-        "text": "To assure that the solution  of {eq}`eq:inout_2` is a positive vector, the  following **Hawkins-Simon conditions** suffice: Let's check the **Hawkins-Simon conditions** Now, let's compute the **Leontief inverse** matrix +++ {\"user_expressions\": []} The second equation of {eq}`eq:inout_1` can be written or where For , the th component  of  is the amount of labor that is required to produce one unit of final output of good .",
+        "text": "where the matrix  is sometimes called  a **Leontief Inverse**.",
         "source": "lecture-python-intro/lectures/input_output.md"
       }
     ],
@@ -1014,11 +1010,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Given the Lorenz curve  defined above, the top share is defined as Here  is the floor function, which rounds any number down to the integer less than or equal to that number.",
-        "source": "lecture-python-intro/lectures/inequality.md"
-      },
-      {
-        "text": "In fact the Gini coefficient can also be expressed as where  is the area between the 45-degree line of perfect equality and the Lorenz curve, while  is the area below the Lorenze curve -- see {numref}`lorenz_gini2`.",
+        "text": "Given the Lorenz curve  defined above, the top share is defined as",
         "source": "lecture-python-intro/lectures/inequality.md"
       },
       {
@@ -1031,6 +1023,10 @@
       },
       {
         "text": "In this section we discuss the Gini coefficient and its relationship to the Lorenz curve.",
+        "source": "lecture-python-intro/lectures/inequality.md"
+      },
+      {
+        "text": "Now the Lorenz curve  is formed from these data points using interpolation.",
         "source": "lecture-python-intro/lectures/inequality.md"
       }
     ],
@@ -1045,11 +1041,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The interest rate reflects the marginal product of capital, which is high when capital stock is low. +++ Previously, in our examples, we looked at the case of log utility.",
+        "text": "The interest rate reflects the marginal product of capital, which is high when capital stock is low.",
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
-        "text": "It is useful to recall the following calculations for the marginal product of capital and the marginal product of labor (Here we are using that  for all , so that .) We now compute **first-order necessary conditions** for extremization of  Lagrangian {eq}`eq:Lagrangian201`: In computing  {eq}`constraint2` we recognize that  appears in both the time   and time  feasibility constraints {eq}`allocation`.",
+        "text": "It is useful to recall the following calculations for the marginal product of capital",
         "source": "lecture-python.myst/lectures/cass_koopmans_1.md"
       },
       {
@@ -1084,7 +1080,7 @@
         "source": "lecture-python-advanced.myst/lectures/hs_recursive_models.md"
       },
       {
-        "text": "Then, we renormalize the price vector by using the first consumption good as a numeraire. - Next we use the competitive equilibrium prices to compute each consumer's marginal utility of wealth: c_{i}=\\Pi^{-1}b_{i}-(\\Pi^{\\top}\\Pi)^{-1}\\mu_{i}p c_{i}=\\Pi^{-1}b_{i}-(\\Pi^{\\top}\\Pi)^{-1}\\mu_{i}p \\mu_{i}=\\frac{-W_{i}+p^{\\top}\\left(\\Pi^{-1}b_{i}-e_{i}\\right)}{p^{\\top}(\\Pi^{\\top}\\Pi)^{-1}p} \\sum c_{i}=\\sum e_{i} \\Pi^{-1}\\left(\\sum_{i}b_{i}\\right)-(\\Pi^{\\top}\\Pi)^{-1}p\\left(\\sum_{i}\\mu_{i}\\right)=\\sum_{i}e_{i} p=\\mu^{-1}\\left(\\Pi^{\\top}b-\\Pi^{\\top}\\Pi e\\right) \\mu = \\sum_i\\mu_{i}=\\frac{0 + p^{\\top}\\left(\\Pi^{-1}b-e\\right)}{p^{\\top}(\\Pi^{\\top}\\Pi)^{-1}p}. c=\\Pi^{-1}b-(\\Pi^{\\top}\\Pi)^{-1}\\tilde{\\mu} p \\tilde{\\mu}=\\frac{p^{\\top}\\left(\\Pi^{-1}b-e\\right)}{p^{\\top}(\\Pi^{\\top}\\Pi)^{-1}p} p=\\tilde{\\mu}^{-1}(\\Pi^{\\top}b-\\Pi^{\\top}\\Pi e)",
+        "text": "- Next we use the competitive equilibrium prices to compute each consumer's marginal utility of wealth:",
         "source": "lecture-python-intro/lectures/supply_demand_heterogeneity.md"
       }
     ],
@@ -1114,7 +1110,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The \"monetarist\" or \"fiscal theory of price levels\" asserts that * to _start_ a persistent inflation the government begins persistently to run a money-financed government deficit * to _stop_ a persistent inflation the government stops persistently running a money-financed government deficit The model in this lecture is a \"rational expectations\" (or \"perfect foresight\") version of a model that Philip Cagan {cite}`Cagan` used to study the monetary dynamics of hyperinflations.",
+        "text": "* to _start_ a persistent inflation the government begins persistently to run a money-financed government deficit",
+        "source": "lecture-python-intro/lectures/cagan_ree.md"
+      },
+      {
+        "text": "* to _stop_ a persistent inflation the government stops persistently running a money-financed government deficit",
         "source": "lecture-python-intro/lectures/cagan_ree.md"
       }
     ],
@@ -1139,11 +1139,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "For example, Naive expectations are quite simple and also important in driving the cycle that we found.",
+        "text": "Let's start with naive expectations, which refers to the case where producers expect the next period spot price to be whatever the price is in the current period.",
         "source": "lecture-python-intro/lectures/cobweb.md"
       },
       {
-        "text": "Let's start with naive expectations, which refers to the case where producers expect the next period spot price to be whatever the price is in the current period.",
+        "text": "Naive expectations are quite simple and also important in driving the cycle that we found.",
         "source": "lecture-python-intro/lectures/cobweb.md"
       },
       {
@@ -1162,23 +1162,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In addition to what's in Anaconda, this lecture employs the following libraries: In the linear-quadratic permanent income of consumption smoothing model described in this quantecon lecture, a scalar parameter  plays two roles: - it is a **discount factor** that the consumer applies to future utilities from consumption - it is the reciprocal of the   gross **interest rate** on  risk-free one-period loans That  plays these two roles is essential in delivering the outcome that, **regardless** of the stochastic process that describes his non-financial income, the consumer chooses to make consumption follow a random walk  (see {cite}`Hall1978`).",
+        "text": "- as a **discount factor** applied to future expected one-period utilities, - as the **reciprocal of a gross interest rate** on one-period loans,  and - as a parameter in a first-order moving average that equals  the increment in a consumer's non-financial income",
         "source": "lecture-python-advanced.myst/lectures/cons_news.md"
       },
       {
-        "text": "In this lecture, we assign a third role to : - it describes  a **first-order moving average** process for the growth in non-financial income We study two consumers who have exactly the same nonfinancial income process and who both conform to the linear-quadratic permanent income of consumption smoothing model described here.",
+        "text": "- it describes  a **first-order moving average** process for the growth in non-financial income",
         "source": "lecture-python-advanced.myst/lectures/cons_news.md"
       },
       {
-        "text": "It appears - as a **discount factor** applied to future expected one-period utilities, - as the **reciprocal of a gross interest rate** on one-period loans,  and - as a parameter in a first-order moving average that equals  the increment in a consumer's non-financial income The first representation, which we shall sometimes refer to as the **more informative representation**, is where  is an i.i.d. normally distributed scalar process with means of zero and contemporaneous variances .",
+        "text": "That  plays these two roles is essential in delivering the outcome that, **regardless** of the stochastic process that describes his non-financial income, the consumer chooses to make consumption follow a random walk  (see {cite}`Hall1978`).",
         "source": "lecture-python-advanced.myst/lectures/cons_news.md"
       },
       {
-        "text": "We will construct Figures from Chapter 8 Appendix E of {cite}`HS2013` to illustrate these ideas: The above figure displays the impulse response of consumption and the net-of-interest deficit to the innovations  to the consumer's non-financial income or endowment process.",
+        "text": "The above figure displays the impulse response of consumption and the net-of-interest deficit to the innovations  to the consumer's non-financial income or endowment process.",
         "source": "lecture-python-advanced.myst/lectures/hs_invertibility_example.md"
       },
       {
-        "text": "Define the expected discounted present value of non-financial income which in the spirit of dynamic programming we can write as a *Bellman equation* In our two-state Markov chain setting,  when  and  when .",
+        "text": "Define the expected discounted present value of non-financial income",
         "source": "lecture-python-advanced.myst/lectures/smoothing.md"
       }
     ],
@@ -1201,7 +1201,7 @@
         "source": "lecture-python-advanced.myst/lectures/hs_recursive_models.md"
       },
       {
-        "text": "We'll also need the following imports We use a linear-quadratic version of an economy that Lucas (1978) {cite}`Lucas1978` used to develop an equilibrium theory of asset prices: **Preferences** **Technology** **Information** {cite}`HS2013` show that the time t value of a permanent claim to a stream is: with where The use of  indicates that the first consumption good is the numeraire.",
+        "text": "The use of  indicates that the first consumption good is the numeraire.",
         "source": "lecture-python-advanced.myst/lectures/lucas_asset_pricing_dles.md"
       },
       {
@@ -1209,7 +1209,7 @@
         "source": "lecture-python-advanced.myst/lectures/matsuyama.md"
       },
       {
-        "text": "Then, we renormalize the price vector by using the first consumption good as a numeraire. - Next we use the competitive equilibrium prices to compute each consumer's marginal utility of wealth: c_{i}=\\Pi^{-1}b_{i}-(\\Pi^{\\top}\\Pi)^{-1}\\mu_{i}p c_{i}=\\Pi^{-1}b_{i}-(\\Pi^{\\top}\\Pi)^{-1}\\mu_{i}p \\mu_{i}=\\frac{-W_{i}+p^{\\top}\\left(\\Pi^{-1}b_{i}-e_{i}\\right)}{p^{\\top}(\\Pi^{\\top}\\Pi)^{-1}p} \\sum c_{i}=\\sum e_{i} \\Pi^{-1}\\left(\\sum_{i}b_{i}\\right)-(\\Pi^{\\top}\\Pi)^{-1}p\\left(\\sum_{i}\\mu_{i}\\right)=\\sum_{i}e_{i} p=\\mu^{-1}\\left(\\Pi^{\\top}b-\\Pi^{\\top}\\Pi e\\right) \\mu = \\sum_i\\mu_{i}=\\frac{0 + p^{\\top}\\left(\\Pi^{-1}b-e\\right)}{p^{\\top}(\\Pi^{\\top}\\Pi)^{-1}p}. c=\\Pi^{-1}b-(\\Pi^{\\top}\\Pi)^{-1}\\tilde{\\mu} p \\tilde{\\mu}=\\frac{p^{\\top}\\left(\\Pi^{-1}b-e\\right)}{p^{\\top}(\\Pi^{\\top}\\Pi)^{-1}p} p=\\tilde{\\mu}^{-1}(\\Pi^{\\top}b-\\Pi^{\\top}\\Pi e)",
+        "text": "- First we solve the single representative consumer economy by normalizing . Then, we renormalize the price vector by using the first consumption good as a numeraire.",
         "source": "lecture-python-intro/lectures/supply_demand_heterogeneity.md"
       }
     ],
@@ -1239,7 +1239,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "For each integer , output  in period  is given by the **Cobb-Douglas production function** Here  is capital,  is labor, and   is a parameter (sometimes called the \"output elasticity of capital\").",
+        "text": "Here  is capital,  is labor, and   is a parameter (sometimes called the \"output elasticity of capital\").",
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
@@ -1258,23 +1258,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let: -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a discrete time version of Sargent and Wallace's {cite}`sargent1973stability` perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "text": "The demand for real balances is governed by a discrete time version of Sargent and Wallace's {cite}`sargent1973stability` perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances:",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "We simply constrain  a planner to   choose a time-invariant money growth rate  so that We assume that the government knows the perfect foresight outcome implied by equation {eq}`eq_old2` that  when  for all .",
+        "text": "We assume that the government knows the perfect foresight outcome implied by equation {eq}`eq_old2` that  when  for all .",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "Equation {eq}`eq_old1_new` asserts that the demand for real balances is inversely related to the public's expected rate of inflation, which  equals the actual rate of inflation because there is no uncertainty here. (When there is no uncertainty, an assumption of **rational expectations** that becomes equivalent to  **perfect foresight**).",
+        "text": "(When there is no uncertainty, an assumption of **rational expectations** that becomes equivalent to  **perfect foresight**).",
         "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
       },
       {
-        "text": "Let -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "text": "The demand for real balances is governed by a perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances:",
         "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
       },
       {
-        "text": "Equation {eq}`eq_grad_old1` asserts that the representative agent's demand for real balances is inversely related to the representative agent's expected rate of inflation, which  equals the actual rate of inflation because there is no uncertainty here. (When there is no uncertainty, an assumption of **rational expectations**  becomes equivalent to  **perfect foresight**).",
+        "text": "(When there is no uncertainty, an assumption of **rational expectations**  becomes equivalent to  **perfect foresight**).",
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       }
     ],
@@ -1309,7 +1309,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "First we examine UK GDP growth :::{note} International dollars are a hypothetical unit of currency that has the same purchasing power parity that the U.S.",
+        "text": ":::{note} International dollars are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time. They are also known as Geary–Khamis dollars (GK Dollars). :::",
         "source": "lecture-python-intro/lectures/long_run_growth.md"
       }
     ],
@@ -1322,12 +1322,7 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [
-      {
-        "text": "Thus, the graph indicates - a long economic downturn and stagnation after the Closed-door Policy by the Qing government. - China's very different experience than the UK's after the onset of the industrial revolution in the UK. - how the Self-Strengthening Movement seemed mostly to help China to grow. - how stunning have been the growth achievements of modern Chinese economic policies by the PRC that culminated with its late 1970s reform and liberalization.",
-        "source": "lecture-python-intro/lectures/long_run_growth.md"
-      }
-    ],
+    "contexts": [],
     "source": "glossary/zh-cn (economic policy)"
   },
   {
@@ -1349,19 +1344,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Define steady-state seigniorage as Notice that  only when $\\bar R \\in [\\frac{\\gamma_2}{\\gamma_1}, 1] \\equiv [\\underline R, \\overline R]S(\\bar R) = 0\\bar R  = \\underline R$ or if .",
+        "text": "Define steady-state seigniorage as",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
-        "text": "First, we create a `namedtuple` to store parameters so that we can reuse this `namedtuple` in our functions throughout this lecture Now we compute the  and corresponding revenue Now let's plot seigniorage as a function of alternative potential steady-state values of .",
+        "text": "Let's print the two steady-state rates of return  and the associated seigniorage revenues that the government collects.",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
-        "text": "Let's print the two steady-state rates of return  and the associated seigniorage revenues that the government collects. (By construction, both steady-state rates of return should raise the same amounts real revenue.) We hope that the following code will  confirm this.",
+        "text": "Let's set some parameter values and compute possible steady-state rates of return on currency , the  seigniorage maximizing rate of return on currency, and an object that we'll discuss later, namely, an initial price level  associated with the maximum steady-state rate of return on currency.",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
-        "text": "Let's start with some imports: Let's set some parameter values and compute possible steady-state rates of return on currency , the  seigniorage maximizing rate of return on currency, and an object that we'll discuss later, namely, an initial price level  associated with the maximum steady-state rate of return on currency.",
+        "text": "Maximizing steady-state seigniorage  {eq}`eq:SSsigng` with respect to , we find that the maximizing rate of return on currency is",
         "source": "lecture-python-intro/lectures/money_inflation.md"
       },
       {
@@ -1380,11 +1375,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Evaluating the integral in the definition of producer surplus {eq}`eq:pdcr_spls` gives Sometimes economists measure social welfare by a **welfare criterion** that equals consumer surplus plus producer surplus, assuming that consumers and producers pay the same price: Evaluating the integrals gives Here is a Python function that evaluates this social welfare at a given quantity  and a fixed set of parameters.",
+        "text": "* inverse demand curves * inverse supply curves * consumer surplus * producer surplus * integration * social welfare as the sum of consumer and producer surpluses * the relationship between  equilibrium quantity and social welfare optimum",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "Key infrastructure concepts that we will encounter in this lecture are: * inverse demand curves * inverse supply curves * consumer surplus * producer surplus * integration * social welfare as the sum of consumer and producer surpluses * the relationship between  equilibrium quantity and social welfare optimum In our exposition we will use the following Python imports.",
+        "text": "Here is a Python function that evaluates this social welfare at a given quantity  and a fixed set of parameters.",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
@@ -1392,12 +1387,12 @@
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "This lecture discusses one of the simplest: how free adjustment of prices can maximize a measure of social welfare in the market for a single good.",
+        "text": "Sometimes economists measure social welfare by a **welfare criterion** that equals consumer surplus plus producer surplus, assuming that consumers and producers pay the same price:",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "Key infrastructure concepts that we'll encounter in this lecture are * inverse demand curves * marginal utilities of wealth * inverse supply curves * consumer surplus * producer surplus * social welfare as a sum of consumer and producer surpluses * competitive equilibrium We will provide a version of the first fundamental welfare theorem, which was formulated by * Leon Walras * Francis Ysidro Edgeworth * Vilfredo Pareto Important extensions to the key ideas were obtained by * Abba Lerner * Harold Hotelling * Paul Samuelson * Kenneth Arrow * Gerard Debreu We shall describe two classic welfare theorems: * **first welfare theorem:** for a given distribution of wealth among consumers, a competitive  equilibrium  allocation of goods solves a  social planning problem. * **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.",
-        "source": "lecture-python-intro/lectures/supply_demand_multiple_goods.md"
+        "text": "This lecture discusses one of the simplest: how free adjustment of prices can maximize a measure of social welfare in the market for a single good.",
+        "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       }
     ],
     "source": "glossary/zh-cn (welfare economics)"
@@ -1411,7 +1406,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let's differentiate  and solve using sympy.solve Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the Golden Rule savings rate. **Stochastic Productivity** To bring the Solow--Swan model closer to data, we need to think about handling random fluctuations in aggregate quantities.",
+        "text": "**Stochastic Productivity**",
         "source": "lecture-python-intro/lectures/solow.md"
       }
     ],
@@ -1424,12 +1419,7 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [
-      {
-        "text": "But they set out to remake  the French tax code and the administrative machinery for collecting taxes. * they abolished many taxes * they abolished the Ancient Regimes scheme for *tax farming* * tax farming meant that the government had privatized tax collection by hiring private citizens -- so-called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services * the great chemist Lavoisier was also a tax farmer, one of the reasons that the Committee for Public Safety sent him to the guillotine in 1794 As a consequence of these tax reforms, government tax revenues declined The next figure shows this According to {numref}`fr_fig5`, tax revenues per capita did not rise to their pre 1789 levels until after 1815, when Napoleon Bonaparte was exiled to St Helena and King Louis XVIII was restored to the French Crown. * from 1799 to 1814, Napoleon Bonaparte had other sources of revenues -- booty and reparations from provinces and nations that he defeated in war * from 1789 to 1799, the French Revolutionaries turned to another source to raise resources to pay for government purchases of goods and services and to service French government debt.",
-        "source": "lecture-python-intro/lectures/french_rev.md"
-      }
-    ],
+    "contexts": [],
     "source": "glossary/zh-cn (public finance)"
   },
   {
@@ -1476,10 +1466,6 @@
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       },
       {
-        "text": "So net of monetary cost of college, the present value of attending college as of the first period after high school is We now formulate a pure **equalizing difference** model of the initial college-high school wage gap  that verifies We suppose that  and also   are fixed parameters.",
-        "source": "lecture-python-intro/lectures/equalizing_difference.md"
-      },
-      {
         "text": "The wage gap falls to \"equalize\" the present values of the two types of career, one as a high school worker, the other as a college worker.",
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       },
@@ -1488,7 +1474,11 @@
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       },
       {
-        "text": "We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap  solves an \"equalizing\" equation that sets the present value not going to college equal to the present value of going to college: or This \"indifference condition\"  is the heart of the model.",
+        "text": "We now formulate a pure **equalizing difference** model of the initial college-high school wage gap  that verifies",
+        "source": "lecture-python-intro/lectures/equalizing_difference.md"
+      },
+      {
+        "text": "We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap  solves an \"equalizing\" equation that sets the present value not going to college equal to the present value of going to college:",
         "source": "lecture-python-intro/lectures/equalizing_difference.md"
       }
     ],
@@ -1503,19 +1493,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "To answer this question, we shall eventually evaluate alternative budget feasible consumption paths  using the following utility functional or **welfare criterion**: where .",
+        "text": "To answer this question, we shall eventually evaluate alternative budget feasible consumption paths  using the following utility functional or **welfare criterion**:",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "We can  evaluate  welfare criterion {eq}`welfare` In this section we describe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.",
+        "text": "We can  evaluate  welfare criterion {eq}`welfare`",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       },
       {
-        "text": "Evaluating the integral in the definition of producer surplus {eq}`eq:pdcr_spls` gives Sometimes economists measure social welfare by a **welfare criterion** that equals consumer surplus plus producer surplus, assuming that consumers and producers pay the same price: Evaluating the integrals gives Here is a Python function that evaluates this social welfare at a given quantity  and a fixed set of parameters.",
+        "text": "*  a competitive equilibrium quantity maximizes our welfare criterion",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {
-        "text": "The outcome that the quantity determined by equation {eq}`eq:old1` equates supply to demand brings us a *key finding*: *  a competitive equilibrium quantity maximizes our welfare criterion This is a version of the first fundamental welfare theorem, It also brings a useful **competitive equilibrium computation strategy:** * after solving the welfare problem for an optimal quantity, we can read a competitive equilibrium price from either supply price or demand price at the competitive equilibrium quantity In a {doc}`later lecture `, we'll derive generalizations of the above demand and supply curves from other objects.",
+        "text": "Sometimes economists measure social welfare by a **welfare criterion** that equals consumer surplus plus producer surplus, assuming that consumers and producers pay the same price:",
         "source": "lecture-python-intro/lectures/intro_supply_demand.md"
       },
       {

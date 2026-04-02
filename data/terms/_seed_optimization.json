@@ -20,11 +20,11 @@
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "The first model describes a **Ramsey plan** chosen by a **Ramsey planner** The second model describes a **Ramsey plan** chosen by a **Ramsey planner constrained to choose a time-invariant ** The third model describes a **Markov perfect equilibrium** We'll begin with the timing protocol associated with a Ramsey plan and deploy an application of what we  nickname **dynamic programming squared**.",
+        "text": "We  specify model fundamentals  in  ways that allow us to use linear-quadratic discounted dynamic programming to compute an optimal government plan under each of our timing protocols.",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "We  specify model fundamentals  in  ways that allow us to use linear-quadratic discounted dynamic programming to compute an optimal government plan under each of our timing protocols.",
+        "text": "We'll begin with the timing protocol associated with a Ramsey plan and deploy an application of what we  nickname **dynamic programming squared**.",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       }
     ],
@@ -47,11 +47,11 @@
         "source": "lecture-python-intro/lectures/input_output.md"
       },
       {
-        "text": "By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem. 1.",
+        "text": "**Linear programming** problems either maximize or minimize a linear objective function subject to a set of  linear equality and/or inequality constraints.",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
-        "text": "Install ortools using `pip`. **Linear programming** problems either maximize or minimize a linear objective function subject to a set of  linear equality and/or inequality constraints.",
+        "text": "By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem.",
         "source": "lecture-python-intro/lectures/lp_intro.md"
       },
       {
@@ -70,7 +70,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "As we shall see below, a side condition on the path of  that together with {eq}`onefour` is sufficient for an optimum is All paths that satisfy the Euler equations, except the one that we shall select below, violate this condition and, therefore, evidently lead to (much) lower values of {eq}`oneone` than does the optimal path selected by the solution procedure below.",
+        "text": "All paths that satisfy the Euler equations, except the one that we shall select below, violate this condition and, therefore, evidently lead to (much) lower values of {eq}`oneone` than does the optimal path selected by the solution procedure below.",
         "source": "lecture-python-advanced.myst/lectures/lu_tricks.md"
       },
       {
@@ -105,19 +105,19 @@
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       },
       {
-        "text": "Given , the value iteration algorithm * terminates in a finite number of iterations * returns an -approximation of the optimal value function and an -optimal policy function (unless `iter_max` is reached) (While not explicit, in the actual implementation each algorithm is terminated if the number of iterations reaches `iter_max`) The `DiscreteDP` policy iteration method runs as follows 1.",
+        "text": "* terminates in a finite number of iterations * returns an -approximation of the optimal value function and an -optimal policy function (unless `iter_max` is reached)",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "-  is an optimal policy function if and only if it is -greedy",
+        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
+      },
+      {
+        "text": "Another interesting object is `results.mc`, which is the controlled chain defined by , where  is the optimal policy.",
         "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
       },
       {
         "text": "In other words, it gives the dynamics of the state when the agent follows the optimal policy.",
-        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
-      },
-      {
-        "text": "In the current setting, policy iteration computes an exact optimal policy in finitely many iterations. * See theorem 10.2.6 of EDTC for a proof.",
-        "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
-      },
-      {
-        "text": "It returns an -approximation of the optimal value function and an -optimal policy function (unless `iter_max` is reached).",
         "source": "lecture-python-advanced.myst/lectures/discrete_dp.md"
       }
     ],

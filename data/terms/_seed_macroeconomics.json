@@ -8,11 +8,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "If neither the original box nor the new box contains the other, then it is possible that the utility allocation surfaces for the two boxes may *cross*, in which case there exists no ordering of aggregate consumption that is independent of the utility weights assigned to individual households.",
+        "text": "* these equations will not be sufficient to determine the allocation of aggregate consumption among individual households.",
         "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
       },
       {
-        "text": "In a little more detail, when conditions for Gorman aggregation of preferences are satisfied, we can compute a competitive equilibrium of a heterogeneous-household economy in two steps: solve a representative-agent linear-quadratic planning problem for aggregates, then recover household allocations via a sharing-formula that makes each  household's consumption a household-specific constant share of aggregate consumption. * a household's share parameter will depend on the implicit Pareto weight implied by the initial distribution of endowment.",
+        "text": "Here  is household 's proportional share of aggregate consumption and  is the *deviation* from this proportional share.",
+        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
+      },
+      {
+        "text": "If neither the original box nor the new box contains the other, then it is possible that the utility allocation surfaces for the two boxes may *cross*, in which case there exists no ordering of aggregate consumption that is independent of the utility weights assigned to individual households.",
         "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
       },
       {
@@ -21,10 +25,6 @@
       },
       {
         "text": "The allocation of aggregate consumption across goods and the associated gradient are determined independently of how aggregate utility is divided among consumers.",
-        "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
-      },
-      {
-        "text": "The allocation rule for consumption has the form or equivalently, Here  is household 's proportional share of aggregate consumption and  is the *deviation* from this proportional share.",
         "source": "lecture-python-advanced.myst/lectures/gorman_heterogeneous_households.md"
       }
     ],
@@ -43,7 +43,7 @@
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
-        "text": "The profit maximization problem of the firm is The first-order conditions are obtained by taking the derivative of the objective function with respect to capital and labor respectively and setting them to zero: Using our assumption  allows us to write and Rearranging  gives the aggregate demand for capital at time In Python code this is The next figure plots the supply of capital, as in , as well as the demand for capital, as in , as functions of the interest rate . (For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.) In this section we derive equilibrium conditions and investigate an example.",
+        "text": "Rearranging  gives the aggregate demand for capital at time",
         "source": "lecture-python-intro/lectures/olg.md"
       }
     ],
@@ -87,15 +87,11 @@
         "source": "lecture-python-advanced.myst/lectures/knowing_forecasts_of_others.md"
       },
       {
-        "text": "In the following graph, please watch for - impact of trade policy (Navigation Act). - productivity changes brought by the Industrial Revolution. - how the US gradually approaches and then surpasses the UK, setting the stage for the ''American Century''. - the often unanticipated consequences of wars. - interruptions and scars left by business cycle recessions and depressions.",
-        "source": "lecture-python-intro/lectures/long_run_growth.md"
-      },
-      {
         "text": "The model has a structure similar to ones used in the international real business cycle literature and is in the spirit of an analysis of distorting taxes by {cite:t}`mendoza1998international`.",
         "source": "lecture-python.myst/lectures/cass_fiscal_2.md"
       },
       {
-        "text": "The model chosen for the data collection agency is an aspect of an econometric specification that can make big differences in inferences about the economic structure. {cite:t}`Sargent1989` describes two alternative models of data generation in a {doc}`permanent income ` economy in which the investment accelerator, the mechanism studied in these two quantecon lectures --  {doc}`samuelson` and {doc}`chow_business_cycles` --  shapes  business cycle fluctuations. - In Model 1, the data collecting agency simply reports the error-ridden data that it collects. - In Model 2, the data collection agents first collects error-ridden data that satisfy a classical errors-in-variables model, then filters the data,  and reports the filtered objects.",
+        "text": "{cite:t}`Sargent1989` describes two alternative models of data generation in a {doc}`permanent income ` economy in which the investment accelerator, the mechanism studied in these two quantecon lectures --  {doc}`samuelson` and {doc}`chow_business_cycles` --  shapes  business cycle fluctuations.",
         "source": "lecture-python.myst/lectures/measurement_models.md"
       }
     ],
@@ -126,7 +122,7 @@
         "source": "lecture-python.myst/lectures/perm_income_cons.md"
       },
       {
-        "text": "Under the small open economy assumption, factor prices are fixed at calibrated values; under the closed economy assumption, they are determined by Cobb-Douglas marginal products With `solve_riccati_step` and `forward_moment_step` in hand, the steady-state computation proceeds in three phases. *Phase 1.* The backward recursion scans from age  to , applying `solve_riccati_step` at each age *Phase 2.* The forward recursion propagates means and covariances from age  to *Phase 3.* Aggregating tax revenues, benefit payments, and accidental bequests across cohorts gives the government budget gap A steady state is found when the budget gap equals zero. `ss_imbalance` chains the three phases into a single JIT-compiled function: backward recursion, forward simulation, and budget gap A named tuple `SteadyState` collects value-function parameters, decision rules, moments, and aggregate statistics into a single object that the transition solver can unpack Given all other fiscal instruments, the equilibrium  is the value that zeroes the budget gap.",
+        "text": "* *Small open economy:*  and  are exogenous and constant. * *Closed economy:* Factor prices are determined by marginal products from a Cobb-Douglas production function:",
         "source": "lecture-python.myst/lectures/two_computation.md"
       }
     ],
@@ -160,23 +156,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Using elementary results from Hilbert space theory, it can be shown that *  is one-to-one --- if  and  are distinct in , then so are their expansions in . *  is onto --- if  then its preimage in  is the sequence  given by . *  is a linear isometry --- in particular, .",
+        "text": "*  is one-to-one --- if  and  are distinct in , then so are their expansions in . *  is onto --- if  then its preimage in  is the sequence  given by . *  is a linear isometry --- in particular, .",
         "source": "lecture-python-advanced.myst/lectures/arma.md"
+      },
+      {
+        "text": "* consumer sentiment often remains high during expansions and drops before recessions. * there is a clear negative correlation between consumer sentiment and the CPI.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "* expansions and contractions of the labor market have been highly correlated with recessions. * cycles are, in general, asymmetric: sharp rises in unemployment are followed by slow recoveries.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
       },
       {
         "text": "Note that the credit rises during economic expansions and stagnates or even contracts after recessions.",
         "source": "lecture-python-intro/lectures/business_cycle.md"
       },
       {
-        "text": "The plot shows that * expansions and contractions of the labor market have been highly correlated with recessions. * cycles are, in general, asymmetric: sharp rises in unemployment are followed by slow recoveries.",
-        "source": "lecture-python-intro/lectures/business_cycle.md"
-      },
-      {
         "text": "These include expansions (also called booms) and contractions (also called recessions).",
-        "source": "lecture-python-intro/lectures/business_cycle.md"
-      },
-      {
-        "text": "We see that * consumer sentiment often remains high during expansions and drops before recessions. * there is a clear negative correlation between consumer sentiment and the CPI.",
         "source": "lecture-python-intro/lectures/business_cycle.md"
       }
     ],
@@ -191,7 +187,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Now let's compute and plot consumption path variations We visualize variations for  and We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters. (We are actually discovering  the key idea beneath the **calculus of variations**.) First, we define the welfare with respect to  and Then we can visualize the relationship between welfare and  and compute its derivatives The same can be done on The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  \"fiscal policy multiplier\" that we  described in QuantEcon lecture {doc}`geometric series `.",
+        "text": "The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  \"fiscal policy multiplier\" that we  described in QuantEcon lecture {doc}`geometric series `.",
         "source": "lecture-python-intro/lectures/cons_smooth.md"
       }
     ],
@@ -206,7 +202,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let's differentiate  and solve using sympy.solve Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the Golden Rule savings rate. **Stochastic Productivity** To bring the Solow--Swan model closer to data, we need to think about handling random fluctuations in aggregate quantities.",
+        "text": "Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the Golden Rule savings rate.",
         "source": "lecture-python-intro/lectures/solow.md"
       }
     ],
@@ -221,7 +217,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "If we generalize the model so that the national income identity becomes then a version of the preceding argument shows that the **government expenditures multiplier** is also , so that a permanent increase in government expenditures ultimately leads to an increase in national income equal to the multiplier times the increase in government expenditures.",
+        "text": "then a version of the preceding argument shows that the **government expenditures multiplier** is also , so that a permanent increase in government expenditures ultimately leads to an increase in national income equal to the multiplier times the increase in government expenditures.",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -267,11 +263,11 @@
         "source": "lecture-python-intro/lectures/business_cycle.md"
       },
       {
-        "text": "Greece experienced a very large drop in GDP growth around 2010-2011, during the peak of the Greek debt crisis.",
+        "text": "GDP growth is positive on average and trending slightly downward over time.",
         "source": "lecture-python-intro/lectures/business_cycle.md"
       },
       {
-        "text": "Here we compare the GDP growth rate of developed economies and developing economies.",
+        "text": "Greece experienced a very large drop in GDP growth around 2010-2011, during the peak of the Greek debt crisis.",
         "source": "lecture-python-intro/lectures/business_cycle.md"
       }
     ],
@@ -286,15 +282,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The price at which these exchanges occur is the gross nominal interest rate. - If I sell  dollars to you today, you pay me dollars tomorrow. - This means that you borrowed  dollars for me at a gross interest rate  and a net interest rate .",
+        "text": "**Remark:** The gross nominal interest rate  is an **exchange rate** or **relative price** of dollars at between times  and . The units of  are dollars at time  per dollar at time .",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "A one-period **gross nominal interest rate**  is defined as",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "The price at which these exchanges occur is the gross nominal interest rate.",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
         "text": "We assume that the net nominal interest rate  is fixed over time, so that  is the gross nominal interest rate at times .",
-        "source": "lecture-python-intro/lectures/geom_series.md"
-      },
-      {
-        "text": "We let  be a one-period **net nominal interest rate** - if the nominal interest rate is  percent, then A one-period **gross nominal interest rate**  is defined as - if , then **Remark:** The gross nominal interest rate  is an **exchange rate** or **relative price** of dollars at between times  and .",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -351,7 +351,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Solving this equation for  gives The quantity  is called the **investment multiplier** or simply the **multiplier**.",
+        "text": "The quantity  is called the **investment multiplier** or simply the **multiplier**.",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -385,11 +385,11 @@
         "source": "lecture-python-intro/lectures/lake_model.md"
       },
       {
-        "text": "First let's import the packages needed to explore what the data says about long-run growth A project initiated by Angus Maddison has collected many historical time series related to economic growth, some dating back to the first century.",
+        "text": "First let's import the packages needed to explore what the data says about long-run growth",
         "source": "lecture-python-intro/lectures/long_run_growth.md"
       },
       {
-        "text": "In this lecture we study the famous overlapping generations (OLG) model, which is used by policy makers and researchers to examine * fiscal policy * monetary policy * long-run growth and many other topics.",
+        "text": "* fiscal policy * monetary policy * long-run growth",
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
@@ -412,24 +412,24 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The first equation is a national income identity asserting that consumption  plus investment  equals national income : The second equation is a Keynesian consumption function asserting that people consume a fraction  of their income: The fraction  is called the **marginal propensity to consume**.",
+        "text": "Increasing the marginal propensity to consume  increases the path of output over time.",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "We modify our consumption function to assume the form so that  is the marginal propensity to consume (now) out of last period's income.",
+        "text": "The fraction  is called the **marginal propensity to consume**.",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "We now examine what will happen if we vary the so-called **marginal propensity to consume**, i.e., the fraction of income that is consumed Increasing the marginal propensity to consume  increases the path of output over time.",
+        "text": "We now examine what will happen if we vary the so-called **marginal propensity to consume**, i.e., the fraction of income that is consumed",
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "The model consists of: - Consumption:  where  is the marginal propensity to consume - Investment:  where  is the accelerator coefficient - Government spending:  (constant) We have the national income identity Equations yields the second-order difference equation: With  and , we have: To fit into our discussion, we write it into state-space representation.",
+        "text": "so that  is the marginal propensity to consume (now) out of last period's income.",
+        "source": "lecture-python-intro/lectures/geom_series.md"
+      },
+      {
+        "text": "- Consumption:  where  is the marginal propensity to consume - Investment:  where  is the accelerator coefficient - Government spending:  (constant)",
         "source": "lecture-python.myst/lectures/likelihood_var.md"
-      },
-      {
-        "text": "Data contradicted the constancy of the marginal propensity to consume.",
-        "source": "lecture-python.myst/lectures/lqcontrol.md"
       }
     ],
     "source": "glossary/zh-cn (macroeconomics)"
@@ -458,7 +458,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Thus, This example provides  machinery that is at the heard of Samuelson's analysis of his multiplier-accelerator model {cite}`Samuelson1939`.",
+        "text": "This example provides  machinery that is at the heard of Samuelson's analysis of his multiplier-accelerator model {cite}`Samuelson1939`.",
         "source": "lecture-python-intro/lectures/complex_and_trig.md"
       },
       {
@@ -470,11 +470,11 @@
         "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
       },
       {
-        "text": "Chow provides precise answers for the Hansen-Samuelson model. {cite:t}`Chow1968` provides a detailed spectral analysis of the Hansen-Samuelson multiplier-accelerator model, deriving exact conditions for when spectral peaks occur.",
+        "text": "The {doc}`samuelson` lecture explores this mechanism in detail through the Hansen-Samuelson multiplier-accelerator model.",
         "source": "lecture-python.myst/lectures/chow_business_cycles.md"
       },
       {
-        "text": "The {doc}`samuelson` lecture explores this mechanism in detail through the Hansen-Samuelson multiplier-accelerator model.",
+        "text": "{cite:t}`Chow1968` provides a detailed spectral analysis of the Hansen-Samuelson multiplier-accelerator model, deriving exact conditions for when spectral peaks occur.",
         "source": "lecture-python.myst/lectures/chow_business_cycles.md"
       }
     ],
@@ -493,7 +493,7 @@
         "source": "lecture-python-intro/lectures/geom_series.md"
       },
       {
-        "text": "We let  be a one-period **net nominal interest rate** - if the nominal interest rate is  percent, then A one-period **gross nominal interest rate**  is defined as - if , then **Remark:** The gross nominal interest rate  is an **exchange rate** or **relative price** of dollars at between times  and .",
+        "text": "We let  be a one-period **net nominal interest rate**",
         "source": "lecture-python-intro/lectures/geom_series.md"
       }
     ],
@@ -523,11 +523,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "In addition to what's in Anaconda, this lecture will need the following library This lecture describes an  overlapping generations model with these features: - A competitive equilibrium with incomplete markets determines prices and quantities - Agents live many periods as in   {cite}`auerbach1987dynamic` - Agents receive idiosyncratic labor productivity shocks that cannot be fully insured as in  {cite}`Aiyagari1994` - Government fiscal policy instruments include tax rates, debt, and transfers as in chapter 2 of {cite}`auerbach1987dynamic` and {doc}`Transitions in an Overlapping Generations Model` - Among other equilibrium objects, a competitive equilibrium determines a sequence of cross-section densities of heterogeneous agents' consumptions, labor incomes, and savings We use the model to study: - How fiscal policies affect different generations - How market incompleteness promotes precautionary savings - How life-cycle savings and buffer-stock savings motives interact - How fiscal policies  redistribute resources across and within generations As prerequisites for this lecture, we recommend two quantecon lectures: 1. {doc}`advanced:discrete_dp` 2. {doc}`ak2` as well as the optional reading {doc}`aiyagari` As usual, let's start by importing some Python modules We start by introducing the economic environment we are operating in.",
+        "text": "This lecture describes an  overlapping generations model with these features:",
         "source": "lecture-python.myst/lectures/ak_aiyagari.md"
       },
       {
-        "text": "To study possibilities quantitatively, this lecture employs a general equilibrium overlapping generations model that modifies  the {cite:t}`auerbach1987dynamic` environment by incorporating * risk-sensitive preferences * uncertainty about lifetimes * uninsurable labor income risk * a theory of consumption distributions within and across cohorts By employing the discounted risk-sensitive linear-quadratic preferences of {cite:t}`hansen1995discounted`, the model yields linear decision rules for individual consumption and savings.",
+        "text": "To study possibilities quantitatively, this lecture employs a general equilibrium overlapping generations model that modifies  the {cite:t}`auerbach1987dynamic` environment by incorporating",
         "source": "lecture-python.myst/lectures/two_computation.md"
       }
     ],
@@ -546,11 +546,11 @@
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
-        "text": "In particular, households in the model should decide how much to save and how much to consume, given the environment that they face (technology, taxes, prices, etc.) The OLG model takes up this challenge.",
+        "text": "Our aim is to gain a good understanding of a simple version of the OLG model.",
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
-        "text": "Our aim is to gain a good understanding of a simple version of the OLG model.",
+        "text": "The OLG model takes up this challenge.",
         "source": "lecture-python-intro/lectures/olg.md"
       },
       {
@@ -573,23 +573,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let: -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a discrete time version of Sargent and Wallace's {cite}`sargent1973stability` perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "text": "-  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
-        "text": "A consequence of that choice is a (rational expectations equilibrium)  sequence   of gross rates of increase in the price level that  we call inflation rates. {cite}`Calvo1978` showed that  a  Ramsey plan  would not emerge from  alternative timing protocols and associated supplementary assumptions about what government authorities who set  at time  believe how future government authorities who set  for  will respond to their decisions.",
+        "text": "-  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances",
         "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
       },
       {
-        "text": "Let -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "text": "A consequence of that choice is a (rational expectations equilibrium)  sequence   of gross rates of increase in the price level that  we call inflation rates.",
         "source": "lecture-python-advanced.myst/lectures/calvo_abreu.md"
       },
       {
-        "text": "In particular, the inflation rate  satisfies where **Parameters:** * Demand for money parameter is ; we set its default value * Induced demand function for money parameter is * Utility function parameters are    and * Cost parameter of tax distortions associated with setting  is * A horizon truncation parameter: a positive integer **Variables:** *  where  is log of price level *  where  is log of money supply To prepare the way for our calculations, we'll remind ourselves of the  mathematical objects in play. * sequences of inflation rates and money creation rates: * A planner's value function where we set    to match with To make our parameters  match as we want, we   set A Ramsey planner chooses  to maximize the government's value function {eq}`eq:Ramseyvalue` subject to equations  {eq}`eq:inflation101`.",
+        "text": "*  where  is log of price level",
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       },
       {
-        "text": "Let: -  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances The demand for real balances is governed by a perfect foresight version of a Cagan {cite}`Cagan` demand function for real balances: for .",
+        "text": "-  be the log of the price level -  be the log of nominal money balances -  be the net rate of inflation between  and -  be the net rate of growth of nominal balances",
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       }
     ],
@@ -608,7 +608,7 @@
         "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
       },
       {
-        "text": "In a rational expectations equilibrium,  and We form consumer ’s Lagrangian: Consumer ’s first-order necessary conditions for an optimum include: We can combine and rearrange consumer ’s first-order conditions to become: These inequalities imply that in a symmetric rational expectations equilibrium  consumption allocations and prices  satisfy When individual firms solve their optimization problems, they take big ’s as fixed objects that they don’t influence.",
+        "text": "In a rational expectations equilibrium,  and",
         "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
       },
       {
@@ -620,8 +620,8 @@
         "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
       },
       {
-        "text": "The model focuses  on intertemporal tradeoffs between - benefits that anticipations of future  deflation generate  by decreasing  costs of holding real money balances and thereby increasing a representative agent's *liquidity*, as measured by his or her holdings of real money balances, and - costs associated with the  distorting taxes that the government must levy in order to acquire the paper money that it will  destroy  in order to generate anticipated deflation Model features include - rational expectations - alternative possible  timing protocols for government choices of a sequence of money growth rates - costly government actions at all dates  that increase household utilities at dates before - alternative possible sets of Bellman equations, one set for each timing protocol - for example, in a timing protocol used to pose a **Ramsey plan**, a government chooses an infinite sequence of money supply growth rates once and for all at time . - in this timing protocol, there are  two value functions and associated Bellman equations, one that expresses a representative  private expectation of future inflation as a function of current and future government actions, another that describes  the value function of a  Ramsey planner - in other timing protocols, other Bellman equations and associated  value functions will appear A theme of this lecture is that  timing protocols for government decisions affect  outcomes.",
-        "source": "lecture-python-advanced.myst/lectures/calvo.md"
+        "text": "These inequalities imply that in a symmetric rational expectations equilibrium  consumption allocations and prices  satisfy",
+        "source": "lecture-python-advanced.myst/lectures/BCG_incomplete_mkts.md"
       }
     ],
     "source": "glossary/zh-cn (macroeconomics)"
@@ -635,23 +635,23 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The model yields outcomes that help interpret sovereign default experiences, including * countercyclical interest rates on sovereign debt * countercyclical trade balances * high volatility of consumption relative to output Notably, long recessions caused by bad draws in the income process increase the government's incentive to default.",
+        "text": "* spikes in interest rates * temporary losses of access to international credit markets * large drops in output, consumption, and welfare * large capital outflows during recessions",
         "source": "lecture-python-advanced.myst/lectures/arellano.md"
       },
       {
-        "text": "This can lead to * spikes in interest rates * temporary losses of access to international credit markets * large drops in output, consumption, and welfare * large capital outflows during recessions Such dynamics are consistent with experiences of many countries.",
+        "text": "Notably, long recessions caused by bad draws in the income process increase the government's incentive to default.",
         "source": "lecture-python-advanced.myst/lectures/arellano.md"
+      },
+      {
+        "text": "* consumer sentiment often remains high during expansions and drops before recessions. * there is a clear negative correlation between consumer sentiment and the CPI.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
+      },
+      {
+        "text": "* expansions and contractions of the labor market have been highly correlated with recessions. * cycles are, in general, asymmetric: sharp rises in unemployment are followed by slow recoveries.",
+        "source": "lecture-python-intro/lectures/business_cycle.md"
       },
       {
         "text": "At the same time, Argentina's growth rate did not fall during the two developed economy recessions in the 1970s and 1990s.",
-        "source": "lecture-python-intro/lectures/business_cycle.md"
-      },
-      {
-        "text": "Credit contractions often occur during recessions, as lenders become more cautious and borrowers become more hesitant to take on additional debt.",
-        "source": "lecture-python-intro/lectures/business_cycle.md"
-      },
-      {
-        "text": "Here's a first look at the data We write a function to generate plots for individual countries taking into account the recessions.",
         "source": "lecture-python-intro/lectures/business_cycle.md"
       }
     ],

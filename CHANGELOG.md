@@ -5,6 +5,18 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.2.1] - 2026-04-02
+
+### Fixed
+
+- **Context extraction rewritten to paragraph-based approach**: QuantEcon lectures use single-sentence paragraphs, so context extraction now splits on blank lines instead of regex-based sentence splitting. This eliminates long multi-sentence/multi-paragraph context entries (the worst was 5,769 chars). All contexts are now capped at 300 chars.
+- Removed `_split_sentences()` and `_extract_prose()` in favour of `_extract_paragraphs()` which returns one entry per blank-line-delimited prose block
+- Re-enriched all 280 terms with clean, single-sentence contexts from lecture repos
+
+### Changed
+
+- Tests: 207 → 206 (removed regex sentence-splitting tests, added paragraph extraction tests)
+
 ## [0.2.0] - 2026-04-02
 
 ### Added
@@ -87,6 +99,7 @@ First release — ready for RA testing.
 - **Documentation**: MyST-based, 10 pages — getting started, uv guide, CLI reference, tutorials, architecture, data models, contributing
 - **Tests**: 98 pytest tests across 12 test files
 
+[0.2.1]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.2.1
 [0.2.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.2.0
 [0.1.1]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.1.1
 [0.1.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.1.0

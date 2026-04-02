@@ -16,7 +16,7 @@
         "source": "lecture-python-intro/lectures/ar1_processes.md"
       },
       {
-        "text": "Formally, a marginal distribution  on  is called **stationary** for  if . (This is the same notion of stationarity that we learned about in the {doc}`lecture on AR(1) processes ` applied to a different setting.) From this equality, we immediately get  for all .",
+        "text": "(This is the same notion of stationarity that we learned about in the {doc}`lecture on AR(1) processes ` applied to a different setting.)",
         "source": "lecture-python.myst/lectures/finite_markov.md"
       },
       {
@@ -24,7 +24,7 @@
         "source": "lecture-python.myst/lectures/kesten_processes.md"
       },
       {
-        "text": "Let's write those equations in Python Let's start with a simple example comparing two univariate AR(1) processes with , , and , Let's generate 100 paths of length 200 from model  and compute the likelihood ratio processes As we expected, the likelihood ratio processes goes to  as  increases, indicating that model  is chosen correctly by our algorithm.",
+        "text": "Let's start with a simple example comparing two univariate AR(1) processes with , , and ,",
         "source": "lecture-python.myst/lectures/likelihood_var.md"
       }
     ],
@@ -43,11 +43,11 @@
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "For example, we have the following result This situation is often referred to as **asymptotic stationarity** or **global stability**.",
+        "text": "This situation is often referred to as **asymptotic stationarity** or **global stability**.",
         "source": "lecture-python-intro/lectures/markov_chains_I.md"
       },
       {
-        "text": "The following figure illustrates This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.",
+        "text": "This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.",
         "source": "lecture-python-intro/lectures/markov_chains_II.md"
       }
     ],
@@ -62,7 +62,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Consider the simple threshold autoregressive model This is one of those rare nonlinear stochastic models where an analytical expression for the stationary density is available.",
+        "text": "Consider the simple threshold autoregressive model",
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
@@ -70,7 +70,7 @@
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "Let's start with some imports: The **AR(1) model** (autoregressive model of order 1) takes the form where  are scalar-valued parameters (Equation {eq}`can_ar1` is sometimes called a **stochastic difference equation**.) The specification {eq}`can_ar1` generates a time series  as soon as we specify an initial condition .",
+        "text": "The **AR(1) model** (autoregressive model of order 1) takes the form",
         "source": "lecture-python-intro/lectures/ar1_processes.md"
       },
       {
@@ -93,11 +93,11 @@
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
-        "text": "Notice how the lower rows of the \"moving average representations\" are converging to the appropriate infinite history Wold representation to be described below when we study infinite horizon-prediction and filtering Notice how the lower rows of the \"autoregressive representations\" are converging to the appropriate infinite-history autoregressive representation to be described below when we study infinite horizon-prediction and filtering Consider a stochastic process  with moving average representation where  is a serially uncorrelated random process with mean zero and variance unity.",
+        "text": "Notice how the lower rows of the \"autoregressive representations\" are converging to the appropriate infinite-history autoregressive representation to be described below when we study infinite horizon-prediction and filtering",
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
-        "text": "The lag operator  and the inverse lag operator   each map an infinite sequence into an infinite sequence according to the transformation rules A **Wold moving average representation**  for  is Applying the inverse of the operator on the right side and using gives the **vector autoregressive representation** **Definition:** A household service technology is said to be **canonical** if -  is nonsingular, and - the absolute values of the eigenvalues of  are strictly less than . **Key invertibility property:** A canonical household service technology maps a service process  in into a corresponding consumption process  for which the implied household capital stock process  is also in .",
+        "text": "gives the **vector autoregressive representation**",
         "source": "lecture-python-advanced.myst/lectures/hs_recursive_models.md"
       },
       {
@@ -147,7 +147,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The **variance** of  is defined as Variance is also called the *second central moment* of the distribution.",
+        "text": "Variance is also called the *second central moment* of the distribution.",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       }
     ],
@@ -166,11 +166,11 @@
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "To accomplish that for situations in which we are uncertain about parameter values, we shall extend Wecker's {cite}`wecker1979predicting` approach in the following way. - first simulate an initial path of length ; - for a given prior, draw a sample of size  from the posterior joint distribution of parameters  after observing the initial path; - for each draw , simulate a \"future path\" of length  with parameters  and compute our three \"sample path statistics\"; - finally, plot the desired statistics from the  samples as an empirical distribution.",
-        "source": "lecture-python.myst/lectures/ar1_turningpts.md"
+        "text": "Given a sample of  observations , the **empirical distribution** is",
+        "source": "lecture-python.myst/lectures/divergence_measures.md"
       },
       {
-        "text": "Given a sample of  observations , the **empirical distribution** is \\delta(x - x_i) = \\begin{cases} +\\infty & \\text{if } x = x_i \\\\ 0 & \\text{if } x \\neq x_i \\end{cases} Using the mathematics of the Dirac delta function, it follows that \\ell(\\theta; X) = \\sum_{i=1}^n \\log p_\\theta(x_i) , Thus, MLE is equivalent to minimizing the KL divergence from the empirical distribution to the statistical model .",
+        "text": "Thus, MLE is equivalent to minimizing the KL divergence from the empirical distribution to the statistical model .",
         "source": "lecture-python.myst/lectures/divergence_measures.md"
       },
       {
@@ -178,7 +178,7 @@
         "source": "lecture-python.myst/lectures/navy_captain.md"
       },
       {
-        "text": "To appreciate how statisticians connect probabilities to data, the key is to understand the following concepts: * A single draw from a probability distribution * Repeated independently  and identically distributed (i.i.d.)  draws of \"samples\" or \"realizations\" from the same probability distribution * A **statistic** defined as a  function of a sequence of samples * An **empirical distribution** or **histogram** (a binned empirical distribution) that records observed  **relative frequencies** * The idea that a  population probability  distribution is  what we anticipate **relative frequencies** will be in a long sequence of i.i.d. draws.",
+        "text": "We define an  **empirical distribution** as follows.",
         "source": "lecture-python.myst/lectures/prob_matrix.md"
       }
     ],
@@ -193,7 +193,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "That is, The **mean** or **expected value** of a random variable  with distribution  is Expectation is also called the *first moment* of the distribution.",
+        "text": "Expectation is also called the *first moment* of the distribution.",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       }
     ],
@@ -228,11 +228,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Before moving on to discuss the histogram and the vertical lines approximating the ergodic  mean of government debt in more detail, the following graphs show government debt and taxes early in the simulation, for periods 1-100 and 101 to 200 respectively.",
+        "text": "*  is represented by the red vertical line plotted in the histogram of the last 100,000 observations of our simulation of the  par value of government debt plotted above * the approximation is fairly accurate but not perfect",
         "source": "lecture-python-advanced.myst/lectures/amss3.md"
       },
       {
-        "text": "In this economy,  given by the above formula approximates the mean of the ergodic distribution of  the par value of  government debt so while the approximation circumvents the chicken and egg problem that  surrounds : the much better approximation associated with the green vertical line, it does so by enlarging the approximation error *  is represented by the red vertical line plotted in the histogram of the last 100,000 observations of our simulation of the  par value of government debt plotted above * the approximation is fairly accurate but not perfect Now let's move on to compute things step by step.",
+        "text": "Before moving on to discuss the histogram and the vertical lines approximating the ergodic  mean of government debt in more detail, the following graphs show government debt and taxes early in the simulation, for periods 1-100 and 101 to 200 respectively.",
         "source": "lecture-python-advanced.myst/lectures/amss3.md"
       },
       {
@@ -240,12 +240,12 @@
         "source": "lecture-python-advanced.myst/lectures/amss3.md"
       },
       {
-        "text": "The  black vertical line denotes the sample mean for the last 100,000 observations included in the histogram; the  green vertical line denotes the value of , associated with a sample from our approximation to the ergodic distribution where  is a regression coefficient to be described below;  the red vertical line denotes an approximation by {cite}`BEGS1` to the mean of the ergodic distribution that can be computed **before**  the ergodic distribution has been approximated, as described below.",
+        "text": "We obtain the following graph for the histogram of the last 100,000 observations on the par value of government debt.",
         "source": "lecture-python-advanced.myst/lectures/amss3.md"
       },
       {
-        "text": "We obtain the following graph for the histogram of the last 100,000 observations on the par value of government debt.",
-        "source": "lecture-python-advanced.myst/lectures/amss3.md"
+        "text": "The density for the approximating model is where and  and  are estimated by maximum likelihood from the U.S. quarterly data in the histogram over the period 1948.I-2006.IV.",
+        "source": "lecture-python-advanced.myst/lectures/five_preferences.md"
       }
     ],
     "source": "glossary/zh-cn (statistics)"
@@ -259,15 +259,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The next figure shows the result of such a computation The additional density (black line) is a nonparametric kernel density estimate, added to the solution for illustration. (You can try to replicate it before looking at the solution if you want to) As you can see, the look-ahead estimator is a much tighter fit than the kernel density estimator.",
+        "text": "The additional density (black line) is a nonparametric kernel density estimate, added to the solution for illustration.",
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "In this case, our new data structure is a `Series` Calling `.get_group()` to return just the countries in a single group, we can create a kernel density estimate of the distribution of real minimum wages in 2016 for each continent. `grouped.groups.keys()` will return the keys from the `groupby` object This lecture has provided an introduction to some of pandas' more advanced features, including multiindices, merging, grouping and plotting.",
+        "text": "Calling `.get_group()` to return just the countries in a single group, we can create a kernel density estimate of the distribution of real minimum wages in 2016 for each continent.",
         "source": "lecture-python-programming/lectures/pandas_panel.md"
       },
       {
-        "text": "In this case, our new data structure is a `Series` Calling `.get_group()` to return just the countries in a single group, we can create a kernel density estimate of the distribution of real minimum wages in 2016 for each continent. `grouped.groups.keys()` will return the keys from the `groupby` object This lecture has provided an introduction to some of pandas' more advanced features, including multiindices, merging, grouping and plotting.",
+        "text": "Calling `.get_group()` to return just the countries in a single group, we can create a kernel density estimate of the distribution of real minimum wages in 2016 for each continent.",
         "source": "lecture-python.myst/lectures/pandas_panel.md"
       }
     ],
@@ -282,11 +282,11 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The next figure shows the result of such a computation The additional density (black line) is a nonparametric kernel density estimate, added to the solution for illustration. (You can try to replicate it before looking at the solution if you want to) As you can see, the look-ahead estimator is a much tighter fit than the kernel density estimator.",
+        "text": "As you can see, the look-ahead estimator is a much tighter fit than the kernel density estimator.",
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "Here is one solution: Here is one solution: We see that the kernel density estimator is effective when the underlying distribution is smooth but less so otherwise.",
+        "text": "We see that the kernel density estimator is effective when the underlying distribution is smooth but less so otherwise.",
         "source": "lecture-python-intro/lectures/ar1_processes.md"
       },
       {
@@ -294,7 +294,7 @@
         "source": "lecture-python.myst/lectures/inventory_dynamics.md"
       },
       {
-        "text": "We will use a kernel density estimator from scikit-learn The allocation of probability mass is similar to what was shown by the histogram just above.",
+        "text": "We will use a kernel density estimator from scikit-learn",
         "source": "lecture-python.myst/lectures/inventory_dynamics.md"
       }
     ],
@@ -324,15 +324,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Taking logs on both sides gives us the log likelihood function, which is To find where this function is maximised we find its partial derivatives wrt  and  and equate them to .",
+        "text": "Taking logs on both sides gives us the log likelihood function, which is",
         "source": "lecture-python-intro/lectures/mle.md"
       },
       {
-        "text": "First, we'll create a class called `PoissonRegression` so we can easily recompute the values of the log likelihood, gradient and Hessian for every iteration Now we can define the log likelihood function in Python To find the gradient of the `poisson_logL`, we again use jax.grad.",
+        "text": "Now we can define the log likelihood function in Python",
         "source": "lecture-python.myst/lectures/mle.md"
       },
       {
-        "text": "The likelihood function of a sample set is The log of the likelihood function is: The first-order necessary condition for maximizing the log likelihood function with respect to   is: or If  , then the maximum likelihood estimator (MLE) of  is: We compute the mean and variance of the MLE estimator  to be: and Equation {eq}`eq:five` indicates  that  is an **unbiased estimator** of  while equation {eq}`eq:six` tell us the variance of the estimator.",
+        "text": "The first-order necessary condition for maximizing the log likelihood function with respect to   is:",
         "source": "lecture-python.myst/lectures/rand_resp.md"
       }
     ],
@@ -347,7 +347,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Maximum likelihood estimation has two steps: 1.",
+        "text": "Maximum likelihood estimation has two steps:",
         "source": "lecture-python-intro/lectures/mle.md"
       },
       {
@@ -355,11 +355,11 @@
         "source": "lecture-python-intro/lectures/mle.md"
       },
       {
-        "text": "We will compute the integral using numerical integration via SciPy's quad function (Our unit was 100,000 dollars, so this means that actual revenue is 100,000 times as large.) We mentioned above that using maximum likelihood estimation requires us to make a prior assumption of the underlying distribution.",
+        "text": "We mentioned above that using maximum likelihood estimation requires us to make a prior assumption of the underlying distribution.",
         "source": "lecture-python-intro/lectures/mle.md"
       },
       {
-        "text": "In this lecture, we used Maximum Likelihood Estimation to estimate the parameters of a Poisson model. `statsmodels` contains other built-in likelihood models such as Probit and Logit.",
+        "text": "In this lecture, we used Maximum Likelihood Estimation to estimate the parameters of a Poisson model.",
         "source": "lecture-python.myst/lectures/mle.md"
       },
       {
@@ -382,19 +382,19 @@
         "source": "lecture-python-advanced.myst/lectures/arma.md"
       },
       {
-        "text": "A vector Wold moving average representation of  is then where  is an  vector white noise that is \"fundamental\" for .",
+        "text": "**Multivariable Prediction:** Let  be an vector stochastic process with moving average representation",
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
-        "text": "As an example of the usefulness of formula {eq}`eq_37`, we let  be a stochastic process with Wold moving average representation where .",
+        "text": "A vector Wold moving average representation of  is then",
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
-        "text": "Consider a stochastic process with moving average representation where  is a serially uncorrelated random process with mean zero and variance unity.",
+        "text": "As an example of the usefulness of formula {eq}`eq_37`, we let  be a stochastic process with Wold moving average representation",
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       },
       {
-        "text": "Equation {eq}`eq_55`  can be recognized as a finite dimensional version of a moving average representation.",
+        "text": "Consider a stochastic process  with moving average representation",
         "source": "lecture-python-advanced.myst/lectures/classical_filtering.md"
       }
     ],
@@ -409,7 +409,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "You can read about the details of that model in {doc}`intermediate:samuelson`. (That lecture also describes some technicalities about second-order linear difference equations.) In this lecture, we'll also learn about an **autoregressive** representation and a **moving average** representation of a  non-stationary univariate time series .",
+        "text": "In this lecture, we'll also learn about an **autoregressive** representation and a **moving average** representation of a  non-stationary univariate time series .",
         "source": "lecture-python-intro/lectures/time_series_with_matrices.md"
       }
     ],
@@ -424,15 +424,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let us first look at how the total error changes with respect to  (holding the intercept  constant) We know from the next section the optimal values for  and   are: We can then calculate the error for a range of  values Plotting the error Now let us vary  (holding  constant) Plotting the error Now let us use calculus to solve the optimization problem and compute the optimal values for  and  to find the ordinary least squares solution.",
+        "text": "Now let us use calculus to solve the optimization problem and compute the optimal values for  and  to find the ordinary least squares solution.",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       },
       {
-        "text": "Let's consider the error  and define the difference between the observed values  and the estimated values  which we will call the residuals The Ordinary Least Squares (OLS) method chooses  and  in such a way that **minimizes** the sum of the squared residuals (SSR).",
+        "text": "The Ordinary Least Squares (OLS) method chooses  and  in such a way that **minimizes** the sum of the squared residuals (SSR).",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       },
       {
-        "text": "We can write our model as where: -  is the intercept of the linear trend line on the y-axis -  is the slope of the linear trend line, representing the *marginal effect* of protection against risk on log GDP per capita -  is a random error term (deviations of observations from the linear trend due to factors not included in the model) Visually, this linear model involves choosing a straight line that best fits the data, as in the following plot (Figure 2 in {cite}`Acemoglu2001`) The most common technique to estimate the parameters ('s) of the linear model is Ordinary Least Squares (OLS).",
+        "text": "The most common technique to estimate the parameters ('s) of the linear model is Ordinary Least Squares (OLS).",
         "source": "lecture-python.myst/lectures/ols.md"
       }
     ],
@@ -451,20 +451,20 @@
         "source": "lecture-python-advanced.myst/lectures/asset_pricing_lph.md"
       },
       {
-        "text": "Our theory implies that there exist values of  two scalars,  and , such that  a legitimate stochastic discount factor is: The parameters  must satisfy the following equations: \\begin{align*} E[(a + b R_t^m) R^m_t)] &= 1 \\\\ E[(a + b R_t^m) R^f_t)] &= 1 \\end{align*} **Direct Problem:** Now that we have a panel of data, we'd like to solve the inverse problem by assuming the theory specified above and estimating the coefficients given above. **Inverse Problem:** We will solve the inverse problem by simple OLS regressions. 1. estimate  and Let's  compare these with the _true_ population parameter values. 2.  and 3.  and Q: How close did your estimates come to the parameters we specified?",
-        "source": "lecture-python-advanced.myst/lectures/asset_pricing_lph.md"
-      },
-      {
         "text": "So we define a function for simple univariate OLS regression that calls the `OLS` routine from `statsmodels`.",
         "source": "lecture-python-advanced.myst/lectures/asset_pricing_lph.md"
       },
       {
-        "text": "The curves defined by equation {eq}`ellipse` can be labeled as iso-likelihood ellipses > **Remark:** More generally there is a class of density functions > that possesses this feature, i.e. > > $$ \\exists g: \\mathbb{R}_+ \\mapsto \\mathbb{R}_+ \\ \\ \\text{ and } \\ \\ c \\geq 0, \\ \\ \\text{s.t.  the density } \\ \\ f \\ \\ \\text{of} \\ \\ Z  \\ \\ \\text{ has the form } \\quad f(z) = c g(z\\cdot z) \\begin{aligned} (\\vec r_e - \\mu_{BL})'\\Sigma^{-1}(\\vec r_e - \\mu_{BL}) &= \\bar d_1 \\\\ (\\vec r_e - \\hat \\mu)'\\left(\\tau \\Sigma\\right)^{-1}(\\vec r_e - \\hat \\mu) &= \\bar d_2 \\end{aligned} \\begin{aligned} \\bar d_1(\\bar d_2) &\\equiv \\max_{\\vec r_e} \\ \\ (\\vec r_e - \\mu_{BL})'\\Sigma^{-1}(\\vec r_e - \\mu_{BL}) \\\\ \\text{subject to }  \\quad  &(\\vec r_e - \\hat\\mu)'(\\tau\\Sigma)^{-1}(\\vec r_e - \\hat \\mu) \\geq \\bar d_2 \\end{aligned} 2(\\vec r_e - \\mu_{BL} )'\\Sigma^{-1} + \\lambda 2(\\vec r_e - \\hat\\mu)'(\\tau\\Sigma)^{-1} = \\mathbf{0} \\min_{\\beta} \\Vert X\\beta - y \\Vert^2 \\hat{\\beta}_{OLS} = (X'X)^{-1}X'y \\text{mse}(\\hat \\beta_{OLS}, \\beta_0) := \\mathbb E \\Vert \\hat \\beta_{OLS} - \\beta_0\\Vert^2 = \\underbrace{\\mathbb E \\Vert \\hat \\beta_{OLS} - \\mathbb E \\beta_{OLS}\\Vert^2}_{\\text{variance}} + \\underbrace{\\Vert \\mathbb E \\hat\\beta_{OLS} - \\beta_0\\Vert^2}_{\\text{bias}} \\text{mse}(\\hat \\beta_{OLS}, \\beta_0) = \\underbrace{\\frac{1}{T^2} \\mathbb E \\left(\\sum_{t=1}^{T} (y_{t}- \\beta_0)\\right)^2 }_{\\text{variance}} + \\underbrace{0}_{\\text{bias}} \\min_{\\beta} \\Big\\{ \\Vert X\\beta - y \\Vert^2 + \\Vert \\Gamma (\\beta - \\tilde \\beta) \\Vert^2 \\Big\\} \\hat{\\beta}_{Reg} = (X'X + \\Gamma'\\Gamma)^{-1}(X'y + \\Gamma'\\Gamma\\tilde \\beta) \\hat{\\beta}_{Reg} = (X'X + \\Gamma'\\Gamma)^{-1}(X'X\\hat{\\beta}_{OLS} + \\Gamma'\\Gamma\\tilde \\beta) \\text{mse}(\\hat \\beta_{\\text{ridge}}, \\beta_0) = \\underbrace{\\frac{1}{(T+\\lambda)^2} \\mathbb E \\left(\\sum_{t=1}^{T} (y_{t}- \\beta_0)\\right)^2 }_{\\text{variance}} + \\underbrace{\\left(\\frac{\\lambda}{T+\\lambda}\\right)^2 \\beta_0^2}_{\\text{bias}} \\begin{aligned} \\tilde \\mu &= (\\Sigma^{-1} + (\\tau \\Sigma)^{-1})^{-1} (\\Sigma^{-1}\\mu_{BL}  + (\\tau \\Sigma)^{-1}\\hat \\mu) \\\\ &= (1 + \\tau^{-1})^{-1}\\Sigma \\Sigma^{-1} (\\mu_{BL}  + \\tau ^{-1}\\hat \\mu) \\\\ &= (1 + \\tau^{-1})^{-1} ( \\mu_{BL}  + \\tau ^{-1}\\hat \\mu) \\end{aligned} \\begin{aligned} \\hat{\\beta}_{Reg} &= (X'X + \\Gamma'\\Gamma)^{-1}(X'X\\hat{\\beta}_{OLS} + \\Gamma'\\Gamma\\tilde \\beta) \\\\ &= (1 + \\tau)^{-1}X'X (X'X)^{-1} (\\hat \\beta_{OLS}  + \\tau \\tilde \\beta) \\\\ &= (1 + \\tau)^{-1} (\\hat \\beta_{OLS}  + \\tau \\tilde \\beta) \\\\ &= (1 + \\tau^{-1})^{-1} ( \\tau^{-1}\\hat \\beta_{OLS}  +  \\tilde \\beta) \\end{aligned} x = \\mu + C \\epsilon \\tilde \\phi(\\epsilon) = m(\\epsilon,\\mu) \\phi(\\epsilon) {\\rm ent} = \\int \\log m(\\epsilon,\\mu) m(\\epsilon,\\mu) \\phi(\\epsilon) d \\epsilon {\\rm ent} = \\int \\log m(\\epsilon,\\mu) \\tilde \\phi(\\epsilon) d \\epsilon \\begin{aligned} {\\sf T}\\left(V(x)\\right) & = \\min_{m(\\epsilon,\\mu)} \\int m(\\epsilon,\\mu)[V(\\mu + C \\epsilon) + \\theta \\log m(\\epsilon,\\mu) ] \\phi(\\epsilon) d \\epsilon \\cr & = - \\log \\theta \\int \\exp \\left( \\frac{- V(\\mu + C \\epsilon)}{\\theta} \\right) \\phi(\\epsilon) d \\epsilon \\end{aligned} \\theta \\in [\\underline \\theta, +\\infty] {\\sf T} ( \\vec r - r_f {\\bf 1}) = w' \\mu + \\zeta - \\frac{1}{2 \\theta} w' \\Sigma w \\frac{v'v}{2} = \\frac{1}{2\\theta^2}  w' C C' w E [w ( \\vec r - r_f {\\bf 1})]] - {\\rm var} [ w ( \\vec r - r_f {\\bf 1}) ] w'\\mu - \\frac{\\delta}{2} w' \\Sigma w {\\sf T} [w ( \\vec r - r_f {\\bf 1})] = w' \\mu - \\frac{1}{2 \\theta} w' \\Sigma w \\mu - \\theta^{-1} \\Sigma w {\\sf T} [w ( \\vec r - r_f {\\bf 1})] - \\frac{\\delta}{2} w' \\Sigma w w_{\\rm rob} = \\frac{1}{\\delta + \\gamma } \\Sigma^{-1} \\mu \\lim_{N\\to \\infty} \\ \\ P\\left\\{ \\left |\\bar X_N - \\mathbb E X \\right| > \\varepsilon \\right\\} = 0 \\quad \\quad \\lim_{N\\to \\infty} \\ \\ P \\left\\{ \\left| S_N - \\mathbb V X \\right| > \\varepsilon \\right\\} = 0 \\text{MSE}(\\bar X_N, \\mathbb E X) = o(1) \\quad \\quad  \\text{and} \\quad \\quad \\text{MSE}(S_N, \\mathbb V X) = o(1) \\frac{\\text{MSE}(S_N, \\mathbb V X)}{\\text{MSE}(\\bar X_N, \\mathbb E X)} = \\frac{o(1)}{o(1)} \\underset{N \\to \\infty}{\\to} B X_i \\sim \\mathcal{N}(\\mu, \\sigma^2) \\text{MSE}(\\bar X_N, \\mu) = \\frac{\\sigma^2}{N} \\text{MSE}(S_N, \\sigma^2) = \\frac{2\\sigma^4}{N-1} \\frac{\\text{MSE}(S_N, \\sigma^2)}{\\text{MSE}(\\bar X_N, \\mu)} = \\frac{N2\\sigma^2}{N-1} \\quad \\underset{N \\to \\infty}{\\to} \\quad 2\\sigma^2 dX_t = -\\kappa (X_t -\\mu)dt + \\sigma dW_t\\quad\\quad X_{t+1} = (1 - \\exp(-\\kappa h))\\mu + \\exp(-\\kappa h)X_t + \\epsilon_{t, h} \\epsilon_{t, h} \\sim \\mathcal{N}(0, \\Sigma_h) \\quad \\text{with}\\quad \\Sigma_h = \\frac{\\sigma^2(1-\\exp(-2\\kappa h))}{2\\kappa} \\Gamma_h(n) \\equiv \\text{corr}(X_{t + h n}, X_t) = \\exp(-\\kappa h n) \\gamma_h(n) \\equiv \\text{cov}(X_{t + h n}, X_t) = \\frac{\\exp(-\\kappa h n)\\sigma^2}{2\\kappa} . \\mathbb{E}[\\bar X_N] = \\frac{1}{N}\\sum_{i = 1}^N \\mathbb{E}[X_i] = \\mathbb{E}[X_0] = \\mu \\begin{aligned} \\mathbb{V}\\left(\\bar X_N\\right) &= \\mathbb{V}\\left(\\frac{1}{N}\\sum_{i = 1}^N X_i\\right) \\\\ &= \\frac{1}{N^2} \\left(\\sum_{i = 1}^N \\mathbb{V}(X_i) + 2 \\sum_{i = 1}^{N-1} \\sum_{s = i+1}^N \\text{cov}(X_i, X_s) \\right) \\\\ &= \\frac{1}{N^2} \\left( N \\gamma(0) + 2 \\sum_{i=1}^{N-1} i \\cdot \\gamma\\left(h\\cdot (N - i)\\right) \\right) \\\\ &= \\frac{1}{N^2} \\left( N \\frac{\\sigma^2}{2\\kappa} + 2 \\sum_{i=1}^{N-1} i \\cdot \\exp(-\\kappa h (N - i)) \\frac{\\sigma^2}{2\\kappa} \\right) \\end{aligned} \\begin{aligned} \\mathbb{V}(\\bar X_N) &= \\frac{1}{N^2} \\left( N \\sigma^2 + 2 \\sum_{i=1}^{N-1} i \\cdot \\exp(-\\kappa h (N - i)) \\sigma^2 \\right) \\\\ &\\leq \\frac{\\sigma^2}{2\\kappa N} \\left(1 + 2 \\sum_{i=1}^{N-1} \\cdot \\exp(-\\kappa h (i)) \\right) \\\\ &= \\underbrace{\\frac{\\sigma^2}{2\\kappa N}}_{\\text{IID  case}} \\left(1 + 2 \\frac{1 - \\exp(-\\kappa h)^{N-1}}{1 - \\exp(-\\kappa h)} \\right) \\end{aligned} \\left(1 + 2 \\frac{1}{1 - \\exp(-\\kappa h)} \\right) \\left(1 + 2 \\frac{1}{1 - \\exp(-\\kappa h)} \\right)",
+        "text": "We will solve the inverse problem by simple OLS regressions.",
+        "source": "lecture-python-advanced.myst/lectures/asset_pricing_lph.md"
+      },
+      {
+        "text": "\\hat{\\beta}_{OLS} = (X'X)^{-1}X'y",
         "source": "lecture-python-advanced.myst/lectures/black_litterman.md"
       },
       {
-        "text": "Let *  be the spectral density of  --- a constant function, as discussed above *  be the periodogram estimated from the residuals --- an estimate of *  be the spectral density of  --- the object we are trying to estimate In view of {ref}`an earlier result ` we obtained while discussing ARMA processes,  and  are related by This suggests that the recoloring step, which constructs an estimate  of  from , should set where  is the OLS estimate of .",
-        "source": "lecture-python-advanced.myst/lectures/estspec.md"
+        "text": "\\hat{\\beta}_{Reg} = (X'X + \\Gamma'\\Gamma)^{-1}(X'X\\hat{\\beta}_{OLS} + \\Gamma'\\Gamma\\tilde \\beta)",
+        "source": "lecture-python-advanced.myst/lectures/black_litterman.md"
       }
     ],
     "source": "glossary/zh-cn (econometrics abbreviation)"
@@ -478,24 +478,24 @@
     "alternatives": [],
     "contexts": [
       {
+        "text": "*  be the spectral density of  --- a constant function, as discussed above *  be the periodogram estimated from the residuals --- an estimate of *  be the spectral density of  --- the object we are trying to estimate",
+        "source": "lecture-python-advanced.myst/lectures/estspec.md"
+      },
+      {
         "text": "It follows that if we regress  on  and an intercept, the residuals will approximate white noise.",
         "source": "lecture-python-advanced.myst/lectures/estspec.md"
       },
       {
-        "text": "Let *  be the spectral density of  --- a constant function, as discussed above *  be the periodogram estimated from the residuals --- an estimate of *  be the spectral density of  --- the object we are trying to estimate In view of {ref}`an earlier result ` we obtained while discussing ARMA processes,  and  are related by This suggests that the recoloring step, which constructs an estimate  of  from , should set where  is the OLS estimate of .",
-        "source": "lecture-python-advanced.myst/lectures/estspec.md"
-      },
-      {
-        "text": "Since monotone transforms don't affect minimizers, we have By our results about overdetermined linear systems of equations, the solution is Let  and  be the projection and annihilator associated with : The **vector of fitted values** is The **vector of residuals** is Here are some more standard definitions: * The **total sum of squares** is . * The **sum of squared residuals** is . * The **explained sum of squares** is .",
+        "text": "* The **total sum of squares** is . * The **sum of squared residuals** is . * The **explained sum of squares** is .",
         "source": "lecture-python-advanced.myst/lectures/orth_proj.md"
       },
       {
-        "text": "Let's consider the error  and define the difference between the observed values  and the estimated values  which we will call the residuals The Ordinary Least Squares (OLS) method chooses  and  in such a way that **minimizes** the sum of the squared residuals (SSR).",
-        "source": "lecture-python-intro/lectures/simple_linear_regression.md"
+        "text": "The **vector of residuals** is",
+        "source": "lecture-python-advanced.myst/lectures/orth_proj.md"
       },
       {
-        "text": "Compute residuals  and  for , as well as  for  and  for : - Compute the Euler equation residual for  using {eq}`eq:diff_second`: - Compute the feasibility condition residual for  using {eq}`eq:feasi_capital`: - Compute the residual for the initial condition for  using {eq}`eq:diff_second_steady` and the initial capital : - Compute the residual for the terminal condition for  using {eq}`eq:diff_second` under the assumptions , , , and : 4.",
-        "source": "lecture-python.myst/lectures/cass_fiscal.md"
+        "text": "Let's consider the error  and define the difference between the observed values  and the estimated values  which we will call the residuals",
+        "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       }
     ],
     "source": "glossary/zh-cn (econometrics)"
@@ -509,19 +509,19 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The  black vertical line denotes the sample mean for the last 100,000 observations included in the histogram; the  green vertical line denotes the value of , associated with a sample from our approximation to the ergodic distribution where  is a regression coefficient to be described below;  the red vertical line denotes an approximation by {cite}`BEGS1` to the mean of the ergodic distribution that can be computed **before**  the ergodic distribution has been approximated, as described below.",
-        "source": "lecture-python-advanced.myst/lectures/amss3.md"
-      },
-      {
-        "text": "The first-order condition for maximizing {eq}`choice-problem` with respect to the vector  is which implies the following design of a risky portfolio: The key inputs into the portfolio choice model {eq}`risky-portfolio` are - estimates of the parameters  of the random excess return vector - the risk-aversion parameter A standard way of estimating  is maximum-likelihood or least squares; that amounts to estimating  by a sample mean of excess returns and estimating  by a sample covariance matrix.",
+        "text": "A standard way of estimating  is maximum-likelihood or least squares; that amounts to estimating  by a sample mean of excess returns and estimating  by a sample covariance matrix.",
         "source": "lecture-python-advanced.myst/lectures/black_litterman.md"
       },
       {
-        "text": "With a bit of effort, one can show that for any integer , Letting  denote the sample mean , we then have By carefully working through the sums, one can transform this to Now let This is the sample autocovariance function, the natural \"plug-in estimator\" of the {ref}`autocovariance function ` . (\"Plug-in estimator\" is an informal term for an estimator found by replacing expectations with sample means) With this notation, we can now write Recalling our expression for  given {ref}`above `, we see that  is just a sample analog of .",
+        "text": "Letting  denote the sample mean , we then have",
         "source": "lecture-python-advanced.myst/lectures/estspec.md"
       },
       {
-        "text": "By independence, the characteristic function of the sample mean becomes In view of {eq}`lln_cch`, this is just .",
+        "text": "By independence, the characteristic function of the sample mean becomes",
+        "source": "lecture-python-intro/lectures/heavy_tails.md"
+      },
+      {
+        "text": "If  is finite, then the sample mean  satisfies",
         "source": "lecture-python-intro/lectures/heavy_tails.md"
       },
       {
@@ -540,15 +540,15 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "For example, we might look at the returns from Amazon above and imagine that they were generated by a normal distribution. (Even though this is not true, it *might* be a helpful way to think about the data.) Here we match a normal distribution to the Amazon monthly returns by setting the sample mean to the mean of the normal distribution and the sample variance equal to the variance.",
+        "text": "Here we match a normal distribution to the Amazon monthly returns by setting the sample mean to the mean of the normal distribution and the sample variance equal to the variance.",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       },
       {
-        "text": "Suppose we have an observed distribution with values The **sample mean** of this distribution is defined as The **sample variance** is defined as For the income distribution given above, we can calculate these numbers via Let's look at different ways that we can visualize one or more observed distributions.",
+        "text": "The **sample variance** is defined as",
         "source": "lecture-python-intro/lectures/prob_dist.md"
       },
       {
-        "text": "For example, the unbiased sample variance of sample is defined as This can be calculated in NumPy using `np.var`.",
+        "text": "For example, the unbiased sample variance of sample is defined as",
         "source": "lecture-python-programming/lectures/debugging.md"
       }
     ],
@@ -563,7 +563,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "We can use a scatter plot of the data to see the relationship between  (ice-cream sales in dollars (\\x_i$ (degrees Celsius). as you can see the data suggests that more ice-cream is typically sold on hotter days.",
+        "text": "We can use a scatter plot of the data to see the relationship between  (ice-cream sales in dollars (\\x_i$ (degrees Celsius).",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       }
     ],
@@ -588,7 +588,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "The simple regression model estimates the relationship between two variables  and where  represents the error between the line of best fit and the sample values for  given .",
+        "text": "The simple regression model estimates the relationship between two variables  and",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       }
     ],
@@ -611,7 +611,7 @@
         "source": "lecture-python-advanced.myst/lectures/stationary_densities.md"
       },
       {
-        "text": "For example, we have the following result This situation is often referred to as **asymptotic stationarity** or **global stability**.",
+        "text": "This situation is often referred to as **asymptotic stationarity** or **global stability**.",
         "source": "lecture-python-intro/lectures/markov_chains_I.md"
       },
       {
@@ -619,7 +619,7 @@
         "source": "lecture-python-intro/lectures/markov_chains_II.md"
       },
       {
-        "text": "The following figure illustrates This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.",
+        "text": "This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.",
         "source": "lecture-python-intro/lectures/markov_chains_II.md"
       }
     ],
@@ -649,7 +649,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let's consider the error  and define the difference between the observed values  and the estimated values  which we will call the residuals The Ordinary Least Squares (OLS) method chooses  and  in such a way that **minimizes** the sum of the squared residuals (SSR).",
+        "text": "The Ordinary Least Squares (OLS) method chooses  and  in such a way that **minimizes** the sum of the squared residuals (SSR).",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       }
     ],
@@ -664,7 +664,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "Let's consider the error  and define the difference between the observed values  and the estimated values  which we will call the residuals The Ordinary Least Squares (OLS) method chooses  and  in such a way that **minimizes** the sum of the squared residuals (SSR).",
+        "text": "The Ordinary Least Squares (OLS) method chooses  and  in such a way that **minimizes** the sum of the squared residuals (SSR).",
         "source": "lecture-python-intro/lectures/simple_linear_regression.md"
       }
     ],
@@ -683,7 +683,7 @@
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "In addition to what's in Anaconda, this lecture will need the following libraries: Many economic time series display persistent growth that prevents them from being  asymptotically stationary and ergodic.",
+        "text": "Many economic time series display persistent growth that prevents them from being  asymptotically stationary and ergodic.",
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
@@ -695,7 +695,7 @@
         "source": "lecture-python-advanced.myst/lectures/additive_functionals.md"
       },
       {
-        "text": "Compute the value function, policy and equilibrium prices Compute the bond price schedule as seen in figure 3 of Arellano (2008) Draw a plot of the value functions Draw a heat map for default probability Plot a time series of major variables simulated from the model",
+        "text": "* Use the parameter values listed as defaults in `ArellanoEconomy`. * The time series will of course vary depending on the shock draws.",
         "source": "lecture-python-advanced.myst/lectures/arellano.md"
       }
     ],
@@ -710,7 +710,7 @@
     "alternatives": [],
     "contexts": [
       {
-        "text": "According to equation {eq}`eq_old3`,  the time  rate of inflation is then which expresses inflation  as a geometric weighted average of the money growth today and money growth from tomorrow onward .",
+        "text": "which expresses inflation  as a geometric weighted average of the money growth today and money growth from tomorrow onward .",
         "source": "lecture-python-advanced.myst/lectures/calvo.md"
       },
       {
@@ -718,16 +718,16 @@
         "source": "lecture-python-advanced.myst/lectures/calvo_machine_learn.md"
       },
       {
-        "text": "In other words, the value  is replaced with a weighted average of the adjacent values This weighted average can be written as where the weights  are a sequence of  nonnegative values summing to one.",
+        "text": "In other words, the value  is replaced with a weighted average of the adjacent values",
+        "source": "lecture-python-advanced.myst/lectures/estspec.md"
+      },
+      {
+        "text": "This weighted average can be written as",
         "source": "lecture-python-advanced.myst/lectures/estspec.md"
       },
       {
         "text": "This refers to the case where producers form expectations for the next period price as a weighted average of their last guess and the current spot price.",
         "source": "lecture-python-intro/lectures/cobweb.md"
-      },
-      {
-        "text": "Because - according to equation {eq}`equation_2`,  is a geometric weighted average of current and future values of , and - it happens that in this example future ’s are always less than the current We could also have run the simulation using the quantecon **LinearStateSpace** code.",
-        "source": "lecture-python.myst/lectures/re_with_feedback.md"
       }
     ],
     "source": "glossary/zh-cn (statistics)"
