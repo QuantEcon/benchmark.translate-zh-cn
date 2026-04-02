@@ -7,6 +7,7 @@ import typer
 from qebench.commands.add import add
 from qebench.commands.doctor import doctor
 from qebench.commands.export import export
+from qebench.commands.judge import judge as judge_fn
 from qebench.commands.run import run
 from qebench.commands.stats import stats
 from qebench.commands.submit import submit
@@ -35,6 +36,15 @@ app.command("doctor", help="Run preflight checks for qebench environment.")(doct
 app.command("update", help="Pull latest code, data, and dependencies from GitHub.")(update)
 app.command("validate", help="Validate all dataset files against Pydantic schemas.")(validate)
 app.command("run", help="Batch translate dataset entries via an LLM provider.")(run)
+
+
+@app.command("judge")
+def judge_cmd(
+    count: int = typer.Option(10, "--count", "-n", help="Number of rounds per session."),
+    domain: str | None = typer.Option(None, "--domain", "-d", help="Filter by domain."),
+) -> None:
+    """Judge anonymous translations head-to-head — rate and pick winners."""
+    judge_fn(count=count, domain=domain)
 
 
 @app.command("translate")

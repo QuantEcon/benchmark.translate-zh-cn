@@ -18,7 +18,7 @@
 
 ```
 src/qebench/
-├── cli.py                 # Typer app — 9 commands: stats, add, translate, export, submit, doctor, update, validate, run
+├── cli.py                 # Typer app — 10 commands: stats, add, translate, export, submit, doctor, update, validate, run, judge
 ├── models.py              # Pydantic models: Term, Sentence, Paragraph, DataFile
 ├── commands/
 │   ├── stats.py           # Dataset coverage + XP leaderboard (Rich panels/tables)
@@ -29,9 +29,12 @@ src/qebench/
 │   ├── doctor.py          # 8 preflight checks (gh, git, repo, data, etc.)
 │   ├── update.py          # Pull latest code + uv sync dependencies
 │   ├── validate.py        # Schema validation for all dataset files
-│   └── run.py             # Batch translate via LLM providers
+│   ├── run.py             # Batch translate via LLM providers
+│   └── judge.py           # Anonymous head-to-head translation judging
 ├── scoring/
 │   ├── elo.py             # Elo rating for model comparison
+│   ├── glossary.py        # Glossary compliance + reference overlap scoring
+│   ├── judgments.py       # Judgment persistence + Elo update orchestration
 │   └── xp.py              # XP tracking per user
 ├── providers/
 │   ├── base.py            # Abstract TranslationProvider + TranslationResult
