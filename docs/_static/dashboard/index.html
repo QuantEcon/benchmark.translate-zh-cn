@@ -570,12 +570,18 @@ function renderActivity(activity) {
       <div class="activity-item">
         <span class="activity-user">${esc(a.username)}</span>
         <span class="activity-text">translated <strong>${esc(a.entry_id)}</strong></span>
-        <span class="activity-score ${scoreClass}">${scoreText}</span>
+        <span class="activity-score ${scoreClass}" title="Character similarity to reference translation">${scoreText}</span>
       </div>
     `;
   }).join('');
 
-  el.innerHTML = `<h3>Latest Translations</h3>${items}`;
+  el.innerHTML = `<h3>Latest Translations</h3>
+    <div class="activity-item" style="padding-bottom:0.3rem;border-bottom:1px solid var(--border);margin-bottom:0.3rem;">
+      <span class="activity-user" style="color:var(--text-dim);font-size:0.8rem;font-weight:400;">User</span>
+      <span class="activity-text" style="font-size:0.8rem;">Entry</span>
+      <span style="font-size:0.8rem;color:var(--text-dim);" title="Character similarity to reference translation">Similarity</span>
+    </div>
+    ${items}`;
 }
 
 function renderSamples(samples) {
