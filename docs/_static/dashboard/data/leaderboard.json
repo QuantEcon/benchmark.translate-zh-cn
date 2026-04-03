@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "username": "HumphreyYang",
+    "total_xp": 60,
+    "actions": {
+      "translate": 60
+    }
+  },
+  {
+    "username": "mmcky",
+    "total_xp": 55,
+    "actions": {
+      "translate": 30,
+      "judge": 25
+    }
+  }
+]
