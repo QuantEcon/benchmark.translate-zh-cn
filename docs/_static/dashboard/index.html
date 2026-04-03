@@ -563,8 +563,9 @@ function renderActivity(activity) {
   }
 
   const items = activity.slice(0, 20).map(a => {
-    const scoreClass = a.overlap >= 0.7 ? 'score-high' : a.overlap >= 0.4 ? 'score-mid' : 'score-low';
-    const scoreText = Math.round(a.overlap * 100) + '%';
+    const score = a.similarity != null ? a.similarity : a.overlap;
+    const scoreClass = score >= 0.7 ? 'score-high' : score >= 0.4 ? 'score-mid' : 'score-low';
+    const scoreText = Math.round(score * 100) + '%';
     return `
       <div class="activity-item">
         <span class="activity-user">${esc(a.username)}</span>
