@@ -4,7 +4,7 @@
     "en": "Dynamic programming",
     "zh": "动态规划",
     "domain": "optimization",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -35,7 +35,7 @@
     "en": "Linear programming",
     "zh": "线性规划",
     "domain": "optimization",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -66,7 +66,7 @@
     "en": "Optimal path",
     "zh": "最优路径",
     "domain": "optimization",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -97,7 +97,7 @@
     "en": "Optimal policy",
     "zh": "最优策略",
     "domain": "optimization",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {

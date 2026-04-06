@@ -180,7 +180,7 @@
     "en": "Expiry date",
     "zh": "到期日",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -199,7 +199,7 @@
     "en": "Fiat money",
     "zh": "法定货币",
     "domain": "finance",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -245,7 +245,7 @@
     "en": "Fractional reserve banking",
     "zh": "部分准备金银行制度",
     "domain": "finance",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -287,7 +287,7 @@
     "en": "Gross rate of return",
     "zh": "总回报率",
     "domain": "finance",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -418,7 +418,7 @@
     "en": "Money multiplier",
     "zh": "货币乘数",
     "domain": "finance",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {

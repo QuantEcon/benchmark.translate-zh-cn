@@ -4,7 +4,7 @@
     "en": "Balance sheet equation",
     "zh": "资产负债表等式",
     "domain": "other",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -50,7 +50,7 @@
     "en": "FRED",
     "zh": "美联储经济数据",
     "domain": "other",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -81,7 +81,7 @@
     "en": "Federal Reserve Economic Data",
     "zh": "美联储经济数据",
     "domain": "other",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (data source)"
@@ -122,7 +122,7 @@
     "en": "NBER",
     "zh": "美国国家经济研究局",
     "domain": "other",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -141,7 +141,7 @@
     "en": "National Bureau of Economic Research",
     "zh": "美国国家经济研究局",
     "domain": "other",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (institution)"
@@ -193,7 +193,7 @@
     "en": "Violin plot",
     "zh": "小提琴图",
     "domain": "other",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {

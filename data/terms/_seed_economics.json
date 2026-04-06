@@ -133,7 +133,7 @@
     "en": "Cobweb model",
     "zh": "蛛网模型",
     "domain": "economics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -354,7 +354,7 @@
     "en": "Discount factor",
     "zh": "贴现因子",
     "domain": "economics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -446,7 +446,7 @@
     "en": "Dynamic model",
     "zh": "动态模型",
     "domain": "economics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -585,7 +585,7 @@
     "en": "Exogenous",
     "zh": "外生的",
     "domain": "economics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -650,7 +650,7 @@
     "en": "First fundamental welfare theorem",
     "zh": "福利经济学第一定理",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -700,7 +700,7 @@
     "en": "Flow utility function",
     "zh": "流量效用函数",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -838,7 +838,7 @@
     "en": "Industrial Revolution",
     "zh": "工业革命",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -983,7 +983,7 @@
     "en": "Leontief Inverse",
     "zh": "列昂惕夫逆矩阵",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -1254,7 +1254,7 @@
     "en": "Perfect foresight",
     "zh": "完全预见",
     "domain": "economics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -1295,7 +1295,7 @@
     "en": "Projected corporate tax revenue",
     "zh": "预计企业税收",
     "domain": "economics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (public finance)"
@@ -1402,7 +1402,7 @@
     "en": "Stochastic productivity",
     "zh": "随机生产率",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -1520,7 +1520,7 @@
     "en": "Welfare maximization problem",
     "zh": "福利最大化问题",
     "domain": "economics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (welfare economics)"

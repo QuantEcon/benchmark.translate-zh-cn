@@ -155,7 +155,7 @@
     "en": "Eigenvector decomposition",
     "zh": "特征向量分解",
     "domain": "linear-algebra",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -224,7 +224,7 @@
     "en": "Irreducible matrix",
     "zh": "不可约矩阵",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -359,7 +359,7 @@
     "en": "Primitive matrix",
     "zh": "原始矩阵",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -382,7 +382,7 @@
     "en": "Spectral gap",
     "zh": "谱隙",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -397,7 +397,7 @@
     "en": "Spectral radius",
     "zh": "谱半径",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -428,7 +428,7 @@
     "en": "Spectral theory",
     "zh": "谱理论",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

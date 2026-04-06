@@ -255,7 +255,7 @@
     "en": "de Moivre's theorem",
     "zh": "棣莫弗定理",
     "domain": "mathematics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -489,7 +489,7 @@
     "en": "Indicator function",
     "zh": "指示函数",
     "domain": "mathematics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -601,7 +601,7 @@
     "en": "Linear algebra",
     "zh": "线性代数",
     "domain": "mathematics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -720,7 +720,7 @@
     "en": "PageRank algorithm",
     "zh": "网页排名算法",
     "domain": "mathematics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -758,7 +758,7 @@
     "en": "Recursive expressions",
     "zh": "递归表达式",
     "domain": "mathematics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -773,7 +773,7 @@
     "en": "Second-order linear difference equation",
     "zh": "二阶线性差分方程",
     "domain": "mathematics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -823,7 +823,7 @@
     "en": "Trigonometric form",
     "zh": "三角形式",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

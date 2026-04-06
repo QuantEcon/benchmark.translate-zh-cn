@@ -4,7 +4,7 @@
     "en": "Beta distribution",
     "zh": "贝塔分布",
     "domain": "probability",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -35,7 +35,7 @@
     "en": "Bivariate uniform distribution",
     "zh": "二元均匀分布",
     "domain": "probability",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -177,7 +177,7 @@
     "en": "Counter CDF",
     "zh": "互补累积分布函数",
     "domain": "probability",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -192,7 +192,7 @@
     "en": "CCDF",
     "zh": "互补累积分布函数",
     "domain": "probability",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -254,7 +254,7 @@
     "en": "Exponential distribution",
     "zh": "指数分布",
     "domain": "probability",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -308,7 +308,7 @@
     "en": "Independent and identically distributed",
     "zh": "独立同分布",
     "domain": "probability",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -427,7 +427,7 @@
     "en": "Marginal distribution",
     "zh": "边缘分布",
     "domain": "probability",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -489,7 +489,7 @@
     "en": "Moments",
     "zh": "矩",
     "domain": "probability",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -605,7 +605,7 @@
     "en": "Power law",
     "zh": "幂律",
     "domain": "probability",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -705,7 +705,7 @@
     "en": "Support",
     "zh": "支持",
     "domain": "probability",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {

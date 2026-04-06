@@ -1,9 +1,10 @@
 """Classify terms by difficulty level.
 
-Categories:
-- basic: Common terms from intro economics/math courses
-- intermediate: Standard textbook terms requiring domain knowledge  
-- advanced: Specialist or research-level terms
+Rubric:
+- basic: High school level — AP Economics, AP Statistics, AP Calculus,
+  precalculus, basic finance concepts
+- intermediate: Undergraduate level — econ/math/stats/finance major courses
+- advanced: Graduate level — PhD coursework, research-level, specialist theory
 
 Run: uv run python scripts/classify_difficulty.py
 """
@@ -13,114 +14,94 @@ from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "terms"
 
-# === BASIC terms: intro-level, taught in first-year courses ===
+# === BASIC terms: high school level (AP Econ, AP Stats, AP Calc, precalc, basic finance) ===
 BASIC_TERMS = {
-    # economics
-    "Budget constraint", "Consumer surplus", "Cost function", "Discount factor",
-    "Equilibrium", "Exogenous", "Market clearing", "Social welfare",
-    "Capital depreciation", "Perfect foresight", "Dynamic model",
-    # finance
-    "Annuity", "Discounting", "Present value", "Money supply", "Money demand",
-    "Volatility", "Spot price", "Money multiplier", "Present discounted value",
-    "Corporate bond", "Mutual fund", "Underlying asset", "Strike price",
-    "Gross rate of return", "Fiat money",
-    # macroeconomics
-    "Business cycle", "Closed economy", "GDP", "Gross Domestic Product",
-    "Price level", "Recessions", "Expansions", "Aggregate consumption",
-    "Fiscal policy multiplier", "Government expenditures multiplier",
-    "Investment multiplier", "Marginal propensity to consume",
-    "Marginal propensity to save", "Stagflation", "Domestic credit",
-    "Industrial output", "Long-Run Growth",
-    # mathematics
-    "Calculus", "Complex number", "Convergence", "Euclidean distance",
-    "Linear algebra", "Initial condition", "Complex plane", "Real part",
-    "Imaginary part", "Complex conjugate", "Vertices",
-    "Log transform", "Indicator function",
-    # probability
+    # economics (AP Econ)
+    "Budget constraint", "Capital depreciation", "Consumer surplus",
+    "Cost function", "Equilibrium", "Market clearing", "Social welfare",
+    # finance (basic finance / AP Econ)
+    "Annuity", "Corporate bond", "Discounting", "Expiry date",
+    "Money demand", "Money supply", "Mutual fund",
+    "Present discounted value", "Present value", "Spot price",
+    "Strike price", "Underlying asset", "Volatility",
+    # macroeconomics (AP Macro)
+    "Business cycle", "Closed economy", "Expansions", "GDP",
+    "Gross Domestic Product", "Industrial output", "Price level",
+    "Recessions", "Stagflation",
+    # mathematics (precalculus / HS geometry)
+    "Calculus", "Complex conjugate", "Complex number", "Complex plane",
+    "Convergence", "Euclidean distance", "Imaginary part",
+    "Initial condition", "Log transform", "Real part",
+    "Trigonometric form", "Vertices",
+    # probability (AP Statistics)
     "Central limit theorem", "Conditional probability",
-    "Cumulative distribution function", "Exponential distribution",
-    "Normal distribution", "Probability density function",
-    "Probability mass function", "Law of large numbers",
-    "Independent and identically distributed", "Moments",
-    "Marginal distribution", "Support", "Law of total probability",
-    "Beta distribution",
-    # statistics
-    "Histogram", "Sample mean", "Sample variance", "OLS",
-    "Ordinary Least Squares", "Scatter plot", "Time series", "Residuals",
-    "Weighted average", "First Moment", "Central moment",
-    "Empirical Distribution", "SSR", "Sum of the squared residuals",
-    "Simple regression model",
-    # optimization
-    "Dynamic programming", "Linear programming", "Optimal path", "Optimal policy",
-    # numerical-methods
-    "Monte Carlo", "Numerical integration", "Vectorization",
-    # stochastic-processes
-    "Markov chain", "State space", "Stationary distribution",
-    "Transition probability", "Stochastic matrix",
-    # calculus
-    "Partial derivative", "Taylor series",
-    # game-theory
+    "Cumulative distribution function", "Law of large numbers",
+    "Law of total probability", "Normal distribution",
+    "Probability density function", "Probability mass function",
+    # statistics (AP Statistics)
+    "Histogram", "Residuals", "Sample mean", "Sample variance",
+    "Scatter plot", "Simple regression model", "Weighted average",
+    # calculus (AP Calculus BC / precalculus trig)
+    "Angle sum identities", "Taylor series",
+    # game-theory (basic)
     "Zero-sum game",
-    # microeconomics
+    # microeconomics (AP Micro)
     "Marginal revenue", "Producer surplus",
-    # other
-    "Exercise", "Lecture", "Violin plot",
-    # dynamic-programming
-    "State variable", "Steady state", "Finite horizon",
+    # other (meta terms / HS)
+    "Exercise", "Industrial Revolution", "Lecture",
 }
 
-# === ADVANCED terms: specialist, research-level, or very niche ===
+# === ADVANCED terms: graduate level (PhD courses, research, specialist theory) ===
 ADVANCED_TERMS = {
-    # economics
-    "Autarky equilibrium", "Geary–Khamis dollar", "Forward-looking difference equation",
-    "Tax farming", "Equalizing Difference Model", "Welfare maximization problem",
-    "Multiple consumer economy", "Jump variable", "Second fundamental welfare theorem",
-    "Projected corporate tax revenue", "Money-financed government deficit",
-    "Exogenous initial capital stock", "Dynamic Laffer curve",
-    "Consumption-smoothing model", "Tax-smoothing model",
-    # finance
-    "Barrier option", "Knockout barrier", "Inflation-tax theory", "Real bills theory",
-    "Stochastic volatility", "Unpleasant monetarist arithmetic",
-    "Fiscal theory of price levels", "Legal restrictions theory",
-    "Arrow securities", "State-contingent claims", "Risk-neutral pricing",
-    "Fractional reserve banking", "Inflation-indexed bonds",
-    # linear-algebra
-    "Gershgorin Circle Theorem", "Perron-Frobenius theorem", "Perron projection",
-    "Invariant subspace", "Eigenvector decomposition",
-    # mathematics
-    "Neumann Series Lemma", "de Moivre's theorem", "PageRank algorithm",
-    "Hub centrality", "Authority centrality", "Katz centrality",
-    "Vector linear difference equations", "Second-order linear difference equation",
-    "Forcing variable", "Recursive expressions",
-    # macroeconomics
-    "OLG model", "Overlapping generations model", "Multiplier-accelerator model",
-    "Solow-Swan Growth Model", "Golden Rule savings rate",
-    "Aggregate supply of capital", "Time to build",
-    # stochastic-processes
-    "Accessible state", "Communicating states", "Jump Chain Algorithm",
-    "Ergodicity",
-    # statistics
-    "Kolmogorov-Smirnov test", "Silverman's rule",
-    "Non-stationary univariate time series",
-    # probability
-    "Bivariate uniform distribution", "Characteristic function",
-    "Convergence in distribution", "Heavy-tailed distribution",
-    "Light-tailed distribution", "Moment generating function",
-    "Pareto tail", "Power law", "Tail index", "CCDF", "Counter CDF",
-    # game-theory
-    "Folk theorem", "Grim trigger strategy",
-    # calculus
-    "Angle sum identities", "Trigonometric integrals",
-    # numerical-methods
-    "Method of successive approximations", "Path simulation",
-    # economics misc
-    "Cobweb model", "Input-output model", "Lake model",
+    # dynamic-programming (grad-level functional analysis / control theory)
+    "Bellman operator", "Continuation value", "Cost-to-go function",
+    # economics (grad macro / micro / trade / public finance)
+    "Autarky equilibrium", "Consumption-smoothing model",
     "Cyclical price dynamics", "Distribution dynamics",
-    "Financial repression", "Seigniorage",
-    # other
-    "FRED", "Federal Reserve Economic Data", "NBER",
-    "National Bureau of Economic Research", "Survey of Consumer Finances",
-    "Balance sheet equation",
+    "Dynamic Laffer curve", "Equalizing Difference Model",
+    "Exogenous initial capital stock", "Financial repression",
+    "First fundamental welfare theorem", "Flow utility function",
+    "Forward-looking difference equation", "Geary–Khamis dollar",
+    "Input-output model", "Jump variable", "Lake model",
+    "Leontief Inverse", "Money-financed government deficit",
+    "Multiple consumer economy", "Second fundamental welfare theorem",
+    "Seigniorage", "Stochastic productivity",
+    "Tax farming", "Tax-smoothing model",
+    # finance (grad finance / monetary theory)
+    "Arrow securities", "Barrier option", "Fiscal theory of price levels",
+    "Inflation-indexed bonds", "Inflation-tax theory", "Knockout barrier",
+    "Legal restrictions theory", "Real bills theory", "Risk-neutral pricing",
+    "State-contingent claims", "Stochastic volatility",
+    "Unpleasant monetarist arithmetic",
+    # game-theory (grad game theory)
+    "Folk theorem", "Grim trigger strategy",
+    # linear-algebra (grad spectral theory / Perron-Frobenius theory)
+    "Gershgorin Circle Theorem", "Invariant subspace",
+    "Irreducible matrix", "Perron projection", "Perron-Frobenius theorem",
+    "Primitive matrix", "Spectral gap", "Spectral radius", "Spectral theory",
+    # macroeconomics (grad macro)
+    "Aggregate supply of capital", "Multiplier-accelerator model",
+    "OLG model", "Overlapping generations model", "Time to build",
+    # mathematics (grad network science / analysis)
+    "Authority centrality", "Forcing variable", "Hub centrality",
+    "Katz centrality", "Neumann Series Lemma",
+    "Vector linear difference equations",
+    # microeconomics (grad duality theory)
+    "Hicksian demand curve",
+    # numerical-methods (grad numerical analysis)
+    "Method of successive approximations",
+    # probability (grad probability theory)
+    "Characteristic function", "Convergence in distribution",
+    "Heavy-tailed distribution", "Light-tailed distribution",
+    "Moment generating function", "Pareto tail", "Tail index",
+    # statistics (grad time series / nonparametric)
+    "Asymptotic stationarity", "Non-stationary univariate time series",
+    "Silverman's rule",
+    # stochastic-processes (grad Markov chain theory)
+    "Accessible state", "Communicating states", "Ergodicity",
+    "Jump Chain Algorithm", "Stochastic linear difference equation",
+    # other (specialist data sources)
+    "Survey of Consumer Finances",
 }
 
 # Everything else is intermediate (the default)

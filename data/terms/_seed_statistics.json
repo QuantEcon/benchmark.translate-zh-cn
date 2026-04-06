@@ -35,7 +35,7 @@
     "en": "Asymptotic stationarity",
     "zh": "渐近平稳性",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -143,7 +143,7 @@
     "en": "Central moment",
     "zh": "中心矩",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -158,7 +158,7 @@
     "en": "Empirical Distribution",
     "zh": "经验分布",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -189,7 +189,7 @@
     "en": "First Moment",
     "zh": "一阶矩",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -305,7 +305,7 @@
     "en": "Kolmogorov-Smirnov test",
     "zh": "科尔莫戈罗夫-斯米尔诺夫检验",
     "domain": "statistics",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -420,7 +420,7 @@
     "en": "Ordinary Least Squares",
     "zh": "普通最小二乘法",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -443,7 +443,7 @@
     "en": "OLS",
     "zh": "普通最小二乘法",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -645,7 +645,7 @@
     "en": "Sum of the squared residuals",
     "zh": "残差平方和",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -660,7 +660,7 @@
     "en": "SSR",
     "zh": "残差平方和",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -675,7 +675,7 @@
     "en": "Time series",
     "zh": "时间序列",
     "domain": "statistics",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {

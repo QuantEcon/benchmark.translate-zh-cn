@@ -65,7 +65,7 @@
     "en": "Markov chain",
     "zh": "马尔可夫链",
     "domain": "stochastic-processes",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -96,7 +96,7 @@
     "en": "State space",
     "zh": "状态空间",
     "domain": "stochastic-processes",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -146,7 +146,7 @@
     "en": "Stationary distribution",
     "zh": "平稳分布",
     "domain": "stochastic-processes",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -208,7 +208,7 @@
     "en": "Stochastic linear difference equation",
     "zh": "随机线性差分方程",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -227,7 +227,7 @@
     "en": "Stochastic matrix",
     "zh": "随机矩阵",
     "domain": "stochastic-processes",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -258,7 +258,7 @@
     "en": "Transition probability",
     "zh": "转移概率",
     "domain": "stochastic-processes",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {

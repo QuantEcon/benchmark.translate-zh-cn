@@ -14,7 +14,7 @@
     "en": "Monte Carlo",
     "zh": "蒙特卡洛",
     "domain": "numerical-methods",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -76,7 +76,7 @@
     "en": "Numerical integration",
     "zh": "数值积分",
     "domain": "numerical-methods",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
@@ -107,7 +107,7 @@
     "en": "Path simulation",
     "zh": "路径模拟",
     "domain": "numerical-methods",
-    "difficulty": "advanced",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (simulation)"
@@ -148,7 +148,7 @@
     "en": "Vectorization",
     "zh": "向量化",
     "domain": "numerical-methods",
-    "difficulty": "basic",
+    "difficulty": "intermediate",
     "alternatives": [],
     "contexts": [
       {
