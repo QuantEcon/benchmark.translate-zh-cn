@@ -19,7 +19,7 @@
     "en": "Exercise",
     "zh": "练习",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -91,7 +91,7 @@
     "en": "Lecture",
     "zh": "讲座",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -151,7 +151,7 @@
     "en": "Survey of Consumer Finances",
     "zh": "消费者财务调查",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

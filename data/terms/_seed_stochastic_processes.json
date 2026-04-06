@@ -4,7 +4,7 @@
     "en": "Accessible state",
     "zh": "可达状态",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
@@ -14,7 +14,7 @@
     "en": "Communicating states",
     "zh": "互通状态",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
@@ -24,7 +24,7 @@
     "en": "Ergodicity",
     "zh": "遍历性",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -55,7 +55,7 @@
     "en": "Jump Chain Algorithm",
     "zh": "跳跃链算法",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
@@ -208,7 +208,7 @@
     "en": "Stochastic linear difference equation",
     "zh": "随机线性差分方程",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

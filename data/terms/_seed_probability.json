@@ -81,7 +81,7 @@
     "en": "Central limit theorem",
     "zh": "中心极限定理",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -112,7 +112,7 @@
     "en": "Characteristic function",
     "zh": "特征函数",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -127,7 +127,7 @@
     "en": "Conditional probability",
     "zh": "条件概率",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -158,7 +158,7 @@
     "en": "Convergence in distribution",
     "zh": "依分布收敛",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -223,7 +223,7 @@
     "en": "Cumulative distribution function",
     "zh": "累积分布函数",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -285,7 +285,7 @@
     "en": "Heavy-tailed distribution",
     "zh": "重尾分布",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -339,7 +339,7 @@
     "en": "Law of large numbers",
     "zh": "大数定律",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -370,7 +370,7 @@
     "en": "Law of total probability",
     "zh": "全概率公式",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -389,7 +389,7 @@
     "en": "Light-tailed distribution",
     "zh": "轻尾分布",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -458,7 +458,7 @@
     "en": "Moment generating function",
     "zh": "矩生成函数",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -543,7 +543,7 @@
     "en": "Normal distribution",
     "zh": "正态分布",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -574,7 +574,7 @@
     "en": "Pareto tail",
     "zh": "帕累托尾",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -624,7 +624,7 @@
     "en": "Probability density function",
     "zh": "概率密度函数",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -655,7 +655,7 @@
     "en": "Probability mass function",
     "zh": "概率质量函数",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -736,7 +736,7 @@
     "en": "Tail index",
     "zh": "尾指数",
     "domain": "probability",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

@@ -4,7 +4,7 @@
     "en": "Annuity",
     "zh": "年金",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -35,7 +35,7 @@
     "en": "Arrow securities",
     "zh": "阿罗证券",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -66,7 +66,7 @@
     "en": "Barrier option",
     "zh": "障碍期权",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (finance)"
@@ -76,7 +76,7 @@
     "en": "Corporate bond",
     "zh": "公司债券",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -122,7 +122,7 @@
     "en": "Discounting",
     "zh": "贴现",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -180,7 +180,7 @@
     "en": "Expiry date",
     "zh": "到期日",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -226,7 +226,7 @@
     "en": "Fiscal theory of price levels",
     "zh": "价格水平的财政理论",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -349,7 +349,7 @@
     "en": "Inflation-indexed bonds",
     "zh": "通胀指数化债券",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -364,7 +364,7 @@
     "en": "Inflation-tax theory",
     "zh": "通货膨胀税理论",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (monetary economics)"
@@ -374,7 +374,7 @@
     "en": "Knockout barrier",
     "zh": "敲出障碍",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (options)"
@@ -384,7 +384,7 @@
     "en": "Legal restrictions theory",
     "zh": "法律限制理论",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -399,7 +399,7 @@
     "en": "Money demand",
     "zh": "货币需求",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -441,7 +441,7 @@
     "en": "Money supply",
     "zh": "货币供给",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -472,7 +472,7 @@
     "en": "Mutual fund",
     "zh": "共同基金",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -522,7 +522,7 @@
     "en": "Present discounted value",
     "zh": "现值",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -541,7 +541,7 @@
     "en": "Present value",
     "zh": "现值",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -602,7 +602,7 @@
     "en": "Real bills theory",
     "zh": "实物票据理论",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (monetary economics)"
@@ -658,7 +658,7 @@
     "en": "Risk-neutral pricing",
     "zh": "风险中性定价",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -677,7 +677,7 @@
     "en": "Spot price",
     "zh": "现货价格",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -700,7 +700,7 @@
     "en": "State-contingent claims",
     "zh": "或有债权",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -727,7 +727,7 @@
     "en": "Stochastic volatility",
     "zh": "随机波动率",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (finance)"
@@ -737,7 +737,7 @@
     "en": "Strike price",
     "zh": "行权价",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -791,7 +791,7 @@
     "en": "Underlying asset",
     "zh": "标的资产",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -806,7 +806,7 @@
     "en": "Unpleasant monetarist arithmetic",
     "zh": "不愉快的货币主义算术",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -837,7 +837,7 @@
     "en": "Volatility",
     "zh": "波动率",
     "domain": "finance",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

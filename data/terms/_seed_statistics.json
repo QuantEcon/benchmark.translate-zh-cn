@@ -35,7 +35,7 @@
     "en": "Asymptotic stationarity",
     "zh": "渐近平稳性",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -224,7 +224,7 @@
     "en": "Histogram",
     "zh": "直方图",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -405,7 +405,7 @@
     "en": "Non-stationary univariate time series",
     "zh": "非平稳单变量时间序列",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -474,7 +474,7 @@
     "en": "Residuals",
     "zh": "残差",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -505,7 +505,7 @@
     "en": "Sample mean",
     "zh": "样本均值",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -536,7 +536,7 @@
     "en": "Sample variance",
     "zh": "样本方差",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -559,7 +559,7 @@
     "en": "Scatter plot",
     "zh": "散点图",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -574,7 +574,7 @@
     "en": "Silverman's rule",
     "zh": "西尔弗曼法则",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (kernel density estimation)"
@@ -584,7 +584,7 @@
     "en": "Simple regression model",
     "zh": "简单回归模型",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -706,7 +706,7 @@
     "en": "Weighted average",
     "zh": "加权平均",
     "domain": "statistics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

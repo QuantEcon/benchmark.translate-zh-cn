@@ -19,7 +19,7 @@
     "en": "Bellman operator",
     "zh": "贝尔曼算子",
     "domain": "dynamic-programming",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -50,7 +50,7 @@
     "en": "Continuation value",
     "zh": "延续值",
     "domain": "dynamic-programming",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -81,7 +81,7 @@
     "en": "Cost-to-go function",
     "zh": "代价函数",
     "domain": "dynamic-programming",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

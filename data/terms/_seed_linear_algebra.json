@@ -178,7 +178,7 @@
     "en": "Gershgorin Circle Theorem",
     "zh": "格什戈林圆盘定理",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -193,7 +193,7 @@
     "en": "Invariant subspace",
     "zh": "不变子空间",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -224,7 +224,7 @@
     "en": "Irreducible matrix",
     "zh": "不可约矩阵",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -313,7 +313,7 @@
     "en": "Perron projection",
     "zh": "佩龙投影",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -328,7 +328,7 @@
     "en": "Perron-Frobenius theorem",
     "zh": "佩龙-弗罗贝尼乌斯定理",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -359,7 +359,7 @@
     "en": "Primitive matrix",
     "zh": "原始矩阵",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -382,7 +382,7 @@
     "en": "Spectral gap",
     "zh": "谱隙",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -397,7 +397,7 @@
     "en": "Spectral radius",
     "zh": "谱半径",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -428,7 +428,7 @@
     "en": "Spectral theory",
     "zh": "谱理论",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
