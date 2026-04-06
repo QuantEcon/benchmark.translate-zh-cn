@@ -4,7 +4,7 @@
     "en": "Accessible state",
     "zh": "可达状态",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
@@ -14,7 +14,7 @@
     "en": "Communicating states",
     "zh": "互通状态",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
@@ -24,7 +24,7 @@
     "en": "Ergodicity",
     "zh": "遍历性",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -55,7 +55,7 @@
     "en": "Jump Chain Algorithm",
     "zh": "跳跃链算法",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (Markov chains)"
@@ -65,7 +65,7 @@
     "en": "Markov chain",
     "zh": "马尔可夫链",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -96,7 +96,7 @@
     "en": "State space",
     "zh": "状态空间",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -146,7 +146,7 @@
     "en": "Stationary distribution",
     "zh": "平稳分布",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -227,7 +227,7 @@
     "en": "Stochastic matrix",
     "zh": "随机矩阵",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -258,7 +258,7 @@
     "en": "Transition probability",
     "zh": "转移概率",
     "domain": "stochastic-processes",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

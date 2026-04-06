@@ -155,7 +155,7 @@
     "en": "Eigenvector decomposition",
     "zh": "特征向量分解",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -178,7 +178,7 @@
     "en": "Gershgorin Circle Theorem",
     "zh": "格什戈林圆盘定理",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -193,7 +193,7 @@
     "en": "Invariant subspace",
     "zh": "不变子空间",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -313,7 +313,7 @@
     "en": "Perron projection",
     "zh": "佩龙投影",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -328,7 +328,7 @@
     "en": "Perron-Frobenius theorem",
     "zh": "佩龙-弗罗贝尼乌斯定理",
     "domain": "linear-algebra",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

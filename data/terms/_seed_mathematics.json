@@ -35,7 +35,7 @@
     "en": "Authority centrality",
     "zh": "权威中心性",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -54,7 +54,7 @@
     "en": "Calculus",
     "zh": "微积分",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -108,7 +108,7 @@
     "en": "Complex conjugate",
     "zh": "共轭复数",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -139,7 +139,7 @@
     "en": "Complex number",
     "zh": "复数",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -170,7 +170,7 @@
     "en": "Complex plane",
     "zh": "复平面",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -224,7 +224,7 @@
     "en": "Convergence",
     "zh": "收敛",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -255,7 +255,7 @@
     "en": "de Moivre's theorem",
     "zh": "棣莫弗定理",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -386,7 +386,7 @@
     "en": "Euclidean distance",
     "zh": "欧几里得距离",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -432,7 +432,7 @@
     "en": "Forcing variable",
     "zh": "强制变量",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -447,7 +447,7 @@
     "en": "Hub centrality",
     "zh": "枢纽中心性",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -466,7 +466,7 @@
     "en": "Imaginary part",
     "zh": "虚部",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -489,7 +489,7 @@
     "en": "Indicator function",
     "zh": "指示函数",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -508,7 +508,7 @@
     "en": "Initial condition",
     "zh": "初始条件",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -539,7 +539,7 @@
     "en": "Katz centrality",
     "zh": "卡茨中心性",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -601,7 +601,7 @@
     "en": "Linear algebra",
     "zh": "线性代数",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -647,7 +647,7 @@
     "en": "Log transform",
     "zh": "对数转换",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -689,7 +689,7 @@
     "en": "Neumann Series Lemma",
     "zh": "诺伊曼级数引理",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -720,7 +720,7 @@
     "en": "PageRank algorithm",
     "zh": "网页排名算法",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -739,7 +739,7 @@
     "en": "Real part",
     "zh": "实部",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -758,7 +758,7 @@
     "en": "Recursive expressions",
     "zh": "递归表达式",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -773,7 +773,7 @@
     "en": "Second-order linear difference equation",
     "zh": "二阶线性差分方程",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -857,7 +857,7 @@
     "en": "Vector linear difference equations",
     "zh": "向量线性差分方程",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (difference equations)"
@@ -867,7 +867,7 @@
     "en": "Vertices",
     "zh": "顶点",
     "domain": "mathematics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

@@ -4,7 +4,7 @@
     "en": "Angle sum identities",
     "zh": "和角恒等式",
     "domain": "calculus",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -19,7 +19,7 @@
     "en": "Partial derivative",
     "zh": "偏导数",
     "domain": "calculus",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -38,7 +38,7 @@
     "en": "Taylor series",
     "zh": "泰勒级数",
     "domain": "calculus",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -61,7 +61,7 @@
     "en": "Trigonometric integrals",
     "zh": "三角积分",
     "domain": "calculus",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

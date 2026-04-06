@@ -35,7 +35,7 @@
     "en": "Autarky equilibrium",
     "zh": "自给自足均衡",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (economics)"
@@ -45,7 +45,7 @@
     "en": "Budget constraint",
     "zh": "预算约束",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -76,7 +76,7 @@
     "en": "Capital depreciation",
     "zh": "资本折旧",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -133,7 +133,7 @@
     "en": "Cobweb model",
     "zh": "蛛网模型",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -206,7 +206,7 @@
     "en": "Consumer surplus",
     "zh": "消费者剩余",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -237,7 +237,7 @@
     "en": "Consumption-smoothing model",
     "zh": "消费平滑模型",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -293,7 +293,7 @@
     "en": "Cost function",
     "zh": "成本函数",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -324,7 +324,7 @@
     "en": "Cyclical price dynamics",
     "zh": "周期性价格动态",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -354,7 +354,7 @@
     "en": "Discount factor",
     "zh": "贴现因子",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -400,7 +400,7 @@
     "en": "Distribution dynamics",
     "zh": "分布动态",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -427,7 +427,7 @@
     "en": "Dynamic Laffer curve",
     "zh": "动态拉弗曲线",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -446,7 +446,7 @@
     "en": "Dynamic model",
     "zh": "动态模型",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -504,7 +504,7 @@
     "en": "Equalizing Difference Model",
     "zh": "均衡差异模型",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -523,7 +523,7 @@
     "en": "Equilibrium",
     "zh": "均衡",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -585,7 +585,7 @@
     "en": "Exogenous",
     "zh": "外生的",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -616,7 +616,7 @@
     "en": "Exogenous initial capital stock",
     "zh": "外生初始资本存量",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -631,7 +631,7 @@
     "en": "Financial repression",
     "zh": "金融压抑",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -715,7 +715,7 @@
     "en": "Forward-looking difference equation",
     "zh": "前瞻性差分方程",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (economics)"
@@ -725,7 +725,7 @@
     "en": "Geary–Khamis dollar",
     "zh": "吉尔里-卡米斯元",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (international comparison)"
@@ -892,7 +892,7 @@
     "en": "Input-output model",
     "zh": "投入产出模型",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -911,7 +911,7 @@
     "en": "Jump variable",
     "zh": "跳跃变量",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (economics)"
@@ -952,7 +952,7 @@
     "en": "Lake model",
     "zh": "湖泊模型",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -1091,7 +1091,7 @@
     "en": "Market clearing",
     "zh": "市场出清",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -1106,7 +1106,7 @@
     "en": "Money-financed government deficit",
     "zh": "货币融资的政府赤字",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -1125,7 +1125,7 @@
     "en": "Multiple consumer economy",
     "zh": "多消费者经济",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (economics)"
@@ -1254,7 +1254,7 @@
     "en": "Perfect foresight",
     "zh": "完全预见",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -1295,7 +1295,7 @@
     "en": "Projected corporate tax revenue",
     "zh": "预计企业税收",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (public finance)"
@@ -1330,7 +1330,7 @@
     "en": "Second fundamental welfare theorem",
     "zh": "福利经济学第二定理",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (welfare economics)"
@@ -1340,7 +1340,7 @@
     "en": "Seigniorage",
     "zh": "铸币税",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -1371,7 +1371,7 @@
     "en": "Social welfare",
     "zh": "社会福利",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -1417,7 +1417,7 @@
     "en": "Tax farming",
     "zh": "包税制",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (public finance)"
@@ -1427,7 +1427,7 @@
     "en": "Tax-smoothing model",
     "zh": "税收平滑模型",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -1520,7 +1520,7 @@
     "en": "Welfare maximization problem",
     "zh": "福利最大化问题",
     "domain": "economics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (welfare economics)"

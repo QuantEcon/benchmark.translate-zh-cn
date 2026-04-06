@@ -4,7 +4,7 @@
     "en": "Method of successive approximations",
     "zh": "连续近似法",
     "domain": "numerical-methods",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (numerical methods)"
@@ -14,7 +14,7 @@
     "en": "Monte Carlo",
     "zh": "蒙特卡洛",
     "domain": "numerical-methods",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -76,7 +76,7 @@
     "en": "Numerical integration",
     "zh": "数值积分",
     "domain": "numerical-methods",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -107,7 +107,7 @@
     "en": "Path simulation",
     "zh": "路径模拟",
     "domain": "numerical-methods",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (simulation)"
@@ -148,7 +148,7 @@
     "en": "Vectorization",
     "zh": "向量化",
     "domain": "numerical-methods",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

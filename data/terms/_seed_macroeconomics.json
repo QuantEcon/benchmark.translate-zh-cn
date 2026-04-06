@@ -4,7 +4,7 @@
     "en": "Aggregate consumption",
     "zh": "总消费",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -69,7 +69,7 @@
     "en": "Aggregate supply of capital",
     "zh": "资本总供给",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (macroeconomics)"
@@ -79,7 +79,7 @@
     "en": "Business cycle",
     "zh": "商业周期",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -102,7 +102,7 @@
     "en": "Closed economy",
     "zh": "封闭经济",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -133,7 +133,7 @@
     "en": "Domestic credit",
     "zh": "国内信贷",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -152,7 +152,7 @@
     "en": "Expansions",
     "zh": "扩张",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -183,7 +183,7 @@
     "en": "Fiscal policy multiplier",
     "zh": "财政政策乘数",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -198,7 +198,7 @@
     "en": "Golden Rule savings rate",
     "zh": "黄金法则储蓄率",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -213,7 +213,7 @@
     "en": "Government expenditures multiplier",
     "zh": "政府支出乘数",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -228,7 +228,7 @@
     "en": "Gross Domestic Product",
     "zh": "国内生产总值",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -247,7 +247,7 @@
     "en": "GDP",
     "zh": "国内生产总值",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -328,7 +328,7 @@
     "en": "Industrial output",
     "zh": "工业产出",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -347,7 +347,7 @@
     "en": "Investment multiplier",
     "zh": "投资乘数",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -377,7 +377,7 @@
     "en": "Long-Run Growth",
     "zh": "长期增长",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -408,7 +408,7 @@
     "en": "Marginal propensity to consume",
     "zh": "边际消费倾向",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -439,7 +439,7 @@
     "en": "Marginal propensity to save",
     "zh": "边际储蓄倾向",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -454,7 +454,7 @@
     "en": "Multiplier-accelerator model",
     "zh": "乘数-加速数模型",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -519,7 +519,7 @@
     "en": "Overlapping generations model",
     "zh": "世代交叠模型",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -538,7 +538,7 @@
     "en": "OLG model",
     "zh": "世代交叠模型",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -569,7 +569,7 @@
     "en": "Price level",
     "zh": "价格水平",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -631,7 +631,7 @@
     "en": "Recessions",
     "zh": "衰退",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -662,7 +662,7 @@
     "en": "Solow-Swan Growth Model",
     "zh": "索洛-斯旺增长模型",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -677,7 +677,7 @@
     "en": "Stagflation",
     "zh": "滞胀",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -692,7 +692,7 @@
     "en": "Time to build",
     "zh": "建设时间",
     "domain": "macroeconomics",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {

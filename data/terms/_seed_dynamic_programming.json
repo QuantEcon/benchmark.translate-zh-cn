@@ -104,7 +104,7 @@
     "en": "Finite horizon",
     "zh": "有限视界",
     "domain": "dynamic-programming",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -176,7 +176,7 @@
     "en": "State variable",
     "zh": "状态变量",
     "domain": "dynamic-programming",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -207,7 +207,7 @@
     "en": "Steady state",
     "zh": "稳态",
     "domain": "dynamic-programming",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

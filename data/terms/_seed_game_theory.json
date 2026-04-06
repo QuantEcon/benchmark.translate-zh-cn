@@ -4,7 +4,7 @@
     "en": "Folk theorem",
     "zh": "无名氏定理",
     "domain": "game-theory",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (game theory)"
@@ -14,7 +14,7 @@
     "en": "Grim trigger strategy",
     "zh": "冷酷策略",
     "domain": "game-theory",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (game theory)"
@@ -24,7 +24,7 @@
     "en": "Zero-sum game",
     "zh": "零和博弈",
     "domain": "game-theory",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {

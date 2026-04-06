@@ -4,7 +4,7 @@
     "en": "Balance sheet equation",
     "zh": "资产负债表等式",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -19,7 +19,7 @@
     "en": "Exercise",
     "zh": "练习",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -50,7 +50,7 @@
     "en": "FRED",
     "zh": "美联储经济数据",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -81,7 +81,7 @@
     "en": "Federal Reserve Economic Data",
     "zh": "美联储经济数据",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (data source)"
@@ -91,7 +91,7 @@
     "en": "Lecture",
     "zh": "讲座",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
@@ -122,7 +122,7 @@
     "en": "NBER",
     "zh": "美国国家经济研究局",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -141,7 +141,7 @@
     "en": "National Bureau of Economic Research",
     "zh": "美国国家经济研究局",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [],
     "source": "glossary/zh-cn (institution)"
@@ -151,7 +151,7 @@
     "en": "Survey of Consumer Finances",
     "zh": "消费者财务调查",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "advanced",
     "alternatives": [],
     "contexts": [
       {
@@ -193,7 +193,7 @@
     "en": "Violin plot",
     "zh": "小提琴图",
     "domain": "other",
-    "difficulty": "intermediate",
+    "difficulty": "basic",
     "alternatives": [],
     "contexts": [
       {
