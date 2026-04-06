@@ -11,8 +11,14 @@ from qebench.models import Difficulty, Sentence, Term
 class TestFindDuplicates:
     def _make_terms(self):
         return [
-            Term(id="term-001", en="inflation", zh="通货膨胀", domain="economics", difficulty=Difficulty.basic),
-            Term(id="term-002", en="Gross Domestic Product", zh="国内生产总值", domain="economics", difficulty=Difficulty.basic),
+            Term(
+                id="term-001", en="inflation", zh="通货膨胀",
+                domain="economics", difficulty=Difficulty.basic,
+            ),
+            Term(
+                id="term-002", en="Gross Domestic Product", zh="国内生产总值",
+                domain="economics", difficulty=Difficulty.basic,
+            ),
         ]
 
     def test_exact_match(self):
@@ -39,7 +45,10 @@ class TestFindDuplicates:
 
     def test_works_with_sentences(self):
         sentences = [
-            Sentence(id="sent-001", en="The rate of inflation is rising.", zh="通胀率正在上升。", domain="economics", difficulty=Difficulty.basic),
+            Sentence(
+                id="sent-001", en="The rate of inflation is rising.",
+                zh="通胀率正在上升。", domain="economics", difficulty=Difficulty.basic,
+            ),
         ]
         dupes = _find_duplicates("the rate of inflation is rising.", sentences)
         assert len(dupes) == 1
