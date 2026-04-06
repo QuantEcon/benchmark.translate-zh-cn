@@ -859,7 +859,12 @@
     "domain": "mathematics",
     "difficulty": "advanced",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Vector linear difference equations describe the evolution of a system of variables through matrix recursions.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (difference equations)"
   },
   {

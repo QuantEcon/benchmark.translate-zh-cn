@@ -6,7 +6,12 @@
     "domain": "game-theory",
     "difficulty": "advanced",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The folk theorem establishes that in infinitely repeated games, any feasible and individually rational payoff can be sustained as an equilibrium.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (game theory)"
   },
   {
@@ -16,7 +21,12 @@
     "domain": "game-theory",
     "difficulty": "advanced",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A grim trigger strategy permanently punishes any defection by reverting to the worst equilibrium forever.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (game theory)"
   },
   {
