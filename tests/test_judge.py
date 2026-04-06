@@ -100,6 +100,16 @@ class TestBuildMatchups:
         assert len(matchups) == 1
         assert matchups[0]["entry"].id == "term-001"
 
+    def test_identical_translations_can_be_detected(self) -> None:
+        """When model output matches reference, translations are identical (#9)."""
+        term = _make_term(zh="通货膨胀")
+        outputs = {"claude": {"term-001": "通货膨胀"}}
+        matchups = _build_matchups([term], outputs)
+        assert len(matchups) == 1
+        m = matchups[0]
+        # One side is the model, other is human-reference — both have same text
+        assert m["translation_a"].strip() == m["translation_b"].strip()
+
 
 class TestGetKeyTermTranslations:
     def test_term_returns_empty(self) -> None:

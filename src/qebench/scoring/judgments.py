@@ -81,14 +81,16 @@ def update_model_elos(model_a: str, model_b: str, winner: str) -> tuple[float, f
     Raises:
         ValueError: If winner is not 'a', 'b', or 'tie'.
     """
-    if winner not in ("a", "b", "tie"):
-        raise ValueError(f"Invalid winner '{winner}'. Must be 'a', 'b', or 'tie'.")
+    if winner not in ("a", "b", "tie", "neither"):
+        raise ValueError(f"Invalid winner '{winner}'. Must be 'a', 'b', 'tie', or 'neither'.")
 
     ratings = load_elo_ratings()
     rating_a = ratings.get(model_a, DEFAULT_RATING)
     rating_b = ratings.get(model_b, DEFAULT_RATING)
 
-    new_a, new_b = update_elo(rating_a, rating_b, winner)
+    # Treat "neither" as a tie for Elo calculation
+    elo_winner = "tie" if winner == "neither" else winner
+    new_a, new_b = update_elo(rating_a, rating_b, elo_winner)
     ratings[model_a] = round(new_a, 1)
     ratings[model_b] = round(new_b, 1)
 
