@@ -104,3 +104,23 @@ class TestProviderInterface:
         assert results[0].entry_id == "term-001"
         assert results[1].entry_id == "term-002"
         assert "[translated]" in results[0].translated_text
+
+    def test_translate_batch_on_complete(self) -> None:
+        """on_complete callback is invoked once per entry from the main thread."""
+        p = DummyProvider()
+        texts = [
+            {"id": "term-001", "text": "inflation", "domain": "economics"},
+            {"id": "term-002", "text": "GDP", "domain": "economics"},
+            {"id": "term-003", "text": "supply", "domain": "economics"},
+        ]
+        completed: list[str] = []
+        results = p.translate_batch(
+            texts,
+            source_lang="en",
+            target_lang="zh-cn",
+            prompt_template="Translate {text}",
+            on_complete=lambda r: completed.append(r.entry_id),
+        )
+        assert len(results) == 3
+        # Callback invoked exactly once per entry
+        assert sorted(completed) == ["term-001", "term-002", "term-003"]
