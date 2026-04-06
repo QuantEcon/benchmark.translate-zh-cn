@@ -168,7 +168,12 @@
     "domain": "dynamic-programming",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A stable cycle is a periodic orbit to which nearby trajectories converge over time.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (dynamical systems)"
   },
   {

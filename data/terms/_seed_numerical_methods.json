@@ -6,7 +6,12 @@
     "domain": "numerical-methods",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The method of successive approximations iteratively refines an initial guess until convergence to a fixed point.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (numerical methods)"
   },
   {
@@ -109,7 +114,12 @@
     "domain": "numerical-methods",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Path simulation generates sample trajectories of a stochastic process using random number draws.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (simulation)"
   },
   {

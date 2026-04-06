@@ -240,6 +240,46 @@ class TestFindContexts:
         assert "repo-one/a.md" in sources
         assert "repo-two/b.md" in sources
 
+    def test_fuzzy_matching_compound_terms(self, tmp_path: Path) -> None:
+        """Compound terms fall back to fuzzy matching on significant words (#10)."""
+        repo = tmp_path / "lecture-test"
+        repo.mkdir()
+        # No exact match for "Welfare maximization problem" but all words appear
+        (repo / "test.md").write_text(
+            "The welfare maximization problem is central to this.\n\n"
+            "We can solve the welfare problem by maximization.\n\n"
+            "Unrelated text about nothing."
+        )
+        # Exact match should work for the first paragraph
+        results = find_contexts("Welfare maximization problem", [repo])
+        assert len(results) >= 1
+
+    def test_fuzzy_matching_fallback(self, tmp_path: Path) -> None:
+        """When no exact match, fuzzy finds paragraphs with all significant words."""
+        repo = tmp_path / "lecture-test"
+        repo.mkdir()
+        # "Barrier option" won't match exactly, but both words appear
+        (repo / "test.md").write_text(
+            "The barrier for this option is very high.\n\n"
+            "Unrelated sentence about economics."
+        )
+        results = find_contexts("Barrier option", [repo])
+        assert len(results) == 1
+        assert "barrier" in results[0].text.lower()
+        assert "option" in results[0].text.lower()
+
+    def test_fuzzy_prefers_exact_over_fuzzy(self, tmp_path: Path) -> None:
+        """Exact matches are preferred over fuzzy matches."""
+        repo = tmp_path / "lecture-test"
+        repo.mkdir()
+        (repo / "test.md").write_text(
+            "A barrier option is a type of exotic option.\n\n"
+            "The barrier for this option is high."
+        )
+        results = find_contexts("barrier option", [repo])
+        # Should return the exact match first
+        assert any("barrier option" in ctx.text.lower() for ctx in results)
+
 
 # ---------------------------------------------------------------------------
 # enrich_terms

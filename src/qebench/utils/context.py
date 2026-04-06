@@ -125,6 +125,10 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
     paragraphs, and returns up to MAX_CONTEXTS paragraphs that contain
     the term (case-insensitive, whole-word match).
 
+    Falls back to fuzzy matching for compound terms: if no exact match
+    is found, searches for paragraphs containing ALL significant words
+    from the term (words with 4+ characters, excluding stop words).
+
     Args:
         term_en: English term to search for.
         lecture_dirs: List of paths to cloned lecture repositories.
@@ -138,7 +142,19 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
         re.IGNORECASE,
     )
 
+    # Build fuzzy patterns for compound term fallback
+    _stop_words = {"the", "and", "for", "with", "from", "that", "this", "into"}
+    significant_words = [
+        w for w in re.split(r'[\s\-–]+', term_en)
+        if len(w) >= 4 and w.lower() not in _stop_words
+    ]
+    fuzzy_patterns = [
+        re.compile(r'\b' + re.escape(w) + r'\b', re.IGNORECASE)
+        for w in significant_words
+    ] if len(significant_words) >= 2 else []
+
     matches: list[TermContext] = []
+    fuzzy_matches: list[TermContext] = []
 
     for lecture_dir in lecture_dirs:
         if not lecture_dir.is_dir():
@@ -158,17 +174,21 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
             paragraphs = _extract_paragraphs(content)
 
             for para in paragraphs:
+                source = f"{repo_name}/{rel}"
                 if pattern.search(para):
-                    source = f"{repo_name}/{rel}"
                     matches.append(TermContext(text=para, source=source))
+                elif fuzzy_patterns and all(p.search(para) for p in fuzzy_patterns):
+                    fuzzy_matches.append(TermContext(text=para, source=source))
 
-    if not matches:
+    # Prefer exact matches; fall back to fuzzy if none found
+    result = matches if matches else fuzzy_matches
+    if not result:
         return []
 
     # Deterministic selection: sort by (source, text) for stable output,
     # then take first MAX_CONTEXTS.  Randomness is only at display time.
-    matches.sort(key=lambda ctx: (ctx.source, ctx.text))
-    return matches[:MAX_CONTEXTS]
+    result.sort(key=lambda ctx: (ctx.source, ctx.text))
+    return result[:MAX_CONTEXTS]
 
 
 def enrich_terms(terms: list[Term], lecture_dirs: list[Path]) -> set[str]:

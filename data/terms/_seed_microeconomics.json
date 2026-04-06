@@ -6,7 +6,12 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The Hicksian demand curve shows how quantity demanded varies with price while holding utility constant.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {
@@ -16,7 +21,12 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Marginal revenue is the additional income earned from selling one more unit of output.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {
@@ -26,7 +36,12 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The Marshallian demand curve relates quantity demanded to price while holding income constant.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {
@@ -36,7 +51,12 @@
     "domain": "microeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Non-satiation is the assumption that consumers always prefer more of a good to less.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (microeconomics)"
   },
   {

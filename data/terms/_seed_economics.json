@@ -37,7 +37,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "In autarky equilibrium, a closed economy determines prices and quantities without international trade.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (economics)"
   },
   {
@@ -285,7 +290,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The corporate tax rate is the percentage of a firm's profits collected as tax by the government.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (public finance)"
   },
   {
@@ -717,7 +727,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A forward-looking difference equation relates the current value of a variable to its expected future values.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (economics)"
   },
   {
@@ -727,7 +742,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The Geary–Khamis dollar is a hypothetical unit of currency used for purchasing power parity comparisons across countries.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (international comparison)"
   },
   {
@@ -913,7 +933,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A jump variable can change discontinuously at the initial date to satisfy forward-looking equilibrium conditions.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (economics)"
   },
   {
@@ -1127,7 +1152,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "In a multiple consumer economy, heterogeneous agents with different preferences interact through markets.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (economics)"
   },
   {
@@ -1287,7 +1317,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A perfect foresight model assumes all agents correctly anticipate future prices and quantities.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (economics)"
   },
   {
@@ -1297,7 +1332,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Projected corporate tax revenue is the government's forecast of income from corporate taxation.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (public finance)"
   },
   {
@@ -1322,7 +1362,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Reform and liberalization refer to policy changes that reduce government intervention in markets.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (economic policy)"
   },
   {
@@ -1332,7 +1377,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The second fundamental welfare theorem states that any Pareto efficient allocation can be achieved as a competitive equilibrium with appropriate redistribution.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (welfare economics)"
   },
   {
@@ -1419,7 +1469,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Tax farming is a system where the right to collect taxes is auctioned to private bidders.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (public finance)"
   },
   {
@@ -1522,7 +1577,12 @@
     "domain": "economics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The welfare maximization problem seeks allocations that maximize a social welfare function subject to resource constraints.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (welfare economics)"
   }
 ]

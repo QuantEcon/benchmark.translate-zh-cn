@@ -6,7 +6,12 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "An accessible state is one that can be reached with positive probability from a given starting state in a Markov chain.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -16,7 +21,12 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Two states in a Markov chain are communicating if each is accessible from the other.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {
@@ -57,7 +67,12 @@
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The Jump Chain Algorithm constructs a discrete-time chain from a continuous-time Markov process by recording only state transitions.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (Markov chains)"
   },
   {

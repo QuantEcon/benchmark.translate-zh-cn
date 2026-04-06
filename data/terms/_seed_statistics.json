@@ -206,7 +206,12 @@
     "domain": "statistics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Forecast errors are the differences between predicted and actual values of a time series.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (time series)"
   },
   {
@@ -216,7 +221,12 @@
     "domain": "statistics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A Gaussian kernel is a weighting function based on the normal distribution, commonly used in kernel density estimation.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (kernel methods)"
   },
   {
@@ -576,7 +586,12 @@
     "domain": "statistics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Silverman's rule is a method for selecting the bandwidth in kernel density estimation based on the sample size and standard deviation.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (kernel density estimation)"
   },
   {

@@ -68,7 +68,12 @@
     "domain": "finance",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A barrier option is an exotic option whose payoff depends on whether the underlying asset reaches a specified price level.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (finance)"
   },
   {
@@ -366,7 +371,12 @@
     "domain": "finance",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Inflation-tax theory analyzes how governments can finance expenditures by expanding the money supply, effectively taxing holders of money.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (monetary economics)"
   },
   {
@@ -376,7 +386,12 @@
     "domain": "finance",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "A knockout barrier is a price level at which a barrier option ceases to exist.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (options)"
   },
   {
@@ -604,7 +619,12 @@
     "domain": "finance",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The real bills theory holds that money issued against short-term commercial paper will not be inflationary.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (monetary economics)"
   },
   {
@@ -729,7 +749,12 @@
     "domain": "finance",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Stochastic volatility models allow the variance of asset returns to follow its own random process.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (finance)"
   },
   {

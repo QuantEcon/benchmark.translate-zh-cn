@@ -83,7 +83,12 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "Federal Reserve Economic Data (FRED) is an online database of economic time series maintained by the Federal Reserve Bank of St. Louis.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (data source)"
   },
   {
@@ -143,7 +148,12 @@
     "domain": "other",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The National Bureau of Economic Research (NBER) is a private nonprofit organization that conducts and disseminates economic research.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (institution)"
   },
   {

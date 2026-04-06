@@ -71,7 +71,12 @@
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "alternatives": [],
-    "contexts": [],
+    "contexts": [
+      {
+        "text": "The aggregate supply of capital is the total amount of physical capital available in an economy for production.",
+        "source": "curated-context"
+      }
+    ],
     "source": "glossary/zh-cn (macroeconomics)"
   },
   {
