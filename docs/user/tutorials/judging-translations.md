@@ -71,9 +71,26 @@ Two translations appear side by side:
 The labels A and B are randomized — you don't know which model produced
 which translation until the reveal.
 
-## Step 5: Score Each Translation
+## Step 5: Pick the Winner
 
-Rate **Translation A** on two dimensions:
+After comparing both translations, pick the overall winner:
+
+```
+Which is better overall?
+  A is better
+❯ B is better
+  Tie — equally good
+  Neither — both are poor
+```
+
+If both are equally good, pick **Tie**. If both are poor and neither is
+acceptable, pick **Neither**. Don't overthink it — go with your first
+instinct after reading both.
+
+## Step 6: Score Each Translation
+
+If you picked A or B as the winner, you'll be asked to rate each translation
+on two dimensions. (For **Tie** and **Neither**, scoring is skipped.)
 
 ```
 Rate Translation A:
@@ -91,20 +108,6 @@ Rate Translation B:
 
 **Accuracy** means how faithfully the translation captures the meaning.
 **Fluency** means how natural and readable the Chinese is.
-
-## Step 6: Pick the Winner
-
-```
-Which is better overall?
-  A is better
-❯ B is better
-  Tie — equally good
-  Neither — both are poor
-```
-
-If both are equally good, pick **Tie**. If both are poor and neither is
-acceptable, pick **Neither**. Don't overthink it — go with your first
-instinct after reading both.
 
 ## Step 7: See the Reveal
 

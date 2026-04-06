@@ -39,6 +39,13 @@ Select **term** when prompted, then fill in:
 | Alternatives | `边际费用` | Other valid translations (comma-separated) |
 | Source | `quantecon/supply-demand` | Where you found this term (optional) |
 
+:::{note}
+After you enter the English text, the CLI checks whether an identical entry
+already exists in the dataset (case-insensitive). If a duplicate is found,
+you'll see the existing entry and be asked "Add anyway?" — the default is
+**No** to prevent accidental duplicates.
+:::
+
 After filling in the fields, you'll see a preview:
 
 ```
