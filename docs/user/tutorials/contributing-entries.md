@@ -5,10 +5,10 @@ benchmark dataset using `qebench add`.
 
 ## Why Contribute?
 
-The dataset starts with ~300 terms seeded from the QuantEcon glossary. To build
+The dataset starts with 314 terms seeded from the QuantEcon glossary. To build
 a comprehensive benchmark, we need:
 
-- **500 terms** across all economics/math domains
+- **500 terms** across all economics/math domains (314 seeded so far)
 - **100 sentences** from real QuantEcon lectures
 - **30 paragraphs** with math, code, and mixed content
 
@@ -95,16 +95,16 @@ automatically to reflect the new entries.
 
 1. **Use real sources** — pull from QuantEcon lectures, not synthetic text
 2. **Verify translations** — only add Chinese translations you're confident about
-3. **Tag difficulty accurately:**
-   - **basic**: common terms any economics student knows (GDP, supply, demand)
-   - **intermediate**: technical terms requiring domain knowledge (eigenvalue, stochastic)
-   - **advanced**: specialized terms where translation choice matters (Bellman equation variants)
+3. **Tag difficulty accurately** — based on what level of education typically introduces the term:
+   - **basic**: terms introduced in high school (GDP, supply, demand)
+   - **intermediate**: terms introduced at the undergraduate level (eigenvalue, stochastic)
+   - **advanced**: terms introduced at the graduate level (Bellman equation variants, ergodicity)
 4. **Include alternatives** — many terms have multiple valid translations
 5. **Fill the gaps** — check `qebench stats` to see which domains need more entries
 
 ## How Data Is Organized
 
-- **Seed data** (`data/terms/_seed_*.json`) — the initial 300+ terms, organized by domain, read-only
+- **Seed data** (`data/terms/_seed_*.json`) — the initial 314 terms, organized by domain, read-only
 - **Your contributions** (`data/terms/{your-username}.json`) — entries you add via `qebench add`
 - **All files are loaded together** — `qebench stats` and `qebench translate` see everything
 

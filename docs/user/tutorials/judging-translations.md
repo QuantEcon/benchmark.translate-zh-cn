@@ -99,10 +99,12 @@ Which is better overall?
   A is better
 ❯ B is better
   Tie — equally good
+  Neither — both are poor
 ```
 
-If both are equally good, pick **Tie**. Don't overthink it — go with your
-first instinct after reading both.
+If both are equally good, pick **Tie**. If both are poor and neither is
+acceptable, pick **Neither**. Don't overthink it — go with your first
+instinct after reading both.
 
 ## Step 7: See the Reveal
 
@@ -118,7 +120,7 @@ After picking, the result panel shows who won and automated scores:
 ╰────────────────────────────────╯
 ```
 
-- **Elo** — model rating (higher = better track record)
+- **Elo** — model skill rating (higher = better track record)
 - **Ref. overlap** — character similarity to the reference translation
 - **Glossary** — percentage of key terms correctly translated
 
@@ -165,6 +167,7 @@ The judge system pairs translations intelligently:
 - **2+ models** translated the same entry → two models are paired
 - **1 model** translated an entry → model is paired against the human reference
 - **0 models** → entry is skipped (nothing to compare)
+- **Identical pairs** → automatically skipped (nothing to judge)
 
 You can exit a session early at any prompt by pressing Ctrl+C — completed
 rounds are saved.

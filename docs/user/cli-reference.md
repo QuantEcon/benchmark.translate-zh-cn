@@ -152,11 +152,15 @@ Model outputs must exist in `results/model-outputs/`. Generate them with `qebenc
 1. Entries are paired with model translations from `results/model-outputs/`
 2. Two translations are shown anonymously as **A** and **B**
 3. You rate each on accuracy (1–10) and fluency (1–10)
-4. You pick a winner (A, B, or tie)
+4. You pick a winner (A, B, tie, or neither)
 5. Elo ratings are updated; results saved to `results/judgments/`
+
+Pick **Tie** if both translations are equally good. Pick **Neither** if both
+translations are poor and neither is acceptable.
 
 If two models have translated the same entry, they're paired directly.
 If only one model has output, it's paired against the human reference.
+Identical translation pairs are automatically skipped.
 
 Each judgment earns **5 XP**.
 
@@ -228,7 +232,7 @@ Batch translate dataset entries using an LLM provider. Results are saved to
 ```bash
 uv run qebench run                             # Default: claude, all terms
 uv run qebench run --provider openai            # Use OpenAI
-uv run qebench run --model gpt-4o-mini          # Override model
+uv run qebench run --model gpt-5.4-mini         # Override model
 uv run qebench run --prompt academic            # Use academic prompt template
 uv run qebench run --type sentences --domain economics  # Filter entries
 uv run qebench run --count 10 --dry-run         # Preview without API calls
@@ -239,7 +243,7 @@ uv run qebench run --count 10 --dry-run         # Preview without API calls
 | Option | Default | Description |
 |---|---|---|
 | `--provider`, `-p` | `claude` | LLM provider: `claude`, `openai` |
-| `--model`, `-m` | *(provider default)* | Override the default model |
+| `--model`, `-m` | *(provider default)* | Override the default model (Claude: `claude-sonnet-4-6`, OpenAI: `gpt-5.4`) |
 | `--prompt` | `default` | Prompt template name from `prompts/` |
 | `--count`, `-n` | `0` (all) | Max entries to translate |
 | `--domain`, `-d` | *(all)* | Filter entries by domain |
