@@ -114,6 +114,27 @@ gh pr create --title "..." --body-file .tmp/pr-body.txt --base main
 
 The `.tmp/` folder contents are git-ignored.
 
+### Replying to PR Review Comments (Copilot, etc.)
+
+Fetch review comments to get their IDs:
+
+```bash
+gh api repos/QuantEcon/benchmark.translate-zh-cn/pulls/<PR>/comments \
+  2>&1 | python3 -c "
+import json, sys
+for c in json.load(sys.stdin):
+    print(f'ID: {c[\"id\"]}  File: {c[\"path\"]}')
+    print(f'Body: {c[\"body\"][:100]}\n')
+"
+```
+
+Reply to a specific review comment by ID:
+
+```bash
+gh api repos/QuantEcon/benchmark.translate-zh-cn/pulls/<PR>/comments/<COMMENT_ID>/replies \
+  -f body="Your reply text here"
+```
+
 ---
 
 ## Data Layout
