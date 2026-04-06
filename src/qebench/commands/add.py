@@ -28,6 +28,21 @@ def _next_id(prefix: str, existing: list) -> str:
     return f"{prefix}-{max_num + 1:03d}"
 
 
+def _find_duplicates(en: str, existing: list[Term | Sentence | Paragraph]) -> list[Term | Sentence | Paragraph]:
+    """Return existing entries whose English text matches *en* (case-insensitive)."""
+    normalised = en.strip().lower()
+    return [e for e in existing if e.en.strip().lower() == normalised]
+
+
+def _warn_duplicates(duplicates: list[Term | Sentence | Paragraph]) -> bool:
+    """Show duplicate entries and ask whether to continue. Returns True to proceed."""
+    console.print(f"\n[yellow]⚠ Found {len(duplicates)} existing entry with the same English text:[/yellow]")
+    for dup in duplicates:
+        zh = getattr(dup, "zh", None) or ""
+        console.print(f"  [dim]{dup.id}[/dim]  {dup.en}  →  {zh}  [dim]({dup.domain})[/dim]")
+    return questionary.confirm("Add anyway?", default=False).ask() or False
+
+
 def _save_to_user_file(entry: Term | Sentence | Paragraph, entry_type: str, username: str) -> Path:
     """Append an entry to the user's data file."""
     type_dir = DATA_DIR / entry_type
@@ -57,6 +72,10 @@ def _add_term(domains: list[str], existing_terms: list[Term]) -> Term | None:
 
     en = questionary.text("English term:").ask()
     if not en:
+        return None
+
+    duplicates = _find_duplicates(en, existing_terms)
+    if duplicates and not _warn_duplicates(duplicates):
         return None
 
     zh = questionary.text("Chinese translation (中文):").ask()
@@ -100,6 +119,10 @@ def _add_sentence(domains: list[str], existing_sentences: list[Sentence]) -> Sen
     if not en:
         return None
 
+    duplicates = _find_duplicates(en, existing_sentences)
+    if duplicates and not _warn_duplicates(duplicates):
+        return None
+
     zh = questionary.text("Chinese translation (中文):").ask()
     if not zh:
         return None
@@ -133,6 +156,10 @@ def _add_paragraph(domains: list[str], existing_paragraphs: list[Paragraph]) -> 
 
     en = questionary.text("English paragraph:").ask()
     if not en:
+        return None
+
+    duplicates = _find_duplicates(en, existing_paragraphs)
+    if duplicates and not _warn_duplicates(duplicates):
         return None
 
     zh = questionary.text("Chinese translation (中文):").ask()
