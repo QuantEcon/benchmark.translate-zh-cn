@@ -92,7 +92,7 @@ Each run creates a separate output file, so results are never overwritten.
 Override the default model for a provider:
 
 ```bash
-uv run qebench run --provider openai --model gpt-4o-mini -n 10
+uv run qebench run --provider openai --model gpt-5.4-mini -n 10
 ```
 
 ## Step 5: Try Different Prompt Templates
@@ -152,12 +152,12 @@ per entry:
   "entry_id": "term-001",
   "source_text": "inflation",
   "translated_text": "通货膨胀",
-  "model": "claude-3-sonnet-20240229",
+  "model": "claude-sonnet-4-6",
   "provider": "claude",
   "prompt_template": "default",
   "input_tokens": 123,
   "output_tokens": 45,
-  "cost_usd": 0.0012,
+  "cost_usd": 0.0024,
   "latency_ms": 345.6
 }
 ```
