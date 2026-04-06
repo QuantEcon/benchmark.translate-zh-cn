@@ -95,7 +95,7 @@ automatically to reflect the new entries.
 
 1. **Use real sources** — pull from QuantEcon lectures, not synthetic text
 2. **Verify translations** — only add Chinese translations you're confident about
-4. **Tag difficulty accurately** — based on what level of education typically introduces the term:
+3. **Tag difficulty accurately** — based on what level of education typically introduces the term:
    - **basic**: terms introduced in high school (GDP, supply, demand)
    - **intermediate**: terms introduced at the undergraduate level (eigenvalue, stochastic)
    - **advanced**: terms introduced at the graduate level (Bellman equation variants, ergodicity)

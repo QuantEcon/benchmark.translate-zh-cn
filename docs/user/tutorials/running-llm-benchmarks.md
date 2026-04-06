@@ -157,7 +157,7 @@ per entry:
   "prompt_template": "default",
   "input_tokens": 123,
   "output_tokens": 45,
-  "cost_usd": 0.0024,
+  "cost_usd": 0.001044,
   "latency_ms": 345.6
 }
 ```
