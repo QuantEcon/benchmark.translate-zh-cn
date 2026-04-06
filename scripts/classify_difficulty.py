@@ -11,7 +11,7 @@ Run: uv run python scripts/classify_difficulty.py
 import json
 from pathlib import Path
 
-DATA_DIR = Path("data/terms")
+DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "terms"
 
 # === BASIC terms: intro-level, taught in first-year courses ===
 BASIC_TERMS = {
@@ -132,12 +132,19 @@ def classify():
     advanced_count = 0
     
     for filepath in sorted(DATA_DIR.glob("_seed_*.json")):
-        data = json.loads(filepath.read_text(encoding="utf-8"))
+        raw = json.loads(filepath.read_text(encoding="utf-8"))
+        # Handle both bare list and {version, entries} wrapper
+        if isinstance(raw, dict) and "entries" in raw:
+            data = raw["entries"]
+            wrapper = raw
+        else:
+            data = raw
+            wrapper = None
         changed = False
         
         for term in data:
             en = term["en"]
-            old_diff = term.get("difficulty", "intermediate")
+            old_diff = term.get("difficulty")
             
             if en in BASIC_TERMS:
                 new_diff = "basic"
@@ -158,6 +165,7 @@ def classify():
                 intermediate_count += 1
         
         if changed:
+            output = wrapper if wrapper else data
             filepath.write_text(
                 json.dumps(data, indent=2, ensure_ascii=False) + "\n",
                 encoding="utf-8",
@@ -174,7 +182,8 @@ def classify():
     # Verify all terms in our sets actually exist
     all_en = set()
     for filepath in sorted(DATA_DIR.glob("_seed_*.json")):
-        data = json.loads(filepath.read_text(encoding="utf-8"))
+        raw = json.loads(filepath.read_text(encoding="utf-8"))
+        data = raw["entries"] if isinstance(raw, dict) and "entries" in raw else raw
         for term in data:
             all_en.add(term["en"])
     
