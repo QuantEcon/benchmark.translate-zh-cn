@@ -5,6 +5,21 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.1] - 2026-04-07
+
+### Added
+
+- **Duplicate detection in `qebench add`** (PR #19): After entering English text, the command checks all existing entries of the same type for case-insensitive, whitespace-normalised matches. If duplicates are found, shows existing entry details and asks "Add anyway?" (default: No). Prevents accidental duplicates while allowing intentional ones.
+
+### Fixed
+
+- Rich markup injection in duplicate warning — user-content fields are now escaped via `rich.markup.escape`
+- Documentation updates for v0.3.0 (PR #18): refreshed model names, added "Neither" judge option, updated seed counts and difficulty rubric
+
+### Changed
+
+- Tests: 213 → 218 (5 new duplicate detection tests)
+
 ## [0.3.0] - 2026-04-06
 
 ### Added
