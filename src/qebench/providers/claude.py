@@ -8,8 +8,8 @@ from qebench.providers.base import TranslationProvider, TranslationResult
 
 # Pricing per 1M tokens (USD) — updated as needed
 _PRICING: dict[str, tuple[float, float]] = {
-    "claude-sonnet-4-20250514": (3.0, 15.0),
-    "claude-3-haiku-20240307": (0.25, 1.25),
+    "claude-sonnet-4-6": (3.0, 15.0),
+    "claude-haiku-4-5-20251001": (1.0, 5.0),
 }
 
 
@@ -33,7 +33,7 @@ class ClaudeProvider(TranslationProvider):
 
     @property
     def default_model(self) -> str:
-        return "claude-sonnet-4-20250514"
+        return "claude-sonnet-4-6"
 
     def translate(
         self,

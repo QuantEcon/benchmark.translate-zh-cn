@@ -8,8 +8,8 @@ from qebench.providers.base import TranslationProvider, TranslationResult
 
 # Pricing per 1M tokens (USD) — updated as needed
 _PRICING: dict[str, tuple[float, float]] = {
-    "gpt-4o": (2.50, 10.0),
-    "gpt-4o-mini": (0.15, 0.60),
+    "gpt-5.4": (2.50, 15.0),
+    "gpt-5.4-mini": (0.75, 4.50),
 }
 
 
@@ -33,7 +33,7 @@ class OpenAIProvider(TranslationProvider):
 
     @property
     def default_model(self) -> str:
-        return "gpt-4o"
+        return "gpt-5.4"
 
     def translate(
         self,

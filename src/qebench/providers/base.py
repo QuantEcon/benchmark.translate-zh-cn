@@ -40,7 +40,7 @@ class TranslationProvider(ABC):
     @property
     @abstractmethod
     def default_model(self) -> str:
-        """Default model identifier, e.g. 'claude-sonnet-4-20250514'."""
+        """Default model identifier, e.g. 'claude-sonnet-4-6'."""
 
     @property
     def model(self) -> str:
