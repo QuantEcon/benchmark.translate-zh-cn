@@ -92,10 +92,12 @@ def main():
 
         if changed:
             output = wrapper if wrapper else data
-            filepath.write_text(
+            tmp = filepath.with_suffix(".tmp")
+            tmp.write_text(
                 json.dumps(output, indent=2, ensure_ascii=False) + "\n",
                 encoding="utf-8",
             )
+            tmp.replace(filepath)  # atomic on POSIX
             updated_files.add(filepath.name)
 
     print(f"\nEnriched {terms_enriched} terms across {len(updated_files)} files")

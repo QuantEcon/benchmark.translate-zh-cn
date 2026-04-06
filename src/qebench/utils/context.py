@@ -136,6 +136,9 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
     Returns:
         List of TermContext objects with matching paragraphs and source paths.
     """
+    if not term_en or not term_en.strip():
+        return []
+
     # Build a regex for whole-word matching (case-insensitive)
     pattern = re.compile(
         r'\b' + re.escape(term_en) + r'\b',
@@ -143,7 +146,10 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
     )
 
     # Build fuzzy patterns for compound term fallback
-    _stop_words = {"the", "and", "for", "with", "from", "that", "this", "into"}
+    _stop_words = {
+        "the", "and", "for", "with", "from", "that", "this", "into",
+        "of", "or", "an",
+    }
     significant_words = [
         w for w in re.split(r'[\s\-–]+', term_en)
         if len(w) >= 4 and w.lower() not in _stop_words
