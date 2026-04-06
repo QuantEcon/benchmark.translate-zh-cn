@@ -112,3 +112,32 @@ class TestSubmit:
         ):
             with pytest.raises(SystemExit):
                 submit()
+
+    def test_stages_before_pull(self) -> None:
+        """Regression: git add must run before git pull --rebase (issue #8)."""
+        cp = subprocess.CompletedProcess
+        call_order: list[str] = []
+
+        def track_calls(args, **kwargs):
+            cmd = args[1] if len(args) > 1 else ""
+            call_order.append(cmd)
+            responses = {
+                "status": cp(args=[], returncode=0, stdout=" M results/xp/alice.json\n", stderr=""),
+                "pull": cp(args=[], returncode=0, stdout="", stderr=""),
+                "add": cp(args=[], returncode=0, stdout="", stderr=""),
+                "diff": cp(args=[], returncode=0, stdout="results/xp/alice.json\n", stderr=""),
+                "commit": cp(args=[], returncode=0, stdout="", stderr=""),
+                "push": cp(args=[], returncode=0, stdout="", stderr=""),
+            }
+            return responses.get(cmd, cp(args=args, returncode=0, stdout="", stderr=""))
+
+        with (
+            patch("qebench.commands.submit.get_github_username", return_value="alice"),
+            patch("qebench.commands.submit.subprocess.run", side_effect=track_calls),
+        ):
+            submit()
+
+        # 'add' must appear before 'pull' in the call sequence
+        add_idx = call_order.index("add")
+        pull_idx = call_order.index("pull")
+        assert add_idx < pull_idx, f"git add ({add_idx}) must come before git pull ({pull_idx}): {call_order}"

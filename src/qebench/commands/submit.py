@@ -41,7 +41,11 @@ def submit() -> None:
         console.print("[yellow]Nothing to submit — no changes in data/ or results/.[/yellow]")
         return
 
-    # 2. Pull with rebase to avoid merge commits
+    # 2. Stage data/ and results/ BEFORE pull so rebase doesn't fail
+    #    on unstaged changes (see issue #8)
+    _run_git("add", "data/", "results/")
+
+    # 3. Pull with rebase to avoid merge commits
     console.print("[dim]Pulling latest changes...[/dim]")
     pull = _run_git("pull", "--rebase", "--quiet")
     if pull.returncode != 0:
@@ -51,10 +55,8 @@ def submit() -> None:
         console.print("Resolve conflicts manually, then try again.")
         raise SystemExit(1)
 
-    # 3. Stage data/ and results/
-    _run_git("add", "data/", "results/")
-
     # 4. Check if staging produced anything to commit
+    _run_git("add", "data/", "results/")  # re-stage in case rebase changed index
     staged = _run_git("diff", "--cached", "--name-only")
     if not staged.stdout.strip():
         console.print("[yellow]Nothing to submit after staging.[/yellow]")
