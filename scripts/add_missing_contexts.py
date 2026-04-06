@@ -11,7 +11,7 @@ Run: uv run python scripts/add_missing_contexts.py
 import json
 from pathlib import Path
 
-DATA_DIR = Path("data/terms")
+DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "terms"
 
 # {english_term: context_sentence}
 CURATED_CONTEXTS: dict[str, str] = {
@@ -70,7 +70,14 @@ def main():
     terms_enriched = 0
 
     for filepath in sorted(DATA_DIR.glob("_seed_*.json")):
-        data = json.loads(filepath.read_text(encoding="utf-8"))
+        raw = json.loads(filepath.read_text(encoding="utf-8"))
+        # Handle both bare list and {version, entries} wrapper
+        if isinstance(raw, dict) and "entries" in raw:
+            data = raw["entries"]
+            wrapper = raw
+        else:
+            data = raw
+            wrapper = None
         changed = False
 
         for term in data:
@@ -84,8 +91,9 @@ def main():
                 print(f"  ✓ {en}")
 
         if changed:
+            output = wrapper if wrapper else data
             filepath.write_text(
-                json.dumps(data, indent=2, ensure_ascii=False) + "\n",
+                json.dumps(output, indent=2, ensure_ascii=False) + "\n",
                 encoding="utf-8",
             )
             updated_files.add(filepath.name)
@@ -95,7 +103,8 @@ def main():
     # Verify no terms remain without context
     remaining = 0
     for filepath in sorted(DATA_DIR.glob("_seed_*.json")):
-        data = json.loads(filepath.read_text(encoding="utf-8"))
+        raw = json.loads(filepath.read_text(encoding="utf-8"))
+        data = raw["entries"] if isinstance(raw, dict) and "entries" in raw else raw
         for term in data:
             if not term.get("contexts"):
                 remaining += 1

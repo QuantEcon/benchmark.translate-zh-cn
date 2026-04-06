@@ -148,9 +148,16 @@ def find_contexts(term_en: str, lecture_dirs: list[Path]) -> list[TermContext]:
         w for w in re.split(r'[\s\-–]+', term_en)
         if len(w) >= 4 and w.lower() not in _stop_words
     ]
+
+    def _word_pattern(word: str) -> re.Pattern[str]:
+        """Build a word boundary pattern that handles non-word chars at edges."""
+        escaped = re.escape(word)
+        left = r'\b' if re.match(r'\w', word) else r'(?<!\w)'
+        right = r'\b' if re.search(r'\w$', word) else r'(?!\w)'
+        return re.compile(left + escaped + right, re.IGNORECASE)
+
     fuzzy_patterns = [
-        re.compile(r'\b' + re.escape(w) + r'\b', re.IGNORECASE)
-        for w in significant_words
+        _word_pattern(w) for w in significant_words
     ] if len(significant_words) >= 2 else []
 
     matches: list[TermContext] = []

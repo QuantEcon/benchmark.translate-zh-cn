@@ -244,15 +244,20 @@ class TestFindContexts:
         """Compound terms fall back to fuzzy matching on significant words (#10)."""
         repo = tmp_path / "lecture-test"
         repo.mkdir()
-        # No exact match for "Welfare maximization problem" but all words appear
+        # No exact phrase match for "Welfare maximization problem", but one
+        # paragraph contains all significant words separately.
         (repo / "test.md").write_text(
-            "The welfare maximization problem is central to this.\n\n"
+            "Welfare analysis is central to this topic.\n\n"
             "We can solve the welfare problem by maximization.\n\n"
             "Unrelated text about nothing."
         )
-        # Exact match should work for the first paragraph
         results = find_contexts("Welfare maximization problem", [repo])
-        assert len(results) >= 1
+        assert len(results) == 1
+        assert "welfare" in results[0].text.lower()
+        assert "maximization" in results[0].text.lower()
+        assert "problem" in results[0].text.lower()
+        # Must NOT contain the exact phrase (that would be an exact match)
+        assert "welfare maximization problem" not in results[0].text.lower()
 
     def test_fuzzy_matching_fallback(self, tmp_path: Path) -> None:
         """When no exact match, fuzzy finds paragraphs with all significant words."""
@@ -272,13 +277,18 @@ class TestFindContexts:
         """Exact matches are preferred over fuzzy matches."""
         repo = tmp_path / "lecture-test"
         repo.mkdir()
+        exact_paragraph = "A barrier option is a type of exotic option."
+        fuzzy_only_paragraph = "The barrier for this option is high."
         (repo / "test.md").write_text(
-            "A barrier option is a type of exotic option.\n\n"
-            "The barrier for this option is high."
+            f"{exact_paragraph}\n\n"
+            f"{fuzzy_only_paragraph}"
         )
         results = find_contexts("barrier option", [repo])
-        # Should return the exact match first
-        assert any("barrier option" in ctx.text.lower() for ctx in results)
+        assert len(results) >= 1
+        # Exact match should be returned first
+        assert results[0].text == exact_paragraph
+        # When exact matches exist, fuzzy-only paragraphs are excluded
+        assert all(ctx.text != fuzzy_only_paragraph for ctx in results)
 
 
 # ---------------------------------------------------------------------------
