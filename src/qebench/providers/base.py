@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 
 
@@ -78,10 +80,12 @@ class TranslationProvider(ABC):
         source_lang: str,
         target_lang: str,
         prompt_template: str,
+        max_workers: int = 10,
+        on_complete: Callable[[TranslationResult], None] | None = None,
     ) -> list[TranslationResult]:
-        """Translate multiple entries sequentially.
+        """Translate multiple entries concurrently.
 
-        Default implementation calls translate() in a loop.
+        Default implementation calls translate() via a thread pool.
         Providers can override for batch API support.
 
         Args:
@@ -89,12 +93,14 @@ class TranslationProvider(ABC):
             source_lang: Source language code.
             target_lang: Target language code.
             prompt_template: The prompt template string.
+            max_workers: Maximum concurrent API calls (default 10).
+            on_complete: Optional callback invoked after each translation completes.
 
         Returns:
-            List of TranslationResult objects.
+            List of TranslationResult objects in the same order as texts.
         """
-        results = []
-        for entry in texts:
+
+        def _translate_one(entry: dict) -> TranslationResult:
             result = self.translate(
                 entry["text"],
                 source_lang=source_lang,
@@ -105,5 +111,18 @@ class TranslationProvider(ABC):
             )
             result.entry_id = entry["id"]
             result.source_text = entry["text"]
-            results.append(result)
-        return results
+            if on_complete:
+                on_complete(result)
+            return result
+
+        results: list[TranslationResult | None] = [None] * len(texts)
+        with ThreadPoolExecutor(max_workers=max_workers) as pool:
+            future_to_idx = {
+                pool.submit(_translate_one, entry): idx
+                for idx, entry in enumerate(texts)
+            }
+            for future in as_completed(future_to_idx):
+                idx = future_to_idx[future]
+                results[idx] = future.result()
+
+        return results  # type: ignore[return-value]

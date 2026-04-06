@@ -9,7 +9,7 @@ from qebench.providers.base import TranslationProvider, TranslationResult
 # Pricing per 1M tokens (USD) — updated as needed
 _PRICING: dict[str, tuple[float, float]] = {
     "claude-sonnet-4-20250514": (3.0, 15.0),
-    "claude-haiku-3-20250122": (0.80, 4.0),
+    "claude-3-haiku-20240307": (0.25, 1.25),
 }
 
 

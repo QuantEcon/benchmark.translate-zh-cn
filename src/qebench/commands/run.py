@@ -12,7 +12,7 @@ from pathlib import Path
 
 import typer
 from rich.panel import Panel
-from rich.progress import Progress, SpinnerColumn, TextColumn
+from rich.progress import BarColumn, MofNCompleteColumn, Progress, TextColumn, TimeRemainingColumn
 from rich.table import Table
 
 from qebench.providers.base import TranslationResult
@@ -133,16 +133,23 @@ def run(
     run_id = f"{provider}-{llm.model}-{prompt}-{int(time.time())}"
 
     with Progress(
-        SpinnerColumn(),
         TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        MofNCompleteColumn(),
+        TimeRemainingColumn(),
         console=console,
     ) as progress:
-        progress.add_task(f"Translating {len(texts)} entries...", total=None)
+        task = progress.add_task(f"Translating {len(texts)} entries", total=len(texts))
+
+        def _on_complete(_result):
+            progress.advance(task)
+
         results = llm.translate_batch(
             texts,
             source_lang=source_lang,
             target_lang=target_lang,
             prompt_template=template,
+            on_complete=_on_complete,
         )
 
     # Save results
