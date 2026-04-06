@@ -57,6 +57,15 @@ class TestEloRatings:
         with pytest.raises(ValueError, match="Invalid winner"):
             update_model_elos("claude", "gpt-4o", "invalid")
 
+    def test_update_model_elos_neither(self, tmp_path, monkeypatch) -> None:
+        """'neither' is treated as tie for Elo calculation (#6)."""
+        elo_path = tmp_path / "elo.json"
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        new_a, new_b = update_model_elos("claude", "gpt-4o", "neither")
+        # Neither from equal ratings → no change (same as tie)
+        assert new_a == 1500.0
+        assert new_b == 1500.0
+
 
 class TestRecordJudgment:
     def test_saves_jsonl(self, tmp_path, monkeypatch) -> None:

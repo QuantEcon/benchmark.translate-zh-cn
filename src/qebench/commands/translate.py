@@ -222,7 +222,7 @@ def translate(
             continue
 
         # Ask confidence level
-        confidence = questionary.select(
+        confidence = questionary.rawselect(
             "How confident are you?",
             choices=CONFIDENCE_CHOICES,
         ).ask()
@@ -243,7 +243,7 @@ def translate(
         notes = ""
         all_valid = [reference.strip(), *(a.strip() for a in alternatives)]
         if attempt.strip() not in all_valid and similarity < DIFF_THRESHOLD:
-            reason = questionary.select(
+            reason = questionary.rawselect(
                 "Why does your translation differ?",
                 choices=DIFF_REASON_CHOICES,
             ).ask()

@@ -33,6 +33,7 @@ WINNER_CHOICES = [
     questionary.Choice("A is better", value="a"),
     questionary.Choice("B is better", value="b"),
     questionary.Choice("Tie — equally good", value="tie"),
+    questionary.Choice("Neither — both are poor", value="neither"),
 ]
 
 
@@ -161,6 +162,7 @@ def _render_result(
         "a": f"[yellow]A ({label_a})[/yellow] wins!",
         "b": f"[magenta]B ({label_b})[/magenta] wins!",
         "tie": "[dim]Tie[/dim]",
+        "neither": "[red]Neither — both poor[/red]",
     }[winner]
 
     # Automated scores
@@ -251,6 +253,7 @@ def judge(
     )
 
     completed = 0
+    skipped_identical = 0
 
     for i, matchup in enumerate(matchups, 1):
         entry = matchup["entry"]
@@ -259,40 +262,78 @@ def judge(
         label_a = matchup["label_a"]
         label_b = matchup["label_b"]
 
+        # Skip identical translations — auto-record a tie (#9)
+        if text_a.strip() == text_b.strip():
+            skipped_identical += 1
+            console.print(
+                f"\n[dim]── Round {i}/{len(matchups)} ──[/dim]"
+            )
+            console.print(
+                f"[dim]Both identical ({text_a.strip()[:30]}…) — auto-tie, skipping.[/dim]"
+                if len(text_a.strip()) > 30
+                else f"[dim]Both identical ({text_a.strip()}) — auto-tie, skipping.[/dim]"
+            )
+
+            is_reference = label_a == "human-reference" or label_b == "human-reference"
+            if is_reference:
+                elo_a = elo_b = 0.0
+            else:
+                elo_a, elo_b = update_model_elos(label_a, label_b, "tie")
+
+            record_judgment(
+                username=username,
+                entry_id=entry.id,
+                model_a=label_a,
+                model_b=label_b,
+                winner="tie",
+                score_a_accuracy=None,
+                score_a_fluency=None,
+                score_b_accuracy=None,
+                score_b_fluency=None,
+                timestamp=datetime.now(UTC).isoformat(),
+                cli_version=__version__,
+            )
+            completed += 1
+            continue
+
         console.print(f"\n[dim]── Round {i}/{len(matchups)} ──[/dim]")
         console.print(_render_source(entry, i))
         console.print(_render_translations(text_a, text_b))
 
-        # Collect scores for A
-        console.print("\n[bold yellow]Rate Translation A:[/bold yellow]")
-        acc_a = questionary.select("  Accuracy (1-10):", choices=SCORE_CHOICES).ask()
-        if acc_a is None:
-            console.print("[yellow]Session ended early.[/yellow]")
-            break
-        flu_a = questionary.select("  Fluency (1-10):", choices=SCORE_CHOICES).ask()
-        if flu_a is None:
-            console.print("[yellow]Session ended early.[/yellow]")
-            break
-
-        # Collect scores for B
-        console.print("[bold magenta]Rate Translation B:[/bold magenta]")
-        acc_b = questionary.select("  Accuracy (1-10):", choices=SCORE_CHOICES).ask()
-        if acc_b is None:
-            console.print("[yellow]Session ended early.[/yellow]")
-            break
-        flu_b = questionary.select("  Fluency (1-10):", choices=SCORE_CHOICES).ask()
-        if flu_b is None:
-            console.print("[yellow]Session ended early.[/yellow]")
-            break
-
-        # Pick winner
-        winner_answer = questionary.select(
+        # Ask winner FIRST (#9)
+        winner_answer = questionary.rawselect(
             "Which is better overall?",
             choices=WINNER_CHOICES,
         ).ask()
         if winner_answer is None:
             console.print("[yellow]Session ended early.[/yellow]")
             break
+
+        # For ties and neither, skip detailed scoring (#9)
+        if winner_answer in ("tie", "neither"):
+            acc_a = acc_b = flu_a = flu_b = None
+        else:
+            # Collect scores for A
+            console.print("\n[bold yellow]Rate Translation A:[/bold yellow]")
+            acc_a = questionary.rawselect("  Accuracy (1-10):", choices=SCORE_CHOICES).ask()
+            if acc_a is None:
+                console.print("[yellow]Session ended early.[/yellow]")
+                break
+            flu_a = questionary.rawselect("  Fluency (1-10):", choices=SCORE_CHOICES).ask()
+            if flu_a is None:
+                console.print("[yellow]Session ended early.[/yellow]")
+                break
+
+            # Collect scores for B
+            console.print("[bold magenta]Rate Translation B:[/bold magenta]")
+            acc_b = questionary.rawselect("  Accuracy (1-10):", choices=SCORE_CHOICES).ask()
+            if acc_b is None:
+                console.print("[yellow]Session ended early.[/yellow]")
+                break
+            flu_b = questionary.rawselect("  Fluency (1-10):", choices=SCORE_CHOICES).ask()
+            if flu_b is None:
+                console.print("[yellow]Session ended early.[/yellow]")
+                break
 
         # Update Elo (skip when one side is the human reference)
         is_reference = label_a == "human-reference" or label_b == "human-reference"
@@ -337,6 +378,8 @@ def judge(
         summary.add_column("Label", style="dim")
         summary.add_column("Value", style="bold")
         summary.add_row("Rounds completed:", f"{completed}/{len(matchups)}")
+        if skipped_identical:
+            summary.add_row("Identical (auto-tie):", str(skipped_identical))
         summary.add_row("XP earned:", f"+{xp_earned}")
         summary.add_row("Total XP:", str(total_xp))
 
