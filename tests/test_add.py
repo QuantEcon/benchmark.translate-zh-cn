@@ -4,8 +4,58 @@ from __future__ import annotations
 
 import json
 
-from qebench.commands.add import _save_to_user_file
-from qebench.models import Difficulty, Term
+from qebench.commands.add import _find_duplicates, _save_to_user_file
+from qebench.models import Difficulty, Sentence, Term
+
+
+class TestFindDuplicates:
+    def _make_terms(self):
+        return [
+            Term(
+                id="term-001", en="inflation", zh="通货膨胀",
+                domain="economics", difficulty=Difficulty.basic,
+            ),
+            Term(
+                id="term-002", en="Gross Domestic Product", zh="国内生产总值",
+                domain="economics", difficulty=Difficulty.basic,
+            ),
+        ]
+
+    def test_exact_match(self):
+        terms = self._make_terms()
+        dupes = _find_duplicates("inflation", terms)
+        assert len(dupes) == 1
+        assert dupes[0].id == "term-001"
+
+    def test_case_insensitive(self):
+        terms = self._make_terms()
+        dupes = _find_duplicates("INFLATION", terms)
+        assert len(dupes) == 1
+        assert dupes[0].id == "term-001"
+
+    def test_whitespace_normalised(self):
+        terms = self._make_terms()
+        dupes = _find_duplicates("  inflation  ", terms)
+        assert len(dupes) == 1
+
+        dupes = _find_duplicates("  Gross\tDomestic\nProduct  ", terms)
+        assert len(dupes) == 1
+        assert dupes[0].id == "term-002"
+
+    def test_no_match(self):
+        terms = self._make_terms()
+        dupes = _find_duplicates("deflation", terms)
+        assert dupes == []
+
+    def test_works_with_sentences(self):
+        sentences = [
+            Sentence(
+                id="sent-001", en="The rate of inflation is rising.",
+                zh="通胀率正在上升。", domain="economics", difficulty=Difficulty.basic,
+            ),
+        ]
+        dupes = _find_duplicates("the rate of inflation is rising.", sentences)
+        assert len(dupes) == 1
 
 
 class TestSaveToUserFile:
