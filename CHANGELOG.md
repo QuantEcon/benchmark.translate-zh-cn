@@ -5,6 +5,40 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] - 2026-04-06
+
+### Added
+
+- **Judge UX improvements** (PR #14 — issues #6, #9, #7):
+  - "Neither" option in head-to-head judging when neither translation is acceptable
+  - Auto-skip identical translation pairs to avoid wasted comparisons
+  - Numeric `rawselect` prompts replace arrow-key selection for better terminal compatibility
+- **Difficulty classification** (PR #15 — issue #11):
+  - All 314 seed terms classified as basic / intermediate / advanced using education-level rubric (basic = high school, intermediate = undergraduate, advanced = graduate)
+  - Distribution: 64 basic (20%), 172 intermediate (55%), 78 advanced (25%)
+  - `scripts/classify_difficulty.py` for reproducible classification
+- **100% context coverage** (PR #16 — issue #10):
+  - Fuzzy matching fallback in context extraction — matches terms where all significant words appear in a paragraph
+  - 36 curated context sentences for terms not found in lecture repos
+  - `scripts/add_missing_contexts.py` for adding curated contexts
+  - Expanded stop-word list and word-boundary-aware pattern matching
+- **Pre-populated model outputs** (PR #17 — issue #12):
+  - 1,256 Claude translations across 4 model×prompt combinations (Sonnet 4, Haiku 4.5 × default, academic)
+  - Concurrent batch translation with `ThreadPoolExecutor` (10 workers) and progress bar
+  - Updated model defaults: Claude Sonnet 4 (`claude-sonnet-4-6`), Haiku 4.5 (`claude-haiku-4-5-20251001`)
+  - Updated OpenAI defaults: GPT-5.4 (`gpt-5.4`), GPT-5.4 mini (`gpt-5.4-mini`)
+  - Legacy model pricing preserved with deprecation warnings for unknown models
+
+### Fixed
+
+- **Submit command** (PR #13 — issue #8): Stage files before `git pull --rebase` to prevent data loss when there are local changes
+- `record_judgment` accepts `None` scores for auto-skip, tie, and neither outcomes
+- Thread-safe `on_complete` callback — invoked from main thread instead of worker threads
+
+### Changed
+
+- Tests: 206 → 213 (7 new across PRs #13–#17)
+
 ## [0.2.1] - 2026-04-02
 
 ### Fixed

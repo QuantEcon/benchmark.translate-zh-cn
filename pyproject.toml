@@ -1,6 +1,6 @@
 [project]
 name = "qebench"
-version = "0.2.1"
+version = "0.3.0"
 description = "Benchmark CLI for evaluating English-Chinese translation quality in economics and mathematics"
 readme = "README.md"
 license = { text = "MIT" }
