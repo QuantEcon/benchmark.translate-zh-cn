@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 import questionary
+from rich.markup import escape
 from rich.panel import Panel
 from rich.text import Text
 
@@ -28,18 +29,27 @@ def _next_id(prefix: str, existing: list) -> str:
     return f"{prefix}-{max_num + 1:03d}"
 
 
+def _normalise_text(text: str) -> str:
+    """Lowercase and collapse all whitespace for duplicate matching."""
+    return " ".join(text.lower().split())
+
+
 def _find_duplicates(en: str, existing: list[Term | Sentence | Paragraph]) -> list[Term | Sentence | Paragraph]:
-    """Return existing entries whose English text matches *en* (case-insensitive)."""
-    normalised = en.strip().lower()
-    return [e for e in existing if e.en.strip().lower() == normalised]
+    """Return existing entries whose English text matches *en* (case-insensitive, whitespace-normalised)."""
+    normalised = _normalise_text(en)
+    return [e for e in existing if _normalise_text(e.en) == normalised]
 
 
 def _warn_duplicates(duplicates: list[Term | Sentence | Paragraph]) -> bool:
     """Show duplicate entries and ask whether to continue. Returns True to proceed."""
-    console.print(f"\n[yellow]⚠ Found {len(duplicates)} existing entry with the same English text:[/yellow]")
+    count = len(duplicates)
+    entry_label = "entry" if count == 1 else "entries"
+    console.print(f"\n[yellow]⚠ Found {count} existing {entry_label} with the same English text:[/yellow]")
     for dup in duplicates:
         zh = getattr(dup, "zh", None) or ""
-        console.print(f"  [dim]{dup.id}[/dim]  {dup.en}  →  {zh}  [dim]({dup.domain})[/dim]")
+        console.print(
+            f"  [dim]{escape(dup.id)}[/dim]  {escape(dup.en)}  →  {escape(zh)}  [dim]({escape(dup.domain)})[/dim]"
+        )
     return questionary.confirm("Add anyway?", default=False).ask() or False
 
 

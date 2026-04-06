@@ -38,6 +38,10 @@ class TestFindDuplicates:
         dupes = _find_duplicates("  inflation  ", terms)
         assert len(dupes) == 1
 
+        dupes = _find_duplicates("  Gross\tDomestic\nProduct  ", terms)
+        assert len(dupes) == 1
+        assert dupes[0].id == "term-002"
+
     def test_no_match(self):
         terms = self._make_terms()
         dupes = _find_duplicates("deflation", terms)
