@@ -286,10 +286,10 @@ def judge(
                 model_a=label_a,
                 model_b=label_b,
                 winner="tie",
-                score_a_accuracy=10,
-                score_a_fluency=10,
-                score_b_accuracy=10,
-                score_b_fluency=10,
+                score_a_accuracy=None,
+                score_a_fluency=None,
+                score_b_accuracy=None,
+                score_b_fluency=None,
                 timestamp=datetime.now(UTC).isoformat(),
                 cli_version=__version__,
             )
@@ -311,9 +311,7 @@ def judge(
 
         # For ties and neither, skip detailed scoring (#9)
         if winner_answer in ("tie", "neither"):
-            acc_a = acc_b = flu_a = flu_b = 5
-            if winner_answer == "tie":
-                acc_a = acc_b = flu_a = flu_b = 7  # tie = both decent
+            acc_a = acc_b = flu_a = flu_b = None
         else:
             # Collect scores for A
             console.print("\n[bold yellow]Rate Translation A:[/bold yellow]")

@@ -42,10 +42,10 @@ def record_judgment(
     model_a: str,
     model_b: str,
     winner: str,
-    score_a_accuracy: int,
-    score_a_fluency: int,
-    score_b_accuracy: int,
-    score_b_fluency: int,
+    score_a_accuracy: int | None,
+    score_a_fluency: int | None,
+    score_b_accuracy: int | None,
+    score_b_fluency: int | None,
     timestamp: str,
     cli_version: str,
 ) -> None:
@@ -73,13 +73,13 @@ def update_model_elos(model_a: str, model_b: str, winner: str) -> tuple[float, f
     Args:
         model_a: Name of model A.
         model_b: Name of model B.
-        winner: "a", "b", or "tie".
+        winner: "a", "b", "tie", or "neither".
 
     Returns:
         Tuple of (new_rating_a, new_rating_b).
 
     Raises:
-        ValueError: If winner is not 'a', 'b', or 'tie'.
+        ValueError: If winner is not 'a', 'b', 'tie', or 'neither'.
     """
     if winner not in ("a", "b", "tie", "neither"):
         raise ValueError(f"Invalid winner '{winner}'. Must be 'a', 'b', 'tie', or 'neither'.")
