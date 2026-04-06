@@ -111,8 +111,6 @@ class TranslationProvider(ABC):
             )
             result.entry_id = entry["id"]
             result.source_text = entry["text"]
-            if on_complete:
-                on_complete(result)
             return result
 
         results: list[TranslationResult | None] = [None] * len(texts)
@@ -123,6 +121,10 @@ class TranslationProvider(ABC):
             }
             for future in as_completed(future_to_idx):
                 idx = future_to_idx[future]
-                results[idx] = future.result()
+                result = future.result()
+                results[idx] = result
+                if on_complete:
+                    on_complete(result)
 
-        return results  # type: ignore[return-value]
+        assert all(r is not None for r in results), "Some translations failed"
+        return [r for r in results if r is not None]

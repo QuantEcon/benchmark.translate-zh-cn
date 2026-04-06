@@ -3,13 +3,18 @@
 from __future__ import annotations
 
 import time
+import warnings
 
 from qebench.providers.base import TranslationProvider, TranslationResult
 
 # Pricing per 1M tokens (USD) — updated as needed
 _PRICING: dict[str, tuple[float, float]] = {
+    # Current models
     "claude-sonnet-4-6": (3.0, 15.0),
     "claude-haiku-4-5-20251001": (1.0, 5.0),
+    # Legacy models
+    "claude-sonnet-4-20250514": (3.0, 15.0),
+    "claude-3-haiku-20240307": (0.25, 1.25),
 }
 
 
@@ -67,6 +72,11 @@ class ClaudeProvider(TranslationProvider):
         output_tokens = message.usage.output_tokens
 
         input_price, output_price = _PRICING.get(model_id, (0.0, 0.0))
+        if model_id not in _PRICING:
+            warnings.warn(
+                f"No pricing data for model '{model_id}'; cost will be $0.00",
+                stacklevel=2,
+            )
         cost = (input_tokens * input_price + output_tokens * output_price) / 1_000_000
 
         return TranslationResult(

@@ -3,13 +3,18 @@
 from __future__ import annotations
 
 import time
+import warnings
 
 from qebench.providers.base import TranslationProvider, TranslationResult
 
 # Pricing per 1M tokens (USD) — updated as needed
 _PRICING: dict[str, tuple[float, float]] = {
+    # Current models
     "gpt-5.4": (2.50, 15.0),
     "gpt-5.4-mini": (0.75, 4.50),
+    # Legacy models
+    "gpt-4o": (2.50, 10.0),
+    "gpt-4o-mini": (0.15, 0.60),
 }
 
 
@@ -68,6 +73,11 @@ class OpenAIProvider(TranslationProvider):
         output_tokens = usage.completion_tokens
 
         input_price, output_price = _PRICING.get(model_id, (0.0, 0.0))
+        if model_id not in _PRICING:
+            warnings.warn(
+                f"No pricing data for model '{model_id}'; cost will be $0.00",
+                stacklevel=2,
+            )
         cost = (input_tokens * input_price + output_tokens * output_price) / 1_000_000
 
         return TranslationResult(

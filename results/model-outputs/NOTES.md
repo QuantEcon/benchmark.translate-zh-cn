@@ -36,7 +36,7 @@ Pairwise first-line agreement rates:
 | Sonnet academic vs Haiku default | 236/314 (75%) |
 | Sonnet academic vs Haiku academic | 240/314 (76%) |
 
-All four models agree on 214/314 terms (68%). Disagreements (100/314) span
+All four runs agree on 214/314 terms (68%). Disagreements (100/314) span
 terminology choices, transliteration style, and acronym handling.
 
 ## Quality Observations
