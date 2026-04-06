@@ -41,13 +41,14 @@ def submit() -> None:
         console.print("[yellow]Nothing to submit — no changes in data/ or results/.[/yellow]")
         return
 
-    # 2. Stage data/ and results/ BEFORE pull so rebase doesn't fail
-    #    on unstaged changes (see issue #8)
+    # 2. Stage data/ and results/ before pull so new files are included.
+    #    The rebase-based pull uses --autostash because staged but
+    #    uncommitted changes still make the repo dirty for rebase (#8).
     _run_git("add", "data/", "results/")
 
-    # 3. Pull with rebase to avoid merge commits
+    # 3. Pull with rebase to avoid merge commits, autostashing local changes
     console.print("[dim]Pulling latest changes...[/dim]")
-    pull = _run_git("pull", "--rebase", "--quiet")
+    pull = _run_git("pull", "--rebase", "--autostash", "--quiet")
     if pull.returncode != 0:
         console.print(
             f"[red]Error pulling latest changes:[/red]\n{pull.stderr}"
