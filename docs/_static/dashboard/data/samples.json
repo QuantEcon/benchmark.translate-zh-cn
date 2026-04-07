@@ -3,7 +3,7 @@
     "id": "term-001",
     "en": "Angle sum identities",
     "zh": "和角恒等式",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-002",
@@ -15,7 +15,7 @@
     "id": "term-003",
     "en": "Taylor series",
     "zh": "泰勒级数",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-005",
@@ -27,13 +27,13 @@
     "id": "term-006",
     "en": "Bellman operator",
     "zh": "贝尔曼算子",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-007",
     "en": "Continuation value",
     "zh": "延续值",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-015",
@@ -45,49 +45,49 @@
     "id": "term-016",
     "en": "Autarky equilibrium",
     "zh": "自给自足均衡",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-017",
     "en": "Budget constraint",
     "zh": "预算约束",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-085",
     "en": "Annuity",
     "zh": "年金",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-086",
     "en": "Arrow securities",
     "zh": "阿罗证券",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-087",
     "en": "Barrier option",
     "zh": "障碍期权",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-124",
     "en": "Folk theorem",
     "zh": "无名氏定理",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-125",
     "en": "Grim trigger strategy",
     "zh": "冷酷策略",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-126",
     "en": "Zero-sum game",
     "zh": "零和博弈",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-127",
@@ -135,25 +135,25 @@
     "id": "term-177",
     "en": "Authority centrality",
     "zh": "权威中心性",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-178",
     "en": "Calculus",
     "zh": "微积分",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-215",
     "en": "Hicksian demand curve",
     "zh": "希克斯需求曲线",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-216",
     "en": "Marginal revenue",
     "zh": "边际收入",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-217",
@@ -165,7 +165,7 @@
     "id": "term-220",
     "en": "Method of successive approximations",
     "zh": "连续近似法",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-221",
@@ -207,7 +207,7 @@
     "id": "term-232",
     "en": "Exercise",
     "zh": "练习",
-    "difficulty": "intermediate"
+    "difficulty": "basic"
   },
   {
     "id": "term-233",
@@ -243,7 +243,7 @@
     "id": "term-272",
     "en": "Asymptotic stationarity",
     "zh": "渐近平稳性",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-273",
@@ -255,18 +255,18 @@
     "id": "term-303",
     "en": "Accessible state",
     "zh": "可达状态",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-304",
     "en": "Communicating states",
     "zh": "互通状态",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   },
   {
     "id": "term-305",
     "en": "Ergodicity",
     "zh": "遍历性",
-    "difficulty": "intermediate"
+    "difficulty": "advanced"
   }
 ]
