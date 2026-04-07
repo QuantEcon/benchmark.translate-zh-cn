@@ -46,6 +46,7 @@ def record_judgment(
     score_a_fluency: int | None,
     score_b_accuracy: int | None,
     score_b_fluency: int | None,
+    suggestion: str = "",
     timestamp: str,
     cli_version: str,
 ) -> None:
@@ -63,6 +64,8 @@ def record_judgment(
         "timestamp": timestamp,
         "cli_version": cli_version,
     }
+    if suggestion:
+        record["suggestion"] = suggestion
     with open(path, "a", encoding="utf-8") as f:
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
