@@ -55,10 +55,13 @@ def _load_model_outputs() -> dict[str, dict[str, str]]:
                     continue
                 record = json.loads(line)
                 model = record.get("model", "unknown")
+                prompt = record.get("prompt_template", "")
+                # Key by model:prompt so different prompts are distinct
+                label = f"{model}:{prompt}" if prompt else model
                 entry_id = record.get("entry_id", "")
                 translated = record.get("translated_text", "")
                 if entry_id and translated:
-                    outputs.setdefault(model, {})[entry_id] = translated
+                    outputs.setdefault(label, {})[entry_id] = translated
 
     return outputs
 
