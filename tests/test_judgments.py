@@ -168,3 +168,31 @@ class TestRecordConsensus:
         )
         records = [json.loads(ln) for ln in (tmp_path / "testuser.jsonl").read_text().splitlines()]
         assert records[0]["suggestion"] == "\u4ee3\u4ef7\u51fd\u6570"
+
+    def test_invalid_accuracy_raises(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        with pytest.raises(ValueError, match="accuracy"):
+            record_consensus(
+                username="testuser",
+                entry_id="term-001",
+                models=["claude:default"],
+                translation="通货膨胀",
+                accuracy=6,
+                fluency=3,
+                timestamp="2026-04-07T12:00:00Z",
+                cli_version="0.3.2",
+            )
+
+    def test_invalid_fluency_raises(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        with pytest.raises(ValueError, match="fluency"):
+            record_consensus(
+                username="testuser",
+                entry_id="term-001",
+                models=["claude:default"],
+                translation="通货膨胀",
+                accuracy=3,
+                fluency=-1,
+                timestamp="2026-04-07T12:00:00Z",
+                cli_version="0.3.2",
+            )

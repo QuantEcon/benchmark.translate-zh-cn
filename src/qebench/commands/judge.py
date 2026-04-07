@@ -104,7 +104,7 @@ def _build_matchups(
         if len(available) >= 2:
             # Try to find a pair with different translations
             pairs = list(itertools.combinations(available, 2))
-            diff_pairs = [(a, b) for a, b in pairs if a[1] != b[1]]
+            diff_pairs = [(a, b) for a, b in pairs if a[1].strip() != b[1].strip()]
             if diff_pairs:
                 pair = list(random.choice(diff_pairs))
             else:
@@ -283,9 +283,11 @@ def judge(
             console.print(_render_source(entry, i))
 
             consensus_text = text_a.strip()
+            is_ref_match = label_a == "human-reference" or label_b == "human-reference"
+            header = "Model matches reference:" if is_ref_match else "All models agree:"
             console.print(
                 Panel(
-                    f"All models agree:\n\n[bold]{consensus_text}[/bold]",
+                    f"{header}\n\n[bold]{consensus_text}[/bold]",
                     title="[bold green]Consensus[/bold green]",
                     border_style="green",
                     padding=(1, 2),
@@ -311,10 +313,14 @@ def judge(
                     "Suggest a better translation (optional):",
                 ).ask() or ""
 
+            consensus_models = [
+                lbl for lbl in (label_a, label_b) if lbl != "human-reference"
+            ]
+
             record_consensus(
                 username=username,
                 entry_id=entry.id,
-                models=[label_a, label_b],
+                models=consensus_models,
                 translation=consensus_text,
                 accuracy=c_acc,
                 fluency=c_flu,

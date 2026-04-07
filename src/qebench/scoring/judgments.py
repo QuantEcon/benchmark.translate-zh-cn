@@ -75,11 +75,15 @@ def record_consensus(
     translation: str,
     accuracy: int,
     fluency: int,
-    suggestion: str,
+    suggestion: str = "",
     timestamp: str,
     cli_version: str,
 ) -> None:
     """Append a consensus-rating record to the user's JSONL file."""
+    if not 0 <= accuracy <= 5:
+        raise ValueError("accuracy must be between 0 and 5")
+    if not 0 <= fluency <= 5:
+        raise ValueError("fluency must be between 0 and 5")
     JUDGMENTS_DIR.mkdir(parents=True, exist_ok=True)
     path = JUDGMENTS_DIR / f"{username}.jsonl"
 
