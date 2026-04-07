@@ -8,6 +8,7 @@ import pytest
 
 from qebench.scoring.judgments import (
     load_elo_ratings,
+    record_consensus,
     record_judgment,
     save_elo_ratings,
     update_model_elos,
@@ -76,10 +77,10 @@ class TestRecordJudgment:
             model_a="claude",
             model_b="gpt-4o",
             winner="a",
-            score_a_accuracy=8,
-            score_a_fluency=9,
-            score_b_accuracy=7,
-            score_b_fluency=6,
+            score_a_accuracy=4,
+            score_a_fluency=5,
+            score_b_accuracy=3,
+            score_b_fluency=3,
             timestamp="2026-04-02T12:00:00Z",
             cli_version="0.3.0",
         )
@@ -89,7 +90,7 @@ class TestRecordJudgment:
         assert len(records) == 1
         assert records[0]["entry_id"] == "term-001"
         assert records[0]["winner"] == "a"
-        assert records[0]["score_a"]["accuracy"] == 8
+        assert records[0]["score_a"]["accuracy"] == 4
 
     def test_appends_multiple(self, tmp_path, monkeypatch) -> None:
         monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
@@ -100,10 +101,10 @@ class TestRecordJudgment:
                 model_a="claude",
                 model_b="gpt-4o",
                 winner="b",
-                score_a_accuracy=5,
-                score_a_fluency=5,
-                score_b_accuracy=8,
-                score_b_fluency=8,
+                score_a_accuracy=3,
+                score_a_fluency=3,
+                score_b_accuracy=4,
+                score_b_fluency=5,
                 timestamp="2026-04-02T12:00:00Z",
                 cli_version="0.3.0",
             )
@@ -120,11 +121,78 @@ class TestRecordJudgment:
             model_a="claude",
             model_b="gpt-4o",
             winner="tie",
-            score_a_accuracy=7,
-            score_a_fluency=7,
-            score_b_accuracy=7,
-            score_b_fluency=7,
+            score_a_accuracy=3,
+            score_a_fluency=3,
+            score_b_accuracy=3,
+            score_b_fluency=3,
             timestamp="2026-04-02T12:00:00Z",
             cli_version="0.3.0",
         )
         assert (out_dir / "testuser.jsonl").exists()
+
+
+class TestRecordConsensus:
+    def test_saves_consensus(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        record_consensus(
+            username="testuser",
+            entry_id="term-001",
+            models=["claude:default", "claude:academic"],
+            translation="\u901a\u8d27\u81a8\u80c0",
+            accuracy=5,
+            fluency=4,
+            suggestion="",
+            timestamp="2026-04-07T12:00:00Z",
+            cli_version="0.3.2",
+        )
+        path = tmp_path / "testuser.jsonl"
+        assert path.exists()
+        records = [json.loads(ln) for ln in path.read_text().splitlines() if ln.strip()]
+        assert len(records) == 1
+        assert records[0]["type"] == "consensus"
+        assert records[0]["accuracy"] == 5
+        assert records[0]["models"] == ["claude:default", "claude:academic"]
+
+    def test_with_suggestion(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        record_consensus(
+            username="testuser",
+            entry_id="term-008",
+            models=["claude:default"],
+            translation="\u6210\u672c\u51fd\u6570",
+            accuracy=1,
+            fluency=3,
+            suggestion="\u4ee3\u4ef7\u51fd\u6570",
+            timestamp="2026-04-07T12:00:00Z",
+            cli_version="0.3.2",
+        )
+        records = [json.loads(ln) for ln in (tmp_path / "testuser.jsonl").read_text().splitlines()]
+        assert records[0]["suggestion"] == "\u4ee3\u4ef7\u51fd\u6570"
+
+    def test_invalid_accuracy_raises(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        with pytest.raises(ValueError, match="accuracy"):
+            record_consensus(
+                username="testuser",
+                entry_id="term-001",
+                models=["claude:default"],
+                translation="通货膨胀",
+                accuracy=6,
+                fluency=3,
+                timestamp="2026-04-07T12:00:00Z",
+                cli_version="0.3.2",
+            )
+
+    def test_invalid_fluency_raises(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        with pytest.raises(ValueError, match="fluency"):
+            record_consensus(
+                username="testuser",
+                entry_id="term-001",
+                models=["claude:default"],
+                translation="通货膨胀",
+                accuracy=3,
+                fluency=-1,
+                timestamp="2026-04-07T12:00:00Z",
+                cli_version="0.3.2",
+            )

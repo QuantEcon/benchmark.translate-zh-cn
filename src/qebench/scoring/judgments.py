@@ -67,6 +67,41 @@ def record_judgment(
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
+def record_consensus(
+    *,
+    username: str,
+    entry_id: str,
+    models: list[str],
+    translation: str,
+    accuracy: int,
+    fluency: int,
+    suggestion: str = "",
+    timestamp: str,
+    cli_version: str,
+) -> None:
+    """Append a consensus-rating record to the user's JSONL file."""
+    if not 0 <= accuracy <= 5:
+        raise ValueError("accuracy must be between 0 and 5")
+    if not 0 <= fluency <= 5:
+        raise ValueError("fluency must be between 0 and 5")
+    JUDGMENTS_DIR.mkdir(parents=True, exist_ok=True)
+    path = JUDGMENTS_DIR / f"{username}.jsonl"
+
+    record = {
+        "type": "consensus",
+        "entry_id": entry_id,
+        "models": models,
+        "translation": translation,
+        "accuracy": accuracy,
+        "fluency": fluency,
+        "suggestion": suggestion,
+        "timestamp": timestamp,
+        "cli_version": cli_version,
+    }
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
 def update_model_elos(model_a: str, model_b: str, winner: str) -> tuple[float, float]:
     """Update Elo ratings for two models after a judgment.
 

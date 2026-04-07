@@ -7,6 +7,7 @@ Results update Elo ratings and earn XP.
 
 from __future__ import annotations
 
+import itertools
 import json
 import random
 from datetime import UTC, datetime
@@ -19,7 +20,7 @@ from rich.table import Table
 from qebench import __version__
 from qebench.models import Paragraph, Sentence, Term
 from qebench.scoring.glossary import glossary_compliance, reference_overlap
-from qebench.scoring.judgments import record_judgment, update_model_elos
+from qebench.scoring.judgments import record_consensus, record_judgment, update_model_elos
 from qebench.scoring.xp import award_xp, load_xp
 from qebench.utils.dataset import RESULTS_DIR, load_all, load_terms
 from qebench.utils.display import console
@@ -27,7 +28,7 @@ from qebench.utils.github import get_github_username
 
 MODEL_OUTPUTS_DIR = RESULTS_DIR / "model-outputs"
 
-SCORE_CHOICES = [questionary.Choice(str(i), value=i) for i in range(1, 11)]
+SCORE_CHOICES = [questionary.Choice(str(i), value=i) for i in range(6)]
 
 WINNER_CHOICES = [
     questionary.Choice("A is better", value="a"),
@@ -80,7 +81,8 @@ def _build_matchups(
     Labels are the real model names (hidden from user during judging).
 
     Strategy:
-    - If 2+ models have output for an entry → pair two models
+    - If 2+ models have output for an entry → prefer a pair with different
+      translations so judges have something meaningful to compare.
     - If 1 model has output → pair model vs. reference ("human")
     - If 0 model outputs → skip (need at least one model output to judge)
     """
@@ -100,8 +102,13 @@ def _build_matchups(
             continue
 
         if len(available) >= 2:
-            # Pair two random models
-            pair = random.sample(available, 2)
+            # Try to find a pair with different translations
+            pairs = list(itertools.combinations(available, 2))
+            diff_pairs = [(a, b) for a, b in pairs if a[1].strip() != b[1].strip()]
+            if diff_pairs:
+                pair = list(random.choice(diff_pairs))
+            else:
+                pair = random.sample(available, 2)
         else:
             # Pair single model vs. reference
             pair = [available[0], ("human-reference", entry.zh)]
@@ -269,34 +276,55 @@ def judge(
         label_a = matchup["label_a"]
         label_b = matchup["label_b"]
 
-        # Skip identical translations — auto-record a tie (#9)
+        # Identical translations — ask human to rate the consensus
         if text_a.strip() == text_b.strip():
             skipped_identical += 1
+            console.print(f"\n[dim]── Round {i}/{len(matchups)} ──[/dim]")
+            console.print(_render_source(entry, i))
+
+            consensus_text = text_a.strip()
+            is_ref_match = label_a == "human-reference" or label_b == "human-reference"
+            header = "Model matches reference:" if is_ref_match else "All models agree:"
             console.print(
-                f"\n[dim]── Round {i}/{len(matchups)} ──[/dim]"
-            )
-            console.print(
-                f"[dim]Both identical ({text_a.strip()[:30]}…) — auto-tie, skipping.[/dim]"
-                if len(text_a.strip()) > 30
-                else f"[dim]Both identical ({text_a.strip()}) — auto-tie, skipping.[/dim]"
+                Panel(
+                    f"{header}\n\n[bold]{consensus_text}[/bold]",
+                    title="[bold green]Consensus[/bold green]",
+                    border_style="green",
+                    padding=(1, 2),
+                )
             )
 
-            is_reference = label_a == "human-reference" or label_b == "human-reference"
-            if is_reference:
-                elo_a = elo_b = 0.0
-            else:
-                elo_a, elo_b = update_model_elos(label_a, label_b, "tie")
+            c_acc = questionary.rawselect(
+                "Accuracy (0-5):", choices=SCORE_CHOICES,
+            ).ask()
+            if c_acc is None:
+                console.print("[yellow]Session ended early.[/yellow]")
+                break
+            c_flu = questionary.rawselect(
+                "Fluency (0-5):", choices=SCORE_CHOICES,
+            ).ask()
+            if c_flu is None:
+                console.print("[yellow]Session ended early.[/yellow]")
+                break
 
-            record_judgment(
+            suggestion = ""
+            if c_acc <= 2 or c_flu <= 2:
+                suggestion = questionary.text(
+                    "Suggest a better translation (optional):",
+                ).ask() or ""
+
+            consensus_models = [
+                lbl for lbl in (label_a, label_b) if lbl != "human-reference"
+            ]
+
+            record_consensus(
                 username=username,
                 entry_id=entry.id,
-                model_a=label_a,
-                model_b=label_b,
-                winner="tie",
-                score_a_accuracy=None,
-                score_a_fluency=None,
-                score_b_accuracy=None,
-                score_b_fluency=None,
+                models=consensus_models,
+                translation=consensus_text,
+                accuracy=c_acc,
+                fluency=c_flu,
+                suggestion=suggestion,
                 timestamp=datetime.now(UTC).isoformat(),
                 cli_version=__version__,
             )
@@ -322,22 +350,22 @@ def judge(
         else:
             # Collect scores for A
             console.print("\n[bold yellow]Rate Translation A:[/bold yellow]")
-            acc_a = questionary.rawselect("  Accuracy (1-10):", choices=SCORE_CHOICES).ask()
+            acc_a = questionary.rawselect("  Accuracy (0-5):", choices=SCORE_CHOICES).ask()
             if acc_a is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
-            flu_a = questionary.rawselect("  Fluency (1-10):", choices=SCORE_CHOICES).ask()
+            flu_a = questionary.rawselect("  Fluency (0-5):", choices=SCORE_CHOICES).ask()
             if flu_a is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
 
             # Collect scores for B
             console.print("[bold magenta]Rate Translation B:[/bold magenta]")
-            acc_b = questionary.rawselect("  Accuracy (1-10):", choices=SCORE_CHOICES).ask()
+            acc_b = questionary.rawselect("  Accuracy (0-5):", choices=SCORE_CHOICES).ask()
             if acc_b is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
-            flu_b = questionary.rawselect("  Fluency (1-10):", choices=SCORE_CHOICES).ask()
+            flu_b = questionary.rawselect("  Fluency (0-5):", choices=SCORE_CHOICES).ask()
             if flu_b is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
@@ -386,7 +414,7 @@ def judge(
         summary.add_column("Value", style="bold")
         summary.add_row("Rounds completed:", f"{completed}/{len(matchups)}")
         if skipped_identical:
-            summary.add_row("Identical (auto-tie):", str(skipped_identical))
+            summary.add_row("Consensus rated:", str(skipped_identical))
         summary.add_row("XP earned:", f"+{xp_earned}")
         summary.add_row("Total XP:", str(total_xp))
 
