@@ -5,6 +5,28 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] - 2026-04-07
+
+### Added
+
+- **Consensus rating for unanimous translations** (PR #23): When all models agree on a translation, judges rate accuracy and fluency on a 0-5 scale instead of auto-skipping. Optional suggestion prompt when score ≤ 2. Consensus records stored as `type: "consensus"` in judgment JSONL.
+- **Context sentences in judge view** (PR #24): First context sentence from `Term.contexts` shown in the source panel so judges have disambiguation info.
+- **Suggestion prompt on "Neither"** (PR #24): When a judge picks "Neither — both are poor", they can suggest a better translation. Stored in judgment record.
+- **Balanced matchup ordering** (PR #24): Disagreement and consensus matchups are interleaved so judges get a mix instead of mostly consensus rounds.
+
+### Fixed
+
+- **Judge auto-ties from prompt collisions** (PR #22): `_load_model_outputs` now keys by `model:prompt_template` instead of `model` alone, correctly distinguishing 4 model×prompt combos instead of merging them into 2.
+- **Update command fails with dirty workdir** (PR #21): Added `--autostash` to `git pull --rebase` in the update command, matching submit command behavior.
+- **Tutorial accuracy** (PR #20): Fixed 5 issues across 3 tutorial files for RA onboarding accuracy.
+- **Keyboard shortcuts in judge** (PR #24): Switched from `rawselect` to `select` with `use_shortcuts=True` — supports both arrow keys and keyboard shortcuts. Score shortcuts match actual values (0-5) instead of 1-indexed offset. Winner shortcuts: a/b/t/n.
+- **Rich markup escape** (PR #24): Context text and entry names escaped with `rich.markup.escape()` to prevent `MarkupError` from dataset content containing `[` or `]`.
+
+### Changed
+
+- Scoring scale changed from 1-10 to 0-5 for accuracy and fluency
+- Tests: 218 → 225
+
 ## [0.3.1] - 2026-04-07
 
 ### Added
