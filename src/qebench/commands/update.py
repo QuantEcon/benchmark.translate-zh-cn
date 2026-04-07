@@ -107,9 +107,9 @@ def _enrich_term_contexts(lecture_dirs: list[Path]) -> int:
 
 def update() -> None:
     """Pull latest code and data from GitHub, then sync dependencies."""
-    # 1. git pull --rebase
+    # 1. git pull --rebase (autostash so local results don't block the pull)
     console.print("[dim]Pulling latest changes...[/dim]")
-    pull = _run(["git", "pull", "--rebase", "--quiet"])
+    pull = _run(["git", "pull", "--rebase", "--autostash", "--quiet"])
     if pull.returncode != 0:
         console.print(f"[red]Error pulling latest changes:[/red]\n{pull.stderr}")
         console.print("Resolve any conflicts, then try again.")
