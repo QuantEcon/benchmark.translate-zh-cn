@@ -28,7 +28,7 @@ uv run qebench stats
 ```
 
 You should see the coverage panel and domain table. The dataset is pre-seeded
-with 300+ economics terms — enough to start practicing immediately.
+with 314 economics and math terms — enough to start practicing immediately.
 
 ## Step 3: Start a Short Session
 
@@ -45,15 +45,20 @@ Your GitHub username is detected automatically from `gh auth`.
 For each entry, you'll see a panel like:
 
 ```
-╭──────── TERM ────────╮
-│                       │
-│  inflation            │
-│                       │
-│  term-001 · economics │
-│           · basic     │
-╰───────────────────────╯
+╭──────────────── TERM ────────────────╮
+│                                      │
+│  inflation                           │
+│                                      │
+│  Context: "The rate of inflation     │
+│  determines the real interest rate." │
+│                                      │
+│  term-001 · economics · basic        │
+╰──────────────────────────────────────╯
 ? Your translation (中文):
 ```
+
+Terms with context sentences (populated by `qebench update`) show an example
+from a QuantEcon lecture to help you choose the right translation.
 
 Type your Chinese translation and press Enter.
 
@@ -140,7 +145,7 @@ This pulls the latest changes, commits your results, and pushes — all in one c
 
 Once pushed, the CI workflow rebuilds the dashboard with your activity and XP.
 
-## Step 8: Try Different Filters
+## Step 9: Try Different Filters
 
 Focus on a specific domain:
 
