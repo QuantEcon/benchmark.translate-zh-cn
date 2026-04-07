@@ -14,6 +14,7 @@ from datetime import UTC, datetime
 
 import questionary
 from rich.columns import Columns
+from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 
@@ -28,13 +29,13 @@ from qebench.utils.github import get_github_username
 
 MODEL_OUTPUTS_DIR = RESULTS_DIR / "model-outputs"
 
-SCORE_CHOICES = [questionary.Choice(str(i), value=i) for i in range(6)]
+SCORE_CHOICES = [questionary.Choice(str(i), value=i, shortcut_key=str(i)) for i in range(6)]
 
 WINNER_CHOICES = [
-    questionary.Choice("A is better", value="a"),
-    questionary.Choice("B is better", value="b"),
-    questionary.Choice("Tie — equally good", value="tie"),
-    questionary.Choice("Neither — both are poor", value="neither"),
+    questionary.Choice("A is better", value="a", shortcut_key="a"),
+    questionary.Choice("B is better", value="b", shortcut_key="b"),
+    questionary.Choice("Tie — equally good", value="tie", shortcut_key="t"),
+    questionary.Choice("Neither — both are poor", value="neither", shortcut_key="n"),
 ]
 
 
@@ -125,15 +126,37 @@ def _build_matchups(
         })
 
     random.shuffle(matchups)
-    return matchups
+
+    # Separate into disagreements and consensus, then interleave so the
+    # user always gets a mix of both (disagreements are more interesting
+    # but consensus ratings are still valuable).
+    diff_matchups = [m for m in matchups if m["translation_a"].strip() != m["translation_b"].strip()]
+    same_matchups = [m for m in matchups if m["translation_a"].strip() == m["translation_b"].strip()]
+
+    interleaved: list[dict] = []
+    di, si = 0, 0
+    while di < len(diff_matchups) or si < len(same_matchups):
+        # Alternate: diff, same, diff, same, ...
+        if di < len(diff_matchups):
+            interleaved.append(diff_matchups[di])
+            di += 1
+        if si < len(same_matchups):
+            interleaved.append(same_matchups[si])
+            si += 1
+
+    return interleaved
 
 
 def _render_source(entry: Term | Sentence | Paragraph, round_num: int) -> Panel:
     """Render the English source text panel."""
     entry_type = entry.id.split("-")[0].upper()
     meta = f"[dim]{entry.id} · {entry.domain} · {entry.difficulty.value}[/dim]"
+    body = f"[bold]{escape(entry.en)}[/bold]\n\n{meta}"
+    if isinstance(entry, Term) and entry.contexts:
+        ctx = escape(entry.contexts[0].text)
+        body += f"\n\n[dim italic]Context: {ctx}[/dim italic]"
     return Panel(
-        f"{entry.en}\n\n{meta}",
+        body,
         title=f"[bold cyan]Judge[/bold cyan]  [dim](Round {round_num})[/dim]  [dim]{entry_type}[/dim]",
         border_style="cyan",
         padding=(1, 2),
@@ -294,14 +317,14 @@ def judge(
                 )
             )
 
-            c_acc = questionary.rawselect(
-                "Accuracy (0-5):", choices=SCORE_CHOICES,
+            c_acc = questionary.select(
+                "Accuracy (0-5):", choices=SCORE_CHOICES, use_shortcuts=True,
             ).ask()
             if c_acc is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
-            c_flu = questionary.rawselect(
-                "Fluency (0-5):", choices=SCORE_CHOICES,
+            c_flu = questionary.select(
+                "Fluency (0-5):", choices=SCORE_CHOICES, use_shortcuts=True,
             ).ask()
             if c_flu is None:
                 console.print("[yellow]Session ended early.[/yellow]")
@@ -336,36 +359,42 @@ def judge(
         console.print(_render_translations(text_a, text_b))
 
         # Ask winner FIRST (#9)
-        winner_answer = questionary.rawselect(
+        winner_answer = questionary.select(
             "Which is better overall?",
             choices=WINNER_CHOICES,
+            use_shortcuts=True,
         ).ask()
         if winner_answer is None:
             console.print("[yellow]Session ended early.[/yellow]")
             break
 
         # For ties and neither, skip detailed scoring (#9)
+        suggestion = ""
         if winner_answer in ("tie", "neither"):
             acc_a = acc_b = flu_a = flu_b = None
+            if winner_answer == "neither":
+                suggestion = questionary.text(
+                    "Suggest a better translation (optional):",
+                ).ask() or ""
         else:
             # Collect scores for A
             console.print("\n[bold yellow]Rate Translation A:[/bold yellow]")
-            acc_a = questionary.rawselect("  Accuracy (0-5):", choices=SCORE_CHOICES).ask()
+            acc_a = questionary.select("  Accuracy (0-5):", choices=SCORE_CHOICES, use_shortcuts=True).ask()
             if acc_a is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
-            flu_a = questionary.rawselect("  Fluency (0-5):", choices=SCORE_CHOICES).ask()
+            flu_a = questionary.select("  Fluency (0-5):", choices=SCORE_CHOICES, use_shortcuts=True).ask()
             if flu_a is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
 
             # Collect scores for B
             console.print("[bold magenta]Rate Translation B:[/bold magenta]")
-            acc_b = questionary.rawselect("  Accuracy (0-5):", choices=SCORE_CHOICES).ask()
+            acc_b = questionary.select("  Accuracy (0-5):", choices=SCORE_CHOICES, use_shortcuts=True).ask()
             if acc_b is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
-            flu_b = questionary.rawselect("  Fluency (0-5):", choices=SCORE_CHOICES).ask()
+            flu_b = questionary.select("  Fluency (0-5):", choices=SCORE_CHOICES, use_shortcuts=True).ask()
             if flu_b is None:
                 console.print("[yellow]Session ended early.[/yellow]")
                 break
@@ -388,6 +417,7 @@ def judge(
             score_a_fluency=flu_a,
             score_b_accuracy=acc_b,
             score_b_fluency=flu_b,
+            suggestion=suggestion,
             timestamp=datetime.now(UTC).isoformat(),
             cli_version=__version__,
         )

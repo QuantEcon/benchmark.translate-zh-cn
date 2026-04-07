@@ -130,6 +130,43 @@ class TestRecordJudgment:
         )
         assert (out_dir / "testuser.jsonl").exists()
 
+    def test_suggestion_stored(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        record_judgment(
+            username="testuser",
+            entry_id="term-001",
+            model_a="claude",
+            model_b="gpt-4o",
+            winner="neither",
+            score_a_accuracy=None,
+            score_a_fluency=None,
+            score_b_accuracy=None,
+            score_b_fluency=None,
+            suggestion="更好的翻译",
+            timestamp="2026-04-02T12:00:00Z",
+            cli_version="0.3.2",
+        )
+        records = [json.loads(ln) for ln in (tmp_path / "testuser.jsonl").read_text().splitlines()]
+        assert records[0]["suggestion"] == "更好的翻译"
+
+    def test_empty_suggestion_omitted(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
+        record_judgment(
+            username="testuser",
+            entry_id="term-001",
+            model_a="claude",
+            model_b="gpt-4o",
+            winner="tie",
+            score_a_accuracy=None,
+            score_a_fluency=None,
+            score_b_accuracy=None,
+            score_b_fluency=None,
+            timestamp="2026-04-02T12:00:00Z",
+            cli_version="0.3.2",
+        )
+        records = [json.loads(ln) for ln in (tmp_path / "testuser.jsonl").read_text().splitlines()]
+        assert "suggestion" not in records[0]
+
 
 class TestRecordConsensus:
     def test_saves_consensus(self, tmp_path, monkeypatch) -> None:
