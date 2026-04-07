@@ -65,6 +65,21 @@ class TestLoadModelOutputs:
         assert "claude" in outputs
         assert "gpt-4o" in outputs
 
+    def test_prompt_template_creates_distinct_keys(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.commands.judge.MODEL_OUTPUTS_DIR", tmp_path)
+        records = [
+            {"model": "claude", "prompt_template": "default", "entry_id": "term-001", "translated_text": "通胀A"},
+            {"model": "claude", "prompt_template": "academic", "entry_id": "term-001", "translated_text": "通胀B"},
+        ]
+        path = tmp_path / "run-1.jsonl"
+        path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
+
+        outputs = _load_model_outputs()
+        assert "claude:default" in outputs
+        assert "claude:academic" in outputs
+        assert outputs["claude:default"]["term-001"] == "通胀A"
+        assert outputs["claude:academic"]["term-001"] == "通胀B"
+
 
 class TestBuildMatchups:
     def test_no_model_outputs(self) -> None:

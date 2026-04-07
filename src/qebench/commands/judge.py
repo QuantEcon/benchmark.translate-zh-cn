@@ -38,10 +38,14 @@ WINNER_CHOICES = [
 
 
 def _load_model_outputs() -> dict[str, dict[str, str]]:
-    """Load all model outputs, keyed by model name then entry_id.
+    """Load all model outputs, keyed by model:prompt label then entry_id.
+
+    Keys use the format ``model:prompt_template`` (e.g.
+    ``claude-sonnet-4-6:academic``) when a ``prompt_template`` field is
+    present, or plain ``model`` as a fallback for older records.
 
     Returns:
-        {model_name: {entry_id: translated_text, ...}, ...}
+        {label: {entry_id: translated_text, ...}, ...}
     """
     outputs: dict[str, dict[str, str]] = {}
     if not MODEL_OUTPUTS_DIR.exists():
@@ -55,10 +59,13 @@ def _load_model_outputs() -> dict[str, dict[str, str]]:
                     continue
                 record = json.loads(line)
                 model = record.get("model", "unknown")
+                prompt = record.get("prompt_template", "")
+                # Key by model:prompt so different prompts are distinct
+                label = f"{model}:{prompt}" if prompt else model
                 entry_id = record.get("entry_id", "")
                 translated = record.get("translated_text", "")
                 if entry_id and translated:
-                    outputs.setdefault(model, {})[entry_id] = translated
+                    outputs.setdefault(label, {})[entry_id] = translated
 
     return outputs
 
