@@ -14,6 +14,7 @@ from datetime import UTC, datetime
 
 import questionary
 from rich.columns import Columns
+from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 
@@ -150,9 +151,9 @@ def _render_source(entry: Term | Sentence | Paragraph, round_num: int) -> Panel:
     """Render the English source text panel."""
     entry_type = entry.id.split("-")[0].upper()
     meta = f"[dim]{entry.id} · {entry.domain} · {entry.difficulty.value}[/dim]"
-    body = f"[bold]{entry.en}[/bold]\n\n{meta}"
+    body = f"[bold]{escape(entry.en)}[/bold]\n\n{meta}"
     if isinstance(entry, Term) and entry.contexts:
-        ctx = entry.contexts[0].text
+        ctx = escape(entry.contexts[0].text)
         body += f"\n\n[dim italic]Context: {ctx}[/dim italic]"
     return Panel(
         body,
