@@ -92,7 +92,8 @@ def run(
         glossary_terms = load_glossary()
         if glossary_terms:
             glossary_text = "\n".join(
-                f"  {en} → {zh}" for en, zh in sorted(glossary_terms.items())
+                f"  {t.get('en', '')} → {t.get('zh-cn', '')}"
+                for t in sorted(glossary_terms, key=lambda t: t.get("en", ""))
             )
         else:
             glossary_text = "(no glossary loaded)"

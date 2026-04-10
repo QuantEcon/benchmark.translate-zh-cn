@@ -20,8 +20,8 @@ from rich.table import Table
 
 from qebench import __version__
 from qebench.models import Paragraph, Sentence, Term
-from qebench.scoring.glossary import glossary_compliance, reference_overlap
 from qebench.scoring.formatting import formatting_score
+from qebench.scoring.glossary import glossary_compliance, reference_overlap
 from qebench.scoring.judgments import record_consensus, record_judgment, update_model_elos
 from qebench.scoring.xp import award_xp, load_xp
 from qebench.utils.dataset import RESULTS_DIR, load_all, load_terms

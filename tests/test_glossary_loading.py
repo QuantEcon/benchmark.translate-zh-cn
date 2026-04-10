@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import json
 
-import pytest
-
 from qebench.utils.dataset import _extract_glossary_terms, load_glossary
 
 

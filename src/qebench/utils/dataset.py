@@ -123,7 +123,7 @@ def load_glossary(*, force_refresh: bool = False) -> list[dict]:
                 f.write(raw)
             return _extract_glossary_terms(data)
         except Exception:
-            _logger.warning("Failed to fetch glossary from %s", glossary_path)
+            _logger.warning("Failed to fetch glossary from %s", glossary_path, exc_info=True)
             # Fall back to cache if available
             if cache_file.exists():
                 _logger.info("Using cached glossary from %s", cache_file)

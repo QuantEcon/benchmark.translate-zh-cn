@@ -303,7 +303,7 @@ def _detect_features(text: str) -> dict[str, bool]:
 def _infer_domain(filename: str) -> str:
     """Infer domain from filename."""
     stem = Path(filename).stem
-    return FILENAME_DOMAIN_MAP.get(stem, "other")
+    return FILENAME_DOMAIN_MAP.get(stem, "economics")
 
 
 def _is_pure_list(text: str) -> bool:
