@@ -43,12 +43,20 @@ def _get_provider(name: str, *, model: str | None = None):
     return cls(model=model)
 
 
-def _save_results(results: list[TranslationResult], run_id: str, *, prompt_name: str) -> Path:
+def _save_results(
+    results: list[TranslationResult],
+    run_id: str,
+    *,
+    prompt_name: str,
+    entry_type: str,
+    entry_meta: dict[str, dict],
+) -> Path:
     """Save translation results to a JSONL file."""
     MODEL_OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     path = MODEL_OUTPUTS_DIR / f"{run_id}.jsonl"
     with open(path, "a", encoding="utf-8") as f:
         for r in results:
+            meta = entry_meta.get(r.entry_id, {})
             record = {
                 "entry_id": r.entry_id,
                 "source_text": r.source_text,
@@ -56,6 +64,9 @@ def _save_results(results: list[TranslationResult], run_id: str, *, prompt_name:
                 "model": r.model,
                 "provider": r.provider,
                 "prompt_template": prompt_name,
+                "entry_type": entry_type,
+                "domain": meta.get("domain", ""),
+                "difficulty": meta.get("difficulty", ""),
                 "input_tokens": r.input_tokens,
                 "output_tokens": r.output_tokens,
                 "cost_usd": round(r.cost_usd, 6),
@@ -117,7 +128,10 @@ def run(
         entries = entries[:count]
 
     # Prepare text dicts for the provider
-    texts = [{"id": e.id, "text": e.en, "domain": e.domain} for e in entries]
+    texts = [
+        {"id": e.id, "text": e.en, "domain": e.domain, "difficulty": e.difficulty.value}
+        for e in entries
+    ]
 
     console.print()
     console.print(
@@ -167,7 +181,10 @@ def run(
         )
 
     # Save results
-    output_path = _save_results(results, run_id, prompt_name=prompt)
+    entry_meta = {e.id: {"domain": e.domain, "difficulty": e.difficulty.value} for e in entries}
+    output_path = _save_results(
+        results, run_id, prompt_name=prompt, entry_type=entry_type, entry_meta=entry_meta,
+    )
 
     # Summary
     total_cost = sum(r.cost_usd for r in results)
