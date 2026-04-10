@@ -85,6 +85,19 @@ def run(
     # Load prompt template
     template = load_template(prompt)
 
+    # If template uses {glossary}, load and inject glossary terms
+    if "{glossary}" in template:
+        from qebench.utils.dataset import load_glossary
+
+        glossary_terms = load_glossary()
+        if glossary_terms:
+            glossary_text = "\n".join(
+                f"  {en} → {zh}" for en, zh in sorted(glossary_terms.items())
+            )
+        else:
+            glossary_text = "(no glossary loaded)"
+        template = template.replace("{glossary}", glossary_text)
+
     # Load entries
     terms, sentences, paragraphs = load_all()
     type_map = {"terms": terms, "sentences": sentences, "paragraphs": paragraphs}

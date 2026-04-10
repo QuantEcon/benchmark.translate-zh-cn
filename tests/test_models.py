@@ -98,6 +98,23 @@ class TestParagraph:
             contains_code=False,
         )
         assert p.contains_math is True
+        assert p.contains_directives is False
+        assert p.contains_roles is False
+        assert p.contains_mixed_fencing is False
+
+    def test_paragraph_with_myst_flags(self) -> None:
+        p = Paragraph(
+            id="para-002",
+            en="See {doc}`intro` for details.",
+            zh="详情请参阅 {doc}`介绍 <intro>`。",
+            domain="economics",
+            difficulty=Difficulty.basic,
+            contains_directives=True,
+            contains_roles=True,
+            contains_mixed_fencing=False,
+        )
+        assert p.contains_directives is True
+        assert p.contains_roles is True
         assert p.contains_code is False
 
 

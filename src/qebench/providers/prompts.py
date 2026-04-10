@@ -7,6 +7,7 @@ from pathlib import Path
 _PROMPTS_DIR = Path(__file__).resolve().parent.parent.parent.parent / "prompts"
 
 _REQUIRED_PLACEHOLDERS = {"{text}", "{source_lang}", "{target_lang}", "{domain}"}
+_OPTIONAL_PLACEHOLDERS = {"{glossary}"}
 
 
 def list_templates() -> list[str]:
@@ -48,8 +49,8 @@ def load_template(name: str = "default") -> str:
     # Reject unknown {placeholders} that would crash at runtime
     import re
 
-    found = set(re.findall(r"\{(\w+)\}", template))
-    allowed = {p.strip("{}") for p in _REQUIRED_PLACEHOLDERS}
+    found = set(re.findall(r"(?<!\{)\{(\w+)\}(?!\})", template))
+    allowed = {p.strip("{}") for p in _REQUIRED_PLACEHOLDERS | _OPTIONAL_PLACEHOLDERS}
     unknown = found - allowed
     if unknown:
         raise ValueError(

@@ -1,0 +1,25 @@
+You are translating technical documentation from {source_lang} to {target_lang}.
+
+Domain: {domain}
+
+RULES:
+1. Translate all prose content accurately
+2. Preserve all MyST Markdown formatting, structure, and directives
+3. DO NOT translate code blocks (keep code as-is)
+4. DO NOT translate mathematical equations (keep LaTeX as-is)
+5. DO NOT translate URLs, file paths, or technical identifiers
+6. Use the glossary below for consistent terminology
+7. Maintain heading structure and levels
+8. MARKDOWN SYNTAX: Ensure proper markdown syntax in your output:
+   - Headings MUST have a space after # (e.g., "## Title" not "##Title")
+   - Code blocks must have matching ``` delimiters
+   - Math blocks must have matching $$ delimiters
+   - CRITICAL: Do NOT mix fence markers - use $$...$$ for math OR ```{{math}}...``` for directive math, but NEVER $$...``` or ```...$$
+
+GLOSSARY:
+{glossary}
+
+Provide ONLY the translation, with no explanation or commentary.
+
+Text:
+{text}

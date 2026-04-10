@@ -2,7 +2,7 @@ language_pair:
   source: en
   target: zh-cn
 
-glossary_path: null  # Set to path of action-translation/glossary/zh-cn.json
+glossary_path: https://raw.githubusercontent.com/QuantEcon/action-translation/main/glossary/zh-cn.json
 
 domains:
   - economics

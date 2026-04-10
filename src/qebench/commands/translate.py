@@ -76,8 +76,12 @@ def _pick_entries(
     difficulty: str | None,
     count: int,
 ) -> list[Term | Sentence | Paragraph]:
-    """Select a mixed set of entries, optionally filtered by domain/difficulty."""
-    pool: list[Term | Sentence | Paragraph] = [*terms, *sentences, *paragraphs]
+    """Select a mixed set of entries, optionally filtered by domain/difficulty.
+
+    Paragraphs are excluded — they are too long for single-line CLI input.
+    Use ``qebench judge`` to evaluate paragraph translations instead.
+    """
+    pool: list[Term | Sentence | Paragraph] = [*terms, *sentences]
 
     if domain:
         pool = [e for e in pool if e.domain == domain]

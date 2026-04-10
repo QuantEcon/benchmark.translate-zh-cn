@@ -60,6 +60,9 @@ class Paragraph(BaseModel):
     key_terms: list[str] = Field(default_factory=list)
     contains_math: bool = False
     contains_code: bool = False
+    contains_directives: bool = False
+    contains_roles: bool = False
+    contains_mixed_fencing: bool = False
     human_scores: HumanScores | None = None
     source: str = ""
 

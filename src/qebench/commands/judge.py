@@ -21,6 +21,7 @@ from rich.table import Table
 from qebench import __version__
 from qebench.models import Paragraph, Sentence, Term
 from qebench.scoring.glossary import glossary_compliance, reference_overlap
+from qebench.scoring.formatting import formatting_score
 from qebench.scoring.judgments import record_consensus, record_judgment, update_model_elos
 from qebench.scoring.xp import award_xp, load_xp
 from qebench.utils.dataset import RESULTS_DIR, load_all, load_terms
@@ -222,6 +223,23 @@ def _render_result(
     table.add_row("Ref. overlap", f"{overlap_a:.0%}", f"{overlap_b:.0%}")
     if term_translations:
         table.add_row("Glossary", f"{glossary_a:.0%}", f"{glossary_b:.0%}")
+
+    # Formatting fidelity scores (if entry has source text)
+    source_text = getattr(entry, "en", "")
+    if source_text:
+        fmt_a = formatting_score(source_text, text_a)
+        fmt_b = formatting_score(source_text, text_b)
+        table.add_row(
+            "Fullwidth punct.",
+            f"{fmt_a['fullwidth_punctuation']:.0%}",
+            f"{fmt_b['fullwidth_punctuation']:.0%}",
+        )
+        if not fmt_a["directive_balance"] or not fmt_b["directive_balance"]:
+            table.add_row(
+                "Directive balance",
+                "[green]✓[/green]" if fmt_a["directive_balance"] else "[red]✗[/red]",
+                "[green]✓[/green]" if fmt_b["directive_balance"] else "[red]✗[/red]",
+            )
 
     return Panel(table, title="[bold]Result[/bold]", border_style="green")
 
