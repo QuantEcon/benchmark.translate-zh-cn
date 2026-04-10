@@ -3,3 +3,4 @@
 {"entry_id": "term-151", "attempt": "扩张", "reference": "扩张", "confidence": 3, "similarity": 1.0, "timestamp": "2026-04-02T23:51:17.143828+00:00", "cli_version": "0.2.1"}
 {"entry_id": "term-066", "attempt": "简单预期", "reference": "简单预期", "confidence": 3, "similarity": 1.0, "timestamp": "2026-04-07T04:49:58.628260+00:00", "cli_version": "0.3.1"}
 {"entry_id": "term-027", "attempt": "企业税率", "reference": "企业税率", "confidence": 3, "similarity": 1.0, "timestamp": "2026-04-07T04:50:30.668071+00:00", "cli_version": "0.3.1"}
+{"entry_id": "sent-013", "attempt": "规范 {eq}`can_ar1` 一旦我们指定初始条件 $X_0$，就会生成时间序列 $\\{ X_t\\}$。", "reference": "一旦我们指定一个初始条件 $X_0$，我们就可以用{eq}`can_ar1` 生成一个时间序列 $\\{ X_t\\}$。", "confidence": 3, "similarity": 0.825, "timestamp": "2026-04-10T04:00:27.234606+00:00", "cli_version": "0.4.0", "diff_reason": "contextual", "notes": "word order differs"}
