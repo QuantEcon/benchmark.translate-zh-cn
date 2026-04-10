@@ -15,6 +15,8 @@ Documentation for RAs and contributors using `qebench`.
   - [Updating Datasets](user/tutorials/updating-datasets.md) — Keep data current with `qebench update`
   - [Judging Translations](user/tutorials/judging-translations.md) — Compare translations and build Elo ratings with `qebench judge`
   - [Running LLM Benchmarks](user/tutorials/running-llm-benchmarks.md) — Batch translate with Claude or OpenAI via `qebench run`
+  - [Glossary & Prompt Templates](user/tutorials/glossary-and-prompts.md) — Use action-translation prompts with glossary injection
+  - [Seeding from Lectures](user/tutorials/seeding-from-lectures.md) — Extract aligned sentence/paragraph pairs from lecture repos
 
 ## Developer Guide (`developer/`)
 

@@ -33,6 +33,7 @@ src/qebench/
 │   └── judge.py           # Anonymous head-to-head translation judging
 ├── scoring/
 │   ├── elo.py             # Elo rating for model comparison
+│   ├── formatting.py      # MyST formatting fidelity checks (directive balance, punctuation, etc.)
 │   ├── glossary.py        # Glossary compliance + reference overlap scoring
 │   ├── judgments.py       # Judgment persistence + Elo update orchestration
 │   └── xp.py              # XP tracking per user
@@ -40,9 +41,9 @@ src/qebench/
 │   ├── base.py            # Abstract TranslationProvider + TranslationResult
 │   ├── claude.py          # Anthropic Claude provider
 │   ├── openai.py          # OpenAI provider
-│   └── prompts.py         # Prompt template loading/validation
+│   └── prompts.py         # Prompt template loading/validation (supports {glossary} placeholder)
 └── utils/
-    ├── dataset.py         # Load/save JSON data, config, domain list
+    ├── dataset.py         # Load/save JSON data, config, domain list, glossary loading
     ├── display.py         # Rich console singleton
     └── github.py          # get_github_username() via gh CLI (cached)
 ```
@@ -110,6 +111,57 @@ export.py ──→ loads all data + results
 MyST build + gh-pages deploys the dashboard
 ```
 
+## Scoring Module
+
+### Formatting Fidelity (`scoring/formatting.py`)
+
+Automated checks that verify structural integrity of LLM translations. These
+run on every `qebench run` output and are displayed in the `qebench judge`
+reveal panel.
+
+| Function | Returns | What it checks |
+|---|---|---|
+| `check_directive_balance(source, translated)` | `bool` | Fence count (```) matches between source and translation |
+| `check_fence_consistency(translated)` | `bool` | No mixed `$$` / `` ```{math} `` markers |
+| `check_code_block_integrity(source, translated)` | `bool` | Code blocks preserved verbatim |
+| `check_fullwidth_punctuation(text)` | `float` | Fraction (0–1) of punctuation that is fullwidth (，。！？) |
+| `check_directive_spacing(text)` | `float` | Fraction (0–1) of CJK→directive boundaries with proper spacing |
+| `formatting_score(source, translated)` | `dict` | Runs all checks, returns per-check results |
+
+Helper functions:
+- `_extract_code_blocks(text)` — extracts fenced code blocks from markdown
+- `_strip_code_and_math(text)` — removes code and math blocks before punctuation analysis
+
+### Glossary Loading (`utils/dataset.py`)
+
+The `load_glossary()` function fetches the glossary from `config.yaml`'s
+`glossary_path` (URL or local path):
+
+```
+load_glossary(force_refresh=False)
+    │
+    ├── glossary_path is URL?
+    │     ├── Fetch via urllib.request.urlopen()
+    │     ├── Cache to .cache/glossary.json
+    │     └── On network failure: fall back to cache
+    │
+    └── glossary_path is local path?
+          └── Read directly
+    │
+    ▼
+_extract_glossary_terms(data)
+    └── Parses glossary JSON → dict[str, str] (en → zh)
+```
+
+### Prompt Template System (`providers/prompts.py`)
+
+Templates use `{placeholder}` syntax. Required placeholders:
+`{source_lang}`, `{target_lang}`, `{domain}`, `{text}`.
+
+Optional placeholder: `{glossary}` — auto-populated from the glossary when
+present in a template. Double braces `{{...}}` are treated as literal braces
+(e.g., `{{math}}` renders as `{math}` in the final prompt).
+
 ## Key Design Decisions
 
 ### JSON files over SQLite
@@ -156,16 +208,35 @@ benchmark.translate-zh-cn/
 │   │   ├── _seed_mathematics.json
 │   │   ├── ...                    # 15 seed files total, 314 terms
 │   │   └── {username}.json        # Per-user contributions
-│   ├── sentences/*.json           # Sentence entries (same pattern)
-│   └── paragraphs/*.json          # Paragraph entries (same pattern)
+│   ├── sentences/
+│   │   ├── _seed_lectures.json    # 80 sentences from lecture repos
+│   │   └── {username}.json
+│   └── paragraphs/
+│       ├── _seed_lectures.json    # 17 paragraphs with math/code/directives
+│       └── {username}.json
+├── prompts/
+│   ├── default.txt                # General-purpose translation prompt
+│   ├── academic.txt               # Academic register emphasis
+│   ├── action-basic.txt           # MyST-aware rules (no glossary)
+│   └── action-new.txt             # MyST-aware rules + glossary injection
+├── scripts/
+│   ├── seed_from_glossary.py      # Seed terms from action-translation glossary
+│   ├── seed_from_lectures.py      # Seed sentences/paragraphs from lecture repos
+│   └── classify_difficulty.py     # Auto-classify term difficulty
 ├── results/
 │   ├── translations/              # User translation attempts (JSONL per user)
+│   ├── model-outputs/             # LLM translations (JSONL per model×prompt)
+│   ├── judgments/                  # Judge results (JSONL per user)
 │   ├── xp/                        # XP totals per user (JSON per user)
-│   └── elo.json                   # Model Elo ratings (future)
+│   └── elo.json                   # Model Elo ratings
+├── .cache/
+│   ├── glossary.json              # Cached glossary from action-translation
+│   └── lectures/                  # Cloned lecture repos (gitignored)
 ├── docs/
 │   ├── _static/dashboard/         # Chart.js dashboard + exported JSON
 │   └── ...                        # MyST documentation
-├── config.yaml                    # Language pair, domains, targets
+├── config.yaml                    # Language pair, domains, targets, glossary URL
+├── REVIEW.md                      # Design review & gap analysis
 └── src/qebench/                   # Python package (see Module Map above)
 ```
 

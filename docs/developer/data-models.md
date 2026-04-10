@@ -61,7 +61,9 @@ whether term-level accuracy translates to sentence-level quality.
 
 ### Paragraph
 
-The richest entry type — paragraphs can contain math, code, and mixed content.
+The richest entry type — paragraphs can contain math, code, directives,
+roles, and mixed content. Feature flags describe the structural complexity
+of each paragraph.
 
 ```python
 class Paragraph(BaseModel):
@@ -73,9 +75,24 @@ class Paragraph(BaseModel):
     key_terms: list[str] = []
     contains_math: bool = False
     contains_code: bool = False
+    contains_directives: bool = False    # has MyST directives ({note}, {warning}, etc.)
+    contains_roles: bool = False         # has MyST roles ({doc}, {ref}, {math}, etc.)
+    contains_mixed_fencing: bool = False # has both $$ and ```{math} markers
     human_scores: HumanScores | None = None
     source: str = ""
 ```
+
+The three MyST feature flags (`contains_directives`, `contains_roles`,
+`contains_mixed_fencing`) are used by the automated formatting validators
+in `scoring/formatting.py` to determine which checks are relevant for
+each paragraph. They are set when paragraphs are seeded from lecture repos
+(see `scripts/seed_from_lectures.py`) or contributed via `qebench add`.
+
+:::{note}
+Paragraphs are excluded from `qebench translate` (the CLI uses single-line
+text input, which is impractical for multi-line content). They appear in
+`qebench judge` (read-only comparison) and `qebench run` (LLM translation).
+:::
 
 ## Supporting Types
 

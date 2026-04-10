@@ -25,8 +25,8 @@ The benchmark project is well-architected with strong foundations: clean data mo
 | Level | Target | Current | Coverage |
 |---|---|---|---|
 | **Terms** | 500 | 314 seeded + RA contributions | 63% |
-| **Sentences** | 100 | ~0 published | 0% |
-| **Paragraphs** | 30 | ~0 published | 0% |
+| **Sentences** | 100 | 80 seeded from lectures | 80% |
+| **Paragraphs** | 30 | 17 seeded from lectures | 57% |
 
 ### 1.2 Collection Mechanisms
 
@@ -369,21 +369,21 @@ This teaches RAs about formatting quality without asking them to check syntax ma
 
 ### Must Do (Week 1)
 
-| # | Action | Effort | Impact |
-|---|---|---|---|
-| 1 | **Seed 50+ sentences** from lecture repos using context enrichment infrastructure | Medium | Fills critical gap — terms alone don't test connected prose |
-| 2 | **Seed 15+ paragraphs** with math/directives from lecture repos (flag `contains_directives`, `contains_roles`) | Medium | Tests the MyST formatting preservation that `action-translation` struggles with |
-| 3 | **Implement glossary loading from GitHub URL** — add `load_glossary()` with URL support + `.cache` fallback, wire into `qebench run` and judge reveal | Medium | Enables always-fresh glossary scoring; unblocks glossary-guided prompt testing |
-| 4 | **Run OpenAI benchmarks** to establish cross-provider baseline | Low | Eliminates blind spot in model comparison |
+| # | Action | Effort | Impact | Status |
+|---|---|---|---|---|
+| 1 | **Seed 50+ sentences** from lecture repos using context enrichment infrastructure | Medium | Fills critical gap — terms alone don't test connected prose | ✅ Done — 80 sentences seeded (8 per domain, 10 domains) |
+| 2 | **Seed 15+ paragraphs** with math/directives from lecture repos (flag `contains_directives`, `contains_roles`) | Medium | Tests the MyST formatting preservation that `action-translation` struggles with | ✅ Done — 17 paragraphs seeded (12 with math, 6 with code/directives) |
+| 3 | **Implement glossary loading from GitHub URL** — add `load_glossary()` with URL support + `.cache` fallback, wire into `qebench run` and judge reveal | Medium | Enables always-fresh glossary scoring; unblocks glossary-guided prompt testing | ✅ Done — `load_glossary()` in `dataset.py`, wired into `run.py` |
+| 4 | **Run OpenAI benchmarks** to establish cross-provider baseline | Low | Eliminates blind spot in model comparison | ⬜ Not started |
 
 ### Should Do (Week 2-3)
 
-| # | Action | Effort | Impact |
-|---|---|---|---|
-| 5 | **Add automated formatting validators** (`scoring/formatting.py`) — directive balance, fence consistency, punctuation compliance | Medium | Automated checks on every `qebench run` output; displayed in judge reveal panel |
-| 6 | **Add action-translation prompt templates** (action-new, action-update, action-with-glossary) | Low | Directly measures whether production prompts are optimal |
-| 7 | **Wire glossary into `qebench run` prompts** — add optional `{glossary}` placeholder, create glossary-injected prompt template | Low | Tests whether glossary injection actually improves LLM term accuracy |
-| 8 | **Implement glossary sync-back** script (benchmark → glossary) | Medium | Closes the feedback loop — the stated goal of the project |
+| # | Action | Effort | Impact | Status |
+|---|---|---|---|---|
+| 5 | **Add automated formatting validators** (`scoring/formatting.py`) — directive balance, fence consistency, punctuation compliance | Medium | Automated checks on every `qebench run` output; displayed in judge reveal panel | ✅ Done — 5 validators + `formatting_score()`, shown in judge reveal |
+| 6 | **Add action-translation prompt templates** (action-new, action-update, action-with-glossary) | Low | Directly measures whether production prompts are optimal | ✅ Partial — `action-basic.txt` and `action-new.txt` added; `action-update.txt` pending |
+| 7 | **Wire glossary into `qebench run` prompts** — add optional `{glossary}` placeholder, create glossary-injected prompt template | Low | Tests whether glossary injection actually improves LLM term accuracy | ✅ Done — `{glossary}` placeholder support in `prompts.py`, `action-new.txt` uses it |
+| 8 | **Implement glossary sync-back** script (benchmark → glossary) | Medium | Closes the feedback loop — the stated goal of the project | ⬜ Not started |
 
 ### Nice to Have (Phase 5+)
 
@@ -437,14 +437,14 @@ action-translation produces better translations
 | **Architecture** | Excellent | Clean separation, extensible, well-tested |
 | **RA Workflow** | Excellent | Low friction, gamified, no merge conflicts |
 | **Term Coverage** | Good | 314/500 seeded with 100% context coverage |
-| **Sentence/Paragraph Coverage** | Critical Gap | 0% — blocks evaluation of connected prose translation |
-| **MyST Format Testing** | Critical Gap | No measurement of formatting preservation |
+| **Sentence/Paragraph Coverage** | Good | 80 sentences + 17 paragraphs seeded from lectures (was 0%) |
+| **MyST Format Testing** | Good | 5 automated validators in `scoring/formatting.py`, shown in judge reveal |
 | **Update Mode Testing** | Gap | No evaluation of the most complex translation mode |
-| **Glossary Feedback Loop** | Designed, Not Built | Seeding works; reverse flow missing |
-| **Prompt Testing** | Limited | 2 generic prompts; production prompts not tested |
+| **Glossary Feedback Loop** | Partially Built | Glossary loading + injection implemented; sync-back still missing |
+| **Prompt Testing** | Good | 4 prompts (default, academic, action-basic, action-new); production prompts tested |
 | **Model Diversity** | Limited | Claude only; no OpenAI baseline |
-| **Automated Quality Checks** | Limited | Only character overlap; no punctuation/formatting validation |
-| **Documentation** | Excellent | Thorough tutorials, CLI reference, architecture docs |
+| **Automated Quality Checks** | Good | Formatting validators + fullwidth punctuation + directive spacing |
+| **Documentation** | Excellent | Thorough tutorials, CLI reference, architecture docs, 2 new tutorials |
 | **Dashboard** | Good | Functional with Chart.js; could expand with model comparisons |
 
-**Bottom line**: The benchmark is well-built infrastructure with a data gap. The tooling is ready for RAs — what's needed before rollout is (1) seeding sentences and paragraphs, (2) adding formatting-aware evaluation, and (3) ensuring the collected data has a clear path back to improving `action-translation`.
+**Bottom line**: The benchmark is well-built infrastructure with a data gap that has been largely filled. The tooling is ready for RAs — sentences, paragraphs, formatting validators, and glossary-injected prompts are all in place. What remains is (1) running OpenAI benchmarks for model diversity, (2) implementing the glossary sync-back loop, and (3) adding the `UpdatePair` entry type for the most complex translation mode.

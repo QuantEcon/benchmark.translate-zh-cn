@@ -5,14 +5,21 @@ benchmark dataset using `qebench add`.
 
 ## Why Contribute?
 
-The dataset starts with 314 terms seeded from the QuantEcon glossary. To build
-a comprehensive benchmark, we need:
+The dataset starts with 314 terms seeded from the QuantEcon glossary, plus
+80 sentences and 17 paragraphs seeded from lecture repos. To build a
+comprehensive benchmark, we need:
 
 - **500 terms** across all economics/math domains (314 seeded so far)
-- **100 sentences** from real QuantEcon lectures
-- **30 paragraphs** with math, code, and mixed content
+- **100 sentences** from real QuantEcon lectures (80 seeded)
+- **30 paragraphs** with math, code, and mixed content (17 seeded)
 
 Every entry you add earns **15 XP** and makes the benchmark more useful.
+
+:::{tip}
+For bulk seeding of sentences and paragraphs from lecture repos, see
+[Seeding from Lectures](seeding-from-lectures.md). The `qebench add` command
+is best for adding individual, curated entries.
+:::
 
 ## Before You Start
 
@@ -86,6 +93,24 @@ technical flow.
 Additional fields for paragraphs:
 - **Contains math?** — Does it include LaTeX/math notation?
 - **Contains code?** — Does it include code snippets?
+- **Contains directives?** — Does it include MyST directives (`{note}`, `{warning}`, `{code-cell}`, etc.)?
+- **Contains roles?** — Does it include MyST roles (`{doc}`, `{ref}`, `{math}`, etc.)?
+- **Contains mixed fencing?** — Does it use both `$$` and `` ```{math} `` markers?
+
+These MyST feature flags help the automated formatting validators determine
+which checks to run when LLMs translate the paragraph via `qebench run`.
+
+:::{tip}
+The best paragraph entries for benchmarking contain a mix of prose and
+structural elements (math, directives, code). Look for paragraphs in
+QuantEcon lectures that combine explanation with equations or code examples.
+:::
+
+:::{note}
+Paragraphs cannot be translated via `qebench translate` (the CLI uses
+single-line text input). They appear in `qebench judge` (read-only
+comparison) and `qebench run` (LLM translation).
+:::
 
 ## Submitting Your Contributions
 

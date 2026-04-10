@@ -111,7 +111,8 @@ Rate Translation B:
 
 ## Step 7: See the Reveal
 
-After picking, the result panel shows who won and automated scores:
+After picking, the result panel shows who won, automated scores, and
+formatting checks:
 
 ```
 ╭──────────── Result ────────────╮
@@ -120,12 +121,20 @@ After picking, the result panel shows who won and automated scores:
 │ Elo         1520       1480    │
 │ Ref. overlap  85%      100%   │
 │ Glossary      90%      100%   │
+│ Punctuation   92%       98%   │
+│ Directives    ✓         ✓     │
 ╰────────────────────────────────╯
 ```
 
 - **Elo** — model skill rating (higher = better track record)
 - **Ref. overlap** — character similarity to the reference translation
 - **Glossary** — percentage of key terms correctly translated
+- **Punctuation** — fullwidth punctuation compliance (，。！ vs ,.!)
+- **Directives** — whether MyST directive open/close pairs are balanced
+
+The formatting scores are computed automatically — you don't need to check
+MyST syntax yourself. Over time, you'll learn to associate certain models
+with formatting problems, which helps `action-translation` improve its prompts.
 
 ## Step 8: Complete the Session
 
@@ -179,4 +188,6 @@ rounds are saved.
 
 - **Translate more entries**: See [Your First Translation Session](first-session.md) to collect more data
 - **Run more models**: See [Running LLM Benchmarks](running-llm-benchmarks.md) to generate model outputs
+- **Compare prompts**: See [Glossary & Prompt Templates](glossary-and-prompts.md) to test action-translation prompts
+- **Seed more data**: See [Seeding from Lectures](seeding-from-lectures.md) to extract sentence/paragraph pairs
 - **Check the leaderboard**: `qebench stats` shows the XP leaderboard and dataset coverage

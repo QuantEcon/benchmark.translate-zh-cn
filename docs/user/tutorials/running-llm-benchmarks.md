@@ -97,18 +97,30 @@ uv run qebench run --provider openai --model gpt-5.4-mini -n 10
 
 ## Step 5: Try Different Prompt Templates
 
-Prompt templates live in the `prompts/` directory. The project ships with two:
+Prompt templates live in the `prompts/` directory. The project ships with four:
 
 - `default` — general-purpose translation prompt
 - `academic` — emphasizes formal academic register
+- `action-basic` — MyST Markdown-aware rules (preserves directives, code, math fencing)
+- `action-new` — MyST rules + glossary injection from `action-translation`
 
 ```bash
 # Academic prompt
 uv run qebench run --prompt academic -n 20
 
+# Action-translation style (MyST-aware, no glossary)
+uv run qebench run --prompt action-basic -n 20
+
+# Action-translation style with glossary injection
+uv run qebench run --prompt action-new -n 20
+
 # Compare against default on the same domain
 uv run qebench run --prompt default -n 20 -d economics
 ```
+
+The `action-new` template automatically loads the glossary from
+`action-translation`'s GitHub repository (configured in `config.yaml`).
+See [Glossary & Prompt Templates](glossary-and-prompts.md) for full details.
 
 ## Step 6: Translate Different Entry Types
 
@@ -123,6 +135,9 @@ uv run qebench run --type paragraphs -n 5
 ```
 
 Paragraphs are the most challenging and informative entry type for benchmarking.
+They include MyST feature flags (`contains_directives`, `contains_roles`,
+`contains_mixed_fencing`) that help the automated formatting validators
+determine which checks apply.
 
 ## Step 7: Judge the Results
 
@@ -131,6 +146,11 @@ Once you have model outputs, use `qebench judge` to compare them:
 ```bash
 uv run qebench judge -n 10
 ```
+
+The judge reveal panel now shows **formatting scores** alongside the existing
+reference overlap and glossary compliance metrics. This lets you see whether
+a model broke directives, mixed fence markers, or used ASCII punctuation
+instead of fullwidth characters.
 
 See [Judging Translations](judging-translations.md) for the full walkthrough.
 
@@ -175,9 +195,11 @@ uv run qebench run -n 20 -d economics --type sentences
 uv run qebench run -n 50 --provider claude
 uv run qebench run -n 50 --provider openai
 
-# Compare prompts
+# Compare prompts (all 4)
 uv run qebench run -n 50 --prompt default
 uv run qebench run -n 50 --prompt academic
+uv run qebench run -n 50 --prompt action-basic
+uv run qebench run -n 50 --prompt action-new
 
 # Dry run to preview
 uv run qebench run --dry-run --type paragraphs
@@ -188,3 +210,5 @@ uv run qebench run --dry-run --type paragraphs
 - **Judge results**: See [Judging Translations](judging-translations.md) to evaluate model outputs
 - **Check leaderboard**: `qebench stats` shows Elo ratings and XP rankings
 - **Add custom prompts**: Create a new `.txt` file in `prompts/` and pass its name with `--prompt`
+- **Glossary & prompts**: See [Glossary & Prompt Templates](glossary-and-prompts.md) for details on glossary injection
+- **Seed more data**: See [Seeding from Lectures](seeding-from-lectures.md) to extract sentence/paragraph pairs
