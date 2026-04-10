@@ -211,4 +211,4 @@ uv run qebench run --dry-run --type paragraphs
 - **Check leaderboard**: `qebench stats` shows Elo ratings and XP rankings
 - **Add custom prompts**: Create a new `.txt` file in `prompts/` and pass its name with `--prompt`
 - **Glossary & prompts**: See [Glossary & Prompt Templates](glossary-and-prompts.md) for details on glossary injection
-- **Seed more data**: See [Seeding from Lectures](seeding-from-lectures.md) to extract sentence/paragraph pairs
+- **Seed more data**: See [Seeding from Lectures](../../developer/seeding-from-lectures.md) to extract sentence/paragraph pairs (developer guide)

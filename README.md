@@ -50,7 +50,7 @@ Translation pairs at three granularities sourced from QuantEcon lectures:
 | Paragraphs | 30+ | 17 | Multi-sentence explanations (may include math/code/directives) |
 
 Sentences and paragraphs are seeded from aligned English/Chinese lecture pairs
-using `scripts/seed_from_lectures.py`. See [Seed Script Tutorial](docs/user/tutorials/seeding-from-lectures.md).
+using `scripts/seed_from_lectures.py`. See [Seed Script Guide](docs/developer/seeding-from-lectures.md).
 
 ## Prompt Templates
 

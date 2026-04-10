@@ -155,4 +155,4 @@ uv run qebench run --prompt my-custom-prompt -n 10
 
 - [Running LLM Benchmarks](running-llm-benchmarks.md) — full tutorial on `qebench run`
 - [Judging Translations](judging-translations.md) — evaluate results with formatting scores
-- [Seeding from Lectures](seeding-from-lectures.md) — populate sentences/paragraphs for testing
+- [Seeding from Lectures](../../developer/seeding-from-lectures.md) — populate sentences/paragraphs for testing (developer guide)

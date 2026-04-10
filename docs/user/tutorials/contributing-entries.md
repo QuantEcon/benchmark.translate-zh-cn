@@ -17,7 +17,7 @@ Every entry you add earns **15 XP** and makes the benchmark more useful.
 
 :::{tip}
 For bulk seeding of sentences and paragraphs from lecture repos, see
-[Seeding from Lectures](seeding-from-lectures.md). The `qebench add` command
+[Seeding from Lectures](../../developer/seeding-from-lectures.md). The `qebench add` command
 is best for adding individual, curated entries.
 :::
 

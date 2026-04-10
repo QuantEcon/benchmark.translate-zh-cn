@@ -189,5 +189,5 @@ rounds are saved.
 - **Translate more entries**: See [Your First Translation Session](first-session.md) to collect more data
 - **Run more models**: See [Running LLM Benchmarks](running-llm-benchmarks.md) to generate model outputs
 - **Compare prompts**: See [Glossary & Prompt Templates](glossary-and-prompts.md) to test action-translation prompts
-- **Seed more data**: See [Seeding from Lectures](seeding-from-lectures.md) to extract sentence/paragraph pairs
+- **Seed more data**: See [Seeding from Lectures](../../developer/seeding-from-lectures.md) to extract sentence/paragraph pairs (developer guide)
 - **Check the leaderboard**: `qebench stats` shows the XP leaderboard and dataset coverage

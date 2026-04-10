@@ -48,7 +48,7 @@ Use `qebench add` for interactive entry creation. For bulk imports, write a
 script in `scripts/` following the pattern in `scripts/seed_from_glossary.py`
 or `scripts/seed_from_lectures.py`.
 
-See [Seeding from Lectures](../user/tutorials/seeding-from-lectures.md) for
+See [Seeding from Lectures](seeding-from-lectures.md) for
 a walkthrough of the lecture extraction pipeline.
 
 ## Adding Prompt Templates
