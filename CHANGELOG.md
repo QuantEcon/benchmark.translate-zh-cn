@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **Action-translation prompt templates** (PR #26): `prompts/action-basic.txt` (MyST-aware rules) and `prompts/action-new.txt` (MyST rules + glossary injection).
 - **Optional `{glossary}` placeholder** in prompt templates (PR #26): Auto-populated from `action-translation`'s glossary when present. Double-brace escaping (`{{math}}`) supported.
 - **Formatting scores in judge reveal** (PR #26): After picking a winner, judges see fullwidth punctuation % and directive balance status for both translations.
-- **New tutorials**: [Glossary & Prompt Templates](docs/user/tutorials/glossary-and-prompts.md), [Seeding from Lectures](docs/user/tutorials/seeding-from-lectures.md).
+- **New tutorials**: [Glossary & Prompt Templates](docs/user/tutorials/glossary-and-prompts.md), [Seeding from Lectures](docs/developer/seeding-from-lectures.md).
 
 ### Changed
 
