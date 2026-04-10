@@ -47,7 +47,7 @@ git clone https://github.com/QuantEcon/lecture-intro.zh-cn.git
 
 ```bash
 cd benchmark.translate-zh-cn
-uv run python scripts/seed_from_lectures.py
+uv run python scripts/seed_from_lectures.py /path/to/quantecon
 ```
 
 The script outputs:
@@ -106,10 +106,9 @@ top of the script. The 10 domains covered are:
 | `optimization` | optgrowth.md, opt_savings.md |
 | `economics` | supply_demand.md, cagan_ree.md |
 | `finance` | perm_income.md, cons_smooth.md |
-| `general` | intro.md, about.md |
-| `scientific-computing` | numpy.md, matplotlib.md |
-| `python-fundamentals` | functions.md, python_oop.md |
-| `time-series` | ar1_processes.md, markov_chains_I.md |
+| `mathematics` | complex_and_trig.md, geom_series.md |
+| `other` | numpy.md, functions.md |
+| `stochastic-processes` | ar1_processes.md, markov_chains_I.md |
 
 ## Output Format
 
@@ -147,8 +146,8 @@ top of the script. The 10 domains covered are:
 ```
 
 Paragraph entries include MyST feature flags that describe the structural
-complexity of each paragraph. These flags are used by the automated
-formatting validators when scoring LLM translations.
+complexity of each paragraph. These flags can be used for filtering or
+analysis when evaluating LLM translations.
 
 ## Customizing the Script
 
@@ -159,11 +158,11 @@ at the top of the script:
 
 ```python
 REPO_PAIRS = [
-    ("lecture-python-intro", "lecture-intro.zh-cn"),
-    ("lecture-python-programming", "lecture-python-programming.zh-cn"),
-    ("lecture-python.myst", "lecture-python.zh-cn"),
+    ("lecture-python-intro", "lecture-intro.zh-cn", "lectures"),
+    ("lecture-python-programming", "lecture-python-programming.zh-cn", "lectures"),
+    ("lecture-python.myst", "lecture-python.zh-cn", "lectures"),
     # Add more pairs here:
-    ("my-english-repo", "my-chinese-repo"),
+    ("my-english-repo", "my-chinese-repo", "lectures"),
 ]
 ```
 
@@ -178,7 +177,7 @@ FILENAME_DOMAIN_MAP = {
 }
 ```
 
-Files not in the map default to `"general"`.
+Files not in the map default to `"economics"`.
 
 ### Adjusting targets
 

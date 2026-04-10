@@ -116,8 +116,7 @@ MyST build + gh-pages deploys the dashboard
 ### Formatting Fidelity (`scoring/formatting.py`)
 
 Automated checks that verify structural integrity of LLM translations. These
-run on every `qebench run` output and are displayed in the `qebench judge`
-reveal panel.
+are invoked by `qebench judge` and displayed in the reveal panel.
 
 | Function | Returns | What it checks |
 |---|---|---|
@@ -150,7 +149,7 @@ load_glossary(force_refresh=False)
     │
     ▼
 _extract_glossary_terms(data)
-    └── Parses glossary JSON → dict[str, str] (en → zh)
+    └── Parses glossary JSON → list[dict] (each dict has en + zh-cn keys)
 ```
 
 ### Prompt Template System (`providers/prompts.py`)

@@ -14,9 +14,11 @@ import re
 
 
 def check_directive_balance(source: str, translated: str) -> bool:
-    """Verify translated text has the same directive open/close pairs as source.
+    """Heuristic check that translated text has the same number of fences as source.
 
-    Counts fenced code blocks (```) in both texts and checks they match.
+    Counts triple-backtick fence markers (```) in both texts and checks
+    they match.  This is a rough proxy for directive balance — it does not
+    detect mis-nesting or mismatched directive types.
     """
     source_fences = len(re.findall(r"^```", source, re.MULTILINE))
     translated_fences = len(re.findall(r"^```", translated, re.MULTILINE))
@@ -149,10 +151,15 @@ def formatting_score(source: str, translated: str) -> dict:
 # ---------------------------------------------------------------------------
 
 def _extract_code_blocks(text: str) -> list[str]:
-    """Extract contents of fenced code blocks (``` ... ```)."""
+    """Extract contents of fenced code blocks (``` ... ```).
+
+    Skips MyST directive blocks (e.g. ```{note}, ```{warning}) since those
+    contain translatable prose that is expected to change.
+    """
     blocks: list[str] = []
     lines = text.splitlines()
     in_block = False
+    is_directive = False
     current: list[str] = []
     fence_marker = ""
 
@@ -162,10 +169,15 @@ def _extract_code_blocks(text: str) -> list[str]:
             in_block = True
             fence_marker = "```"
             current = []
+            # Check if this is a MyST directive (```{name})
+            after_fence = stripped[3:].strip()
+            is_directive = after_fence.startswith("{")
             continue
         if in_block and stripped == fence_marker:
-            blocks.append("\n".join(current))
+            if not is_directive:
+                blocks.append("\n".join(current))
             in_block = False
+            is_directive = False
             current = []
             continue
         if in_block:

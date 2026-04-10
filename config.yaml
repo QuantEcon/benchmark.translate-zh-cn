@@ -19,6 +19,7 @@ domains:
   - optimization
   - stochastic-processes
   - numerical-methods
+  - other
 
 targets:
   terms: 500

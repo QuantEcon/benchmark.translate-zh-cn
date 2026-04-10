@@ -69,9 +69,8 @@ production translation rules. See [Glossary & Prompt Templates Tutorial](docs/us
 
 ## Automated Formatting Checks
 
-`qebench run` and `qebench judge` include automated MyST formatting fidelity
-scoring. These checks run on every LLM translation and are displayed in the
-judge reveal panel:
+`qebench judge` includes automated MyST formatting fidelity scoring. These
+checks run on each translation pair and are displayed in the reveal panel:
 
 - **Directive balance** — open/close pairs match between source and translation
 - **Fence consistency** — no mixed `$$` / `` ```{math} `` markers

@@ -136,8 +136,8 @@ uv run qebench run --type paragraphs -n 5
 
 Paragraphs are the most challenging and informative entry type for benchmarking.
 They include MyST feature flags (`contains_directives`, `contains_roles`,
-`contains_mixed_fencing`) that help the automated formatting validators
-determine which checks apply.
+`contains_mixed_fencing`) that describe the structural complexity of each
+paragraph for filtering and analysis.
 
 ## Step 7: Judge the Results
 

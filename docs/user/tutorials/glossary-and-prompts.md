@@ -74,7 +74,7 @@ The `load_glossary()` function in `utils/dataset.py`:
 - For URLs: fetches via `urllib.request` and caches to `.cache/glossary.json`
 - For local paths: reads directly
 - Falls back to the cached version if the network is unavailable
-- Returns a dictionary of `{english: chinese}` term mappings
+- Returns a `list[dict]`, where each dict has at least `en` and `zh-cn` keys
 
 ### Refreshing the glossary
 
@@ -84,8 +84,6 @@ The glossary is fetched once and cached. To force a refresh:
 from qebench.utils.dataset import load_glossary
 glossary = load_glossary(force_refresh=True)
 ```
-
-The cache is also refreshed when `qebench update` runs.
 
 ### Using a local glossary file
 

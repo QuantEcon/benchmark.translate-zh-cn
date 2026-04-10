@@ -83,10 +83,11 @@ class Paragraph(BaseModel):
 ```
 
 The three MyST feature flags (`contains_directives`, `contains_roles`,
-`contains_mixed_fencing`) are used by the automated formatting validators
-in `scoring/formatting.py` to determine which checks are relevant for
-each paragraph. They are set when paragraphs are seeded from lecture repos
+`contains_mixed_fencing`) describe the structural complexity of each
+paragraph. They are set when paragraphs are seeded from lecture repos
 (see `scripts/seed_from_lectures.py`) or contributed via `qebench add`.
+These flags can be used for filtering and analysis but are not currently
+consumed by the formatting validators in `scoring/formatting.py`.
 
 :::{note}
 Paragraphs are excluded from `qebench translate` (the CLI uses single-line
