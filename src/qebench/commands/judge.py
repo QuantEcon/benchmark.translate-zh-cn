@@ -386,14 +386,13 @@ def judge(
             console.print("[yellow]Session ended early.[/yellow]")
             break
 
-        # For ties and neither, skip detailed scoring (#9)
+        # For "neither", skip detailed scoring; ties still collect ratings
         suggestion = ""
-        if winner_answer in ("tie", "neither"):
+        if winner_answer == "neither":
             acc_a = acc_b = flu_a = flu_b = None
-            if winner_answer == "neither":
-                suggestion = questionary.text(
-                    "Suggest a better translation (optional):",
-                ).ask() or ""
+            suggestion = questionary.text(
+                "Suggest a better translation (optional):",
+            ).ask() or ""
         else:
             # Collect scores for A
             console.print("\n[bold yellow]Rate Translation A:[/bold yellow]")
