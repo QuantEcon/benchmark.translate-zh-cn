@@ -5,6 +5,28 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **Design review** (`REVIEW.md`): Comprehensive gap analysis of `benchmark.translate-zh-cn` and `action-translation`, with prioritized recommendations.
+- **Glossary URL loading** (PR #26): `load_glossary()` in `utils/dataset.py` fetches glossary from GitHub URL (configured in `config.yaml` as `glossary_path`) with local `.cache/glossary.json` fallback. Wired into `qebench run` via optional `{glossary}` prompt placeholder.
+- **MyST formatting validators** (PR #26): New `scoring/formatting.py` module with automated checks — directive balance, fence consistency, code block integrity, fullwidth punctuation compliance, directive spacing. Results displayed in `qebench judge` reveal panel.
+- **Seed sentences from lectures** (PR #26): 80 curated sentence pairs (8 per domain, 10 domains) extracted from aligned English/Chinese lecture repos via `scripts/seed_from_lectures.py`.
+- **Seed paragraphs from lectures** (PR #26): 17 curated paragraph pairs with math, code, directives, and roles. Paragraphs include MyST feature flags for formatting validation.
+- **Paragraph model flags** (PR #26): `contains_directives`, `contains_roles`, `contains_mixed_fencing` fields on the `Paragraph` model.
+- **Action-translation prompt templates** (PR #26): `prompts/action-basic.txt` (MyST-aware rules) and `prompts/action-new.txt` (MyST rules + glossary injection).
+- **Optional `{glossary}` placeholder** in prompt templates (PR #26): Auto-populated from `action-translation`'s glossary when present. Double-brace escaping (`{{math}}`) supported.
+- **Formatting scores in judge reveal** (PR #26): After picking a winner, judges see fullwidth punctuation % and directive balance status for both translations.
+- **New tutorials**: [Glossary & Prompt Templates](docs/user/tutorials/glossary-and-prompts.md), [Seeding from Lectures](docs/developer/seeding-from-lectures.md).
+
+### Changed
+
+- `config.yaml`: `glossary_path` updated from `null` to `https://raw.githubusercontent.com/QuantEcon/action-translation/main/glossary/zh-cn.json`
+- `qebench translate` excludes paragraphs from the entry pool (CLI single-line input limitation); paragraphs remain in `judge` and `run`
+- Documentation updated: README, CLI reference, architecture, data models, contributing guide, all affected tutorials
+- Tests: 225 → 262 (37 new: 26 formatting, 10 glossary, 1 model)
+
 ## [0.4.0] - 2026-04-07
 
 ### Added

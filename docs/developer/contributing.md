@@ -45,7 +45,18 @@ See [Architecture](architecture.md) for the full module map.
 ## Adding Data Entries
 
 Use `qebench add` for interactive entry creation. For bulk imports, write a
-script in `scripts/` following the pattern in `scripts/seed_from_glossary.py`.
+script in `scripts/` following the pattern in `scripts/seed_from_glossary.py`
+or `scripts/seed_from_lectures.py`.
+
+See [Seeding from Lectures](seeding-from-lectures.md) for
+a walkthrough of the lecture extraction pipeline.
+
+## Adding Prompt Templates
+
+Create a `.txt` file in the `prompts/` directory with `{source_lang}`,
+`{target_lang}`, `{domain}`, and `{text}` placeholders. Use `{glossary}`
+for optional glossary injection. Use double braces `{{...}}` to escape
+literal braces. See [Glossary & Prompt Templates](../user/tutorials/glossary-and-prompts.md).
 
 ## Branch Workflow
 

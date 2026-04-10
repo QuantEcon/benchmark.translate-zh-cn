@@ -32,21 +32,21 @@ RESULTS_DIR = DATA_DIR.parent / "results" / "translations"
 DIFF_THRESHOLD = 0.85
 
 CONFIDENCE_CHOICES = [
-    questionary.Choice("1 — Guessing", value=1),
-    questionary.Choice("2 — Uncertain", value=2),
-    questionary.Choice("3 — Reasonable", value=3),
-    questionary.Choice("4 — Confident", value=4),
-    questionary.Choice("5 — Very confident", value=5),
+    questionary.Choice("1 — Guessing", value=1, shortcut_key="1"),
+    questionary.Choice("2 — Uncertain", value=2, shortcut_key="2"),
+    questionary.Choice("3 — Reasonable", value=3, shortcut_key="3"),
+    questionary.Choice("4 — Confident", value=4, shortcut_key="4"),
+    questionary.Choice("5 — Very confident", value=5, shortcut_key="5"),
 ]
 
 DIFF_REASON_CHOICES = [
-    questionary.Choice("Formal/written register (书面语)", value="formal-register"),
-    questionary.Choice("Informal/spoken register (口语)", value="informal-register"),
-    questionary.Choice("Regional preference", value="regional"),
-    questionary.Choice("Contextual — depends on usage", value="contextual"),
-    questionary.Choice("Abbreviation or shorthand", value="abbreviation"),
-    questionary.Choice("Alternative technical term", value="alt-technical"),
-    questionary.Choice("Other (explain in notes)", value="other"),
+    questionary.Choice("Formal/written register (书面语)", value="formal-register", shortcut_key="1"),
+    questionary.Choice("Informal/spoken register (口语)", value="informal-register", shortcut_key="2"),
+    questionary.Choice("Regional preference", value="regional", shortcut_key="3"),
+    questionary.Choice("Contextual — depends on usage", value="contextual", shortcut_key="4"),
+    questionary.Choice("Abbreviation or shorthand", value="abbreviation", shortcut_key="5"),
+    questionary.Choice("Alternative technical term", value="alt-technical", shortcut_key="6"),
+    questionary.Choice("Other (explain in notes)", value="other", shortcut_key="7"),
 ]
 
 
@@ -76,8 +76,12 @@ def _pick_entries(
     difficulty: str | None,
     count: int,
 ) -> list[Term | Sentence | Paragraph]:
-    """Select a mixed set of entries, optionally filtered by domain/difficulty."""
-    pool: list[Term | Sentence | Paragraph] = [*terms, *sentences, *paragraphs]
+    """Select a mixed set of entries, optionally filtered by domain/difficulty.
+
+    Paragraphs are excluded — they are too long for single-line CLI input.
+    Use ``qebench judge`` to evaluate paragraph translations instead.
+    """
+    pool: list[Term | Sentence | Paragraph] = [*terms, *sentences]
 
     if domain:
         pool = [e for e in pool if e.domain == domain]
@@ -222,9 +226,10 @@ def translate(
             continue
 
         # Ask confidence level
-        confidence = questionary.rawselect(
+        confidence = questionary.select(
             "How confident are you?",
             choices=CONFIDENCE_CHOICES,
+            use_shortcuts=True,
         ).ask()
         if confidence is None:
             console.print("[yellow]Session ended early.[/yellow]")
@@ -243,9 +248,10 @@ def translate(
         notes = ""
         all_valid = [reference.strip(), *(a.strip() for a in alternatives)]
         if attempt.strip() not in all_valid and similarity < DIFF_THRESHOLD:
-            reason = questionary.rawselect(
+            reason = questionary.select(
                 "Why does your translation differ?",
                 choices=DIFF_REASON_CHOICES,
+                use_shortcuts=True,
             ).ask()
             if reason is None:
                 console.print("[yellow]Session ended early.[/yellow]")

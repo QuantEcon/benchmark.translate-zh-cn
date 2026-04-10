@@ -1,0 +1,722 @@
+[
+  {
+    "en": "We assume that the expected rate of inflation $\\pi_t^*$ is governed by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {cite}`Cagan`, where $\\lambda\\in [0,1]$ denotes the weight on expected inflation.",
+    "zh": "我们假设预期通胀率 $\\pi_t^*$ 遵循弗里德曼-凯根的自适应预期机制：",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cagan_adaptive.md",
+    "id": "sent-001"
+  },
+  {
+    "en": "Robert Hall {cite}`Hall1978` showed that when $\\beta R = 1$, a condition Milton Friedman had also  assumed, it is \"optimal\" for a consumer to smooth consumption by setting",
+    "zh": "罗伯特·霍尔 {cite}`Hall1978` 证明，当 $\\beta R = 1$ 时（这也是弥尔顿·弗里德曼假设的条件），消费者通过设置",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cons_smooth.md",
+    "id": "sent-002"
+  },
+  {
+    "en": "{cite}`DoSSo` argue that relative prices of the $n$ produced goods must satisfy",
+    "zh": "{cite}`DoSSo` 认为，$n$ 种商品的相对价格必须满足",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/input_output.md",
+    "id": "sent-003"
+  },
+  {
+    "en": "Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy $\\text{(D)}$, autocracy $\\text{(A)}$, and an intermediate state called anocracy $\\text{(N)}$.",
+    "zh": "Imam 和 Temple {cite}`imampolitical` 将政治制度分类为三种类型：民主 $\\text{(D)}$，专制 $\\text{(A)}$ 和一个称为无政府状态的中间状态 $\\text{(N)}$。",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/markov_chains_I.md",
+    "id": "sent-004"
+  },
+  {
+    "en": "Following Sargent and Wallace {cite}`sargent1981`, we analyze consequences of a central bank policy that uses an open market operation to lower the price level in the face of a persistent fiscal deficit that takes the form of a positive $g$.",
+    "zh": "我们将按照萨金特和华莱士 {cite}`sargent1981` 的分析框架，探讨一个关键问题：在面对持续性财政赤字（即正值 $g$）时，中央银行能否通过公开市场操作有效地控制物价水平？",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/unpleasant.md",
+    "id": "sent-005"
+  },
+  {
+    "en": "To get the special chapter 2 case of  Auerbach and Kotlikoff (1987) {cite}`auerbach1987dynamic`, we  set both $\\delta_{ot}$ and $\\delta_{yt}$ to zero.",
+    "zh": "为了得到 Auerbach 和 Kotlikoff (1987) {cite}`auerbach1987dynamic` 第2章的特例，我们将 $\\delta_{ot}$ 和 $\\delta_{yt}$ 都设为零。",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/ak2.md",
+    "id": "sent-006"
+  },
+  {
+    "en": "Wecker {cite}`wecker1979predicting` proposed using simulation techniques to characterize  predictive distribution of some statistics that are  non-linear functions of $y$.",
+    "zh": "Wecker {cite}`wecker1979predicting` 提出使用模拟技术来表征某些统计量的预测分布，这些统计量是 $y$ 的非线性函数。",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/ar1_turningpts.md",
+    "id": "sent-007"
+  },
+  {
+    "en": "Following {cite}`wecker1979predicting`, we can use simulations to calculate  probabilities of $P_t$ and $N_t$ for each period $t$.",
+    "zh": "根据{cite}`wecker1979predicting`，我们可以通过模拟来计算每个时期 $t$ 的 $P_t$ 和 $N_t$ 的概率。",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/ar1_turningpts.md",
+    "id": "sent-008"
+  },
+  {
+    "en": "Claude Shannon {cite}`shannon1948mathematical` called $H(f)$ the **entropy** of distribution $f$.",
+    "zh": "Claude Shannon {cite}`shannon1948mathematical` 将 $H(f)$ 称为分布 $f$ 的**熵**。",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/divergence_measures.md",
+    "id": "sent-009"
+  },
+  {
+    "en": "Kullback and Leibler {cite}`kullback1951information` define the amount of information that a single draw of $x$ provides for distinguishing $f$ from $g$  as the log likelihood ratio",
+    "zh": "Kullback 和 Leibler {cite}`kullback1951information` 将单次抽样 $x$ 用于区分 $f$ 和 $g$ 所提供的信息量定义为对数似然比",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/divergence_measures.md",
+    "id": "sent-010"
+  },
+  {
+    "en": "In our numerical example, we’ll set $\\beta = .75$, just as Harrison and Kreps {cite}`HarrKreps1978` did.",
+    "zh": "在我们的数值示例中，我们将设定 $\\beta = .75$，这与 Harrison 和 Kreps {cite}`HarrKreps1978` 的设定相同。",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/harrison_kreps.md",
+    "id": "sent-011"
+  },
+  {
+    "en": "* As described in table 10 of {cite}`Greenfield_Sargent_1993`  p. 27, parameters of log normal distributions for  the seven unique probabilities $P(A_i)$ have been calibrated to be the values in the following Python code:",
+    "zh": "* 如{cite}`Greenfield_Sargent_1993`第27页表10所述，七个唯一概率 $P(A_i)$ 的对数正态分布参数已被校准为以下Python代码中的值：",
+    "domain": "other",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/hoist_failure.md",
+    "id": "sent-012"
+  },
+  {
+    "en": "The specification {eq}`can_ar1` generates a time series $\\{ X_t\\}$ as soon as we specify an initial condition $X_0$.",
+    "zh": "一旦我们指定一个初始条件 $X_0$，我们就可以用{eq}`can_ar1` 生成一个时间序列 $\\{ X_t\\}$。",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/ar1_processes.md",
+    "id": "sent-013"
+  },
+  {
+    "en": "Equation {eq}`ar1_ma` shows that $X_t$ is a well defined random variable, the value of which depends on",
+    "zh": "方程 {eq}`ar1_ma` 显示 $X_t$ 是一个明确定义的随机变量，其值取决于",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/ar1_processes.md",
+    "id": "sent-014"
+  },
+  {
+    "en": "Given the dynamics in {eq}`ar1_ma` and initial conditions $\\mu_0, v_0$, we obtain $\\mu_t, v_t$ and hence",
+    "zh": "(这是根据我们的假设和 {eq}`ar1_ma` 得出的。)",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/ar1_processes.md",
+    "id": "sent-015"
+  },
+  {
+    "en": "The distribution $\\psi^*$ in {eq}`ar1_psi_star` has this property --- checking this is an exercise.",
+    "zh": "$\\psi^*$ 在 {eq}`ar1_psi_star` 中具有这一性质——验证这一点是留给读者的练习。",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/ar1_processes.md",
+    "id": "sent-016"
+  },
+  {
+    "en": "Equating the logarithm $m_t^d$ of the demand for money  to the logarithm  $m_t$ of the supply of money in equation {eq}`eq:caganmd_ad` and solving for the logarithm $p_t$ of the price level gives",
+    "zh": "将方程 {eq}`eq:caganmd_ad` 中的货币需求对数 $m_t^d$ 设为等于货币供给对数 $m_t$，并求解价格水平对数 $p_t$，得到：",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cagan_adaptive.md",
+    "id": "sent-017"
+  },
+  {
+    "en": "Taking the difference between equation {eq}`eq:eqfiscth1` at time $t+1$ and at time $t$ gives",
+    "zh": "对方程 {eq}`eq:eqfiscth1` 求时间差分，得到：",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cagan_adaptive.md",
+    "id": "sent-018"
+  },
+  {
+    "en": "We begin by writing the equation {eq}`eq:adaptexpn`  adaptive expectations model for $\\pi_t^*$ for $t=0, \\ldots, T$ as",
+    "zh": "首先，我们将方程 {eq}`eq:adaptexpn` 中的自适应预期模型写成 $t=0, \\ldots, T$ 的矩阵形式：",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cagan_adaptive.md",
+    "id": "sent-019"
+  },
+  {
+    "en": "Having solved equation {eq}`eq:eq4` for $\\pi^*$, we can use  equation {eq}`eq:eq2`  to solve for $\\pi$:",
+    "zh": "有了 $\\pi^*$,我们就可以从方程 {eq}`eq:eq2` 求出 $\\pi$:",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cagan_adaptive.md",
+    "id": "sent-020"
+  },
+  {
+    "en": "Knowing these, we can then quickly calculate the associated sequence $p$  of the logarithm of the  price level from equation {eq}`eq:eqfiscth1`.",
+    "zh": "有了这些,我们就可以从方程 {eq}`eq:eqfiscth1` 计算出价格水平对数序列 $p$。",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cagan_adaptive.md",
+    "id": "sent-021"
+  },
+  {
+    "en": "Equation {eq}`eq:mcum_ad` shows that the log of the money supply at $t$ equals the log $m_0$ of the initial money supply plus accumulation of rates of money growth between times $0$ and $t$.",
+    "zh": "方程 {eq}`eq:mcum_ad` 表明，时间 $t$ 的货币供应对数等于初始货币供应对数 $m_0$ 加上 $0$ 到 $t$ 时间之间货币增长率的累积。",
+    "domain": "macroeconomics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/cagan_adaptive.md",
+    "id": "sent-022"
+  },
+  {
+    "en": "With the `sympy` package in Python, we are able to solve and plot the dynamics of $x_n$ given different values of $n$.",
+    "zh": "使用Python中的`sympy`包，我们能够解决并绘制给定不同 $n$ 值时 $x_n$ 的动态变化。",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/complex_and_trig.md",
+    "id": "sent-023"
+  },
+  {
+    "en": "What guarantees the existence of a unique vector $x^{*}$ that satisfies {eq}`neumann_eqn`?",
+    "zh": "什么条件保证了存在唯一的向量 $x^{*}$ 满足方程 {eq}`neumann_eqn`？",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/eigen_I.md",
+    "id": "sent-024"
+  },
+  {
+    "en": "To prove key formula {eq}`infinite`, multiply both sides  by $(1-c)$ and verify that if $c \\in (-1,1)$, then the outcome is the equation $1 = 1$.",
+    "zh": "为了证明关键公式 {eq}`infinite`，将两边乘以 $(1-c)$ 并验证如果 $c \\in (-1,1)$，则结果是 方程 $1 = 1$。",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/geom_series.md",
+    "id": "sent-025"
+  },
+  {
+    "en": "Equation {eq}`geomseries` expresses $D_i$ as the $i$ th term in the product of $D_0$ and the geometric series",
+    "zh": "方程 {eq}`geomseries` 表示 $D_i$ 是 几何级数 $D_0$ 和",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/geom_series.md",
+    "id": "sent-026"
+  },
+  {
+    "en": "Equation {eq}`sumdeposits` asserts that the **money multiplier** is $\\frac{1}{r}$",
+    "zh": "方程 {eq}`sumdeposits` 断言 **货币乘数** 是 $\\frac{1}{r}$",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/geom_series.md",
+    "id": "sent-027"
+  },
+  {
+    "en": "To understand this point better, recall {doc}`our earlier discussion <lln_clt>` of the law of large numbers, which considered IID $X_1, \\ldots, X_n$ with common distribution $F$",
+    "zh": "为了理解这一点，让我们回顾{doc}`之前关于大数定律的讨论<lln_clt>`。当我们有一组独立同分布的随机变量$X_1, \\ldots, X_n$，它们都服从同一分布$F$时：",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/heavy_tails.md",
+    "id": "sent-028"
+  },
+  {
+    "en": "In view of {eq}`plrt`, we can take positive constants $b$ and $\\bar x$ such that",
+    "zh": "根据公式 {eq}`plrt`，我们可以取正常数 $b$ 和 $\\bar x$，使得",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/heavy_tails.md",
+    "id": "sent-029"
+  },
+  {
+    "en": "The mean and median of the Pareto distribution {eq}`pareto` with $\\bar x = 1$ are",
+    "zh": "对于帕累托分布 {eq}`pareto`，当 $\\bar x = 1$ 时，其均值和中位数分别为",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/heavy_tails.md",
+    "id": "sent-030"
+  },
+  {
+    "en": "where $A$ is the area between the 45-degree line of perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`.",
+    "zh": "其中 $A$ 是45度的完美平等线与洛伦兹曲线之间的区域的面积，$B$ 是洛伦兹曲线以下的区域的面积 —— 参见 {numref}`lorenz_gini2`。",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/inequality.md",
+    "id": "sent-031"
+  },
+  {
+    "en": "Eq. {eq}`steady_x` implies that the long-run unemployment rate will increase, and the employment rate will decrease if $\\alpha$ increases or $\\lambda$ decreases.",
+    "zh": "方程 {eq}`steady_x` 表明，如果 $\\alpha$ 增加或 $\\lambda$ 减少，长期失业率将会上升，而就业率将会下降。",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lake_model.md",
+    "id": "sent-032"
+  },
+  {
+    "en": "1. generate the draws $X_1, \\ldots, X_n$ 1. calculate the sample mean $\\bar X_n$ and record its value in an array `sample_means` 1. go to step 1.",
+    "zh": "1. 生成抽样 $X_1, \\ldots, X_n$ 1. 计算样本均值 $\\bar X_n$ 并在数组 `sample_means` 中记录其值 1. 返回步骤 1。",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lln_clt.md",
+    "id": "sent-033"
+  },
+  {
+    "en": "The array `sample_means` will now contain $m$ draws of the random variable $\\bar X_n$.",
+    "zh": "数组 `sample_means` 现在将包含 $m$ 次抽取的随机变量 $\\bar X_n$。",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lln_clt.md",
+    "id": "sent-034"
+  },
+  {
+    "en": "Hence, iterating on {eq}`fin_mc_fr`, the expression $\\psi_{t+m} = \\psi_t P^m$ is also valid --- here $P^m$ is the $m$-th power of $P$.",
+    "zh": "因此，迭代 {eq}`fin_mc_fr`，表达式 $\\psi_{t+m} = \\psi_t P^m$ 也是有效的——这里 $P^m$ 是 $P$ 的第 $m$ 次幂。",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/markov_chains_I.md",
+    "id": "sent-035"
+  },
+  {
+    "en": "To see why, consider again {eq}`mdfmc2`, but now with a $\\psi_t$ that puts all probability on state $x$.",
+    "zh": "要理解为什么是这样，请再次考虑 {eq}`mdfmc2`，但现在设 $\\psi_t$ 将所有可能的结果概率都放在状态 $x$ 上。",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/markov_chains_I.md",
+    "id": "sent-036"
+  },
+  {
+    "en": "Inserting this into {eq}`mdfmc2`, we see that, conditional on $X_t = x$, the distribution of $X_{t+m}$ is the $x$-th row of $P^m$.",
+    "zh": "将其代入 {eq}`mdfmc2`，我们看到，条件 $X_t = x$ 的情况下，$X_{t+m}$ 的分布是 $P^m$ 的第 $x$ 行。",
+    "domain": "stochastic-processes",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/markov_chains_I.md",
+    "id": "sent-037"
+  },
+  {
+    "en": "The {ref}`*steady state*<scalar-dynam:steady-state>` value $y^*$ of $y_t$ is obtained by setting $y_t = y_{t-1} = y_{t-2} = y^*$ in {eq}`tswm_1`, which yields",
+    "zh": "通过在{eq}`tswm_1`中设 $y_t = y_{t-1} = y_{t-2} = y^*$，可以得到 $y_t$ 的 {ref}`*稳态*<scalar-dynam:steady-state>` 值 $y^*$。",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/time_series_with_matrices.md",
+    "id": "sent-038"
+  },
+  {
+    "en": "where $u_{t} \\sim N\\left(0, \\sigma_{u}^{2}\\right)$ and is {ref}`IID <iid-theorem>`, meaning independent and identically distributed.",
+    "zh": "其中 $u_{t} \\sim N\\left(0, \\sigma_{u}^{2}\\right)$ 并且是 {ref}`独立同分布<IID-theorem>` -- 相互独立且服从相同分布。",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/time_series_with_matrices.md",
+    "id": "sent-039"
+  },
+  {
+    "en": "Just as system {eq}`eq:eqma` constitutes  a **moving average** representation for $y$, system  {eq}`eq:eqar` constitutes  an **autoregressive** representation for $y$.",
+    "zh": "我们可以看到，系统既可以用移动平均形式 {eq}`eq:eqma` 表示，也可以用自回归形式 {eq}`eq:eqar` 表示。这两种表示方式描述了同一个随机过程，只是从不同的角度来看。",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/time_series_with_matrices.md",
+    "id": "sent-040"
+  },
+  {
+    "en": "* starting with a guess for the price vector $\\bar p$ and * iterating to convergence on the operator that maps a guess $\\bar p^j$ into an updated guess $\\bar p^{j+1}$ defined by the right side of {eq}`hakr2`, namely",
+    "zh": "* 从价格向量$\\bar p$的一个猜测开始 * 对运算符进行迭代直至收敛，该运算符将猜测值$\\bar p^j$映射到由{eq}`hakr2`右侧定义的更新猜测值$\\bar p^{j+1}$，即",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/harrison_kreps.md",
+    "id": "sent-041"
+  },
+  {
+    "en": "Taking the expectation of $v(x_{t+1})$ and using {eq}`jd`, the Bellman equation for this problem can be written as",
+    "zh": "对 $v(x_{t+1})$ 取期望并使用 {eq}`jd`， 这个问题的贝尔曼方程可以写成",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/jv.md",
+    "id": "sent-042"
+  },
+  {
+    "en": "When we represent $v$, it will be with a NumPy array `v` giving values on grid `x_grid`.",
+    "zh": "当我们表示$v$时，将使用NumPy数组`v`在网格`x_grid`上给出值。",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/jv.md",
+    "id": "sent-043"
+  },
+  {
+    "en": "Inside the `for` loop, for each `x` in the grid over the state space, we set up the function $w(z) = w(s, \\phi)$ defined in {eq}`defw`.",
+    "zh": "在`for`循环内部，对状态空间网格中的每个`x`，我们设置函数$w(z) = w(s, \\phi)$，如{eq}`defw`中定义。",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/jv.md",
+    "id": "sent-044"
+  },
+  {
+    "en": "Another function, `get_greedy` returns the optimal choice of $s$ and $\\phi$ at each $x$, given a value function.",
+    "zh": "另一个函数`get_greedy`在给定值函数的情况下，返回每个$x$处$s$和$\\phi$的最优选择。",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/jv.md",
+    "id": "sent-045"
+  },
+  {
+    "en": "The dynamics are given by {eq}`jd` when $\\phi_t$ and $s_t$ are chosen according to the optimal policies, and $\\mathbb{P}\\{b_{t+1} = 1\\} = \\pi(s_t)$.",
+    "zh": "当根据最优策略选择 $\\phi_t$ 和 $s_t$，且 $\\mathbb{P}\\{b_{t+1} = 1\\} = \\pi(s_t)$ 时，动态特征由{eq}`jd`给出。",
+    "domain": "dynamic-programming",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/jv.md",
+    "id": "sent-046"
+  },
+  {
+    "en": "To illustrate the idea, recall {ref}`the figure <la_3dvec>` that showed the span of vectors $\\{a_1, a_2\\}$ in $\\mathbb R ^3$ as a plane through the origin.",
+    "zh": "让我们回到{ref}`图示<la_3dvec>`中的例子，其中$\\mathbb R ^3$中的两个向量$\\{a_1, a_2\\}$张成了一个经过原点的平面。",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/linear_algebra.md",
+    "id": "sent-047"
+  },
+  {
+    "en": "The problem we face is to determine a vector $x \\in \\mathbb R ^k$ that solves {eq}`la_se2`, taking $y$ and $A$ as given.",
+    "zh": "我们面临的问题是确定一个向量$x \\in \\mathbb R ^k$来解{eq}`la_se2`，其中$y$和$A$是已知的。",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/linear_algebra.md",
+    "id": "sent-048"
+  },
+  {
+    "en": "Can we impose conditions on $A$ in {eq}`la_se2` that rule out these problems?",
+    "zh": "我们能否对{eq}`la_se2`中的$A$施加条件来避免这些问题？",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/linear_algebra.md",
+    "id": "sent-049"
+  },
+  {
+    "en": "Indeed, it follows from our {ref}`earlier discussion <la_unique_reps>` that if $\\{a_1, \\ldots, a_k\\}$ are linearly independent and $y = Ax = x_1 a_1 + \\cdots + x_k a_k$, then no $z \\not= x$ satisfies $y = Az$.",
+    "zh": "确实，根据我们{ref}`之前的讨论 <la_unique_reps>`，如果$\\{a_1, \\ldots, a_k\\}$是线性无关的，且$y = Ax = x_1 a_1 + \\cdots + x_k a_k$，那么不存在$z \\not= x$满足$y = Az$。",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/linear_algebra.md",
+    "id": "sent-050"
+  },
+  {
+    "en": "To see why, recall the {ref}`figure above <la_3dvec>`, where $k=2$ and $n=3$.",
+    "zh": "要理解原因，请回顾{ref}`上图<la_3dvec>`，其中 $k=2$ 且 $n=3$。",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/linear_algebra.md",
+    "id": "sent-051"
+  },
+  {
+    "en": "Derive the asymptotic distribution of $\\sqrt{n} \\{ g(\\bar X_n) - g(\\mu) \\}$ and illustrate convergence in the same spirit as the program discussed {ref}`above <sim_one>`.",
+    "zh": "推导$\\sqrt{n} \\{ g(\\bar X_n) - g(\\mu) \\}$的渐近分布，并按照{ref}`上述<sim_one>`程序的方式说明其收敛性。",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/lln_clt.md",
+    "id": "sent-052"
+  },
+  {
+    "en": "Thus, representation {eq}`eq:SVD101` asserts that multiplying an $n \\times 1$  vector $y$ by the $m \\times n$ matrix $X$ amounts to performing the following three multiplications of $y$ sequentially:",
+    "zh": "因此，表示式 {eq}`eq:SVD101` 表明，用 $m \\times n$ 矩阵 $X$ 乘以 $n \\times 1$ 向量 $y$ 相当于按顺序执行以下三个乘法运算：",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/svd_intro.md",
+    "id": "sent-053"
+  },
+  {
+    "en": "Thus, taken together, the systems of equations {eq}`eq:Xfour1a` and {eq}`eq:Xfour1b` describe the  four fundamental subspaces of $X$ in the following ways:",
+    "zh": "方程 {eq}`eq:Xfour1b` 表明：",
+    "domain": "linear-algebra",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python.myst/lectures/svd_intro.md",
+    "id": "sent-054"
+  },
+  {
+    "en": "This model was developed by {cite}`samuelson1971stochastic`, {cite}`wright1982economic`, {cite}`scheinkman1983simple`, {cite}`deaton1992on`, {cite}`deaton1996competitive`, and {cite}`chambers1996theory`.",
+    "zh": "该模型由 {cite}`samuelson1971stochastic`、{cite}`wright1982economic`、{cite}`scheinkman1983simple`、{cite}`deaton1992on`、{cite}`deaton1996competitive` 和 {cite}`chambers1996theory` 开发。",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-055"
+  },
+  {
+    "en": "Consider a market for a single commodity, whose price is given at $t$ by $p_t$.",
+    "zh": "考虑一个单一商品的市场，其价格在时间 $t$ 为 $p_t$。",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-056"
+  },
+  {
+    "en": "We assume that the sequence $\\{ Z_t \\}_{t \\geq 1}$ is IID with common density function $\\phi$, where $\\phi$ is nonnegative.",
+    "zh": "我们假设序列 $\\{ Z_t \\}_{t \\geq 1}$ 是独立同分布（IID）的，具有共同的密度函数 $\\phi$，其中 $\\phi$ 为非负。",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-057"
+  },
+  {
+    "en": "Speculators can store the commodity between periods, with $I_t$ units purchased in the current period yielding $\\alpha I_t$ units in the next.",
+    "zh": "投机者可以在各期之间储存该商品，当前期购买的 $I_t$ 单位在下一期将产生 $\\alpha I_t$ 单位。",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-058"
+  },
+  {
+    "en": "Here the parameter $\\alpha \\in (0,1)$ is a depreciation rate for the commodity.",
+    "zh": "这里的参数 $\\alpha \\in (0,1)$ 是该商品的贬值率。",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-059"
+  },
+  {
+    "en": "For simplicity, the risk free interest rate is taken to be zero, so expected profit on purchasing $I_t$ units is",
+    "zh": "为了简化问题，风险自由利率取为零，因此购买 $I_t$ 单位的预期利润为",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-060"
+  },
+  {
+    "en": "Here $\\mathbb{E}_t \\, p_{t+1}$ is the expectation of $p_{t+1}$ taken at time $t$.",
+    "zh": "其中 $\\mathbb{E}_t \\, p_{t+1}$ 是在时间 $t$ 对 $p_{t+1}$ 的期望。",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-061"
+  },
+  {
+    "en": "We assume that consumers generate demand quantity $D(p)$ corresponding to price $p$.",
+    "zh": "假设消费者根据价格 $p$ 产生需求量 $D(p)$。",
+    "domain": "economics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/commod_price.md",
+    "id": "sent-062"
+  },
+  {
+    "en": "A complex number has a **real part** $x$ and a purely **imaginary part** $y$.",
+    "zh": "复数有一个**实部**$x$和一个纯**虚部**$y$。",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/complex_and_trig.md",
+    "id": "sent-063"
+  },
+  {
+    "en": "The Euclidean, polar, and trigonometric forms of a complex number $z$ are:",
+    "zh": "复数$z$的欧几里得形式、极坐标形式和三角形式是：",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/complex_and_trig.md",
+    "id": "sent-064"
+  },
+  {
+    "en": "The value $x$ is the **real** part of $z$ and $y$ is the **imaginary** part of $z$.",
+    "zh": "$x$是$z$的**实部**，$y$是$z$的**虚部**。",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/complex_and_trig.md",
+    "id": "sent-065"
+  },
+  {
+    "en": "The symbol $| z |$ = $\\sqrt{\\bar{z}\\cdot z} = r$ represents the **modulus** of $z$.",
+    "zh": "符号$| z |$ = $\\sqrt{\\bar{z}\\cdot z} = r$表示$z$的**模**。",
+    "domain": "mathematics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/complex_and_trig.md",
+    "id": "sent-066"
+  },
+  {
+    "en": "See, for example, {cite}`mandelbrot1963variation` or {cite}`rachev2003handbook`.",
+    "zh": "例如，参见 {cite}`mandelbrot1963variation` 或 {cite}`rachev2003handbook`。",
+    "domain": "statistics",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/heavy_tails.md",
+    "id": "sent-067"
+  },
+  {
+    "en": "We use $n$ to represent the number of times the coin is flipped.",
+    "zh": "我们使用 $n$ 来表示投掷硬币的次数。",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lln_clt.md",
+    "id": "sent-068"
+  },
+  {
+    "en": "Think of $X_1, \\ldots, X_n$ as independent flips of the coin.",
+    "zh": "想象 $X_1, \\ldots, X_n$ 是独立的投掷硬币行为。",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lln_clt.md",
+    "id": "sent-069"
+  },
+  {
+    "en": "The population mean is the mean in an infinite sample, which equals the expectation $\\mathbb E X$.",
+    "zh": "总体均值是在无限样本中的平均值，等于期望 $\\mathbb E X$。",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lln_clt.md",
+    "id": "sent-070"
+  },
+  {
+    "en": "Let $X_1, \\ldots, X_n$ be random variables, all of which have the same distribution.",
+    "zh": "设 $X_1, \\ldots, X_n$ 是随机变量，它们都具有相同的分布。",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lln_clt.md",
+    "id": "sent-071"
+  },
+  {
+    "en": "* assume they are continuous and * let $f$ denote their common density function",
+    "zh": "* 假设它们是连续的，并且 * 让 $f$ 表示它们的共同密度函数",
+    "domain": "probability",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lln_clt.md",
+    "id": "sent-072"
+  },
+  {
+    "en": "This example was created by {cite}`bertsimas_tsitsiklis1997`",
+    "zh": "这个例子由 {cite}`bertsimas_tsitsiklis1997` 创建。",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-073"
+  },
+  {
+    "en": "Suppose that a factory can produce two goods called Product $1$ and Product $2$.",
+    "zh": "假设一个工厂可以生产两种商品，称为产品 $1$ 和产品 $2$。",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-074"
+  },
+  {
+    "en": "Let $x_i$ denote the quantity of Product $i$ that the firm produces and $z$ denote the total revenue.",
+    "zh": "令 $x_i$ 表示公司生产的产品 $i$ 的数量，$z$ 表示总收入。",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-075"
+  },
+  {
+    "en": "Let  $x_1$ be the amount of put in the annuity, $x_2, x_3, x_4$ be  bank deposit balances at the beginning of the three years,  and $x_5$ be the amount invested  in the corporate bond.",
+    "zh": "让 $x_1$ 表示投入年金的金额，$x_2, x_3, x_4$ 表示三年初的银行存款余额，$x_5$ 表示投资于企业债券的金额。",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-076"
+  },
+  {
+    "en": "When $x_2, x_3, x_4$ are negative, it means that  the mutual fund has borrowed from  bank.",
+    "zh": "当 $x_2, x_3, x_4$ 为负时，意味着共同基金从银行借款。",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-077"
+  },
+  {
+    "en": "|                | Year 1 | Year 2 | Year 3 | | :------------: | :----: | :----: | :----: | |    Annuity     | $x_1$  | $x_1$  | $x_1$  | |  Bank account  | $x_2$  | $x_3$  | $x_4$  | | Corporate bond |   0    | $x_5$  |   0    |",
+    "zh": "|                | 第1年 | 第2年 | 第3年 | | :------------: | :----: | :----: | :----: | |    年金       | $x_1$  | $x_1$  | $x_1$  | |  银行账户     | $x_2$  | $x_3$  | $x_4$  | | 企业债券      |   0    | $x_5$  |   0    |",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-078"
+  },
+  {
+    "en": "2. At the beginning of the second year, the mutual fund has a bank balance  of $1.06 x_2$. It must keep $x_1$ in the annuity. It can choose to put $x_5$ into the corporate bond, and put $x_3$ in the bank. These decisions are restricted by",
+    "zh": "2. 在第二年的开始，共同基金的银行余额为 $1.06 x_2$。它必须在年金中保留 $x_1$。它可以选择将 $x_5$ 投入企业债券，并将 $x_3$ 存入银行。这些决策受以下约束：",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-079"
+  },
+  {
+    "en": "1. At the beginning of the first year, the mutual fund should buy $ \\$24,927.755$ of the annuity. Its bank account balance should be $ \\$75,072.245$.",
+    "zh": "1. 在第一年的开始，互助基金应该购买 $ \\$24,927.755$ 的年金。其银行账户余额应为 $ \\$75,072.245$。",
+    "domain": "optimization",
+    "difficulty": "intermediate",
+    "key_terms": [],
+    "source": "lecture-python-intro/lectures/lp_intro.md",
+    "id": "sent-080"
+  }
+]

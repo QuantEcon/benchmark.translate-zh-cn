@@ -43,11 +43,42 @@ qebench export       Export results for the website
 
 Translation pairs at three granularities sourced from QuantEcon lectures:
 
-| Level | Target | Description |
-|---|---|---|
-| Terms | 500+ | Single terms with standard translations |
-| Sentences | 100+ | One-sentence definitions or statements |
-| Paragraphs | 30+ | Multi-sentence explanations (may include math/code) |
+| Level | Target | Current | Description |
+|---|---|---|---|
+| Terms | 500+ | 314 | Single terms with standard translations |
+| Sentences | 100+ | 80 | One-sentence definitions or statements |
+| Paragraphs | 30+ | 17 | Multi-sentence explanations (may include math/code/directives) |
+
+Sentences and paragraphs are seeded from aligned English/Chinese lecture pairs
+using `scripts/seed_from_lectures.py`. See [Seed Script Guide](docs/developer/seeding-from-lectures.md).
+
+## Prompt Templates
+
+Four prompt templates in `prompts/` for LLM benchmarking:
+
+| Template | Description |
+|---|---|
+| `default` | General-purpose translation prompt |
+| `academic` | Formal academic register emphasis |
+| `action-basic` | MyST Markdown-aware rules (directive/math/code preservation) |
+| `action-new` | MyST rules + glossary injection from `action-translation` |
+
+Use `action-basic` and `action-new` to benchmark prompts that mirror
+[action-translation](https://github.com/QuantEcon/action-translation)'s
+production translation rules. See [Glossary & Prompt Templates Tutorial](docs/user/tutorials/glossary-and-prompts.md).
+
+## Automated Formatting Checks
+
+`qebench judge` includes automated MyST formatting fidelity scoring. These
+checks run on each translation pair and are displayed in the reveal panel:
+
+- **Directive balance** — open/close pairs match between source and translation
+- **Fence consistency** — no mixed `$$` / `` ```{math} `` markers
+- **Code block preservation** — code blocks unchanged
+- **Full-width punctuation** — zh-cn uses `，。！？` not `,.!?`
+- **Directive spacing** — space between CJK characters and MyST directives
+
+See [Architecture: Scoring Module](docs/developer/architecture.md#scoring-module) for implementation details.
 
 ## Development
 
@@ -66,6 +97,7 @@ uv run ruff check src/ tests/
 
 - [action-translation](https://github.com/QuantEcon/action-translation) — the GitHub Action this benchmark evaluates
 - [QuantEcon lectures](https://quantecon.org/) — source material for the dataset
+- [REVIEW.md](REVIEW.md) — design review and gap analysis of both projects
 
 ## License
 

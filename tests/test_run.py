@@ -72,13 +72,23 @@ class TestSaveResults:
                 latency_ms=180.0,
             ),
         ]
-        path = _save_results(results, "test-run-123", prompt_name="default")
+        entry_meta = {
+            "term-001": {"domain": "economics", "difficulty": "intermediate"},
+            "term-002": {"domain": "economics", "difficulty": "beginner"},
+        }
+        path = _save_results(
+            results, "test-run-123", prompt_name="default",
+            entry_type="terms", entry_meta=entry_meta,
+        )
         assert path.exists()
         lines = [json.loads(ln) for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
         assert len(lines) == 2
         assert lines[0]["entry_id"] == "term-001"
         assert lines[0]["translated_text"] == "通货膨胀"
         assert lines[0]["prompt_template"] == "default"
+        assert lines[0]["entry_type"] == "terms"
+        assert lines[0]["domain"] == "economics"
+        assert lines[0]["difficulty"] == "intermediate"
         assert lines[1]["entry_id"] == "term-002"
 
     def test_appends_to_existing(self, tmp_path, monkeypatch) -> None:
@@ -91,8 +101,9 @@ class TestSaveResults:
             provider="p",
             prompt_template="t",
         )
-        _save_results([result], "run-1", prompt_name="t")
-        _save_results([result], "run-1", prompt_name="t")
+        meta = {"term-001": {"domain": "d", "difficulty": "beginner"}}
+        _save_results([result], "run-1", prompt_name="t", entry_type="terms", entry_meta=meta)
+        _save_results([result], "run-1", prompt_name="t", entry_type="terms", entry_meta=meta)
         path = tmp_path / "run-1.jsonl"
         lines = [ln for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
         assert len(lines) == 2
@@ -108,5 +119,6 @@ class TestSaveResults:
             provider="p",
             prompt_template="t",
         )
-        path = _save_results([result], "run-1", prompt_name="t")
+        meta = {"term-001": {"domain": "d", "difficulty": "beginner"}}
+        path = _save_results([result], "run-1", prompt_name="t", entry_type="terms", entry_meta=meta)
         assert path.exists()

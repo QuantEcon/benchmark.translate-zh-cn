@@ -20,6 +20,7 @@ from rich.table import Table
 
 from qebench import __version__
 from qebench.models import Paragraph, Sentence, Term
+from qebench.scoring.formatting import formatting_score
 from qebench.scoring.glossary import glossary_compliance, reference_overlap
 from qebench.scoring.judgments import record_consensus, record_judgment, update_model_elos
 from qebench.scoring.xp import award_xp, load_xp
@@ -223,6 +224,23 @@ def _render_result(
     if term_translations:
         table.add_row("Glossary", f"{glossary_a:.0%}", f"{glossary_b:.0%}")
 
+    # Formatting fidelity scores (if entry has source text)
+    source_text = getattr(entry, "en", "")
+    if source_text:
+        fmt_a = formatting_score(source_text, text_a)
+        fmt_b = formatting_score(source_text, text_b)
+        table.add_row(
+            "Fullwidth punct.",
+            f"{fmt_a['fullwidth_punctuation']:.0%}",
+            f"{fmt_b['fullwidth_punctuation']:.0%}",
+        )
+        if not fmt_a["directive_balance"] or not fmt_b["directive_balance"]:
+            table.add_row(
+                "Directive balance",
+                "[green]✓[/green]" if fmt_a["directive_balance"] else "[red]✗[/red]",
+                "[green]✓[/green]" if fmt_b["directive_balance"] else "[red]✗[/red]",
+            )
+
     return Panel(table, title="[bold]Result[/bold]", border_style="green")
 
 
@@ -347,6 +365,9 @@ def judge(
                 translation=consensus_text,
                 accuracy=c_acc,
                 fluency=c_flu,
+                reference=entry.zh,
+                domain=entry.domain,
+                difficulty=entry.difficulty.value,
                 suggestion=suggestion,
                 timestamp=datetime.now(UTC).isoformat(),
                 cli_version=__version__,
@@ -368,14 +389,13 @@ def judge(
             console.print("[yellow]Session ended early.[/yellow]")
             break
 
-        # For ties and neither, skip detailed scoring (#9)
+        # For "neither", skip detailed scoring; ties still collect ratings
         suggestion = ""
-        if winner_answer in ("tie", "neither"):
+        if winner_answer == "neither":
             acc_a = acc_b = flu_a = flu_b = None
-            if winner_answer == "neither":
-                suggestion = questionary.text(
-                    "Suggest a better translation (optional):",
-                ).ask() or ""
+            suggestion = questionary.text(
+                "Suggest a better translation (optional):",
+            ).ask() or ""
         else:
             # Collect scores for A
             console.print("\n[bold yellow]Rate Translation A:[/bold yellow]")
@@ -417,6 +437,11 @@ def judge(
             score_a_fluency=flu_a,
             score_b_accuracy=acc_b,
             score_b_fluency=flu_b,
+            translation_a=text_a,
+            translation_b=text_b,
+            reference=entry.zh,
+            domain=entry.domain,
+            difficulty=entry.difficulty.value,
             suggestion=suggestion,
             timestamp=datetime.now(UTC).isoformat(),
             cli_version=__version__,

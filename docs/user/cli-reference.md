@@ -73,6 +73,13 @@ uv run qebench translate [OPTIONS]
 
 Your GitHub username is detected automatically via `gh auth`.
 
+:::{note}
+The translate command works with **terms** and **sentences** only. Paragraphs
+are excluded because the CLI uses single-line text input, which is impractical
+for multi-line content. To evaluate paragraph translations, use `qebench judge`
+(which shows them read-only) or `qebench run` (which sends them to LLMs).
+:::
+
 **Examples:**
 
 ```bash
@@ -151,9 +158,12 @@ Model outputs must exist in `results/model-outputs/`. Generate them with `qebenc
 
 1. Entries are paired with model translations from `results/model-outputs/`
 2. Two translations are shown anonymously as **A** and **B**
-3. You rate each on accuracy (1–10) and fluency (1–10)
+3. You rate each on accuracy (0–5) and fluency (0–5)
 4. You pick a winner (A, B, tie, or neither)
 5. Elo ratings are updated; results saved to `results/judgments/`
+6. The reveal panel shows model labels, Elo ratings, reference overlap,
+   glossary compliance, and **formatting scores** (fullwidth punctuation %,
+   directive balance)
 
 Pick **Tie** if both translations are equally good. Pick **Neither** if both
 translations are poor and neither is acceptable.
@@ -234,6 +244,7 @@ uv run qebench run                             # Default: claude, all terms
 uv run qebench run --provider openai            # Use OpenAI
 uv run qebench run --model gpt-5.4-mini         # Override model
 uv run qebench run --prompt academic            # Use academic prompt template
+uv run qebench run --prompt action-new          # MyST-aware prompt with glossary
 uv run qebench run --type sentences --domain economics  # Filter entries
 uv run qebench run --count 10 --dry-run         # Preview without API calls
 ```
@@ -249,6 +260,22 @@ uv run qebench run --count 10 --dry-run         # Preview without API calls
 | `--domain`, `-d` | *(all)* | Filter entries by domain |
 | `--type`, `-t` | `terms` | Entry type: `terms`, `sentences`, `paragraphs` |
 | `--dry-run` | `false` | Preview entries without calling the API |
+
+### Prompt Templates
+
+Four prompt templates are available:
+
+| Template | Description |
+|---|---|
+| `default` | General-purpose translation prompt |
+| `academic` | Formal academic register emphasis |
+| `action-basic` | MyST Markdown-aware rules (preserves directives, code, math fencing) |
+| `action-new` | MyST rules + glossary injection from `action-translation` |
+
+The `action-new` template uses the `{glossary}` placeholder, which is
+automatically populated from `action-translation`'s glossary (fetched from
+GitHub and cached locally in `.cache/glossary.json`). See
+[Glossary & Prompt Templates Tutorial](tutorials/glossary-and-prompts.md).
 
 ### Prerequisites
 
