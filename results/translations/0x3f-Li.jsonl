@@ -14,3 +14,8 @@
 {"entry_id": "term-177", "attempt": "权威中心性", "reference": "权威中心性", "confidence": 4, "similarity": 1.0, "timestamp": "2026-04-29T13:40:55.715384+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-139", "attempt": "佩伦-弗罗贝尼乌斯定理", "reference": "佩龙-弗罗贝尼乌斯定理", "confidence": 4, "similarity": 0.8333, "timestamp": "2026-04-29T13:43:08.937523+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
 {"entry_id": "term-124", "attempt": "无名氏定理", "reference": "无名氏定理", "confidence": 4, "similarity": 1.0, "timestamp": "2026-04-29T13:43:49.472262+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-273", "attempt": "自回归模型", "reference": "自回归模型", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:45:07.057528+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-107", "attempt": "公开市场操作", "reference": "公开市场操作", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:46:01.619132+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-208", "attempt": "强连通", "reference": "强连通的", "confidence": 5, "similarity": 0.75, "timestamp": "2026-04-29T13:47:29.444441+00:00", "cli_version": "0.5.0", "diff_reason": "informal-register"}
+{"entry_id": "term-241", "attempt": "世界银行", "reference": "世界银行", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:47:38.373154+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-233", "attempt": "美联储经济数据", "reference": "美联储经济数据", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:47:58.368947+00:00", "cli_version": "0.5.0"}
