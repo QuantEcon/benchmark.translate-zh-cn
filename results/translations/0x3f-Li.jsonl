@@ -4,3 +4,8 @@
 {"entry_id": "term-140", "attempt": "本原矩阵", "reference": "原始矩阵", "confidence": 5, "similarity": 0.6, "timestamp": "2026-04-29T12:55:58.945134+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
 {"entry_id": "term-031", "attempt": "折现因子", "reference": "贴现因子", "confidence": 5, "similarity": 0.6, "timestamp": "2026-04-29T12:59:21.535138+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
 {"entry_id": "sent-010", "attempt": "Kullback and Leibler {cite}`kullback1951information` 将从 $f$ 与 $g$ 中区分出来的一次单次抽取$x$ 所提供的信息量，定义为对数似然比。", "reference": "Kullback 和 Leibler {cite}`kullback1951information` 将单次抽样 $x$ 用于区分 $f$ 和 $g$ 所提供的信息量定义为对数似然比", "confidence": 3, "similarity": 0.7931, "timestamp": "2026-04-29T13:17:46.518893+00:00", "cli_version": "0.5.0", "diff_reason": "other", "notes": "语序不同"}
+{"entry_id": "term-233", "attempt": "美联储经济数据", "reference": "美联储经济数据", "confidence": 4, "similarity": 1.0, "timestamp": "2026-04-29T13:30:40.134513+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-140", "attempt": "本原矩阵", "reference": "原始矩阵", "confidence": 5, "similarity": 0.6, "timestamp": "2026-04-29T13:32:03.985721+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-298", "attempt": "统计平稳性", "reference": "统计平稳性", "confidence": 4, "similarity": 1.0, "timestamp": "2026-04-29T13:32:57.132209+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-297", "attempt": "平稳性", "reference": "平稳性", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:36:07.415464+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-245", "attempt": "中心极限定理", "reference": "中心极限定理", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:36:21.165993+00:00", "cli_version": "0.5.0"}
