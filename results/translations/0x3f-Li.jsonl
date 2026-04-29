@@ -9,3 +9,8 @@
 {"entry_id": "term-298", "attempt": "统计平稳性", "reference": "统计平稳性", "confidence": 4, "similarity": 1.0, "timestamp": "2026-04-29T13:32:57.132209+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-297", "attempt": "平稳性", "reference": "平稳性", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:36:07.415464+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-245", "attempt": "中心极限定理", "reference": "中心极限定理", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:36:21.165993+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-255", "attempt": "大数定律", "reference": "大数定律", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:38:24.524905+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-242", "attempt": "Beta分布", "reference": "贝塔分布", "confidence": 5, "similarity": 0.25, "timestamp": "2026-04-29T13:38:57.256507+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-177", "attempt": "权威中心性", "reference": "权威中心性", "confidence": 4, "similarity": 1.0, "timestamp": "2026-04-29T13:40:55.715384+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-139", "attempt": "佩伦-弗罗贝尼乌斯定理", "reference": "佩龙-弗罗贝尼乌斯定理", "confidence": 4, "similarity": 0.8333, "timestamp": "2026-04-29T13:43:08.937523+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-124", "attempt": "无名氏定理", "reference": "无名氏定理", "confidence": 4, "similarity": 1.0, "timestamp": "2026-04-29T13:43:49.472262+00:00", "cli_version": "0.5.0"}
