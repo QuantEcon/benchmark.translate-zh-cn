@@ -19,3 +19,9 @@
 {"entry_id": "term-208", "attempt": "强连通", "reference": "强连通的", "confidence": 5, "similarity": 0.75, "timestamp": "2026-04-29T13:47:29.444441+00:00", "cli_version": "0.5.0", "diff_reason": "informal-register"}
 {"entry_id": "term-241", "attempt": "世界银行", "reference": "世界银行", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:47:38.373154+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-233", "attempt": "美联储经济数据", "reference": "美联储经济数据", "confidence": 5, "similarity": 1.0, "timestamp": "2026-04-29T13:47:58.368947+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-287", "attempt": "移动平均表示", "reference": "移动平均表示", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-06T07:44:16.612161+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-306", "attempt": "跳跃链算法", "reference": "跳跃链算法", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-06T07:45:36.248395+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-198", "attempt": "核", "reference": "核", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-06T07:46:45.555056+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-213", "attempt": "加权有向图", "reference": "加权有向图", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-06T07:47:40.813878+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-066", "attempt": "朴素预期", "reference": "简单预期", "confidence": 4, "similarity": 0.3333, "timestamp": "2026-05-06T07:50:12.678840+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "sent-038", "attempt": "将 $y_t$ 的 {ref}`*稳态*<scalar-dynam:steady-state>` 值 $y^*$ 通过在 {eq}`tswm_1` 中令 $y_t = y_{t-1} = y_{t-2} = y^*$ 得到，由此可得", "reference": "通过在{eq}`tswm_1`中设 $y_t = y_{t-1} = y_{t-2} = y^*$，可以得到 $y_t$ 的 {ref}`*稳态*<scalar-dynam:steady-state>` 值 $y^*$。", "confidence": 4, "similarity": 0.8667, "timestamp": "2026-05-06T07:58:01.096404+00:00", "cli_version": "0.5.0"}
