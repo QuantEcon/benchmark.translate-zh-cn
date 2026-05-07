@@ -29,3 +29,13 @@
 {"entry_id": "term-291", "attempt": "残差", "reference": "残差", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-06T08:11:34.544460+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-092", "attempt": "到期日", "reference": "到期日", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-06T08:11:51.301368+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-134", "attempt": "不变子空间", "reference": "不变子空间", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-06T08:12:36.257717+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-130", "attempt": "主特征值", "reference": "主特征值", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-07T12:38:05.984857+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-153", "attempt": "黄金律水平下的储蓄率", "reference": "黄金法则储蓄率", "confidence": 3, "similarity": 0.4167, "timestamp": "2026-05-07T12:39:50.922170+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-051", "attempt": "希腊债务危机", "reference": "希腊债务危机", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-07T12:41:45.680493+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-050", "attempt": "事实上，根据我们之前的讨论 {ref}earlier discussion <la_unique_reps>，如果 $\\{a_1, \\ldots, a_k\\}$ 线性无关，且 $y = Ax = x_1 a_1 + \\cdots + x_k a_k$，则不存在 $z \\not= x$ 满足 $y = Az$。", "reference": "确实，根据我们{ref}`之前的讨论 <la_unique_reps>`，如果$\\{a_1, \\ldots, a_k\\}$是线性无关的，且$y = Ax = x_1 a_1 + \\cdots + x_k a_k$，那么不存在$z \\not= x$满足$y = Az$。", "confidence": 4, "similarity": 0.8689, "timestamp": "2026-05-07T12:46:21.379589+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-063", "attempt": "一个复数有一个实部 $x$ 和一个虚部 $y$。", "reference": "复数有一个**实部**$x$和一个纯**虚部**$y$。", "confidence": 5, "similarity": 0.8571, "timestamp": "2026-05-07T12:51:11.195434+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-163", "attempt": "边际消费倾向", "reference": "边际消费倾向", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-07T12:51:55.795624+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-260", "attempt": "矩母函数", "reference": "矩生成函数", "confidence": 5, "similarity": 0.5, "timestamp": "2026-05-07T12:52:16.966142+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-243", "attempt": "二元均匀分布", "reference": "二元均匀分布", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-07T12:53:49.504554+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-255", "attempt": "大数定律", "reference": "大数定律", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-07T12:53:56.435789+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-076", "attempt": "福利经济学第二基本定理", "reference": "福利经济学第二定理", "confidence": 4, "similarity": 0.8182, "timestamp": "2026-05-07T12:55:31.467135+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
