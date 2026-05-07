@@ -39,3 +39,8 @@
 {"entry_id": "term-243", "attempt": "二元均匀分布", "reference": "二元均匀分布", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-07T12:53:49.504554+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-255", "attempt": "大数定律", "reference": "大数定律", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-07T12:53:56.435789+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-076", "attempt": "福利经济学第二基本定理", "reference": "福利经济学第二定理", "confidence": 4, "similarity": 0.8182, "timestamp": "2026-05-07T12:55:31.467135+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-117", "attempt": "或有索取权", "reference": "或有债权", "confidence": 4, "similarity": 0.5, "timestamp": "2026-05-07T13:05:32.830976+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "sent-011", "attempt": "在我们的数值例子中，我们像Harrison and Kreps {cite}`HarrKreps1978`所做的那样，设定 $\\beta = .75$。", "reference": "在我们的数值示例中，我们将设定 $\\beta = .75$，这与 Harrison 和 Kreps {cite}`HarrKreps1978` 的设定相同。", "confidence": 4, "similarity": 0.7143, "timestamp": "2026-05-07T13:07:53.842255+00:00", "cli_version": "0.5.0", "diff_reason": "other", "notes": "语序不同"}
+{"entry_id": "term-287", "attempt": "移动平均表示", "reference": "移动平均表示", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-07T13:08:36.376783+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-111", "attempt": "货币数量论", "reference": "货币数量论", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-07T13:09:56.863666+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-014", "attempt": "横截条件", "reference": "终端条件", "confidence": 4, "similarity": 0.3333, "timestamp": "2026-05-07T13:10:43.265845+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
