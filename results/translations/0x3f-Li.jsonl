@@ -44,3 +44,10 @@
 {"entry_id": "term-287", "attempt": "移动平均表示", "reference": "移动平均表示", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-07T13:08:36.376783+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-111", "attempt": "货币数量论", "reference": "货币数量论", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-07T13:09:56.863666+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-014", "attempt": "横截条件", "reference": "终端条件", "confidence": 4, "similarity": 0.3333, "timestamp": "2026-05-07T13:10:43.265845+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-133", "attempt": "盖尔圆盘定理", "reference": "格什戈林圆盘定理", "confidence": 4, "similarity": 0.4, "timestamp": "2026-05-11T02:19:38.495049+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-084", "attempt": "福利最大化问题", "reference": "福利最大化问题", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-11T02:19:57.846716+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-007", "attempt": "延续价值", "reference": "延续值", "confidence": 3, "similarity": 0.75, "timestamp": "2026-05-11T02:26:14.011410+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "sent-010", "attempt": "Kullback和Leibler {cite}`kullback1951information`将单次抽样 $x$ 用于区分 $f$ 和 $g$ 所提供的信息定义为对数似然比", "reference": "Kullback 和 Leibler {cite}`kullback1951information` 将单次抽样 $x$ 用于区分 $f$ 和 $g$ 所提供的信息量定义为对数似然比", "confidence": 4, "similarity": 0.98, "timestamp": "2026-05-11T02:35:49.641871+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-313", "attempt": "随机矩阵", "reference": "随机矩阵", "confidence": 1, "similarity": 1.0, "timestamp": "2026-05-11T02:36:46.291465+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-217", "attempt": "马歇尔需求曲线", "reference": "马歇尔需求曲线", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-11T02:37:14.224144+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-140", "attempt": "本原矩阵", "reference": "原始矩阵", "confidence": 4, "similarity": 0.6, "timestamp": "2026-05-11T02:37:28.379249+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
