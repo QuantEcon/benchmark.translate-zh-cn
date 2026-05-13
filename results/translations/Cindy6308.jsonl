@@ -19,3 +19,8 @@
 >>>>>>> Stashed changes
 {"entry_id": "term-002", "attempt": "偏导数", "reference": "偏导数", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-13T15:22:36.752735+00:00", "cli_version": "0.5.0"}
 {"entry_id": "sent-035", "attempt": "因此，对{eq}`fin_mc_fr`进行迭代，表达式$\\psi_{t+m} = \\psi_t P^m$同样成立——其中$P^m$是$P$的$m$次幂。", "reference": "因此，迭代 {eq}`fin_mc_fr`，表达式 $\\psi_{t+m} = \\psi_t P^m$ 也是有效的——这里 $P^m$ 是 $P$ 的第 $m$ 次幂。", "confidence": 4, "similarity": 0.6875, "timestamp": "2026-05-13T15:31:31.311833+00:00", "cli_version": "0.5.0", "diff_reason": "contextual", "notes": "意思相同，中文表达细节不同。"}
+{"entry_id": "term-229", "attempt": "最优路径", "reference": "最优路径", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-13T16:22:58.638639+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-054", "attempt": "因此，综上所述，方程组 {eq}`eq:Xfour1a`和{eq}`eq:Xfour1b`以以下方式描述了$X$的四个基本子空间：", "reference": "方程 {eq}`eq:Xfour1b` 表明：", "confidence": 3, "similarity": 0.375, "timestamp": "2026-05-13T16:27:00.131506+00:00", "cli_version": "0.5.0", "diff_reason": "other", "notes": "机器翻译不完整。"}
+{"entry_id": "term-036", "attempt": "替代弹性", "reference": "替代弹性", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-13T16:28:19.542548+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-015", "attempt": "适应性预期", "reference": "适应性预期", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-13T16:28:59.791346+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-178", "attempt": "计算法", "reference": "微积分", "confidence": 3, "similarity": 0.0, "timestamp": "2026-05-13T16:30:29.940908+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical", "notes": "Calculus有多个释义。"}
