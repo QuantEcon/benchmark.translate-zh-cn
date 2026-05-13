@@ -1,6 +1,19 @@
+<<<<<<< Updated upstream
 {"entry_id": "term-209", "attempt": "三角形式", "reference": "三角形式", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-11T15:20:35.972521+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-208", "attempt": "强连通的", "reference": "强连通的", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-11T15:27:57.926783+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-230", "attempt": "最优策略", "reference": "最优策略", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-11T15:29:01.113719+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-280", "attempt": "高斯核", "reference": "高斯核", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-11T15:32:47.489393+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-031", "attempt": "贴现因子", "reference": "贴现因子", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-11T15:35:03.702795+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-050", "attempt": "政府预算约束", "reference": "政府预算约束", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-11T15:35:44.045894+00:00", "cli_version": "0.5.0"}
+=======
+{"entry_id": "term-079", "attempt": "随机生产率", "reference": "随机生产率", "confidence": 3, "similarity": 1.0, "timestamp": "2026-05-08T15:09:05.840031+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-295", "attempt": "西尔弗曼法则", "reference": "西尔弗曼法则", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-08T15:26:12.938352+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-099", "attempt": "通货膨胀指数化债券", "reference": "通胀指数化债券", "confidence": 4, "similarity": 0.7778, "timestamp": "2026-05-08T15:35:55.850858+00:00", "cli_version": "0.5.0", "diff_reason": "abbreviation", "notes": "The reference is the abbreviation of my translation."}
+{"entry_id": "term-165", "attempt": "乘数-加速数模型", "reference": "乘数-加速数模型", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-08T15:39:36.015391+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-076", "attempt": "设$x_1$为投入年金的金额，$x_2, x_3, x_4$分别为三年年初银行存款余额，$x_5$为投资于公司债券的金额。", "reference": "让 $x_1$ 表示投入年金的金额，$x_2, x_3, x_4$ 表示三年初的银行存款余额，$x_5$ 表示投资于企业债券的金额。", "confidence": 4, "similarity": 0.7027, "timestamp": "2026-05-08T15:49:29.594294+00:00", "cli_version": "0.5.0", "diff_reason": "other", "notes": "The meaning is the same, but the words used in the sentence are slightly different."}
+{"entry_id": "term-285", "attempt": "对数似然函数", "reference": "对数似然函数", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-13T12:17:54.256818+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-032", "attempt": "折现收益", "reference": "贴现收益", "confidence": 4, "similarity": 0.6, "timestamp": "2026-05-13T12:22:22.321891+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical", "notes": "\"折现\"、\"贴现\"的说法在中文中都有。"}
+{"entry_id": "term-074", "attempt": "购买力平价", "reference": "购买力平价", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-13T12:23:19.657251+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-066", "attempt": "朴素预期", "reference": "简单预期", "confidence": 3, "similarity": 0.3333, "timestamp": "2026-05-13T12:26:09.221563+00:00", "cli_version": "0.5.0", "diff_reason": "contextual", "notes": "naive的释义在不同情境下会发生变化。"}
+{"entry_id": "term-263", "attempt": "正态分布", "reference": "正态分布", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-13T12:26:34.516845+00:00", "cli_version": "0.5.0"}
+>>>>>>> Stashed changes

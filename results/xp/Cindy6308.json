@@ -1,6 +1,12 @@
 {
+<<<<<<< Updated upstream
   "total": 60,
   "actions": {
     "translate": 60
+=======
+  "total": 100,
+  "actions": {
+    "translate": 100
+>>>>>>> Stashed changes
   }
 }
