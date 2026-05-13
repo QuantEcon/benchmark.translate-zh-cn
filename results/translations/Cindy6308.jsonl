@@ -17,3 +17,5 @@
 {"entry_id": "term-066", "attempt": "朴素预期", "reference": "简单预期", "confidence": 3, "similarity": 0.3333, "timestamp": "2026-05-13T12:26:09.221563+00:00", "cli_version": "0.5.0", "diff_reason": "contextual", "notes": "naive的释义在不同情境下会发生变化。"}
 {"entry_id": "term-263", "attempt": "正态分布", "reference": "正态分布", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-13T12:26:34.516845+00:00", "cli_version": "0.5.0"}
 >>>>>>> Stashed changes
+{"entry_id": "term-002", "attempt": "偏导数", "reference": "偏导数", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-13T15:22:36.752735+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-035", "attempt": "因此，对{eq}`fin_mc_fr`进行迭代，表达式$\\psi_{t+m} = \\psi_t P^m$同样成立——其中$P^m$是$P$的$m$次幂。", "reference": "因此，迭代 {eq}`fin_mc_fr`，表达式 $\\psi_{t+m} = \\psi_t P^m$ 也是有效的——这里 $P^m$ 是 $P$ 的第 $m$ 次幂。", "confidence": 4, "similarity": 0.6875, "timestamp": "2026-05-13T15:31:31.311833+00:00", "cli_version": "0.5.0", "diff_reason": "contextual", "notes": "意思相同，中文表达细节不同。"}
