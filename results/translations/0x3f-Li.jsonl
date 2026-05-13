@@ -51,3 +51,4 @@
 {"entry_id": "term-313", "attempt": "随机矩阵", "reference": "随机矩阵", "confidence": 1, "similarity": 1.0, "timestamp": "2026-05-11T02:36:46.291465+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-217", "attempt": "马歇尔需求曲线", "reference": "马歇尔需求曲线", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-11T02:37:14.224144+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-140", "attempt": "本原矩阵", "reference": "原始矩阵", "confidence": 4, "similarity": 0.6, "timestamp": "2026-05-11T02:37:28.379249+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "sent-060", "attempt": "为了简化，假设无风险利率为零，因此购买 $I_t$ 单位的预期利润为", "reference": "为了简化问题，风险自由利率取为零，因此购买 $I_t$ 单位的预期利润为", "confidence": 4, "similarity": 0.7419, "timestamp": "2026-05-13T14:02:02.754865+00:00", "cli_version": "0.5.0", "diff_reason": "other", "notes": "reference中的“风险自由利率”不正确"}
