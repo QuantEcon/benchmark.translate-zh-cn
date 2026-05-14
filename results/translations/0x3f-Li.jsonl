@@ -1,0 +1,1 @@
+{"entry_id": "sent-031", "attempt": "其中 $A$ 是完全平等的 45 度线与洛伦兹曲线之间的面积，而 $B$ 是洛伦兹曲线下方的面积——见图 {numref}lorenz_gini2.", "reference": "其中 $A$ 是45度的完美平等线与洛伦兹曲线之间的区域的面积，$B$ 是洛伦兹曲线以下的区域的面积 —— 参见 {numref}`lorenz_gini2`。", "confidence": 4, "similarity": 0.7885, "timestamp": "2026-05-14T03:15:04.594465+00:00", "cli_version": "0.5.0", "diff_reason": "formal-register"}
