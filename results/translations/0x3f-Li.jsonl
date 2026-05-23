@@ -57,3 +57,8 @@
 {"entry_id": "term-220", "attempt": "逐步逼近法", "reference": "连续近似法", "confidence": 4, "similarity": 0.25, "timestamp": "2026-05-23T06:34:52.681819+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical", "notes": "该术语没有统一的翻译方法"}
 {"entry_id": "term-207", "attempt": "二阶线性差分方程", "reference": "二阶线性差分方程", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-23T06:35:27.702161+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-114", "attempt": "存款准备金率", "reference": "准备金存款比率", "confidence": 4, "similarity": 0.8571, "timestamp": "2026-05-23T06:37:14.906964+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-260", "attempt": "矩母函数", "reference": "矩生成函数", "confidence": 4, "similarity": 0.5, "timestamp": "2026-05-23T06:43:13.910708+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-055", "attempt": "投入产出模型", "reference": "投入产出模型", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-23T06:43:27.049661+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-308", "attempt": "状态空间", "reference": "状态空间", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-23T06:43:37.513887+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-065", "attempt": "多消费者经济体", "reference": "多消费者经济", "confidence": 4, "similarity": 0.8571, "timestamp": "2026-05-23T06:44:54.969766+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-069", "attempt": "石油危机", "reference": "石油危机", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-23T06:46:05.157249+00:00", "cli_version": "0.5.0"}
