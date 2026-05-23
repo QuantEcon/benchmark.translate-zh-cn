@@ -52,3 +52,8 @@
 {"entry_id": "term-217", "attempt": "马歇尔需求曲线", "reference": "马歇尔需求曲线", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-11T02:37:14.224144+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-140", "attempt": "本原矩阵", "reference": "原始矩阵", "confidence": 4, "similarity": 0.6, "timestamp": "2026-05-11T02:37:28.379249+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
 {"entry_id": "sent-060", "attempt": "为了简化，假设无风险利率为零，因此购买 $I_t$ 单位的预期利润为", "reference": "为了简化问题，风险自由利率取为零，因此购买 $I_t$ 单位的预期利润为", "confidence": 4, "similarity": 0.7419, "timestamp": "2026-05-13T14:02:02.754865+00:00", "cli_version": "0.5.0", "diff_reason": "other", "notes": "reference中的“风险自由利率”不正确"}
+{"entry_id": "term-206", "attempt": "递归表达式", "reference": "递归表达式", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-23T06:27:59.812105+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-144", "attempt": "总消费", "reference": "总消费", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-23T06:29:13.901402+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-220", "attempt": "逐步逼近法", "reference": "连续近似法", "confidence": 4, "similarity": 0.25, "timestamp": "2026-05-23T06:34:52.681819+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical", "notes": "该术语没有统一的翻译方法"}
+{"entry_id": "term-207", "attempt": "二阶线性差分方程", "reference": "二阶线性差分方程", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-23T06:35:27.702161+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-114", "attempt": "存款准备金率", "reference": "准备金存款比率", "confidence": 4, "similarity": 0.8571, "timestamp": "2026-05-23T06:37:14.906964+00:00", "cli_version": "0.5.0"}
