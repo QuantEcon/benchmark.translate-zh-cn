@@ -60,6 +60,9 @@ def _xp_leaderboard() -> list[dict]:
             except json.JSONDecodeError as e:
                 console.print(f"[yellow]warning:[/] skipping malformed XP file {path.name}: {e}")
                 continue
+        if not isinstance(data, dict):
+            console.print(f"[yellow]warning:[/] skipping XP file {path.name}: expected a JSON object")
+            continue
         leaderboard.append({
             "username": username,
             "total_xp": data.get("total", 0),
@@ -88,6 +91,11 @@ def _activity_feed() -> list[dict]:
                 except json.JSONDecodeError as e:
                     console.print(
                         f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
+                    )
+                    continue
+                if not isinstance(record, dict):
+                    console.print(
+                        f"[yellow]warning:[/] skipping line {lineno} in {path.name}: expected a JSON object"
                     )
                     continue
                 record["username"] = username
