@@ -55,7 +55,11 @@ def _xp_leaderboard() -> list[dict]:
     for path in sorted(xp_dir.glob("*.json")):
         username = path.stem
         with open(path, encoding="utf-8") as f:
-            data = json.load(f)
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError as e:
+                console.print(f"[yellow]warning:[/] skipping malformed XP file {path.name}: {e}")
+                continue
         leaderboard.append({
             "username": username,
             "total_xp": data.get("total", 0),
@@ -75,11 +79,17 @@ def _activity_feed() -> list[dict]:
     for path in translations_dir.glob("*.jsonl"):
         username = path.stem
         with open(path, encoding="utf-8") as f:
-            for line in f:
+            for lineno, line in enumerate(f, 1):
                 line = line.strip()
                 if not line:
                     continue
-                record = json.loads(line)
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError as e:
+                    console.print(
+                        f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
+                    )
+                    continue
                 record["username"] = username
                 entries.append(record)
 
