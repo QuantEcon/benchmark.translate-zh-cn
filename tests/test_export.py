@@ -105,6 +105,27 @@ class TestXpLeaderboard:
         assert result[0]["total_xp"] == 120
         assert result[1]["username"] == "alice"
 
+    def test_skips_malformed_file(self, tmp_path: Path) -> None:
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "good.json").write_text(json.dumps({"total": 30, "actions": {}}))
+        (xp_dir / "broken.json").write_text("<<<<<<< Updated upstream")
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert len(result) == 1
+        assert result[0]["username"] == "good"
+
+    def test_skips_non_object_file(self, tmp_path: Path) -> None:
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "good.json").write_text(json.dumps({"total": 30, "actions": {}}))
+        # Valid JSON, but a list rather than an object — must not crash on data.get(...)
+        (xp_dir / "list.json").write_text(json.dumps([1, 2, 3]))
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert len(result) == 1
+        assert result[0]["username"] == "good"
+
 
 class TestActivityFeed:
     def test_empty_no_dir(self, tmp_path: Path) -> None:
@@ -138,6 +159,40 @@ class TestActivityFeed:
         with patch("qebench.commands.export._REPO_ROOT", tmp_path):
             result = _activity_feed()
         assert len(result) == 50
+
+    def test_skips_malformed_line(self, tmp_path: Path) -> None:
+        tr_dir = tmp_path / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        # A merge-conflict marker between two otherwise valid records (the
+        # exact failure mode that broke CI in #28).
+        lines = [
+            json.dumps({"timestamp": "2025-01-01T10:00:00", "score": 0.8}),
+            "<<<<<<< Updated upstream",
+            json.dumps({"timestamp": "2025-01-01T10:05:00", "score": 0.6}),
+        ]
+        (tr_dir / "alice.jsonl").write_text("\n".join(lines) + "\n")
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _activity_feed()
+        assert len(result) == 2
+        assert {r["timestamp"] for r in result} == {
+            "2025-01-01T10:00:00",
+            "2025-01-01T10:05:00",
+        }
+
+    def test_skips_non_object_line(self, tmp_path: Path) -> None:
+        tr_dir = tmp_path / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        # Valid JSON, but not an object — record["username"] = ... would raise.
+        lines = [
+            json.dumps({"timestamp": "2025-01-01T10:00:00", "score": 0.8}),
+            json.dumps([1, 2, 3]),
+            json.dumps("just a string"),
+        ]
+        (tr_dir / "alice.jsonl").write_text("\n".join(lines) + "\n")
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _activity_feed()
+        assert len(result) == 1
+        assert result[0]["timestamp"] == "2025-01-01T10:00:00"
 
 
 class TestTermSamples:
@@ -208,3 +263,26 @@ class TestExportIntegration:
         assert "paragraphs" in coverage
         assert coverage["terms"]["current"] == 2  # From sample_terms fixture
         assert "total" in coverage
+
+    def test_succeeds_with_malformed_results(self, tmp_path: Path, sample_terms_file: Path) -> None:
+        # A corrupt community submission (conflict marker + non-object line) must
+        # not crash the whole export — the regression behind #28.
+        repo_root = tmp_path / "repo"
+        tr_dir = repo_root / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        (tr_dir / "alice.jsonl").write_text(
+            json.dumps({"timestamp": "2025-01-01T10:00:00", "score": 0.8}) + "\n"
+            "<<<<<<< Updated upstream\n"
+            + json.dumps([1, 2, 3]) + "\n"
+        )
+        export_dir = tmp_path / "export"
+        with (
+            patch("qebench.commands.export.EXPORT_DIR", export_dir),
+            patch("qebench.commands.export._REPO_ROOT", repo_root),
+            patch("qebench.utils.dataset.DATA_DIR", sample_terms_file),
+        ):
+            export()  # must not raise
+
+        activity = json.loads((export_dir / "activity.json").read_text())
+        assert len(activity) == 1
+        assert activity[0]["timestamp"] == "2025-01-01T10:00:00"
