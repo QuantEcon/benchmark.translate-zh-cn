@@ -77,3 +77,12 @@
 {"entry_id": "term-150", "attempt": "国内信贷", "reference": "国内信贷", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-13T08:53:08.463864+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-024", "attempt": "消费者剩余", "reference": "消费者剩余", "confidence": 1, "similarity": 1.0, "timestamp": "2026-08-13T08:53:16.315141+00:00", "cli_version": "0.5.0"}
 {"entry_id": "sent-007", "attempt": "Wecker {cite}`wecker1979predicting`提出使用模拟技术来刻画某些 $y$ 的非线性函数的统计量的预测分布。", "reference": "Wecker {cite}`wecker1979predicting` 提出使用模拟技术来表征某些统计量的预测分布，这些统计量是 $y$ 的非线性函数。", "confidence": 4, "similarity": 0.88, "timestamp": "2026-08-13T08:55:37.847247+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-050", "attempt": "政府预算约束", "reference": "政府预算约束", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-13T09:01:17.117665+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-063", "attempt": "市场出清", "reference": "市场出清", "confidence": 5, "similarity": 1.0, "timestamp": "2026-08-13T09:01:25.607932+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-167", "attempt": "产出乘数", "reference": "产出乘数", "confidence": 1, "similarity": 1.0, "timestamp": "2026-08-13T09:06:17.385649+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-024", "attempt": "什么保证存在唯一的向量 $x^{*}$ 使得 {eq}`neumann_eqn` 成立？", "reference": "什么条件保证了存在唯一的向量 $x^{*}$ 满足方程 {eq}`neumann_eqn`？", "confidence": 4, "similarity": 0.6944, "timestamp": "2026-08-13T09:08:58.368462+00:00", "cli_version": "0.5.0", "diff_reason": "formal-register"}
+{"entry_id": "term-243", "attempt": "二元均匀分布", "reference": "二元均匀分布", "confidence": 5, "similarity": 1.0, "timestamp": "2026-08-13T09:09:35.088029+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-025", "attempt": "消费平滑模型", "reference": "消费平滑模型", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-13T09:09:46.772451+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-074", "attempt": "假设一个工厂能生产产品 $1$ 和产品 $2$ 两种产品。", "reference": "假设一个工厂可以生产两种商品，称为产品 $1$ 和产品 $2$。", "confidence": 4, "similarity": 0.7143, "timestamp": "2026-08-13T09:11:17.532247+00:00", "cli_version": "0.5.0", "diff_reason": "other", "notes": "原翻译为英文直译"}
+{"entry_id": "term-070", "attempt": "资本产出弹性", "reference": "资本产出弹性", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-13T09:12:14.861614+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-097", "attempt": "总收益率", "reference": "总回报率", "confidence": 4, "similarity": 0.3333, "timestamp": "2026-08-13T09:12:40.000123+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
