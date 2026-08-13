@@ -62,3 +62,8 @@
 {"entry_id": "term-308", "attempt": "状态空间", "reference": "状态空间", "confidence": 4, "similarity": 1.0, "timestamp": "2026-05-23T06:43:37.513887+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-065", "attempt": "多消费者经济体", "reference": "多消费者经济", "confidence": 4, "similarity": 0.8571, "timestamp": "2026-05-23T06:44:54.969766+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-069", "attempt": "石油危机", "reference": "石油危机", "confidence": 5, "similarity": 1.0, "timestamp": "2026-05-23T06:46:05.157249+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-188", "attempt": "动态过程", "reference": "动态过程", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-13T08:33:15.732081+00:00", "cli_version": "0.5.0"}
+{"entry_id": "sent-014", "attempt": "方程{eq}`ar1_ma`表明，$X_t$ 是一个定义良好的随机变量，其取值取决于", "reference": "方程 {eq}`ar1_ma` 显示 $X_t$ 是一个明确定义的随机变量，其值取决于", "confidence": 4, "similarity": 0.8378, "timestamp": "2026-08-13T08:36:05.071815+00:00", "cli_version": "0.5.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-159", "attempt": "工业产出", "reference": "工业产出", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-13T08:36:57.624555+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-215", "attempt": "希克斯需求曲线", "reference": "希克斯需求曲线", "confidence": 5, "similarity": 1.0, "timestamp": "2026-08-13T08:37:15.767924+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-229", "attempt": "最优路径", "reference": "最优路径", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-13T08:37:55.318824+00:00", "cli_version": "0.5.0"}
