@@ -43,7 +43,7 @@ def _read_xp_file(path: Path) -> dict | None:
     that parses but is not an object.
     """
     try:
-        with open(path, encoding="utf-8") as f:
+        with open(path, encoding="utf-8-sig") as f:
             data = json.load(f)
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as e:
         console.print(f"[yellow]warning:[/] cannot read XP file {path.name}: {e}")
@@ -56,7 +56,11 @@ def _read_xp_file(path: Path) -> dict | None:
     # pass, but they blow up in award_xp's arithmetic (TypeError) and in
     # actions.get (AttributeError), which is the crash this guard exists to
     # prevent.  Reject them here so award_xp declines instead of clobbering.
-    if not isinstance(data.get("total", 0), (int, float)) or not isinstance(
+    # bool is a subclass of int, so {"total": true} would otherwise be
+    # accepted and silently counted as 1 XP.  stats.py rejects it; these two
+    # read the same files and must agree.
+    total = data.get("total", 0)
+    if isinstance(total, bool) or not isinstance(total, (int, float)) or not isinstance(
         data.get("actions", {}), dict
     ):
         console.print(

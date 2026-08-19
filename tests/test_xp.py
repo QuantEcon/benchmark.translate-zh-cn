@@ -79,6 +79,35 @@ class TestAwardXP:
         assert (nested / "eve.json").exists()
 
 
+class TestCopilotFollowUps:
+    """Cases raised on #33: bool totals and BOM'd files."""
+
+    def test_boolean_total_is_rejected_not_counted_as_one(self, tmp_path, monkeypatch) -> None:
+        """bool subclasses int, so `true` would otherwise be accepted as 1 XP.
+
+        stats.py rejects it and both read the same files, so they must agree.
+        """
+        monkeypatch.setattr("qebench.scoring.xp.XP_DIR", tmp_path)
+        (tmp_path / "alice.json").write_text('{"total": true, "actions": {}}', encoding="utf-8")
+        assert load_xp("alice") == 0
+
+    def test_boolean_total_does_not_clobber_the_file(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.scoring.xp.XP_DIR", tmp_path)
+        path = tmp_path / "alice.json"
+        original = '{"total": true, "actions": {}}'
+        path.write_text(original, encoding="utf-8")
+        assert award_xp("alice", "translate", 1) == 0
+        assert path.read_text(encoding="utf-8") == original
+
+    def test_bom_file_is_read_not_discarded(self, tmp_path, monkeypatch) -> None:
+        """A Windows BOM is recoverable; export.py already reads utf-8-sig."""
+        monkeypatch.setattr("qebench.scoring.xp.XP_DIR", tmp_path)
+        (tmp_path / "alice.json").write_text(
+            '\ufeff{"total": 150, "actions": {"translate": 150}}', encoding="utf-8"
+        )
+        assert load_xp("alice") == 150
+
+
 class TestCorruptXPFiles:
     """Contributors hand-edit these files, so unreadable ones must not be fatal."""
 

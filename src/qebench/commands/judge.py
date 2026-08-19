@@ -62,7 +62,7 @@ def _load_model_outputs() -> dict[str, dict[str, str]]:
     for path in sorted(MODEL_OUTPUTS_DIR.glob("*.jsonl")):
         lineno = 0
         try:
-            with open(path, encoding="utf-8") as f:
+            with open(path, encoding="utf-8-sig") as f:
                 for lineno, line in enumerate(f, 1):
                     line = line.strip()
                     if not line:

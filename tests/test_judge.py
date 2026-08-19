@@ -27,6 +27,24 @@ def _make_sentence(
     )
 
 
+class TestBomHandling:
+    """Raised on #33: only export.py had moved to utf-8-sig."""
+
+    def test_bom_does_not_cost_the_file_its_first_record(self, tmp_path, monkeypatch) -> None:
+        """A Windows BOM leaves \\ufeff on line 1, so record 1 parsed as malformed."""
+        monkeypatch.setattr("qebench.commands.judge.MODEL_OUTPUTS_DIR", tmp_path)
+        records = [
+            {"model": "claude", "entry_id": "term-001", "translated_text": "通胀"},
+            {"model": "claude", "entry_id": "term-002", "translated_text": "GDP"},
+        ]
+        (tmp_path / "run-1.jsonl").write_text(
+            "﻿" + "\n".join(json.dumps(r, ensure_ascii=False) for r in records),
+            encoding="utf-8",
+        )
+        outputs = _load_model_outputs()
+        assert outputs == {"claude": {"term-001": "通胀", "term-002": "GDP"}}
+
+
 class TestLoadModelOutputs:
     def test_empty_dir(self, tmp_path, monkeypatch) -> None:
         monkeypatch.setattr("qebench.commands.judge.MODEL_OUTPUTS_DIR", tmp_path)

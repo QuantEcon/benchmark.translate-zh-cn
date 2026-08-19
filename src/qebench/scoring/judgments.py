@@ -58,6 +58,19 @@ def load_elo_ratings() -> dict[str, float]:
         return _fall_back_preserving_cache(str(e))
     if not isinstance(data, dict):
         return _fall_back_preserving_cache("expected a JSON object of ratings")
+    # The container being right does not make the values usable: a
+    # hand-edited {"claude": "1700"} parses fine, then update_elo does
+    # arithmetic on it and raises TypeError.  bool is excluded because it
+    # subclasses int and a True rating is a corruption, not a 1.
+    bad = [
+        model
+        for model, rating in data.items()
+        if isinstance(rating, bool) or not isinstance(rating, (int, float))
+    ]
+    if bad:
+        return _fall_back_preserving_cache(
+            f"non-numeric rating for {', '.join(sorted(bad))}"
+        )
     return data
 
 

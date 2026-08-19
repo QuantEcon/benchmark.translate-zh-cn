@@ -105,6 +105,48 @@ class TestDifficultyStats:
         assert result["advanced"] == 1
 
 
+class TestCopilotFollowUps:
+    """Raised on #33: 'actions' was forwarded to the dashboard unvalidated."""
+
+    def test_non_object_actions_becomes_empty_breakdown(self, tmp_path: Path) -> None:
+        """index.html does Object.entries(user.actions || {}); a JS string is truthy.
+
+        Left alone, "oops" renders on the live dashboard as "0: o . 1: o . 2: p".
+        The breakdown is cosmetic, so the contributor keeps their place.
+        """
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "alice.json").write_text(
+            json.dumps({"total": 150, "actions": "oops"}), encoding="utf-8"
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert len(result) == 1
+        assert result[0]["username"] == "alice"
+        assert result[0]["total_xp"] == 150
+        assert result[0]["actions"] == {}
+
+    def test_null_actions_becomes_empty_breakdown(self, tmp_path: Path) -> None:
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "alice.json").write_text(
+            json.dumps({"total": 10, "actions": None}), encoding="utf-8"
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert result[0]["actions"] == {}
+
+    def test_valid_actions_are_untouched(self, tmp_path: Path) -> None:
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "alice.json").write_text(
+            json.dumps({"total": 10, "actions": {"translate": 10}}), encoding="utf-8"
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert result[0]["actions"] == {"translate": 10}
+
+
 class TestXpLeaderboard:
     def test_empty_no_dir(self, tmp_path: Path) -> None:
         with patch("qebench.commands.export._REPO_ROOT", tmp_path):

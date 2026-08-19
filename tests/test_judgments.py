@@ -176,6 +176,42 @@ class TestCorruptEloFile:
         assert elo_path.read_text(encoding="utf-8") == '{"claude": 1700.0}'
         assert list(tmp_path.glob("elo.json.corrupt*")) == []
 
+    def test_non_numeric_rating_is_rejected_and_preserved(self, tmp_path, monkeypatch) -> None:
+        """Raised on #33: the dict guard passed, then update_elo did arithmetic on a str."""
+        elo_path = tmp_path / "elo.json"
+        original = '{"claude": "1700", "gpt-4o": 1600.0}'
+        elo_path.write_text(original, encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+
+        assert load_elo_ratings() == {}
+        quarantined = list(tmp_path.glob("elo.json.corrupt*"))
+        assert len(quarantined) == 1
+        assert quarantined[0].read_text(encoding="utf-8") == original
+
+    def test_boolean_rating_is_rejected(self, tmp_path, monkeypatch) -> None:
+        """bool subclasses int, so True would otherwise sort and compute as 1."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text('{"claude": true}', encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        assert load_elo_ratings() == {}
+
+    def test_update_model_elos_survives_non_numeric_rating(self, tmp_path, monkeypatch) -> None:
+        """The end-to-end path Copilot described: a hand-edit crashed the judgment."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text('{"claude": "1700"}', encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        new_a, new_b = update_model_elos("claude", "gpt-4o", "a")
+        assert new_a > 1500
+        assert new_b < 1500
+
+    def test_all_numeric_ratings_are_kept(self, tmp_path, monkeypatch) -> None:
+        """The guard must not reject healthy caches — ints and floats both pass."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text('{"claude": 1700, "gpt-4o": 1600.5}', encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        assert load_elo_ratings() == {"claude": 1700, "gpt-4o": 1600.5}
+        assert list(tmp_path.glob("elo.json.corrupt*")) == []
+
     def test_non_object_cache_is_also_preserved(self, tmp_path, monkeypatch) -> None:
         """Valid JSON of the wrong shape is still someone's file — keep it."""
         elo_path = tmp_path / "elo.json"

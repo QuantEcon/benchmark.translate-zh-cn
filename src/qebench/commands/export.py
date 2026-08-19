@@ -80,10 +80,21 @@ def _xp_leaderboard() -> list[dict]:
         if isinstance(total_xp, bool) or not isinstance(total_xp, (int, float)):
             console.print(f"[yellow]warning:[/] skipping XP file {path.name}: 'total' is not a number")
             continue
+        # The dashboard renders this with Object.entries(user.actions || {}),
+        # and a JS string is truthy — "oops" would come out as "0: o · 1: o".
+        # Drop the breakdown rather than the contributor: it is cosmetic, so
+        # they keep their place on the leaderboard.
+        actions = data.get("actions", {})
+        if not isinstance(actions, dict):
+            console.print(
+                f"[yellow]warning:[/] XP file {path.name}: 'actions' is not an object, "
+                f"showing an empty breakdown"
+            )
+            actions = {}
         leaderboard.append({
             "username": username,
             "total_xp": total_xp,
-            "actions": data.get("actions", {}),
+            "actions": actions,
         })
 
     return sorted(leaderboard, key=lambda x: -x["total_xp"])

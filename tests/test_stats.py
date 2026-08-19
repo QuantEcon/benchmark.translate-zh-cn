@@ -7,6 +7,19 @@ import json
 from qebench.commands.stats import _load_leaderboard
 
 
+class TestBomHandling:
+    def test_bom_file_still_counts(self, tmp_path, monkeypatch) -> None:
+        """Raised on #33: only export.py had moved to utf-8-sig."""
+        monkeypatch.setattr("qebench.commands.stats.XP_DIR", tmp_path)
+        (tmp_path / "alice.json").write_text(
+            '\ufeff{"total": 150, "actions": {"translate": 150}}', encoding="utf-8"
+        )
+        (tmp_path / "bob.json").write_text('{"total": 90, "actions": {}}', encoding="utf-8")
+        board = _load_leaderboard()
+        assert [e["username"] for e in board] == ["alice", "bob"]
+        assert board[0]["total"] == 150
+
+
 class TestLoadLeaderboard:
     def test_empty_directory(self, tmp_path, monkeypatch):
         monkeypatch.setattr("qebench.commands.stats.XP_DIR", tmp_path)

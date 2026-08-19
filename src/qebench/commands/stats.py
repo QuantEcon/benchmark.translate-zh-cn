@@ -46,7 +46,7 @@ def _load_leaderboard() -> list[dict]:
     for path in sorted(XP_DIR.glob("*.json")):
         username = path.stem
         try:
-            with open(path, encoding="utf-8") as f:
+            with open(path, encoding="utf-8-sig") as f:
                 data = json.load(f)
         except (json.JSONDecodeError, OSError, UnicodeDecodeError) as e:
             console.print(
