@@ -34,8 +34,17 @@ app.command("export", help="Export dataset and results to JSON for the dashboard
 app.command("submit", help="Pull, commit, and push your data and results to GitHub.")(submit)
 app.command("doctor", help="Run preflight checks for qebench environment.")(doctor)
 app.command("update", help="Pull latest code, data, and dependencies from GitHub.")(update)
-app.command("validate", help="Validate all dataset files against Pydantic schemas.")(validate)
 app.command("run", help="Batch translate dataset entries via an LLM provider.")(run)
+
+
+@app.command("validate", help="Validate all dataset files against Pydantic schemas.")
+def validate_cmd(
+    strict: bool = typer.Option(
+        False, "--strict", help="Treat en/zh alignment warnings as errors."
+    ),
+) -> None:
+    """Validate all dataset files against Pydantic schemas."""
+    validate(strict=strict)
 
 
 @app.command("judge")

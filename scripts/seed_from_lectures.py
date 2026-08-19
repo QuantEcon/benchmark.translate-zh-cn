@@ -19,10 +19,6 @@ import re
 import sys
 from pathlib import Path
 
-# Inline math or a MyST role — the markers audit_alignment.check_pair scores
-# a pair on.  Text with none of them is judged on length alone.
-_MATH_OR_ROLE = re.compile(r"\$[^$\n]+\$|\{(?:eq|doc|ref|numref|cite|any|term)\}`")
-
 # Repo pairs: (english_repo_name, chinese_repo_name, lectures_subdir)
 REPO_PAIRS = [
     ("lecture-python-intro", "lecture-intro.zh-cn", "lectures"),
@@ -179,9 +175,10 @@ def _extract_sections(md_content: str) -> list[list[str]]:
 def _shared_markers(en_text: str, zh_text: str) -> bool:
     """Check if en/zh paragraphs correspond closely enough to seed as a pair.
 
-    This defers to ``audit_alignment.check_pair``, the same rule that audits
-    the committed dataset, so anything seeded here passes that audit by
-    construction and the two cannot drift apart.
+    This defers to :func:`qebench.scoring.alignment.check_pair`, the same
+    rule that audits the committed dataset and runs in ``qebench validate``,
+    so anything seeded here passes that audit by construction and the two
+    cannot drift apart.
 
     An earlier version accepted a pair as soon as it shared *any single*
     math span, citation or inline-code span, which let genuinely different
@@ -189,7 +186,7 @@ def _shared_markers(en_text: str, zh_text: str) -> bool:
     both contained ``$x_1$`` passed, and that is how ``para-009`` and seven
     other entries were seeded misaligned.
     """
-    from audit_alignment import MIN_LENGTH_RATIO, check_pair
+    from qebench.scoring.alignment import HAS_MARKERS, MIN_LENGTH_RATIO, check_pair
 
     if not en_text.strip() or not zh_text.strip():
         return False
@@ -203,7 +200,7 @@ def _shared_markers(en_text: str, zh_text: str) -> bool:
     # English-to-Chinese range and disagreed with what the audit accepts.
     # An upper bound still guards against a zh block that is far too long to
     # be a translation of this en block.
-    if not _MATH_OR_ROLE.search(en_text):
+    if not HAS_MARKERS.search(en_text):
         ratio = len(zh_text) / len(en_text)
         return MIN_LENGTH_RATIO <= ratio <= 2.0
 
