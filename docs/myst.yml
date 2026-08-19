@@ -10,6 +10,7 @@ project:
     - file: index.md
     - title: Dashboard
       url: /benchmark.translate-zh-cn/dashboard/
+    - file: ../results/model-outputs/NOTES.md
     - title: User Guide
       children:
         - file: user/getting-started.md
@@ -22,11 +23,13 @@ project:
             - file: user/tutorials/updating-datasets.md
             - file: user/tutorials/judging-translations.md
             - file: user/tutorials/running-llm-benchmarks.md
+            - file: user/tutorials/glossary-and-prompts.md
     - title: Developer Guide
       children:
         - file: developer/architecture.md
         - file: developer/data-models.md
         - file: developer/contributing.md
+        - file: developer/seeding-from-lectures.md
 
 site:
   template: book-theme

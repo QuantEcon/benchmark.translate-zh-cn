@@ -2,6 +2,8 @@
 
 **[Dashboard](dashboard/)** — Live leaderboard, dataset coverage, and activity feed.
 
+**[Model Output Notes](../results/model-outputs/NOTES.md)** — What the committed model runs found: cost, formatting fidelity, and prompt effects, regenerable with `scripts/analyze_runs.py`. Two results to know before you spend anything on a run of your own: under `action-basic`, Haiku returns documentation instead of a translation for 42.7% of terms (134/314), and `action-new` re-sends the whole glossary on every call, which makes it 57× the cost of `default` over the same 314 terms (Sonnet 4.6: `$4.9973` vs `$0.0872`).
+
 ## User Guide (`user/`)
 
 Documentation for RAs and contributors using `qebench`.

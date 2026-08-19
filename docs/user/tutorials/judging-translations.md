@@ -158,8 +158,22 @@ Push your results to GitHub:
 uv run qebench submit
 ```
 
-Your judgments are saved in `results/judgments/{your-username}.jsonl` and Elo
-ratings are updated in `results/elo.json`.
+Your judgments are saved in `results/judgments/{your-username}.jsonl`, and
+committing that file is what makes them count. `qebench submit` commits it,
+and the dashboard build then recomputes the published ratings from every
+committed `results/judgments/*.jsonl` — including yours.
+
+A session also updates `results/elo.json` as it goes, and that is what the
+Elo line in the reveal panel reads. But the file is **gitignored**: it is a
+local cache, rebuilt from the judgment logs whenever it goes missing. Ratings
+you build up without submitting stay on your machine — they reach no
+dashboard, and no other judge's session ever sees them.
+
+:::{tip}
+Submit at the end of every session, even a short one. A rating is only as
+good as the number of judgments behind it, which is why the dashboard prints
+that count beside every model.
+:::
 
 ## Filtering by Domain
 

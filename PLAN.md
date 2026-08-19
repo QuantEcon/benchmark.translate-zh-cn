@@ -171,7 +171,7 @@ The interactive modes that make RAs want to contribute.
 - [x] `qebench update` — pull latest code + data (`git pull --rebase`) and sync dependencies (`uv sync`)
 - [x] Results committed to repo — XP + translations tracked in git, dashboard reads them
 - [x] `qebench stats` — leaderboard display (current: coverage + domain table + XP leaderboard)
-- [x] 207 pytest tests passing (models: 12, dataset: 7, scoring: 6, translate: 21, xp: 11, export: 16, github: 6, submit: 7, doctor: 6, update: 4, update-enrichment: 11, add: 2, validate: 7, stats: 4, providers: 6, prompts: 5, run: 8, glossary-scoring: 13, judgments: 8, judge: 11, context: 24, term-context: 8)
+- [x] 626 pytest tests passing across 29 test modules in `tests/` (run `uv run pytest tests/ -q` for the current count rather than trusting this line)
 
 ### Phase 3: LLM Integration (Layer 4)
 

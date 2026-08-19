@@ -25,19 +25,31 @@ uv sync
 uv run qebench stats
 
 # Start translating (the fun part)
-uv run qebench translate --random
+uv run qebench translate
+
+# Same, but sample uniformly instead of prioritising entries
+# that are one attempt away from having a second annotator
+uv run qebench translate --uniform
 ```
 
 ## Commands
 
 ```
-qebench stats        Show dataset coverage, Elo rankings, leaderboard
+qebench stats        Show dataset coverage, domain breakdown, XP leaderboard
 qebench translate    Translate & Compare mode (can you beat the AI?)
 qebench judge        Judge mode (rate anonymous translations, build Elo)
 qebench add          Add new test entries to the dataset
 qebench run          Run benchmark against LLM models
-qebench export       Export results for the website
+qebench validate     Check every dataset file against the Pydantic schemas
+qebench submit       Pull, commit, and push your data and results to GitHub
+qebench export       Export dataset and results to JSON for the website
+qebench doctor       Run preflight checks (gh, git, auth, remote, config, data, uv)
+qebench update       Pull latest code, data, and dependencies from GitHub
 ```
+
+Elo is not part of `stats`. `qebench export` recomputes model ratings from the
+committed judgment logs into `ratings.json`, and the dashboard renders them
+under **Model Ratings**.
 
 ## Dataset
 

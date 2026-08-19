@@ -60,7 +60,21 @@ literal braces. See [Glossary & Prompt Templates](../user/tutorials/glossary-and
 
 ## Branch Workflow
 
-- Work on a feature branch
+- Work on a feature branch, never commit directly to `main`
+- **Cut the branch from a freshly pulled `main`** — not from whatever your
+  local `main` happens to be:
+
+  ```bash
+  git checkout main && git pull --ff-only origin main && git checkout -b my-branch
+  ```
+
+  `main` in this repo moves without you touching it: RAs push translation
+  records straight to it, so a local `main` goes stale on its own. Nothing
+  warns you, either — a stale branch still merges cleanly, and the commits
+  you never saw turn up only after the squash.
+- **If a branch has been sitting for a while, pull `main` into it and re-run
+  the tests before pushing.** A green run against a stale base proves less
+  than it looks.
 - Open a PR against `main`
 - All tests must pass
 - Get review from a team member

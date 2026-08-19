@@ -233,15 +233,45 @@ Validate all dataset JSON files against the Pydantic schemas. Useful for
 checking your contributed entries before submitting.
 
 ```bash
-uv run qebench validate
+uv run qebench validate            # schema errors fail; alignment problems warn
+uv run qebench validate --strict   # alignment problems fail too
 ```
+
+### Options
+
+| Option | Default | Description |
+|---|---|---|
+| `--strict` | `false` | Treat en/zh alignment warnings as errors |
 
 Checks every file in `data/terms/`, `data/sentences/`, and `data/paragraphs/`
 against the corresponding model (Term, Sentence, Paragraph). Reports all
 validation errors with file names and entry IDs, then exits non-zero if any
 were found.
 
-This also runs automatically in CI on every push and PR.
+### En/zh alignment
+
+Sentence and paragraph entries are additionally checked for whether their
+`zh` really is a translation of their `en` — a misaligned reference is worse
+than a missing one, since `qebench judge` scores every judgment against it.
+The check compares three signals that survive a faithful translation: the
+inline `$...$` math spans, the targets of `{doc}`/`{eq}`/`{ref}`-style roles,
+and the zh/en length ratio. Terms are skipped — a headword has no markers and
+no comparable length.
+
+Findings are reported as **warnings** and do not fail the command, because
+the check is a heuristic — a legitimately terse translation can trip the
+length ratio. They are printed in their own block, with the command to
+inspect the flagged text:
+
+```bash
+uv run python scripts/audit_alignment.py --show-text
+```
+
+`--strict` promotes those warnings to errors, so any finding exits non-zero.
+Use it when you want the same verdict CI gives you: the CI workflow runs
+`qebench validate --strict` on every push to `main` and every pull request,
+so an alignment finding blocks a merge even though a local `qebench validate`
+lets it through.
 
 ---
 

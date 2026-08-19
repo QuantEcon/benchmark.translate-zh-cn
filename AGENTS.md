@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository.
 
 **benchmark.translate-zh-cn** is a CLI tool (`qebench`) and benchmark dataset for evaluating English-to-Chinese translation quality in economics and mathematics. Built with Python, Typer, Rich, Pydantic.
 
-**Current state**: Phase 4 complete + context enrichment — working CLI with `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate`, `run`, `judge` commands; LLM provider interface with Claude + OpenAI providers; judge mode with Elo ratings; glossary compliance + reference overlap scoring; context sentence enrichment from QuantEcon lectures; 207 tests passing.
+**Current state**: all ten commands work — `translate`, `add`, `stats`, `export`, `submit`, `doctor`, `update`, `validate`, `run`, `judge`; LLM provider interface with Claude + OpenAI providers; `qebench run` batch-translates via those providers and stamps a `formatting` fidelity dict on every record; `qebench judge` does anonymous head-to-head rating with glossary compliance + reference overlap scoring; `qebench export` writes seven dashboard JSON files, including `ratings.json` rebuilt from the committed judgment logs; one en/zh alignment rule shared by the seeder, `scripts/audit_alignment.py`, and `qebench validate --strict`; context sentence enrichment from QuantEcon lectures; helper scripts for run analysis (`scripts/analyze_runs.py`) and glossary sync-back (`scripts/glossary_syncback.py`); 626 tests passing.
 
 ---
 
@@ -28,9 +28,12 @@ src/qebench/
 │   ├── run.py             # Batch translate via LLM providers
 │   └── judge.py           # Anonymous head-to-head translation judging
 ├── scoring/
+│   ├── alignment.py       # En/zh alignment rule — seeder, audit script, validate share it
 │   ├── elo.py             # Elo rating calculations for model comparison
+│   ├── formatting.py      # MyST fidelity checks (directives, fences, code, punctuation)
 │   ├── glossary.py        # Glossary compliance + reference overlap scoring
 │   ├── judgments.py       # Judgment persistence + Elo update orchestration
+│   ├── ratings.py         # Rebuild model ratings from the committed judgment logs
 │   └── xp.py              # XP tracking per user (translate=10, add=15, judge=5)
 ├── providers/
 │   ├── __init__.py
@@ -53,7 +56,7 @@ src/qebench/
 | Data models / validation | `models.py` |
 | Context sentence extraction | `utils/context.py` |
 | Load/save dataset | `utils/dataset.py` |
-| Scoring logic | `scoring/elo.py`, `scoring/glossary.py`, `scoring/judgments.py`, `scoring/xp.py` |
+| Scoring logic | `scoring/` — `alignment.py`, `elo.py`, `formatting.py`, `glossary.py`, `judgments.py`, `ratings.py`, `xp.py` |
 | Config (domains, targets) | `config.yaml` |
 | Tests | `tests/` |
 
@@ -156,8 +159,11 @@ data/
 
 results/
 ├── translations/       # User translation attempts (JSONL per user)
+├── judgments/          # Judge-mode records (JSONL per user) — source of truth for ratings
+├── model-outputs/      # qebench run output — one JSONL per run, {provider}-{model}-{prompt}-{ts}
+├── glossary-syncback/  # Reports from scripts/glossary_syncback.py
 ├── xp/                 # XP totals per user (JSON per user)
-└── elo.json            # Model Elo ratings (future)
+└── elo.json            # Local Elo cache (gitignored) — export rebuilds ratings from judgments/
 ```
 
 JSON files use bare arrays. The loader also supports `{version, entries}` wrapper format.
