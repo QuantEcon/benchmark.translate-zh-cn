@@ -85,6 +85,34 @@ class TestAnnotatorCoverage:
         )
         assert _annotator_coverage() == {"term-001": {"alice"}, "term-002": {"alice"}}
 
+    def test_undecodable_file_does_not_lose_other_annotators(self, results_dir):
+        """Contributors hand-edit these files; one saved as GBK must not abort the session.
+
+        UnicodeDecodeError comes from the file iterator, not from json.loads,
+        so guarding only the parse leaves it uncaught.
+        """
+        _write_attempts(results_dir, "alice", ["term-001"])
+        (results_dir / "bob.jsonl").write_bytes(
+            json.dumps({"entry_id": "term-002", "attempt": "通货膨胀"}, ensure_ascii=False).encode("gbk")
+            + b"\n"
+        )
+        assert _annotator_coverage() == {"term-001": {"alice"}}
+
+    def test_unreadable_file_does_not_lose_other_annotators(self, results_dir, monkeypatch):
+        """A file that cannot be opened at all is skipped, not fatal."""
+        _write_attempts(results_dir, "alice", ["term-001"])
+        _write_attempts(results_dir, "bob", ["term-002"])
+
+        real_open = open
+
+        def fail_on_bob(path, *args, **kwargs):
+            if str(path).endswith("bob.jsonl"):
+                raise OSError("permission denied")
+            return real_open(path, *args, **kwargs)
+
+        monkeypatch.setattr("builtins.open", fail_on_bob)
+        assert _annotator_coverage() == {"term-001": {"alice"}}
+
     def test_skips_records_without_usable_entry_id(self, results_dir):
         path = results_dir / "alice.jsonl"
         path.write_text(

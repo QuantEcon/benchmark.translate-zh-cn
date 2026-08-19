@@ -90,8 +90,10 @@ def _annotator_coverage() -> dict[str, set[str]]:
 
     Reads every ``results/translations/*.jsonl`` file, taking the username
     from the file stem and the entry id from each record.  A missing
-    directory yields an empty mapping, and malformed lines are reported and
-    skipped rather than aborting the session.
+    directory yields an empty mapping, and a malformed line — or a whole
+    unreadable file — is reported and skipped rather than aborting the
+    session.  Contributors hand-edit these files, so one saved in the wrong
+    encoding must not cost every other annotator their coverage.
     """
     coverage: dict[str, set[str]] = {}
     if not RESULTS_DIR.exists():
@@ -99,24 +101,34 @@ def _annotator_coverage() -> dict[str, set[str]]:
 
     for path in sorted(RESULTS_DIR.glob("*.jsonl")):
         username = path.stem
-        with open(path, encoding="utf-8") as f:
-            for lineno, line in enumerate(f, 1):
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    record = json.loads(line)
-                except json.JSONDecodeError as e:
-                    console.print(
-                        f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
-                    )
-                    continue
-                if not isinstance(record, dict):
-                    continue
-                entry_id = record.get("entry_id")
-                if not isinstance(entry_id, str) or not entry_id:
-                    continue
-                coverage.setdefault(entry_id, set()).add(username)
+        lineno = 0
+        try:
+            with open(path, encoding="utf-8") as f:
+                for lineno, line in enumerate(f, 1):
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        record = json.loads(line)
+                    except json.JSONDecodeError as e:
+                        console.print(
+                            f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
+                        )
+                        continue
+                    if not isinstance(record, dict):
+                        continue
+                    entry_id = record.get("entry_id")
+                    if not isinstance(entry_id, str) or not entry_id:
+                        continue
+                    coverage.setdefault(entry_id, set()).add(username)
+        except (OSError, UnicodeDecodeError) as e:
+            # Raised by open() and, for a decode error, by the iterator —
+            # so it must be caught around the loop, not around json.loads.
+            console.print(
+                f"[yellow]warning:[/] {path.name} unreadable after {lineno} line(s), "
+                f"skipping the rest: {e}"
+            )
+            continue
 
     return coverage
 
