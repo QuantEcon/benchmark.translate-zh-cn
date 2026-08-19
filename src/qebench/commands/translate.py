@@ -103,7 +103,7 @@ def _annotator_coverage() -> dict[str, set[str]]:
         username = path.stem
         lineno = 0
         try:
-            with open(path, encoding="utf-8") as f:
+            with open(path, encoding="utf-8-sig") as f:
                 for lineno, line in enumerate(f, 1):
                     line = line.strip()
                     if not line:

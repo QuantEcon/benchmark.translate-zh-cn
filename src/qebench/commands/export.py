@@ -46,7 +46,12 @@ def _difficulty_stats(terms: list, sentences: list, paragraphs: list) -> dict[st
 
 
 def _xp_leaderboard() -> list[dict]:
-    """Load XP data for all users."""
+    """Load XP data for all users.
+
+    Each ``results/xp/*.json`` file is read independently: a malformed or
+    unreadable one is reported and skipped so it cannot cost every other
+    contributor their place on the leaderboard.
+    """
     xp_dir = _REPO_ROOT / "results" / "xp"
     if not xp_dir.exists():
         return []
@@ -54,26 +59,54 @@ def _xp_leaderboard() -> list[dict]:
     leaderboard = []
     for path in sorted(xp_dir.glob("*.json")):
         username = path.stem
-        with open(path, encoding="utf-8") as f:
-            try:
+        try:
+            # utf-8-sig also accepts a leading BOM, which Windows editors add
+            # to otherwise perfectly valid UTF-8 files.
+            with open(path, encoding="utf-8-sig") as f:
                 data = json.load(f)
-            except json.JSONDecodeError as e:
-                console.print(f"[yellow]warning:[/] skipping malformed XP file {path.name}: {e}")
-                continue
+        except json.JSONDecodeError as e:
+            console.print(f"[yellow]warning:[/] skipping malformed XP file {path.name}: {e}")
+            continue
+        except (OSError, UnicodeDecodeError) as e:
+            # open() raises OSError, and a file saved in another encoding
+            # raises UnicodeDecodeError from json.load — neither is a
+            # JSONDecodeError, so both need catching around the read itself.
+            console.print(f"[yellow]warning:[/] skipping unreadable XP file {path.name}: {e}")
+            continue
         if not isinstance(data, dict):
             console.print(f"[yellow]warning:[/] skipping XP file {path.name}: expected a JSON object")
             continue
+        total_xp = data.get("total", 0)
+        if isinstance(total_xp, bool) or not isinstance(total_xp, (int, float)):
+            console.print(f"[yellow]warning:[/] skipping XP file {path.name}: 'total' is not a number")
+            continue
+        # The dashboard renders this with Object.entries(user.actions || {}),
+        # and a JS string is truthy — "oops" would come out as "0: o · 1: o".
+        # Drop the breakdown rather than the contributor: it is cosmetic, so
+        # they keep their place on the leaderboard.
+        actions = data.get("actions", {})
+        if not isinstance(actions, dict):
+            console.print(
+                f"[yellow]warning:[/] XP file {path.name}: 'actions' is not an object, "
+                f"showing an empty breakdown"
+            )
+            actions = {}
         leaderboard.append({
             "username": username,
-            "total_xp": data.get("total", 0),
-            "actions": data.get("actions", {}),
+            "total_xp": total_xp,
+            "actions": actions,
         })
 
     return sorted(leaderboard, key=lambda x: -x["total_xp"])
 
 
 def _activity_feed() -> list[dict]:
-    """Load recent translation attempts across all users."""
+    """Load recent translation attempts across all users.
+
+    A malformed line — or a whole unreadable file — is reported and skipped
+    rather than aborting the export.  Records already read from a file that
+    turns out to be unreadable partway through are kept.
+    """
     translations_dir = _REPO_ROOT / "results" / "translations"
     if not translations_dir.exists():
         return []
@@ -81,29 +114,46 @@ def _activity_feed() -> list[dict]:
     entries = []
     for path in translations_dir.glob("*.jsonl"):
         username = path.stem
-        with open(path, encoding="utf-8") as f:
-            for lineno, line in enumerate(f, 1):
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    record = json.loads(line)
-                except json.JSONDecodeError as e:
-                    console.print(
-                        f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
-                    )
-                    continue
-                if not isinstance(record, dict):
-                    console.print(
-                        f"[yellow]warning:[/] skipping line {lineno} in {path.name}: expected a JSON object"
-                    )
-                    continue
-                record["username"] = username
-                entries.append(record)
+        lineno = 0
+        try:
+            with open(path, encoding="utf-8-sig") as f:
+                for lineno, line in enumerate(f, 1):
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        record = json.loads(line)
+                    except json.JSONDecodeError as e:
+                        console.print(
+                            f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
+                        )
+                        continue
+                    if not isinstance(record, dict):
+                        console.print(
+                            f"[yellow]warning:[/] skipping line {lineno} in {path.name}: expected a JSON object"
+                        )
+                        continue
+                    record["username"] = username
+                    entries.append(record)
+        except (OSError, UnicodeDecodeError) as e:
+            # Raised by open() and, for a decode error, by the iterator —
+            # so it must be caught around the loop, not around json.loads.
+            console.print(
+                f"[yellow]warning:[/] {path.name} unreadable after {lineno} line(s), "
+                f"skipping the rest: {e}"
+            )
+            continue
 
-    # Sort by timestamp descending, take latest 50
-    entries.sort(key=lambda x: x.get("timestamp", ""), reverse=True)
+    # Sort by timestamp descending, take latest 50.  A record whose timestamp is
+    # not a string (null, a number) sorts as if it had none rather than raising
+    # TypeError and taking the whole export down.
+    entries.sort(key=_timestamp_key, reverse=True)
     return entries[:50]
+
+
+def _timestamp_key(entry: dict) -> str:
+    ts = entry.get("timestamp", "")
+    return ts if isinstance(ts, str) else ""
 
 
 def _term_samples(terms: list[Term], per_domain: int = 3) -> list[dict]:

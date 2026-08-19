@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 
 from qebench.scoring.elo import DEFAULT_RATING, update_elo
+from qebench.utils.display import console
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 JUDGMENTS_DIR = _REPO_ROOT / "results" / "judgments"
@@ -18,13 +19,93 @@ ELO_PATH = _REPO_ROOT / "results" / "elo.json"
 def load_elo_ratings() -> dict[str, float]:
     """Load model Elo ratings from elo.json.
 
+    An unreadable or malformed file is reported and treated as absent, so
+    ratings fall back to :data:`DEFAULT_RATING` rather than aborting a
+    judging session.  ``UnicodeDecodeError`` is raised inside ``json.load``
+    and subclasses ``ValueError``, so it is caught alongside ``OSError``
+    and ``JSONDecodeError`` rather than by either of them.  A payload that
+    parses but is not an object is dropped too — ``update_model_elos``
+    calls ``.get`` on the result.
+
+    Falling back is not free: nothing recomputes Elo from
+    ``results/judgments/*.jsonl`` yet, so this file is the only record of
+    the ratings and the next :func:`save_elo_ratings` would overwrite it.
+    A file whose *contents* are bad is therefore moved aside first, so its
+    bytes survive for repair — a misencoded file is one re-encode away
+    from being readable again.
+
+    A file we merely failed to *open* is left exactly where it is.  It may
+    be perfectly good and only briefly locked, and renaming a healthy file
+    out from under someone is worse than the fallback; if the condition
+    persists, the save will fail to open it for writing too rather than
+    overwrite it.
+
     Returns:
         Dict mapping model name to Elo rating.
     """
     if not ELO_PATH.exists():
         return {}
-    with open(ELO_PATH, encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(ELO_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+    except OSError as e:
+        console.print(
+            f"[yellow]warning:[/] cannot open {ELO_PATH.name} ({e}); "
+            f"starting from default ratings, leaving the file untouched"
+        )
+        return {}
+    except (UnicodeDecodeError, json.JSONDecodeError) as e:
+        return _fall_back_preserving_cache(str(e))
+    if not isinstance(data, dict):
+        return _fall_back_preserving_cache("expected a JSON object of ratings")
+    # The container being right does not make the values usable: a
+    # hand-edited {"claude": "1700"} parses fine, then update_elo does
+    # arithmetic on it and raises TypeError.  bool is excluded because it
+    # subclasses int and a True rating is a corruption, not a 1.
+    bad = [
+        model
+        for model, rating in data.items()
+        if isinstance(rating, bool) or not isinstance(rating, (int, float))
+    ]
+    if bad:
+        return _fall_back_preserving_cache(
+            f"non-numeric rating for {', '.join(sorted(bad))}"
+        )
+    return data
+
+
+def _fall_back_preserving_cache(reason: str) -> dict[str, float]:
+    """Quarantine an unusable elo.json and start from default ratings."""
+    quarantined = _quarantine_elo_file()
+    detail = (
+        f"kept the original at {quarantined.name}"
+        if quarantined
+        else "COULD NOT preserve the original"
+    )
+    console.print(
+        f"[yellow]warning:[/] cannot use {ELO_PATH.name} ({reason}); "
+        f"starting from default ratings and {detail}"
+    )
+    return {}
+
+
+def _quarantine_elo_file() -> Path | None:
+    """Move an unreadable elo.json aside so the next save cannot clobber it.
+
+    Returns the path it was moved to, or None if it could not be moved —
+    in which case the ratings really are about to be lost and the caller
+    says so.
+    """
+    for suffix in ("corrupt", *(f"corrupt.{n}" for n in range(1, 100))):
+        target = ELO_PATH.with_suffix(f".json.{suffix}")
+        if target.exists():
+            continue
+        try:
+            ELO_PATH.rename(target)
+        except OSError:
+            return None
+        return target
+    return None
 
 
 def save_elo_ratings(ratings: dict[str, float]) -> None:

@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import builtins
 import json
 from pathlib import Path
 from unittest.mock import patch
+
+import pytest
 
 from qebench.commands.export import (
     _activity_feed,
@@ -35,6 +38,25 @@ def _make_sentence(id: str, domain: str, difficulty: str = "intermediate") -> Se
         domain=domain,
         difficulty=Difficulty(difficulty),
     )
+
+
+def _write_gbk(path: Path, payload: object) -> None:
+    """Write a JSON payload encoded as GBK — the realistic way a contributor
+    on a Chinese Windows box saves a results file that UTF-8 cannot decode."""
+    text = json.dumps(payload, ensure_ascii=False)
+    path.write_bytes(text.encode("gbk"))
+
+
+def _break_open_for(monkeypatch: pytest.MonkeyPatch, filename: str) -> None:
+    """Make open() raise OSError for one filename, as an unreadable file would."""
+    real_open = builtins.open
+
+    def fake_open(file, *args, **kwargs):  # type: ignore[no-untyped-def]
+        if isinstance(file, (str, Path)) and Path(file).name == filename:
+            raise OSError(13, "Permission denied")
+        return real_open(file, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "open", fake_open)
 
 
 class TestDomainStats:
@@ -83,6 +105,48 @@ class TestDifficultyStats:
         assert result["advanced"] == 1
 
 
+class TestCopilotFollowUps:
+    """Raised on #33: 'actions' was forwarded to the dashboard unvalidated."""
+
+    def test_non_object_actions_becomes_empty_breakdown(self, tmp_path: Path) -> None:
+        """index.html does Object.entries(user.actions || {}); a JS string is truthy.
+
+        Left alone, "oops" renders on the live dashboard as "0: o . 1: o . 2: p".
+        The breakdown is cosmetic, so the contributor keeps their place.
+        """
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "alice.json").write_text(
+            json.dumps({"total": 150, "actions": "oops"}), encoding="utf-8"
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert len(result) == 1
+        assert result[0]["username"] == "alice"
+        assert result[0]["total_xp"] == 150
+        assert result[0]["actions"] == {}
+
+    def test_null_actions_becomes_empty_breakdown(self, tmp_path: Path) -> None:
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "alice.json").write_text(
+            json.dumps({"total": 10, "actions": None}), encoding="utf-8"
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert result[0]["actions"] == {}
+
+    def test_valid_actions_are_untouched(self, tmp_path: Path) -> None:
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "alice.json").write_text(
+            json.dumps({"total": 10, "actions": {"translate": 10}}), encoding="utf-8"
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert result[0]["actions"] == {"translate": 10}
+
+
 class TestXpLeaderboard:
     def test_empty_no_dir(self, tmp_path: Path) -> None:
         with patch("qebench.commands.export._REPO_ROOT", tmp_path):
@@ -125,6 +189,55 @@ class TestXpLeaderboard:
             result = _xp_leaderboard()
         assert len(result) == 1
         assert result[0]["username"] == "good"
+
+    def test_skips_misencoded_file(self, tmp_path: Path) -> None:
+        # A GBK-encoded file raises UnicodeDecodeError from json.load — that is a
+        # ValueError, not a JSONDecodeError or OSError, so it escaped the old guard.
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "good.json").write_text(json.dumps({"total": 30, "actions": {}}))
+        _write_gbk(xp_dir / "gbk.json", {"total": 99, "actions": {"翻译": 5}})
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert len(result) == 1
+        assert result[0]["username"] == "good"
+
+    def test_skips_unopenable_file(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "good.json").write_text(json.dumps({"total": 30, "actions": {}}))
+        (xp_dir / "locked.json").write_text(json.dumps({"total": 999, "actions": {}}))
+        _break_open_for(monkeypatch, "locked.json")
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert len(result) == 1
+        assert result[0]["username"] == "good"
+
+    def test_skips_non_numeric_total(self, tmp_path: Path) -> None:
+        # A hand-edited file whose "total" is null or a string is valid JSON and a
+        # valid object, so it reaches the `-x["total_xp"]` sort key and used to
+        # raise TypeError there, losing the whole leaderboard, not just this file.
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "good.json").write_text(json.dumps({"total": 30, "actions": {}}))
+        (xp_dir / "null.json").write_text(json.dumps({"total": None}))
+        (xp_dir / "text.json").write_text(json.dumps({"total": "lots", "actions": {}}))
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert [r["username"] for r in result] == ["good"]
+
+    def test_reads_file_with_utf8_bom(self, tmp_path: Path) -> None:
+        # Windows editors prepend a BOM to otherwise valid UTF-8.  The file is
+        # perfectly recoverable, so it must be read, not skipped as malformed.
+        xp_dir = tmp_path / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+        (xp_dir / "bom.json").write_bytes(
+            b"\xef\xbb\xbf" + json.dumps({"total": 30, "actions": {"翻译": 5}}, ensure_ascii=False).encode("utf-8")
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _xp_leaderboard()
+        assert [r["username"] for r in result] == ["bom"]
+        assert result[0]["total_xp"] == 30
 
 
 class TestActivityFeed:
@@ -193,6 +306,101 @@ class TestActivityFeed:
             result = _activity_feed()
         assert len(result) == 1
         assert result[0]["timestamp"] == "2025-01-01T10:00:00"
+
+    def test_skips_misencoded_file(self, tmp_path: Path) -> None:
+        # A GBK save raises UnicodeDecodeError from the file *iterator*, so the
+        # per-line json.loads guard never sees it — one bad file used to take
+        # every other contributor's activity down with it.
+        tr_dir = tmp_path / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        (tr_dir / "alice.jsonl").write_text(
+            json.dumps({"timestamp": "2025-01-01T10:00:00", "score": 0.8}) + "\n"
+        )
+        _write_gbk(tr_dir / "bob.jsonl", {"timestamp": "2025-01-01T11:00:00", "zh": "术语"})
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _activity_feed()
+        assert len(result) == 1
+        assert result[0]["username"] == "alice"
+        assert result[0]["timestamp"] == "2025-01-01T10:00:00"
+
+    def test_keeps_records_read_before_decode_error(self, tmp_path: Path) -> None:
+        # Padding pushes the valid records past the text-decoding chunk size so
+        # they are yielded before the bad bytes are reached; they must survive.
+        tr_dir = tmp_path / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        good = b"".join(
+            (
+                json.dumps({
+                    "timestamp": f"2025-01-01T{i:02d}:00:00",
+                    "score": 0.5,
+                    "pad": "x" * 2000,
+                })
+                + "\n"
+            ).encode("utf-8")
+            for i in range(20)
+        )
+        (tr_dir / "alice.jsonl").write_bytes(
+            good
+            + json.dumps(
+                {"timestamp": "2025-02-01T00:00:00", "zh": "术语"}, ensure_ascii=False
+            ).encode("gbk")
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _activity_feed()
+        # Everything decoded before the bad bytes is kept; only the final line
+        # may be lost with the chunk that failed to decode.
+        assert 19 <= len(result) <= 20
+        assert all(r["username"] == "alice" for r in result)
+        assert all(r["timestamp"].startswith("2025-01-01T") for r in result)
+        assert result == sorted(result, key=lambda r: r["timestamp"], reverse=True)
+
+    def test_skips_unopenable_file(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        tr_dir = tmp_path / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        (tr_dir / "alice.jsonl").write_text(
+            json.dumps({"timestamp": "2025-01-01T10:00:00", "score": 0.8}) + "\n"
+        )
+        (tr_dir / "locked.jsonl").write_text(
+            json.dumps({"timestamp": "2025-01-01T11:00:00", "score": 0.9}) + "\n"
+        )
+        _break_open_for(monkeypatch, "locked.jsonl")
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _activity_feed()
+        assert len(result) == 1
+        assert result[0]["username"] == "alice"
+
+    def test_tolerates_non_string_timestamp(self, tmp_path: Path) -> None:
+        # A record with a null or numeric timestamp is a valid JSON object, so it
+        # survives every per-line guard and reaches the sort, where comparing it
+        # against a str used to raise TypeError and abort the whole export.
+        tr_dir = tmp_path / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        (tr_dir / "alice.jsonl").write_text(
+            json.dumps({"timestamp": "2025-01-01T10:00:00", "score": 0.8}) + "\n"
+        )
+        (tr_dir / "bob.jsonl").write_text(
+            json.dumps({"timestamp": None, "score": 0.1}) + "\n"
+            + json.dumps({"timestamp": 1735725600, "score": 0.2}) + "\n"
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _activity_feed()
+        # Nothing is dropped; the unusable timestamps sort last, as a missing one does.
+        assert len(result) == 3
+        assert result[0]["username"] == "alice"
+
+    def test_reads_file_with_utf8_bom(self, tmp_path: Path) -> None:
+        tr_dir = tmp_path / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        (tr_dir / "bom.jsonl").write_bytes(
+            b"\xef\xbb\xbf"
+            + (json.dumps({"timestamp": "2025-01-01T10:00:00", "zh": "术语"}, ensure_ascii=False) + "\n").encode(
+                "utf-8"
+            )
+        )
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            result = _activity_feed()
+        assert [r["username"] for r in result] == ["bom"]
+        assert result[0]["zh"] == "术语"
 
 
 class TestTermSamples:
@@ -286,3 +494,32 @@ class TestExportIntegration:
         activity = json.loads((export_dir / "activity.json").read_text())
         assert len(activity) == 1
         assert activity[0]["timestamp"] == "2025-01-01T10:00:00"
+
+    def test_succeeds_with_misencoded_results(self, tmp_path: Path, sample_terms_file: Path) -> None:
+        # `qebench export` runs in the Deploy Docs workflow, so one contributor
+        # file saved as GBK must not fail the dashboard build for everyone.
+        repo_root = tmp_path / "repo"
+        tr_dir = repo_root / "results" / "translations"
+        tr_dir.mkdir(parents=True)
+        xp_dir = repo_root / "results" / "xp"
+        xp_dir.mkdir(parents=True)
+
+        (tr_dir / "alice.jsonl").write_text(
+            json.dumps({"timestamp": "2025-01-01T10:00:00", "score": 0.8}) + "\n"
+        )
+        _write_gbk(tr_dir / "bob.jsonl", {"timestamp": "2025-01-01T11:00:00", "zh": "术语"})
+        (xp_dir / "alice.json").write_text(json.dumps({"total": 30, "actions": {}}))
+        _write_gbk(xp_dir / "bob.json", {"total": 99, "actions": {"翻译": 5}})
+
+        export_dir = tmp_path / "export"
+        with (
+            patch("qebench.commands.export.EXPORT_DIR", export_dir),
+            patch("qebench.commands.export._REPO_ROOT", repo_root),
+            patch("qebench.utils.dataset.DATA_DIR", sample_terms_file),
+        ):
+            export()  # must not raise
+
+        activity = json.loads((export_dir / "activity.json").read_text())
+        assert [r["username"] for r in activity] == ["alice"]
+        leaderboard = json.loads((export_dir / "leaderboard.json").read_text())
+        assert [r["username"] for r in leaderboard] == ["alice"]

@@ -47,6 +47,11 @@ def _load_model_outputs() -> dict[str, dict[str, str]]:
     ``claude-sonnet-4-6:academic``) when a ``prompt_template`` field is
     present, or plain ``model`` as a fallback for older records.
 
+    A malformed line — or a whole unreadable file — is reported and skipped
+    rather than aborting the session.  These files are committed and
+    hand-edited, so one saved in the wrong encoding must not cost every
+    other model its outputs.
+
     Returns:
         {label: {entry_id: translated_text, ...}, ...}
     """
@@ -54,21 +59,53 @@ def _load_model_outputs() -> dict[str, dict[str, str]]:
     if not MODEL_OUTPUTS_DIR.exists():
         return outputs
 
-    for path in MODEL_OUTPUTS_DIR.glob("*.jsonl"):
-        with open(path, encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                record = json.loads(line)
-                model = record.get("model", "unknown")
-                prompt = record.get("prompt_template", "")
-                # Key by model:prompt so different prompts are distinct
-                label = f"{model}:{prompt}" if prompt else model
-                entry_id = record.get("entry_id", "")
-                translated = record.get("translated_text", "")
-                if entry_id and translated:
-                    outputs.setdefault(label, {})[entry_id] = translated
+    for path in sorted(MODEL_OUTPUTS_DIR.glob("*.jsonl")):
+        lineno = 0
+        try:
+            with open(path, encoding="utf-8-sig") as f:
+                for lineno, line in enumerate(f, 1):
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        record = json.loads(line)
+                    except json.JSONDecodeError as e:
+                        console.print(
+                            f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
+                        )
+                        continue
+                    if not isinstance(record, dict):
+                        # A bare list or string would blow up on .get
+                        console.print(
+                            f"[yellow]warning:[/] skipping non-object record on line "
+                            f"{lineno} in {path.name}"
+                        )
+                        continue
+                    model = record.get("model", "unknown")
+                    prompt = record.get("prompt_template", "")
+                    # Key by model:prompt so different prompts are distinct
+                    label = f"{model}:{prompt}" if prompt else model
+                    entry_id = record.get("entry_id", "")
+                    translated = record.get("translated_text", "")
+                    if not isinstance(entry_id, str) or not isinstance(translated, str):
+                        # The return type is dict[str, dict[str, str]] and callers
+                        # do string work on both (_build_matchups calls .strip()),
+                        # so a non-string here would only crash further downstream.
+                        console.print(
+                            f"[yellow]warning:[/] skipping line {lineno} in {path.name}: "
+                            f"entry_id and translated_text must be strings"
+                        )
+                        continue
+                    if entry_id and translated:
+                        outputs.setdefault(label, {})[entry_id] = translated
+        except (OSError, UnicodeDecodeError) as e:
+            # Raised by open() and, for a decode error, by the iterator —
+            # so it must be caught around the loop, not around json.loads.
+            console.print(
+                f"[yellow]warning:[/] {path.name} unreadable after {lineno} line(s), "
+                f"skipping the rest: {e}"
+            )
+            continue
 
     return outputs
 

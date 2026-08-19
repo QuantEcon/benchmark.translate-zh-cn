@@ -31,21 +31,56 @@ def _domain_summary(terms: list, sentences: list, paragraphs: list) -> dict[str,
 
 
 def _load_leaderboard() -> list[dict]:
-    """Load XP data for all users, sorted by total XP descending."""
+    """Load XP data for all users, sorted by total XP descending.
+
+    Every ``results/xp/*.json`` file is hand-editable, so one that is
+    malformed, unreadable, or saved in the wrong encoding is reported and
+    skipped rather than costing every other contributor their place on the
+    leaderboard.  ``UnicodeDecodeError`` has to be named explicitly: it
+    subclasses ``ValueError``, not ``OSError``, so a file saved as GBK
+    escapes an ``(JSONDecodeError, OSError)`` guard entirely.
+    """
     if not XP_DIR.exists():
         return []
     entries = []
     for path in sorted(XP_DIR.glob("*.json")):
         username = path.stem
         try:
-            with open(path, encoding="utf-8") as f:
+            with open(path, encoding="utf-8-sig") as f:
                 data = json.load(f)
-        except (json.JSONDecodeError, OSError):
+        except (json.JSONDecodeError, OSError, UnicodeDecodeError) as e:
+            console.print(
+                f"[yellow]warning:[/] skipping {path.name}, {username} is "
+                f"absent from the leaderboard: {e}"
+            )
             continue
+        if not isinstance(data, dict):
+            console.print(
+                f"[yellow]warning:[/] skipping {path.name}, expected an object "
+                f"but found {type(data).__name__}"
+            )
+            continue
+        total = data.get("total", 0)
+        if isinstance(total, bool) or not isinstance(total, (int, float)):
+            # A non-numeric total is unsortable and unrenderable; keeping the
+            # entry would abort the whole command at the sort below.
+            console.print(
+                f"[yellow]warning:[/] skipping {path.name}, expected a numeric "
+                f'"total" but found {type(total).__name__}'
+            )
+            continue
+        actions = data.get("actions", {})
+        if not isinstance(actions, dict):
+            # The breakdown is cosmetic — keep the user's rank, drop the detail.
+            console.print(
+                f"[yellow]warning:[/] {path.name} has a non-object "
+                f'"actions"; showing an empty breakdown for {username}'
+            )
+            actions = {}
         entries.append({
             "username": username,
-            "total": data.get("total", 0),
-            "actions": data.get("actions", {}),
+            "total": total,
+            "actions": actions,
         })
     entries.sort(key=lambda e: -e["total"])
     return entries

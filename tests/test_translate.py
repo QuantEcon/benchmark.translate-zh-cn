@@ -85,6 +85,18 @@ class TestAnnotatorCoverage:
         )
         assert _annotator_coverage() == {"term-001": {"alice"}, "term-002": {"alice"}}
 
+    def test_bom_does_not_cost_the_file_its_first_record(self, results_dir):
+        """Same files as export.py's activity feed, so the same BOM handling (#33)."""
+        (results_dir / "alice.jsonl").write_text(
+            "﻿"
+            + "\n".join(
+                json.dumps({"entry_id": eid}, ensure_ascii=False)
+                for eid in ("term-001", "term-002")
+            ),
+            encoding="utf-8",
+        )
+        assert _annotator_coverage() == {"term-001": {"alice"}, "term-002": {"alice"}}
+
     def test_undecodable_file_does_not_lose_other_annotators(self, results_dir):
         """Contributors hand-edit these files; one saved as GBK must not abort the session.
 
