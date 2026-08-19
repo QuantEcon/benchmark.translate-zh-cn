@@ -308,15 +308,53 @@ Export dataset statistics and results to JSON files for the dashboard website.
 uv run qebench export
 ```
 
-Writes 6 JSON files to `docs/_static/dashboard/data/`:
+Writes 7 JSON files to `docs/_static/dashboard/data/`:
 - `coverage.json` — terms/sentences/paragraphs vs. targets
 - `domains.json` — per-domain entry counts
 - `difficulty.json` — basic/intermediate/advanced distribution
 - `leaderboard.json` — XP rankings across users
 - `activity.json` — recent translation attempts
 - `samples.json` — sample terms for the browse section
+- `ratings.json` — model Elo ratings and mean judge scores
 
 This is run automatically by CI when changes are pushed.
+
+### Where model ratings come from
+
+`ratings.json` is **recomputed from the committed judgment logs** in
+`results/judgments/*.jsonl` every time export runs — those logs are the source
+of truth, not `results/elo.json`. That local file is gitignored, so before this
+existed a judge's ratings stayed on their own machine and never reached the
+dashboard. Now anyone who commits judgments sees them counted.
+
+Ratings are reported at two granularities, because judgment records name
+their competitors two different ways. Records from v0.3 onwards use
+`model:prompt`, but v0.2-era records name a bare `model`, and there is no way
+to recover which prompt those used. Rather than guess:
+
+| Field | Competitors | Records used |
+|---|---|---|
+| `by_model_prompt` | `claude-sonnet-4-6:academic` | only records where both sides name a prompt |
+| `by_model` | `claude-sonnet-4-6` | all records, with prompts stripped |
+
+Quote `by_model` for model-selection guidance and `by_model_prompt` when
+comparing prompt templates. The `judgments` field reports how many records
+were behind each number — worth reading before treating a ranking as settled.
+
+Judgments against `human-reference` are excluded from ratings, matching
+`qebench judge`: the dataset's own translation is not a competitor. A model
+judged *only* against the reference therefore appears in `scores_by_model`
+with no entry in either Elo table — `claude-sonnet-4-20250514` is in exactly
+that position today, holding the best mean score on the strength of five
+judgments that rated no competitor. Read a score without a rating beside it
+as un-ranked, not as a winner.
+
+Accuracy and fluency are normalised to the 0–5 scale, since judgments before
+v0.4.0 used 1–10. Which scale a record used is read from its own scores
+rather than its `cli_version`, because that field stamps the last *released*
+version and not the code that was running — this repo's log already contains
+v0.4.0-only consensus records stamped `0.3.1`, and trusting the stamp there
+would rescale a top score of 5 down to 2.22.
 
 ---
 

@@ -1,0 +1,111 @@
+{
+  "by_model": [
+    {
+      "label": "claude-haiku-4-5-20251001",
+      "rating": 1529.2,
+      "matches": 7,
+      "wins": 2,
+      "losses": 0,
+      "ties": 5
+    },
+    {
+      "label": "claude-sonnet-4-6",
+      "rating": 1470.8,
+      "matches": 7,
+      "wins": 0,
+      "losses": 2,
+      "ties": 5
+    }
+  ],
+  "by_model_prompt": [
+    {
+      "label": "claude-haiku-4-5-20251001:academic",
+      "rating": 1516.0,
+      "matches": 5,
+      "wins": 1,
+      "losses": 0,
+      "ties": 4
+    },
+    {
+      "label": "claude-haiku-4-5-20251001:default",
+      "rating": 1515.3,
+      "matches": 4,
+      "wins": 1,
+      "losses": 0,
+      "ties": 3
+    },
+    {
+      "label": "claude-sonnet-4-6:academic",
+      "rating": 1501.4,
+      "matches": 6,
+      "wins": 1,
+      "losses": 1,
+      "ties": 4
+    },
+    {
+      "label": "claude-sonnet-4-6:default",
+      "rating": 1499.3,
+      "matches": 3,
+      "wins": 0,
+      "losses": 0,
+      "ties": 3
+    },
+    {
+      "label": "claude-sonnet-4-6:action-basic",
+      "rating": 1468.0,
+      "matches": 2,
+      "wins": 0,
+      "losses": 2,
+      "ties": 0
+    }
+  ],
+  "scores_by_model": {
+    "claude-sonnet-4-20250514": {
+      "accuracy": 5.0,
+      "fluency": 5.0,
+      "rated": 5
+    },
+    "claude-sonnet-4-6": {
+      "accuracy": 3.71,
+      "fluency": 3.71,
+      "rated": 7
+    },
+    "claude-haiku-4-5-20251001": {
+      "accuracy": 5.0,
+      "fluency": 5.0,
+      "rated": 5
+    }
+  },
+  "scores_by_model_prompt": {
+    "claude-haiku-4-5-20251001:default": {
+      "accuracy": 5.0,
+      "fluency": 5.0,
+      "rated": 3
+    },
+    "claude-haiku-4-5-20251001:academic": {
+      "accuracy": 5.0,
+      "fluency": 5.0,
+      "rated": 3
+    },
+    "claude-sonnet-4-6:default": {
+      "accuracy": 5.0,
+      "fluency": 5.0,
+      "rated": 2
+    },
+    "claude-sonnet-4-6:academic": {
+      "accuracy": 3.33,
+      "fluency": 3.33,
+      "rated": 3
+    },
+    "claude-sonnet-4-6:action-basic": {
+      "accuracy": 3.67,
+      "fluency": 3.67,
+      "rated": 3
+    }
+  },
+  "judgments": {
+    "total": 21,
+    "elo_eligible_by_model": 7,
+    "elo_eligible_by_model_prompt": 10
+  }
+}

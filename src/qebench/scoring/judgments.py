@@ -1,6 +1,9 @@
 """Judgment results persistence — Elo ratings and judgment records.
 
-Stores per-user judgment JSONL files and a shared elo.json.
+Stores per-user judgment JSONL files and a local elo.json.  The JSONL files
+are committed and authoritative; elo.json is a gitignored cache of the
+ratings they imply, and :mod:`qebench.scoring.ratings` can rebuild it from
+them whenever it goes missing or bad.
 """
 
 from __future__ import annotations
@@ -9,6 +12,7 @@ import json
 from pathlib import Path
 
 from qebench.scoring.elo import DEFAULT_RATING, update_elo
+from qebench.scoring.ratings import load_judgment_records, recompute_elo
 from qebench.utils.display import console
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -17,47 +21,57 @@ ELO_PATH = _REPO_ROOT / "results" / "elo.json"
 
 
 def load_elo_ratings() -> dict[str, float]:
-    """Load model Elo ratings from elo.json.
+    """Load model Elo ratings from elo.json, rebuilding it when unusable.
 
-    An unreadable or malformed file is reported and treated as absent, so
-    ratings fall back to :data:`DEFAULT_RATING` rather than aborting a
-    judging session.  ``UnicodeDecodeError`` is raised inside ``json.load``
-    and subclasses ``ValueError``, so it is caught alongside ``OSError``
-    and ``JSONDecodeError`` rather than by either of them.  A payload that
+    elo.json is a gitignored local cache; the judgment logs under
+    ``results/judgments/`` are committed and are the source of truth.  So a
+    missing, unreadable or malformed cache costs nothing but time: the
+    ratings are rebuilt from the logs by :func:`_rebuild_from_judgments`
+    rather than everyone restarting from :data:`DEFAULT_RATING`.
+    ``UnicodeDecodeError`` is raised inside ``json.load`` and subclasses
+    ``ValueError``, so it is caught alongside ``OSError`` and
+    ``JSONDecodeError`` rather than by either of them.  A payload that
     parses but is not an object is dropped too — ``update_model_elos``
     calls ``.get`` on the result.
 
-    Falling back is not free: nothing recomputes Elo from
-    ``results/judgments/*.jsonl`` yet, so this file is the only record of
-    the ratings and the next :func:`save_elo_ratings` would overwrite it.
-    A file whose *contents* are bad is therefore moved aside first, so its
-    bytes survive for repair — a misencoded file is one re-encode away
-    from being readable again.
+    A file whose *contents* are bad is still moved aside before the rebuild.
+    The rebuild makes its ratings recoverable, but the file itself is not:
+    it may hold a hand-edit or a label the logs no longer mention, and a
+    misencoded file is one re-encode away from being readable again.
+    Quarantining costs nothing and stops the next :func:`save_elo_ratings`
+    silently overwriting it.
 
     A file we merely failed to *open* is left exactly where it is.  It may
     be perfectly good and only briefly locked, and renaming a healthy file
-    out from under someone is worse than the fallback; if the condition
+    out from under someone is worse than the rebuild; if the condition
     persists, the save will fail to open it for writing too rather than
     overwrite it.
+
+    Cost: a rebuild reads every judgment log, and ``update_model_elos``
+    calls this once per judgment.  Each call rebuilds at most once, and the
+    healthy path — a readable cache — never touches the logs at all.  The
+    result is deliberately not cached between calls: a judging session
+    appends to the logs as it goes, so a process-wide cache would go stale
+    within the session.
 
     Returns:
         Dict mapping model name to Elo rating.
     """
     if not ELO_PATH.exists():
-        return {}
+        return _rebuild_from_judgments()
     try:
         with open(ELO_PATH, encoding="utf-8") as f:
             data = json.load(f)
     except OSError as e:
         console.print(
             f"[yellow]warning:[/] cannot open {ELO_PATH.name} ({e}); "
-            f"starting from default ratings, leaving the file untouched"
+            f"rebuilding ratings from the judgment logs, leaving the file untouched"
         )
-        return {}
+        return _rebuild_from_judgments()
     except (UnicodeDecodeError, json.JSONDecodeError) as e:
-        return _fall_back_preserving_cache(str(e))
+        return _quarantine_and_rebuild(str(e))
     if not isinstance(data, dict):
-        return _fall_back_preserving_cache("expected a JSON object of ratings")
+        return _quarantine_and_rebuild("expected a JSON object of ratings")
     # The container being right does not make the values usable: a
     # hand-edited {"claude": "1700"} parses fine, then update_elo does
     # arithmetic on it and raises TypeError.  bool is excluded because it
@@ -68,33 +82,64 @@ def load_elo_ratings() -> dict[str, float]:
         if isinstance(rating, bool) or not isinstance(rating, (int, float))
     ]
     if bad:
-        return _fall_back_preserving_cache(
+        return _quarantine_and_rebuild(
             f"non-numeric rating for {', '.join(sorted(bad))}"
         )
     return data
 
 
-def _fall_back_preserving_cache(reason: str) -> dict[str, float]:
-    """Quarantine an unusable elo.json and start from default ratings."""
+def _rebuild_from_judgments() -> dict[str, float]:
+    """Replay the committed judgment logs into ``{label: rating}``.
+
+    Rates labels exactly as recorded (``by_prompt=None``), because this
+    cache is keyed on whatever label ``qebench judge`` wrote.  Ranking
+    ``model:prompt`` here instead would drop every judgment carrying a bare
+    label — and judge.py still emits one for any model output with no
+    ``prompt_template`` — so on such a dataset the rebuild would return
+    ``{}`` and everyone would silently restart at :data:`DEFAULT_RATING`,
+    which is the failure this fallback exists to prevent.
+
+    One consequence a caller has to know about, because a rebuilt cache is
+    *not* the cache the incremental path would have produced:
+
+    * Ratings are rounded once, at the end, to the one decimal place
+      :func:`update_model_elos` stores.  That path instead rounds after
+      *every* judgment and feeds the rounded value into the next expected
+      score, so the two replays drift: on the logs committed today they
+      differ by 0.1 for two of the five labels, and the gap grows with the
+      number of judgments.
+
+    Reads every ``*.jsonl`` under :data:`JUDGMENTS_DIR` — the whole cost of
+    the fallback lives here, so call it once per :func:`load_elo_ratings`.
+    An absent directory yields no records and therefore no ratings, which
+    is the correct answer for a checkout nobody has judged in yet.
+    """
+    records = load_judgment_records(JUDGMENTS_DIR)
+    return {r.label: round(r.rating, 1) for r in recompute_elo(records, by_prompt=None)}
+
+
+def _quarantine_and_rebuild(reason: str) -> dict[str, float]:
+    """Move an unusable elo.json aside, then rebuild the ratings from the logs."""
     quarantined = _quarantine_elo_file()
     detail = (
         f"kept the original at {quarantined.name}"
         if quarantined
-        else "COULD NOT preserve the original"
+        else "could not move the original aside"
     )
     console.print(
         f"[yellow]warning:[/] cannot use {ELO_PATH.name} ({reason}); "
-        f"starting from default ratings and {detail}"
+        f"rebuilding ratings from the judgment logs and {detail}"
     )
-    return {}
+    return _rebuild_from_judgments()
 
 
 def _quarantine_elo_file() -> Path | None:
     """Move an unreadable elo.json aside so the next save cannot clobber it.
 
-    Returns the path it was moved to, or None if it could not be moved —
-    in which case the ratings really are about to be lost and the caller
-    says so.
+    Returns the path it was moved to, or None if it could not be moved.
+    The ratings survive either way — they are rebuilt from the judgment
+    logs — but the file's own bytes only survive the move, so the caller
+    says which happened.
     """
     for suffix in ("corrupt", *(f"corrupt.{n}" for n in range(1, 100))):
         target = ELO_PATH.with_suffix(f".json.{suffix}")

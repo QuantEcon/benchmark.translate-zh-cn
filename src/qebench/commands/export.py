@@ -8,6 +8,12 @@ from pathlib import Path
 from rich.panel import Panel
 
 from qebench.models import Term
+from qebench.scoring.ratings import (
+    elo_eligible,
+    load_judgment_records,
+    recompute_elo,
+    score_summary,
+)
 from qebench.utils.dataset import get_targets, load_all
 from qebench.utils.display import console
 
@@ -156,6 +162,37 @@ def _timestamp_key(entry: dict) -> str:
     return ts if isinstance(ts, str) else ""
 
 
+def _ratings_export() -> dict:
+    """Rebuild the model ratings from the committed judgment logs.
+
+    ``results/elo.json`` is gitignored, so the cached ratings never left the
+    machine that happened to be judging.  ``results/judgments/*.jsonl`` is
+    committed, so recomputing here means CI derives the numbers from data the
+    repository actually carries.
+
+    Both granularities are exported because a label is either a bare model or
+    ``model:prompt`` depending on when it was recorded, and neither ranking
+    subsumes the other — see :mod:`qebench.scoring.ratings`.  The judgment
+    counts travel with them so a reader can tell a ranking from noise.
+    """
+    records = load_judgment_records(_REPO_ROOT / "results" / "judgments")
+    return {
+        "by_model": [r.as_dict() for r in recompute_elo(records, by_prompt=False)],
+        "by_model_prompt": [r.as_dict() for r in recompute_elo(records, by_prompt=True)],
+        "scores_by_model": score_summary(records, by_prompt=False),
+        "scores_by_model_prompt": score_summary(records, by_prompt=True),
+        "judgments": {
+            "total": len(records),
+            "elo_eligible_by_model": sum(
+                1 for r in records if elo_eligible(r, by_prompt=False)
+            ),
+            "elo_eligible_by_model_prompt": sum(
+                1 for r in records if elo_eligible(r, by_prompt=True)
+            ),
+        },
+    }
+
+
 def _term_samples(terms: list[Term], per_domain: int = 3) -> list[dict]:
     """Pick a few sample terms per domain for the browse section."""
     by_domain: dict[str, list[dict]] = {}
@@ -204,6 +241,9 @@ def export() -> None:
     # 6. Sample terms for browse
     samples = _term_samples(terms)
 
+    # 7. Ratings, recomputed from the committed judgment logs
+    ratings = _ratings_export()
+
     # Write all export files
     exports = {
         "coverage.json": coverage,
@@ -212,6 +252,7 @@ def export() -> None:
         "leaderboard.json": leaderboard,
         "activity.json": activity,
         "samples.json": samples,
+        "ratings.json": ratings,
     }
 
     for filename, data in exports.items():
@@ -241,5 +282,14 @@ def _file_summary(data: object) -> str:
     if isinstance(data, dict) and "total" in data:
         return f"{data['total']} total entries"
     if isinstance(data, dict):
-        return f"{len(data)} keys"
+        # A dict whose values are themselves collections — ratings.json — says
+        # nothing useful as a key count, so name each section and its size.  A
+        # section carrying its own "total" reports that instead of its shape.
+        sections = []
+        for key, value in data.items():
+            if isinstance(value, dict) and "total" in value:
+                sections.append(f"{key} {value['total']}")
+            elif isinstance(value, (list, dict)):
+                sections.append(f"{key} {len(value)}")
+        return ", ".join(sections) if sections else f"{len(data)} keys"
     return "exported"

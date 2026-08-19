@@ -1,17 +1,31 @@
 [
   {
-    "username": "HumphreyYang",
-    "total_xp": 60,
+    "username": "0x3f-Li",
+    "total_xp": 1030,
     "actions": {
-      "translate": 60
+      "translate": 1030
+    }
+  },
+  {
+    "username": "Cindy6308",
+    "total_xp": 230,
+    "actions": {
+      "translate": 230
     }
   },
   {
     "username": "mmcky",
-    "total_xp": 55,
+    "total_xp": 155,
     "actions": {
-      "translate": 30,
-      "judge": 25
+      "translate": 50,
+      "judge": 105
+    }
+  },
+  {
+    "username": "HumphreyYang",
+    "total_xp": 60,
+    "actions": {
+      "translate": 60
     }
   }
 ]

@@ -13,6 +13,7 @@ from qebench.commands.export import (
     _activity_feed,
     _difficulty_stats,
     _domain_stats,
+    _file_summary,
     _term_samples,
     _xp_leaderboard,
     export,
@@ -45,6 +46,45 @@ def _write_gbk(path: Path, payload: object) -> None:
     on a Chinese Windows box saves a results file that UTF-8 cannot decode."""
     text = json.dumps(payload, ensure_ascii=False)
     path.write_bytes(text.encode("gbk"))
+
+
+def _judgment(**fields: object) -> str:
+    """One judgment record as a JSONL line, in the shape ``qebench judge`` writes.
+
+    Defaults describe a current pairwise judgment where both sides carry a
+    prompt and scores are on the 0-5 scale; pass ``model_a``, ``winner``,
+    ``cli_version`` and friends to move it to another era or outcome.
+    """
+    record: dict = {
+        "entry_id": "term-001",
+        "model_a": "claude-sonnet-4-6:academic",
+        "model_b": "claude-haiku-4-5-20251001:academic",
+        "winner": "a",
+        "score_a": {"accuracy": 5, "fluency": 4},
+        "score_b": {"accuracy": 3, "fluency": 3},
+        "translation_a": "贝尔曼方程",
+        "translation_b": "贝尔曼等式",
+        "timestamp": "2026-04-07T00:00:00+00:00",
+        "cli_version": "0.5.0",
+    }
+    record.update(fields)
+    return json.dumps(record, ensure_ascii=False)
+
+
+def _write_judgments(repo_root: Path, username: str, lines: list[str]) -> None:
+    judgments_dir = repo_root / "results" / "judgments"
+    judgments_dir.mkdir(parents=True, exist_ok=True)
+    (judgments_dir / f"{username}.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _run_export(repo_root: Path, export_dir: Path, data_dir: Path) -> None:
+    """Run the full export against a throwaway repo root."""
+    with (
+        patch("qebench.commands.export.EXPORT_DIR", export_dir),
+        patch("qebench.commands.export._REPO_ROOT", repo_root),
+        patch("qebench.utils.dataset.DATA_DIR", data_dir),
+    ):
+        export()
 
 
 def _break_open_for(monkeypatch: pytest.MonkeyPatch, filename: str) -> None:
@@ -434,6 +474,284 @@ class TestTermSamples:
         }
 
 
+class TestFileSummary:
+    """The panel line each export prints."""
+
+    def test_list_counts_entries(self) -> None:
+        assert _file_summary([1, 2, 3]) == "3 entries"
+
+    def test_dict_with_total_reports_it(self) -> None:
+        assert _file_summary({"terms": {}, "total": 411}) == "411 total entries"
+
+    def test_flat_dict_falls_back_to_key_count(self) -> None:
+        # difficulty.json is a dict of plain counts; there is nothing better to say.
+        assert _file_summary({"basic": 1, "intermediate": 2, "advanced": 0}) == "3 keys"
+
+    def test_dict_of_collections_names_each_section(self) -> None:
+        # ratings.json carries five sections; "5 keys" tells a reader nothing
+        # about how much evidence is behind the ratings.
+        summary = _file_summary({
+            "by_model": [{"label": "a"}, {"label": "b"}],
+            "scores_by_model": {"a": {}, "b": {}, "c": {}},
+            "judgments": {"total": 21, "elo_eligible_by_model": 12},
+        })
+        assert summary == "by_model 2, scores_by_model 3, judgments 21"
+
+    def test_non_collection_says_exported(self) -> None:
+        assert _file_summary("something") == "exported"
+
+
+class TestRatingsExport:
+    """ratings.json — the recomputed ratings the dashboard reads.
+
+    results/elo.json is gitignored, so the only ratings that can reach the
+    site are the ones CI rebuilds from the committed judgment logs.
+    """
+
+    def test_writes_all_sections(self, tmp_path: Path, sample_terms_file: Path) -> None:
+        repo_root = tmp_path / "repo"
+        _write_judgments(repo_root, "mmcky", [_judgment()])
+        export_dir = tmp_path / "export"
+        _run_export(repo_root, export_dir, sample_terms_file)
+
+        ratings = json.loads((export_dir / "ratings.json").read_text(encoding="utf-8"))
+        assert set(ratings) == {
+            "by_model",
+            "by_model_prompt",
+            "scores_by_model",
+            "scores_by_model_prompt",
+            "judgments",
+        }
+
+    def test_recomputes_ratings_from_records(self, tmp_path: Path, sample_terms_file: Path) -> None:
+        """Three real-shaped records, one from each era the logs contain."""
+        repo_root = tmp_path / "repo"
+        _write_judgments(
+            repo_root,
+            "mmcky",
+            [
+                # v0.3-era, both sides prompted: rated at both granularities.
+                _judgment(),
+                # Against the human reference: scored, never rated.
+                _judgment(
+                    entry_id="term-002",
+                    model_b="human-reference",
+                    winner="b",
+                    score_a={"accuracy": 4, "fluency": 4},
+                    score_b={"accuracy": 5, "fluency": 5},
+                    timestamp="2026-04-07T00:01:00+00:00",
+                ),
+                # v0.2-era bare labels on the 1-10 scale: only the by-model
+                # ranking can use them, and the scores need rescaling.
+                _judgment(
+                    entry_id="term-003",
+                    model_a="claude-sonnet-4-6",
+                    model_b="claude-haiku-4-5-20251001",
+                    winner="tie",
+                    score_a={"accuracy": 10, "fluency": 10},
+                    score_b={"accuracy": 10, "fluency": 10},
+                    timestamp="2026-04-02T00:00:00+00:00",
+                    cli_version="0.2.1",
+                ),
+            ],
+        )
+        export_dir = tmp_path / "export"
+        _run_export(repo_root, export_dir, sample_terms_file)
+
+        ratings = json.loads((export_dir / "ratings.json").read_text(encoding="utf-8"))
+
+        # Prompted ranking sees the one prompted head-to-head: a clean win
+        # from 1500 apiece moves both by half the K-factor.
+        assert ratings["by_model_prompt"] == [
+            {
+                "label": "claude-sonnet-4-6:academic",
+                "rating": 1516.0,
+                "matches": 1,
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+            },
+            {
+                "label": "claude-haiku-4-5-20251001:academic",
+                "rating": 1484.0,
+                "matches": 1,
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+            },
+        ]
+        # Stripping prompts folds the v0.2 tie in: same ratings, one more match.
+        assert ratings["by_model"] == [
+            {
+                "label": "claude-sonnet-4-6",
+                "rating": 1516.0,
+                "matches": 2,
+                "wins": 1,
+                "losses": 0,
+                "ties": 1,
+            },
+            {
+                "label": "claude-haiku-4-5-20251001",
+                "rating": 1484.0,
+                "matches": 2,
+                "wins": 0,
+                "losses": 1,
+                "ties": 1,
+            },
+        ]
+
+        # Scores include the human-reference record and the rescaled v0.2 one:
+        # a 10 on the old scale is a 5 on the new.
+        assert ratings["scores_by_model"] == {
+            "claude-sonnet-4-6": {"accuracy": 4.67, "fluency": 4.33, "rated": 3},
+            "claude-haiku-4-5-20251001": {"accuracy": 4.0, "fluency": 4.0, "rated": 2},
+        }
+        assert ratings["scores_by_model_prompt"] == {
+            "claude-sonnet-4-6:academic": {"accuracy": 4.5, "fluency": 4.0, "rated": 2},
+            "claude-haiku-4-5-20251001:academic": {"accuracy": 3.0, "fluency": 3.0, "rated": 1},
+        }
+
+    def test_judgment_counts_match_the_records_supplied(
+        self, tmp_path: Path, sample_terms_file: Path
+    ) -> None:
+        """The counts are how a reader tells a ranking from noise, so they
+        have to describe the evidence actually loaded."""
+        repo_root = tmp_path / "repo"
+        _write_judgments(
+            repo_root,
+            "mmcky",
+            [
+                _judgment(),
+                _judgment(entry_id="term-002", model_b="human-reference", winner="b"),
+                _judgment(
+                    entry_id="term-003",
+                    model_a="claude-sonnet-4-6",
+                    model_b="claude-haiku-4-5-20251001",
+                    winner="tie",
+                ),
+            ],
+        )
+        _write_judgments(repo_root, "alice", [_judgment(entry_id="term-004", winner="b")])
+        export_dir = tmp_path / "export"
+        _run_export(repo_root, export_dir, sample_terms_file)
+
+        ratings = json.loads((export_dir / "ratings.json").read_text(encoding="utf-8"))
+        assert ratings["judgments"] == {
+            "total": 4,
+            # Everything but the human-reference record.
+            "elo_eligible_by_model": 3,
+            # ...minus the record whose labels carry no prompt.
+            "elo_eligible_by_model_prompt": 2,
+        }
+
+    def test_missing_judgments_dir_yields_empty_ratings(
+        self, tmp_path: Path, sample_terms_file: Path
+    ) -> None:
+        """A checkout with no judgments must still build the dashboard."""
+        repo_root = tmp_path / "repo"
+        repo_root.mkdir()
+        export_dir = tmp_path / "export"
+        _run_export(repo_root, export_dir, sample_terms_file)  # must not raise
+
+        ratings = json.loads((export_dir / "ratings.json").read_text(encoding="utf-8"))
+        assert ratings["by_model"] == []
+        assert ratings["by_model_prompt"] == []
+        assert ratings["scores_by_model"] == {}
+        assert ratings["scores_by_model_prompt"] == {}
+        assert ratings["judgments"]["total"] == 0
+        # The rest of the export is unaffected.
+        assert json.loads((export_dir / "coverage.json").read_text(encoding="utf-8"))["terms"][
+            "current"
+        ] == 2
+
+    def test_empty_judgments_dir_yields_empty_ratings(
+        self, tmp_path: Path, sample_terms_file: Path
+    ) -> None:
+        repo_root = tmp_path / "repo"
+        (repo_root / "results" / "judgments").mkdir(parents=True)
+        export_dir = tmp_path / "export"
+        _run_export(repo_root, export_dir, sample_terms_file)  # must not raise
+
+        ratings = json.loads((export_dir / "ratings.json").read_text(encoding="utf-8"))
+        assert ratings["by_model"] == []
+        assert ratings["by_model_prompt"] == []
+        assert ratings["judgments"] == {
+            "total": 0,
+            "elo_eligible_by_model": 0,
+            "elo_eligible_by_model_prompt": 0,
+        }
+
+    def test_survives_a_corrupt_judgments_log(
+        self, tmp_path: Path, sample_terms_file: Path
+    ) -> None:
+        """Every other reader in the export is proof against a corrupt community
+        file (#28); the judgment log is read by CI too, so it needs the same
+        guarantee — one bad line must cost that line, not the dashboard."""
+        repo_root = tmp_path / "repo"
+        judgments_dir = repo_root / "results" / "judgments"
+        judgments_dir.mkdir(parents=True)
+        (judgments_dir / "mmcky.jsonl").write_text(
+            _judgment() + "\n"
+            "<<<<<<< Updated upstream\n"
+            + json.dumps([1, 2, 3]) + "\n",
+            encoding="utf-8",
+        )
+        # A whole file saved in another encoding must not cost the others either.
+        _write_gbk(
+            judgments_dir / "bob.jsonl",
+            {"model_a": "m1:x", "model_b": "m2:x", "winner": "a", "translation_a": "贝尔曼方程"},
+        )
+
+        export_dir = tmp_path / "export"
+        _run_export(repo_root, export_dir, sample_terms_file)  # must not raise
+
+        ratings = json.loads((export_dir / "ratings.json").read_text(encoding="utf-8"))
+        # Only the one valid record survives — the conflict marker, the non-object
+        # line and the misencoded file are dropped, not counted.
+        assert ratings["judgments"] == {
+            "total": 1,
+            "elo_eligible_by_model": 1,
+            "elo_eligible_by_model_prompt": 1,
+        }
+        assert [r["label"] for r in ratings["by_model_prompt"]] == [
+            "claude-sonnet-4-6:academic",
+            "claude-haiku-4-5-20251001:academic",
+        ]
+
+    def test_cjk_survives_the_write(self, tmp_path: Path, sample_terms_file: Path) -> None:
+        """Records are full of Chinese, and a prompt file may be named in it too.
+
+        Written with ensure_ascii the dashboard would show \\u672c\\u5730...,
+        so assert the bytes on disk, not just the round trip.
+        """
+        repo_root = tmp_path / "repo"
+        _write_judgments(
+            repo_root,
+            "mmcky",
+            [
+                _judgment(
+                    model_a="本地模型:学术",
+                    model_b="claude-haiku-4-5-20251001:学术",
+                    translation_a="贝尔曼方程",
+                )
+            ],
+        )
+        export_dir = tmp_path / "export"
+        _run_export(repo_root, export_dir, sample_terms_file)
+
+        raw = (export_dir / "ratings.json").read_text(encoding="utf-8")
+        assert "本地模型:学术" in raw
+        assert "\\u" not in raw
+
+        ratings = json.loads(raw)
+        assert ratings["by_model_prompt"][0]["label"] == "本地模型:学术"
+        assert [r["label"] for r in ratings["by_model"]] == [
+            "本地模型",
+            "claude-haiku-4-5-20251001",
+        ]
+        assert "本地模型:学术" in ratings["scores_by_model_prompt"]
+
+
 class TestExportIntegration:
     def test_writes_all_json_files(self, tmp_path: Path, sample_terms_file: Path) -> None:
         export_dir = tmp_path / "export"
@@ -450,6 +768,7 @@ class TestExportIntegration:
             "leaderboard.json",
             "activity.json",
             "samples.json",
+            "ratings.json",
         ]
         for name in expected_files:
             path = export_dir / name
