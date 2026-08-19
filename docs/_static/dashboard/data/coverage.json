@@ -4,12 +4,12 @@
     "target": 500
   },
   "sentences": {
-    "current": 0,
+    "current": 80,
     "target": 100
   },
   "paragraphs": {
-    "current": 0,
+    "current": 17,
     "target": 30
   },
-  "total": 314
+  "total": 411
 }

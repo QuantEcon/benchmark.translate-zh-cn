@@ -358,6 +358,12 @@
     <div class="loading">Loading...</div>
   </div>
 
+  <!-- Model Ratings -->
+  <h2 class="section-title">Model Ratings</h2>
+  <div class="leaderboard" id="ratings">
+    <div class="loading">Loading...</div>
+  </div>
+
   <!-- Activity Feed -->
   <h2 class="section-title">Recent Activity</h2>
   <div class="activity" id="activity">
@@ -606,20 +612,75 @@ function esc(str) {
   return d.innerHTML;
 }
 
+function renderRatings(ratings) {
+  const el = document.getElementById('ratings');
+  const byModel = (ratings && ratings.by_model) || [];
+  const counts = (ratings && ratings.judgments) || {};
+
+  if (!byModel.length) {
+    el.innerHTML = `
+      <div class="leaderboard-empty">
+        <div class="emoji">⚖️</div>
+        <p>No model ratings yet!</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+          Run <code style="color: #38bdf8;">qebench judge</code> and
+          <code style="color: #38bdf8;">qebench submit</code> — ratings are
+          recomputed from the committed judgment logs.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  const scores = (ratings && ratings.scores_by_model) || {};
+  const rows = byModel.map((m, i) => {
+    const s = scores[m.label] || {};
+    const mean = (s.accuracy == null && s.fluency == null)
+      ? '—'
+      : `${s.accuracy == null ? '–' : s.accuracy} / ${s.fluency == null ? '–' : s.fluency}`;
+    return `
+      <tr>
+        <td class="rank-${i + 1}">${rankEmoji(i)}</td>
+        <td style="font-weight: 600;">${esc(m.label)}</td>
+        <td><span class="xp-badge">${Math.round(m.rating)}</span></td>
+        <td style="color: #94a3b8; font-size: 0.85rem;">
+          ${m.matches} matches · ${m.wins}W-${m.losses}L-${m.ties}T · accuracy/fluency ${mean}
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  el.innerHTML = `
+    <table>
+      <thead>
+        <tr><th></th><th>Model</th><th>Elo</th><th>Record</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 0.75rem;">
+      Recomputed from ${counts.total || 0} committed judgments;
+      ${counts.elo_eligible_by_model || 0} rated at model level.
+      Scores are means on the 0–5 scale. Treat a ranking from few matches as provisional.
+    </p>
+  `;
+}
+
 async function init() {
-  const [coverage, domains, difficulty, leaderboard, activity, samples] = await Promise.all([
+  const [coverage, domains, difficulty, leaderboard, activity, samples, ratings] = await Promise.all([
     loadJSON('coverage.json'),
     loadJSON('domains.json'),
     loadJSON('difficulty.json'),
     loadJSON('leaderboard.json'),
     loadJSON('activity.json'),
     loadJSON('samples.json'),
+    loadJSON('ratings.json'),
   ]);
 
   renderStats(coverage);
   renderDomainChart(domains);
   renderDifficultyChart(difficulty);
   renderLeaderboard(leaderboard);
+  renderRatings(ratings);
   renderActivity(activity);
   renderSamples(samples);
 }

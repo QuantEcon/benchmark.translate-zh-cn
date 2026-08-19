@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -13,11 +14,65 @@ from qebench.scoring.judgments import (
     save_elo_ratings,
     update_model_elos,
 )
+from qebench.scoring.ratings import load_judgment_records, recompute_elo
+
+
+@pytest.fixture(autouse=True)
+def judgments_dir(tmp_path, monkeypatch) -> Path:
+    """Point JUDGMENTS_DIR at an empty directory for every test in this module.
+
+    ``load_elo_ratings`` rebuilds from the judgment logs whenever elo.json is
+    unusable, so without this a fallback would replay the repository's own
+    committed judgments and the expected ratings would drift with the
+    checkout.  Tests that want logs write into the directory returned here.
+    """
+    directory = tmp_path / "judgments"
+    directory.mkdir()
+    monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", directory)
+    return directory
+
+
+def _judgment(model_a: str, model_b: str, winner: str, timestamp: str) -> dict:
+    """A pairwise judgment record in the shape ``qebench judge`` writes."""
+    return {
+        "entry_id": "term-001",
+        "model_a": model_a,
+        "model_b": model_b,
+        "winner": winner,
+        "score_a": {"accuracy": 4, "fluency": 4},
+        "score_b": {"accuracy": 3, "fluency": 3},
+        "timestamp": timestamp,
+        "cli_version": "0.3.2",
+    }
+
+
+def _write_log(directory: Path, username: str, records: list[dict]) -> Path:
+    directory.mkdir(parents=True, exist_ok=True)
+    path = directory / f"{username}.jsonl"
+    with open(path, "a", encoding="utf-8") as f:
+        for record in records:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    return path
+
+
+def _expected_rebuild(directory: Path) -> dict[str, float]:
+    """What ratings.py makes of these logs — the contract the fallback must meet."""
+    return {
+        r.label: round(r.rating, 1)
+        for r in recompute_elo(load_judgment_records(directory), by_prompt=True)
+    }
 
 
 class TestEloRatings:
-    def test_load_empty(self, tmp_path, monkeypatch) -> None:
+    def test_no_cache_and_no_logs_is_empty(self, tmp_path, monkeypatch) -> None:
+        """Nothing to load and nothing to rebuild from, so nobody has a rating yet."""
         monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", tmp_path / "elo.json")
+        assert load_elo_ratings() == {}
+
+    def test_no_cache_and_absent_log_directory_is_empty(self, tmp_path, monkeypatch) -> None:
+        """A fresh checkout has neither file; the rebuild must not raise on the missing dir."""
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", tmp_path / "elo.json")
+        monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path / "nowhere")
         assert load_elo_ratings() == {}
 
     def test_save_and_load(self, tmp_path, monkeypatch) -> None:
@@ -68,14 +123,182 @@ class TestEloRatings:
         assert new_b == 1500.0
 
 
+class TestRebuildFromJudgments:
+    """The committed logs are the source of truth, so a lost cache is recoverable."""
+
+    def test_missing_cache_rebuilds_from_the_logs(
+        self, tmp_path, monkeypatch, judgments_dir
+    ) -> None:
+        """An absent elo.json must not put everyone back on DEFAULT_RATING."""
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", tmp_path / "elo.json")
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:00:00Z")],
+        )
+        assert load_elo_ratings() == {"claude:academic": 1516.0, "gpt-4o:academic": 1484.0}
+
+    def test_rebuild_matches_recompute_elo(self, tmp_path, monkeypatch, judgments_dir) -> None:
+        """The fallback must agree with ratings.py, not roll its own replay."""
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", tmp_path / "elo.json")
+        _write_log(
+            judgments_dir,
+            "alice",
+            [
+                _judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:00:00Z"),
+                _judgment("claude:default", "gpt-4o:academic", "b", "2026-04-02T12:05:00Z"),
+                _judgment("claude:academic", "claude:default", "tie", "2026-04-02T12:10:00Z"),
+            ],
+        )
+        expected = _expected_rebuild(judgments_dir)
+        assert len(expected) == 3
+        assert load_elo_ratings() == expected
+
+    def test_rebuild_keeps_labels_exactly_as_recorded(self, tmp_path, monkeypatch, judgments_dir) -> None:
+        """The cache is keyed on whatever judge.py wrote, bare labels included.
+
+        Ranking by prompt here would drop every bare-labelled judgment, and
+        judge.py still writes one for any model output with no
+        prompt_template — on such a dataset the rebuild would hand back an
+        empty cache, which is the failure the rebuild exists to prevent.
+        """
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", tmp_path / "elo.json")
+        _write_log(
+            judgments_dir,
+            "alice",
+            [
+                _judgment("claude", "gpt-4o", "a", "2026-04-02T12:00:00Z"),
+                _judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:05:00Z"),
+            ],
+        )
+        assert sorted(load_elo_ratings()) == [
+            "claude", "claude:academic", "gpt-4o", "gpt-4o:academic",
+        ]
+
+    def test_rebuild_is_not_empty_when_every_label_is_bare(
+        self, tmp_path, monkeypatch, judgments_dir
+    ) -> None:
+        """The regression that motivated the change, stated on its own."""
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", tmp_path / "elo.json")
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude", "gpt-4o", "a", "2026-04-02T12:00:00Z")],
+        )
+        ratings = load_elo_ratings()
+        assert sorted(ratings) == ["claude", "gpt-4o"]
+        assert ratings["claude"] > 1500 > ratings["gpt-4o"]
+
+    # All three fallback paths pay for the rebuild, so all three are checked:
+    # the missing cache is the common case (elo.json is gitignored, so a fresh
+    # checkout has none), the bad payload is the one with a second function
+    # between the caller and the rebuild, and the unopenable file is the one
+    # that reaches the rebuild straight from an except clause.
+    @pytest.mark.parametrize("cache,lock", [(None, False), ("[1520.0, 1480.0]", False), ("{}", True)])
+    def test_rebuild_reads_the_logs_once_per_call(
+        self, tmp_path, monkeypatch, judgments_dir, cache, lock
+    ) -> None:
+        """load_elo_ratings runs once per judgment, so a rebuild must not re-walk the logs."""
+        elo_path = tmp_path / "elo.json"
+        if cache is not None:
+            elo_path.write_text(cache, encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:00:00Z")],
+        )
+
+        calls: list[Path] = []
+
+        def counting(directory):
+            calls.append(directory)
+            return load_judgment_records(directory)
+
+        monkeypatch.setattr("qebench.scoring.judgments.load_judgment_records", counting)
+        if lock:
+            real_open = open
+
+            def fail(path, *args, **kwargs):
+                if str(path) == str(elo_path):
+                    raise OSError("permission denied")
+                return real_open(path, *args, **kwargs)
+
+            monkeypatch.setattr("builtins.open", fail)
+        assert load_elo_ratings() == {"claude:academic": 1516.0, "gpt-4o:academic": 1484.0}
+        assert len(calls) == 1
+
+    def test_rebuild_is_not_cached_between_calls(
+        self, tmp_path, monkeypatch, judgments_dir
+    ) -> None:
+        """A session appends judgments as it goes, so a process-wide cache would go stale."""
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", tmp_path / "elo.json")
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:00:00Z")],
+        )
+        first = load_elo_ratings()
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:05:00Z")],
+        )
+        second = load_elo_ratings()
+        assert second["claude:academic"] > first["claude:academic"]
+
+    def test_valid_cache_is_returned_without_reading_the_logs(
+        self, tmp_path, monkeypatch, judgments_dir
+    ) -> None:
+        """The healthy path is the hot path; it must not pay for the rebuild."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text('{"claude:academic": 1601.5, "gpt-4o:academic": 1398.5}', encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "b", "2026-04-02T12:00:00Z")],
+        )
+
+        def boom(directory):
+            raise AssertionError("the judgment logs must not be read for a usable cache")
+
+        monkeypatch.setattr("qebench.scoring.judgments.load_judgment_records", boom)
+        assert load_elo_ratings() == {"claude:academic": 1601.5, "gpt-4o:academic": 1398.5}
+
+    def test_update_model_elos_continues_from_the_rebuilt_ratings(
+        self, tmp_path, monkeypatch, judgments_dir
+    ) -> None:
+        """The point of the rebuild: the next judgment builds on history, not on 1500."""
+        elo_path = tmp_path / "elo.json"
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:00:00Z")],
+        )
+
+        new_a, new_b = update_model_elos("claude:academic", "gpt-4o:academic", "a")
+
+        # Starting from the rebuilt 1516.0/1484.0, not from 1500.0 — which
+        # would have produced 1516.0/1484.0 all over again.
+        assert new_a == pytest.approx(1530.5, abs=0.05)
+        assert new_b == pytest.approx(1469.5, abs=0.05)
+        assert json.loads(elo_path.read_text(encoding="utf-8")) == {
+            "claude:academic": new_a,
+            "gpt-4o:academic": new_b,
+        }
+
+
 class TestCorruptEloFile:
     """elo.json is a rebuildable local cache — a bad one must not stop judging."""
 
-    def test_undecodable_file_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
-        """A cache saved as GBK rather than UTF-8 is skipped, not fatal.
+    def test_undecodable_file_is_not_fatal(self, tmp_path, monkeypatch) -> None:
+        """A cache saved as GBK rather than UTF-8 is rebuilt from, not fatal.
 
         UnicodeDecodeError subclasses ValueError, so neither an OSError nor a
-        JSONDecodeError handler would catch it.
+        JSONDecodeError handler would catch it.  With no logs here there is
+        nothing to rebuild, so the rebuild is empty.
         """
         elo_path = tmp_path / "elo.json"
         elo_path.write_bytes(
@@ -84,20 +307,20 @@ class TestCorruptEloFile:
         monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
         assert load_elo_ratings() == {}
 
-    def test_truncated_file_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
+    def test_truncated_file_is_not_fatal(self, tmp_path, monkeypatch) -> None:
         elo_path = tmp_path / "elo.json"
         elo_path.write_text('{"claude": 152')
         monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
         assert load_elo_ratings() == {}
 
-    def test_non_object_json_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
+    def test_non_object_json_is_not_fatal(self, tmp_path, monkeypatch) -> None:
         """A top-level list parses fine but has no .get for update_model_elos."""
         elo_path = tmp_path / "elo.json"
         elo_path.write_text("[1520.0, 1480.0]")
         monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
         assert load_elo_ratings() == {}
 
-    def test_unreadable_file_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
+    def test_unreadable_file_is_not_fatal(self, tmp_path, monkeypatch) -> None:
         elo_path = tmp_path / "elo.json"
         elo_path.write_text(json.dumps({"claude": 1520.0}))
         monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
@@ -108,8 +331,50 @@ class TestCorruptEloFile:
         monkeypatch.setattr("builtins.open", fail)
         assert load_elo_ratings() == {}
 
+    def test_undecodable_cache_rebuilds_rather_than_resetting(
+        self, tmp_path, monkeypatch, judgments_dir
+    ) -> None:
+        """The quarantined file's ratings are recovered from the logs, not discarded."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_bytes(
+            json.dumps({"claude:academic": 1520.0, "备注": 1480.0}, ensure_ascii=False).encode("gbk")
+        )
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:00:00Z")],
+        )
+
+        assert load_elo_ratings() == {"claude:academic": 1516.0, "gpt-4o:academic": 1484.0}
+        assert len(list(tmp_path.glob("elo.json.corrupt*"))) == 1
+
+    def test_unopenable_cache_rebuilds_and_leaves_the_file(
+        self, tmp_path, monkeypatch, judgments_dir
+    ) -> None:
+        """A locked cache is left alone, but the session still gets real ratings."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text('{"claude:academic": 1700.0}', encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        _write_log(
+            judgments_dir,
+            "alice",
+            [_judgment("claude:academic", "gpt-4o:academic", "a", "2026-04-02T12:00:00Z")],
+        )
+
+        real_open = open
+
+        def fail(path, *args, **kwargs):
+            if str(path) == str(elo_path):
+                raise OSError("permission denied")
+            return real_open(path, *args, **kwargs)
+
+        monkeypatch.setattr("builtins.open", fail)
+        assert load_elo_ratings() == {"claude:academic": 1516.0, "gpt-4o:academic": 1484.0}
+        assert elo_path.read_text(encoding="utf-8") == '{"claude:academic": 1700.0}'
+
     def test_update_model_elos_survives_undecodable_cache(self, tmp_path, monkeypatch) -> None:
-        """Ratings restart from DEFAULT_RATING instead of aborting the judgment."""
+        """With no logs to rebuild from, ratings restart from DEFAULT_RATING."""
         elo_path = tmp_path / "elo.json"
         elo_path.write_bytes(
             json.dumps({"claude": 1520.0, "备注": 1480.0}, ensure_ascii=False).encode("gbk")
@@ -120,10 +385,11 @@ class TestCorruptEloFile:
         assert new_b < 1500
 
     def test_unreadable_cache_is_preserved_not_overwritten(self, tmp_path, monkeypatch) -> None:
-        """Nothing recomputes Elo from the judgment logs, so elo.json is the only record.
+        """The ratings are rebuildable; this particular file's bytes are not.
 
-        Restarting from defaults is fine; letting the next save overwrite the
-        old ratings is not — a misencoded file is one re-encode from readable.
+        It may hold a hand-edit or a label the logs never mention, and a
+        misencoded file is one re-encode from readable — so the next save
+        must not silently write over it.
         """
         elo_path = tmp_path / "elo.json"
         original = json.dumps({"claude": 1700.0, "通义千问": 1550.0}, ensure_ascii=False).encode("gbk")
@@ -156,7 +422,7 @@ class TestCorruptEloFile:
     def test_unopenable_cache_is_left_in_place(self, tmp_path, monkeypatch) -> None:
         """A file we merely failed to open may be healthy and only briefly locked.
 
-        Renaming it away would be worse than falling back, so only a bad
+        Renaming it away would be worse than rebuilding, so only a bad
         *payload* gets quarantined.
         """
         elo_path = tmp_path / "elo.json"

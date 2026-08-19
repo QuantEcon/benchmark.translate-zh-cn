@@ -2,8 +2,26 @@
   {
     "domain": "economics",
     "terms": 70,
-    "sentences": 0,
+    "sentences": 8,
     "paragraphs": 0
+  },
+  {
+    "domain": "mathematics",
+    "terms": 39,
+    "sentences": 8,
+    "paragraphs": 2
+  },
+  {
+    "domain": "macroeconomics",
+    "terms": 32,
+    "sentences": 8,
+    "paragraphs": 3
+  },
+  {
+    "domain": "statistics",
+    "terms": 32,
+    "sentences": 8,
+    "paragraphs": 1
   },
   {
     "domain": "finance",
@@ -12,52 +30,40 @@
     "paragraphs": 0
   },
   {
-    "domain": "mathematics",
-    "terms": 39,
-    "sentences": 0,
-    "paragraphs": 0
-  },
-  {
-    "domain": "macroeconomics",
-    "terms": 32,
-    "sentences": 0,
-    "paragraphs": 0
-  },
-  {
-    "domain": "statistics",
-    "terms": 32,
-    "sentences": 0,
-    "paragraphs": 0
-  },
-  {
     "domain": "probability",
     "terms": 29,
-    "sentences": 0,
-    "paragraphs": 0
+    "sentences": 8,
+    "paragraphs": 1
   },
   {
     "domain": "linear-algebra",
     "terms": 17,
-    "sentences": 0,
-    "paragraphs": 0
-  },
-  {
-    "domain": "stochastic-processes",
-    "terms": 12,
-    "sentences": 0,
-    "paragraphs": 0
+    "sentences": 8,
+    "paragraphs": 3
   },
   {
     "domain": "other",
     "terms": 11,
-    "sentences": 0,
-    "paragraphs": 0
+    "sentences": 8,
+    "paragraphs": 3
   },
   {
     "domain": "dynamic-programming",
     "terms": 10,
-    "sentences": 0,
+    "sentences": 8,
+    "paragraphs": 3
+  },
+  {
+    "domain": "stochastic-processes",
+    "terms": 12,
+    "sentences": 8,
     "paragraphs": 0
+  },
+  {
+    "domain": "optimization",
+    "terms": 4,
+    "sentences": 8,
+    "paragraphs": 1
   },
   {
     "domain": "numerical-methods",
@@ -73,12 +79,6 @@
   },
   {
     "domain": "calculus",
-    "terms": 4,
-    "sentences": 0,
-    "paragraphs": 0
-  },
-  {
-    "domain": "optimization",
     "terms": 4,
     "sentences": 0,
     "paragraphs": 0
