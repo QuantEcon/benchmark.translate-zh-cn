@@ -85,7 +85,9 @@ def check_fullwidth_punctuation(text: str) -> float:
 
     Checks that Chinese prose uses full-width punctuation (，。！？；：)
     instead of ASCII equivalents.  Ignores text inside code blocks and
-    inline code spans.
+    inline code spans, and ignores ASCII punctuation that is structural
+    rather than prose: list markers, decimal points and thousands
+    separators, and URLs.
     """
     prose = _strip_code_and_math(text)
     if not prose.strip():
@@ -102,8 +104,9 @@ def check_fullwidth_punctuation(text: str) -> float:
     for line in prose.splitlines():
         if not cjk_pattern.search(line):
             continue
-        ascii_count = len(ascii_punct.findall(line))
-        fw_count = len(fullwidth_pattern.findall(line))
+        prose_line = _strip_structural_ascii(line)
+        ascii_count = len(ascii_punct.findall(prose_line))
+        fw_count = len(fullwidth_pattern.findall(prose_line))
         total_punct += ascii_count + fw_count
         fullwidth_punct += fw_count
 
@@ -184,6 +187,27 @@ def _extract_code_blocks(text: str) -> list[str]:
             current.append(line)
 
     return blocks
+
+
+def _strip_structural_ascii(line: str) -> str:
+    """Remove ASCII punctuation that is markup or numeric, not prose.
+
+    A numbered list marker, a decimal point and a URL all contain ASCII
+    punctuation that stays ASCII in correct Chinese prose, so counting
+    them against the full-width score understates compliance.
+    """
+    # URLs and markdown link targets.  A URL must not be matched with \S+:
+    # Chinese prose has no inter-word spaces, so that would swallow the rest
+    # of the line and hide every punctuation error after a link.
+    result = re.sub(r"https?://[^\s一-鿿，。！？；：、（）【】《》]+", "", line)
+    result = re.sub(r"\]\([^)]*\)", "]", result)
+    # Ordered/unordered list markers at the start of a line
+    result = re.sub(r"^\s*(?:\d+[.)]|[-*+])\s+", "", result)
+    # Inline ordered-list markers (MyST source often keeps "1." mid-line)
+    result = re.sub(r"(?<=\s)\d+[.)](?=\s)", "", result)
+    # Decimal points and thousands separators
+    result = re.sub(r"(?<=\d)[.,:](?=\d)", "", result)
+    return result
 
 
 def _strip_code_and_math(text: str) -> str:
