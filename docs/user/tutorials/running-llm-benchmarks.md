@@ -42,11 +42,11 @@ API:
 ╰──────────────────────╯
 
 Dry run — no API calls will be made.
-  term-001: inflation...
-  term-002: gross domestic product...
-  term-003: supply and demand...
-  term-004: equilibrium...
-  term-005: monetary policy...
+  term-001: Angle sum identities...
+  term-002: Partial derivative...
+  term-003: Taylor series...
+  term-004: Trigonometric integrals...
+  term-005: Asymptotic stability...
   ... and 309 more
 ```
 
@@ -165,22 +165,61 @@ uv run qebench submit
 ## Output Format
 
 Each run produces a JSONL file in `results/model-outputs/` with one record
-per entry:
+per entry. This is a real record, from the Sonnet 4.6 / `default` run over
+sentences:
 
 ```json
 {
-  "entry_id": "term-001",
-  "source_text": "inflation",
-  "translated_text": "通货膨胀",
+  "entry_id": "sent-073",
+  "source_text": "This example was created by {cite}`bertsimas_tsitsiklis1997`",
+  "translated_text": "此示例由 {cite}`bertsimas_tsitsiklis1997` 创建",
   "model": "claude-sonnet-4-6",
   "provider": "claude",
   "prompt_template": "default",
-  "input_tokens": 123,
-  "output_tokens": 45,
-  "cost_usd": 0.001044,
-  "latency_ms": 345.6
+  "entry_type": "sentences",
+  "domain": "optimization",
+  "difficulty": "intermediate",
+  "input_tokens": 59,
+  "output_tokens": 26,
+  "cost_usd": 0.000567,
+  "latency_ms": 1522.5,
+  "formatting": {
+    "directive_balance": true,
+    "fence_consistency": true,
+    "code_block_integrity": true,
+    "fullwidth_punctuation": 1.0,
+    "directive_spacing": 1.0
+  }
 }
 ```
+
+`entry_type`, `domain` and `difficulty` are copied from the dataset entry, so
+a run file can be sliced by type or domain on its own, without loading `data/`
+alongside it.
+
+`formatting` holds the five automated checks, scored at write time from the
+source and the translation. The first three are pass/fail; the last two are
+0–1 rates:
+
+| Check | Meaning |
+|---|---|
+| `directive_balance` | Translation carries the same number of triple-backtick fence markers as the source |
+| `fence_consistency` | Math fencing is not mixed — `$$` blocks and `{math}` directive blocks each open and close with their own marker |
+| `code_block_integrity` | Contents of fenced code blocks came through unchanged |
+| `fullwidth_punctuation` | Share of prose punctuation on Chinese lines that is full-width (`，。！？；：`) rather than ASCII |
+| `directive_spacing` | Share of inline `{doc}`/`{ref}`/`{numref}`-style roles that have a space between the preceding Chinese character and the role |
+
+`scripts/analyze_runs.py` aggregates these across runs — it recomputes them
+for older records that predate the field, so every run is comparable:
+
+```bash
+uv run python scripts/analyze_runs.py                    # all entry types
+uv run python scripts/analyze_runs.py --type paragraphs  # one entry type
+```
+
+The findings from the runs committed here are written up in
+[`results/model-outputs/NOTES.md`](../../../results/model-outputs/NOTES.md) —
+worth reading before you spend money on a sweep of your own.
 
 ## Quick Reference
 
@@ -208,7 +247,7 @@ uv run qebench run --dry-run --type paragraphs
 ## Next Steps
 
 - **Judge results**: See [Judging Translations](judging-translations.md) to evaluate model outputs
-- **Check leaderboard**: `qebench stats` shows Elo ratings and XP rankings
+- **Check leaderboard**: `qebench stats` shows the XP leaderboard and dataset coverage. Elo ratings are not part of `stats` — they appear in the judge reveal panel, and on the dashboard's Model Ratings section, which `qebench export` recomputes from the committed judgments
 - **Add custom prompts**: Create a new `.txt` file in `prompts/` and pass its name with `--prompt`
 - **Glossary & prompts**: See [Glossary & Prompt Templates](glossary-and-prompts.md) for details on glossary injection
 - **Seed more data**: See [Seeding from Lectures](../../developer/seeding-from-lectures.md) to extract sentence/paragraph pairs (developer guide)

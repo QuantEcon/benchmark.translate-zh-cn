@@ -8,7 +8,7 @@
 ┌─────────────────────────────────────┐
 │          CLI Commands               │  ← Typer commands (translate, add, stats)
 ├─────────────────────────────────────┤
-│     Scoring    │    Providers       │  ← Elo, XP, glossary │ Claude, OpenAI
+│     Scoring    │    Providers       │  ← Elo, ratings, alignment, XP, glossary │ Claude, OpenAI
 ├─────────────────────────────────────┤
 │     Data Layer (models + utils)     │  ← Pydantic models, JSON I/O
 └─────────────────────────────────────┘
@@ -24,18 +24,20 @@ src/qebench/
 │   ├── stats.py           # Dataset coverage + XP leaderboard (Rich panels/tables)
 │   ├── add.py             # Interactive entry creation → saves to per-user file
 │   ├── translate.py       # Translation practice game loop
-│   ├── export.py          # Export 6 JSON files for the dashboard
+│   ├── export.py          # Export 7 JSON files for the dashboard
 │   ├── submit.py          # Git pull/commit/push workflow
 │   ├── doctor.py          # 8 preflight checks (gh, git, repo, data, etc.)
 │   ├── update.py          # Pull latest code + uv sync dependencies
-│   ├── validate.py        # Schema validation for all dataset files
+│   ├── validate.py        # Schema validation + en/zh alignment check (--strict fails on warnings)
 │   ├── run.py             # Batch translate via LLM providers
 │   └── judge.py           # Anonymous head-to-head translation judging
 ├── scoring/
+│   ├── alignment.py       # The en/zh alignment rule — shared by the seeder, the audit script, and validate
 │   ├── elo.py             # Elo rating for model comparison
 │   ├── formatting.py      # MyST formatting fidelity checks (directive balance, punctuation, etc.)
 │   ├── glossary.py        # Glossary compliance + reference overlap scoring
 │   ├── judgments.py       # Judgment persistence + Elo update orchestration
+│   ├── ratings.py         # Replays committed judgment logs into model ratings
 │   └── xp.py              # XP tracking per user
 ├── providers/
 │   ├── base.py            # Abstract TranslationProvider + TranslationResult
@@ -43,6 +45,7 @@ src/qebench/
 │   ├── openai.py          # OpenAI provider
 │   └── prompts.py         # Prompt template loading/validation (supports {glossary} placeholder)
 └── utils/
+    ├── context.py         # Context-sentence extraction from cloned lecture repos (used by update.py)
     ├── dataset.py         # Load/save JSON data, config, domain list, glossary loading
     ├── display.py         # Rich console singleton
     └── github.py          # get_github_username() via gh CLI (cached)
@@ -62,6 +65,9 @@ dataset.py ──→ loads terms/sentences/paragraphs from data/**/*.json
     │           (merges _seed_*.json + per-user files)
     ▼
 translate.py ──→ picks entries, presents English, collects Chinese
+    │           (drops entries this user already attempted, then weights
+    │            the draw towards entries one attempt short of consensus;
+    │            --uniform opts out)
     │
     ├──→ confidence prompt ──→ 1–5 rating of translator certainty
     ├──→ notes prompt      ──→ optional context / reasoning
@@ -106,7 +112,10 @@ User (or CI) runs: qebench export
 export.py ──→ loads all data + results
     │       ──→ computes coverage, domain stats, difficulty stats,
     │           leaderboard, activity feed, term samples
-    │       ──→ writes 6 JSON files to docs/_static/dashboard/data/
+    │       ──→ ratings.py replays results/judgments/*.jsonl into
+    │           model ratings (results/elo.json is a gitignored cache,
+    │           so the committed logs are the source of truth)
+    │       ──→ writes 7 JSON files to docs/_static/dashboard/data/
     ▼
 MyST build + gh-pages deploys the dashboard
 ```
@@ -115,8 +124,10 @@ MyST build + gh-pages deploys the dashboard
 
 ### Formatting Fidelity (`scoring/formatting.py`)
 
-Automated checks that verify structural integrity of LLM translations. These
-are invoked by `qebench judge` and displayed in the reveal panel.
+Automated checks that verify structural integrity of LLM translations.
+`qebench judge` invokes them and displays the result in the reveal panel;
+`qebench run` stamps the same `formatting_score()` dict onto every output
+record it writes.
 
 | Function | Returns | What it checks |
 |---|---|---|
@@ -130,6 +141,34 @@ are invoked by `qebench judge` and displayed in the reveal panel.
 Helper functions:
 - `_extract_code_blocks(text)` — extracts fenced code blocks from markdown
 - `_strip_code_and_math(text)` — removes code and math blocks before punctuation analysis
+
+### En/zh Alignment (`scoring/alignment.py`)
+
+The single definition of what makes a seeded en/zh pair sound — a `zh` that
+is not a translation of its `en` quietly teaches judges from the wrong text.
+`check_pair(en, zh)` returns a list of problems (empty when the pair looks
+sound) from three signals a faithful translation preserves: math spans,
+`{doc}`/`{eq}`/`{ref}` reference targets, and length ratio.
+
+Three callers share it so they cannot drift apart:
+`scripts/seed_from_lectures.py` refuses to seed a pair it rejects,
+`scripts/audit_alignment.py` reports on the committed dataset, and
+`qebench validate` surfaces regressions in CI (warnings by default,
+failures under `--strict`). See [Seeding from
+Lectures](seeding-from-lectures.md) for the constants.
+
+### Model Ratings (`scoring/ratings.py`)
+
+`results/elo.json` is gitignored and was only ever written incrementally by
+whoever happened to be judging, so ratings never left that machine. The
+judgment logs under `results/judgments/` are committed, so `ratings.py`
+replays *them* instead — which makes the numbers reproducible, lets CI
+compute them, and means a lost cache costs nothing.
+
+`recompute_elo(records, by_prompt=...)` ranks `model:prompt` labels when
+`by_prompt=True` and bare models when `False`; neither is a superset of the
+other, so `qebench export` publishes both in `ratings.json`. Judgments
+against `human-reference` are excluded — the reference is not a competitor.
 
 ### Glossary Loading (`utils/dataset.py`)
 
@@ -221,13 +260,18 @@ benchmark.translate-zh-cn/
 ├── scripts/
 │   ├── seed_from_glossary.py      # Seed terms from action-translation glossary
 │   ├── seed_from_lectures.py      # Seed sentences/paragraphs from lecture repos
-│   └── classify_difficulty.py     # Auto-classify term difficulty
+│   ├── add_missing_contexts.py    # Hand-written context for terms absent from lecture prose
+│   ├── classify_difficulty.py     # Auto-classify term difficulty
+│   ├── analyze_runs.py            # Aggregate model-output runs into the NOTES.md tables
+│   ├── audit_alignment.py         # CLI over scoring/alignment.py — audits committed en/zh pairs
+│   └── glossary_syncback.py       # Propose glossary changes back to action-translation
 ├── results/
 │   ├── translations/              # User translation attempts (JSONL per user)
 │   ├── model-outputs/             # LLM translations (JSONL per model×prompt)
-│   ├── judgments/                  # Judge results (JSONL per user)
+│   ├── judgments/                 # Judge results (JSONL per user) — source of truth for ratings
 │   ├── xp/                        # XP totals per user (JSON per user)
-│   └── elo.json                   # Model Elo ratings
+│   ├── glossary-syncback/         # Proposed glossary changes for action-translation
+│   └── elo.json                   # Local Elo cache (gitignored; rebuilt by scoring/ratings.py)
 ├── .cache/
 │   ├── glossary.json              # Cached glossary from action-translation
 │   └── lectures/                  # Cloned lecture repos (gitignored)

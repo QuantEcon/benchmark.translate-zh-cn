@@ -5,6 +5,45 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.0] - 2026-08-19
+
+A tooling release. The v0.5.0 features — MyST formatting validators, the `action-*` prompts, seeded paragraphs — had no LLM output to score; this release generates it, aggregates it, and closes the loop back to `action-translation`'s glossary. The data goals proposed for this milestone (an OpenAI baseline, ≥100 judgments from ≥2 judges, the first upstream glossary PR) move to 0.7.0.
+
+### Added
+
+- **Central Elo recomputation** (PR #35): New `qebench.scoring.ratings` replays the committed `results/judgments/*.jsonl` into ratings, so the logs rather than the gitignored `elo.json` are the source of truth. `qebench export` writes a seventh file, `ratings.json`, and the dashboard gained a **Model Ratings** section. A contributor's judgments now count as soon as they are pushed. Ratings are reported at two granularities — `by_model` and `by_model_prompt` — because `model:prompt` labelling only arrived in v0.4.0 and a bare label cannot be attributed to a prompt after the fact. Neither is a superset of the other, so both carry match counts.
+- **`qebench validate --strict`** (PR #34): Promotes en/zh alignment warnings to errors. CI runs it, so a misaligned entry can no longer land on `main` with a green build.
+- **`qebench translate --uniform`** (PR #32): Opts out of the new consensus-weighted draw.
+- **Formatting scores on every run record** (PR #32): `qebench run` stamps a `formatting` dict (`directive_balance`, `fence_consistency`, `code_block_integrity`, `fullwidth_punctuation`, `directive_spacing`) onto each output. `formatting_score()` shipped in v0.5.0 but nothing outside the judge panel had called it.
+- **`qebench.scoring.alignment`** (PR #34): One en/zh alignment rule, shared by the seeder, `scripts/audit_alignment.py` and `qebench validate`, so seeded data passes the audit by construction.
+- **`scripts/glossary_syncback.py`** (PR #32): Closes the benchmark → `action-translation` loop (REVIEW.md Should-Do #8). Compares human-verified translations and model consensus against the upstream glossary and emits corrections, additions, and terms needing stronger context. Emits candidates only — never edits the glossary, pushes, or opens a PR. `--min-annotators` (default 2), `--output-dir`. First run: 2 corrections, 45 needs-context.
+- **`scripts/analyze_runs.py`** (PR #32): Aggregates cost, formatting pass rates, agreement and verbosity into the `results/model-outputs/NOTES.md` tables. Retroactively scores records written before the `formatting` field existed, so the April runs stay comparable.
+- **`scripts/audit_alignment.py`** (PR #32): Read-only en/zh alignment audit over the seeded dataset.
+- **Benchmark data**: 24 runs covering 2 Claude models × 4 prompts × 3 entry types — 3,288 translations. Sentences and paragraphs had never been benchmarked. `qebench judge` goes from 314 term-only matchups to 411 across all entry types, 380 of them discriminating.
+
+### Fixed
+
+- **Misaligned seeded references** (PR #34, issue #31): 11 entries whose `zh` was not a translation of its `en` — five a different passage, two truncated, one with a case-broken reference target, three lossy where upstream had improved. Each replacement was pulled from the paired lecture repos, and every entry kept its id so existing attempts and judgments stay attached. The audit reports 0 of 97 flagged, down from 12. Root cause was `_shared_markers` accepting any pair that shared a single math span, then skipping the length check entirely.
+- **Corrupt result files no longer take down commands** (PRs #28, #29, #33): `qebench judge` had no guard at all, so one malformed line killed a whole session; `export` runs in the docs-deploy workflow, so a bad file failed the dashboard build for everyone. `UnicodeDecodeError` subclasses `ValueError`, so the `except (JSONDecodeError, OSError)` idiom never caught it, and it is raised lazily by the file iterator rather than by `json.loads`. Files are now read as `utf-8-sig`, so a Windows BOM no longer discards a recoverable file.
+- **XP could be silently reset** (PR #33): `award_xp` reads, adds and writes back, so treating an unreadable file as "start from zero" would have overwritten a contributor's only XP record. It now warns and skips the award, leaving the file untouched.
+- **False negatives in `check_fullwidth_punctuation`** (PR #32): Ordered-list markers, decimals, thousands separators and URLs were counted as ASCII punctuation errors — a correctly translated numbered paragraph scored 0.58 on its `1.` markers alone. The URL pattern is also CJK-bounded now; matching `\S+` swallowed the rest of the line in Chinese prose, which has no inter-word spaces, hiding every error after a link.
+
+### Changed
+
+- `qebench translate` weights its draw toward entries exactly one annotator short of consensus, and never re-serves an entry to someone who already translated it — a repeat from the same person adds no annotator coverage. Only 16 entries had two or more attempts. Pass `--uniform` for the previous behaviour.
+- `load_elo_ratings()` rebuilds from the committed judgment logs when the cache is missing or corrupt, instead of restarting everyone at `DEFAULT_RATING`. A cache with a bad payload is moved aside to `elo.json.corrupt` first; one that merely failed to open is left alone. A rebuilt cache is not byte-identical to an incrementally grown one, since `update_model_elos` rounds after every judgment and the rebuild rounds once at the end.
+- `scripts/seed_from_lectures.py` refuses to seed any pair the shared alignment rule rejects.
+- `results/xp/*.json` is written with `ensure_ascii=False`, so CJK is stored literally rather than as `\uXXXX` escapes.
+- `qebench export` writes 7 JSON files, up from 6.
+- Contributors must cut branches from a freshly pulled `main` (PR #33): RAs push translation records straight to `main`, so a local `main` goes stale on its own and a stale base still merges cleanly.
+- Tests: 262 → 626.
+
+### Notes for anyone comparing against earlier data
+
+- **Full-width punctuation scores are not comparable across this release.** The `check_fullwidth_punctuation` fix above changes the metric itself, so figures recorded before 2026-08-19 cannot be compared with those after it. `scripts/analyze_runs.py` recomputes retroactively, so regenerating a report is the reliable way to compare.
+- **`cli_version` names the last *released* version, not the code that wrote the record.** It is read from installed package metadata, so a record written from a working tree carries the version of the last release installed there. This repo's own log contains `type: "consensus"` records stamped `0.3.1`, though consensus shipped in v0.4.0. `qebench.scoring.ratings` therefore determines a record's score scale from its own scores and uses the stamp only to break a tie. The v0.1.0 note below describing `cli_version` as sufficient "for future schema migration" is optimistic for the same reason.
+- **Two paragraph entries had their English replaced**, not just their reference: `para-001` (notation changed upstream) and `para-014` (exercise relettered). 16 of the 3,288 committed model outputs are translations of the superseded English. Each record stores its own `source_text`, so every run stays internally consistent.
+
 ## [0.5.0] - 2026-04-10
 
 ### Added
@@ -192,6 +231,11 @@ First release — ready for RA testing.
 - **Documentation**: MyST-based, 10 pages — getting started, uv guide, CLI reference, tutorials, architecture, data models, contributing
 - **Tests**: 98 pytest tests across 12 test files
 
+[0.6.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.6.0
+[0.5.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.5.0
+[0.4.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.4.0
+[0.3.1]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.3.1
+[0.3.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.3.0
 [0.2.1]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.2.1
 [0.2.0]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.2.0
 [0.1.1]: https://github.com/QuantEcon/benchmark.translate-zh-cn/releases/tag/v0.1.1
