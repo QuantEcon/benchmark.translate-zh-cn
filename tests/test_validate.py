@@ -129,6 +129,52 @@ class TestAlignmentCheck:
             validate(strict=True)
         assert exc.value.code == 1
 
+    def test_strict_reports_each_finding_once(self, tmp_path, monkeypatch, capsys):
+        """Raised on #34: findings were appended to errors and printed twice."""
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        with pytest.raises(SystemExit):
+            validate(strict=True)
+        # Rich word-wraps, so collapse whitespace before counting.
+        out = " ".join(capsys.readouterr().out.split())
+        assert out.count("math spans missing") == 1
+
+    def test_strict_alignment_failure_does_not_claim_success(
+        self, tmp_path, monkeypatch, capsys
+    ):
+        """Keeping findings out of `errors` must not let the success branch run."""
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        with pytest.raises(SystemExit):
+            validate(strict=True)
+        assert "All valid" not in capsys.readouterr().out
+
+    def test_non_strict_alignment_warning_still_reports_success(
+        self, tmp_path, monkeypatch, capsys
+    ):
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        validate()
+        assert "All valid" in capsys.readouterr().out
+
     def test_aligned_entry_is_silent(self, tmp_path, monkeypatch, capsys):
         self._write_paragraph(
             tmp_path,

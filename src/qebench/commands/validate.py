@@ -118,16 +118,19 @@ def validate(strict: bool = False) -> None:
         console.print(
             "\n[dim]Review with: uv run python scripts/audit_alignment.py --show-text[/dim]"
         )
-        if strict:
-            errors.extend(warnings)
 
+    # Alignment findings are reported in their own block above and never
+    # copied into `errors`, which stays the schema-error list — appending
+    # them there printed every finding twice under --strict.
     if errors:
         console.print(f"\n[red bold]Validation failed — {len(errors)} error(s):[/red bold]\n")
         for err in errors:
             console.print(f"[red]{err}[/red]")
         console.print()
+
+    if errors or (strict and warnings):
         sys.exit(1)
-    else:
-        console.print(
-            f"\n[green]✓ All valid — {total_entries} entries in {total_files} files[/green]\n"
-        )
+
+    console.print(
+        f"\n[green]✓ All valid — {total_entries} entries in {total_files} files[/green]\n"
+    )
