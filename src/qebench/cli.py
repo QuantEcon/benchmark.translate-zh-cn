@@ -52,9 +52,14 @@ def translate_cmd(
     count: int = typer.Option(5, "--count", "-n", help="Number of entries per session."),
     domain: str | None = typer.Option(None, "--domain", "-d", help="Filter by domain."),
     difficulty: str | None = typer.Option(None, "--difficulty", help="Filter: basic/intermediate/advanced."),
+    uniform: bool = typer.Option(
+        False,
+        "--uniform",
+        help="Sample entries uniformly instead of prioritising entries that need a second annotator.",
+    ),
 ) -> None:
     """Practice translating English to Chinese — the main game loop."""
-    translate_fn(count=count, domain=domain, difficulty=difficulty)
+    translate_fn(count=count, domain=domain, difficulty=difficulty, uniform=uniform)
 
 
 if __name__ == "__main__":
