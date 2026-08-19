@@ -38,7 +38,7 @@ packages = ["src/qebench"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "scripts"]
 
 [tool.ruff]
 target-version = "py311"

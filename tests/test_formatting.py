@@ -103,6 +103,61 @@ class TestFullwidthPunctuation:
         text = "这是一个没有标点的文本"
         assert check_fullwidth_punctuation(text) == 1.0
 
+    def test_inline_ordered_list_markers_ignored(self) -> None:
+        """Regression: MyST numbered lists made correct prose score 0.58."""
+        text = "1. 以先验开始当前时期。 1. 观测当前测量值。"
+        assert check_fullwidth_punctuation(text) == 1.0
+
+    def test_leading_list_markers_ignored(self) -> None:
+        text = "1. 以先验开始当前时期。\n2) 观测当前测量值。\n- 更新先验以得到后验。"
+        assert check_fullwidth_punctuation(text) == 1.0
+
+    def test_decimal_point_ignored(self) -> None:
+        text = "折现因子为 0.95，这很重要。"
+        assert check_fullwidth_punctuation(text) == 1.0
+
+    def test_url_ignored(self) -> None:
+        text = "详见 https://quantecon.org/zh-cn/ 获取更多信息。"
+        assert check_fullwidth_punctuation(text) == 1.0
+
+    def test_url_does_not_swallow_the_rest_of_a_cjk_line(self) -> None:
+        """Chinese prose has no spaces, so a URL must be bounded by CJK too.
+
+        Matching a URL as ``\\S+`` would consume the whole tail of the line
+        and hide every punctuation error after a link.
+        """
+        text = "详见https://example.com,这很重要,真的"
+        assert check_fullwidth_punctuation(text) == 0.0
+
+    def test_url_abutting_fullwidth_punctuation_still_scores_clean(self) -> None:
+        text = "详见https://example.com/a.b.c，这很重要。"
+        assert check_fullwidth_punctuation(text) == 1.0
+
+    def test_markdown_link_not_penalised(self) -> None:
+        relative = "请参阅 [讲座](lecture.md) 了解详情。"
+        absolute = "请参阅 [讲座](https://example.com/lecture) 了解详情。"
+        assert check_fullwidth_punctuation(relative) == 1.0
+        assert check_fullwidth_punctuation(absolute) == 1.0
+
+    def test_genuine_ascii_comma_still_fails(self) -> None:
+        text = "这是一个测试,包含半角标点"
+        assert check_fullwidth_punctuation(text) == 0.0
+
+    def test_genuine_ascii_full_stop_still_fails(self) -> None:
+        text = "这是一个测试.包含半角标点"
+        assert check_fullwidth_punctuation(text) == 0.0
+
+    def test_mixed_with_structural_ascii(self) -> None:
+        """List marker and decimal are stripped; one full-width comma vs one ASCII stop."""
+        text = "1. 参数为 0.95，这很重要.结束"
+        assert check_fullwidth_punctuation(text) == 0.5
+
+    def test_thousands_separator_ignored_but_prose_comma_is_not(self) -> None:
+        clean = "人口为 1,000,000，这很重要。"
+        dirty = "人口为 1,000,000,这很重要。"
+        assert check_fullwidth_punctuation(clean) == 1.0
+        assert check_fullwidth_punctuation(dirty) < 1.0
+
 
 class TestDirectiveSpacing:
     def test_correct_spacing(self) -> None:

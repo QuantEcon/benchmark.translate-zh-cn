@@ -17,6 +17,7 @@ from rich.table import Table
 
 from qebench.providers.base import TranslationResult
 from qebench.providers.prompts import load_template
+from qebench.scoring.formatting import formatting_score
 from qebench.utils.dataset import DATA_DIR, RESULTS_DIR, load_all
 from qebench.utils.display import console
 
@@ -71,6 +72,7 @@ def _save_results(
                 "output_tokens": r.output_tokens,
                 "cost_usd": round(r.cost_usd, 6),
                 "latency_ms": round(r.latency_ms, 1),
+                "formatting": formatting_score(r.source_text, r.translated_text),
             }
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
     return path

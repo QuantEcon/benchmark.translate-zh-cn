@@ -70,8 +70,19 @@ uv run qebench translate [OPTIONS]
 | `--count` | `-n` | `5` | Number of entries per session |
 | `--domain` | `-d` | all | Filter by domain (e.g. `economics`) |
 | `--difficulty` | | all | Filter: `basic`, `intermediate`, or `advanced` |
+| `--uniform` | | off | Sample entries uniformly instead of prioritising entries that need a second annotator |
 
 Your GitHub username is detected automatically via `gh auth`.
+
+:::{note}
+Entries are **not** drawn uniformly by default. An entry that exactly one
+other annotator has already translated is offered first, because one more
+attempt turns it into a consensus entry — and entries with two independent
+translations are what make the reference data trustworthy. Entries you have
+already translated yourself are not offered again, since a repeat from the
+same person adds no coverage. Pass `--uniform` to draw from the whole pool
+evenly instead.
+:::
 
 :::{note}
 The translate command works with **terms** and **sentences** only. Paragraphs
