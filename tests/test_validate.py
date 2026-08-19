@@ -79,3 +79,125 @@ class TestValidate:
         ]
         (para_dir / "test.json").write_text(json.dumps(entries), encoding="utf-8")
         validate()  # Should not raise
+
+
+class TestAlignmentCheck:
+    """`qebench validate` surfaces the misalignment that produced #31.
+
+    Warnings by default, errors under --strict: the check is a heuristic and
+    should prompt review rather than block a contributor mid-session.
+    """
+
+    def _write_paragraph(self, tmp_path, monkeypatch, en: str, zh: str) -> None:
+        monkeypatch.setattr("qebench.commands.validate.DATA_DIR", tmp_path)
+        paras = tmp_path / "paragraphs"
+        paras.mkdir()
+        entry = {
+            "id": "para-001",
+            "en": en,
+            "zh": zh,
+            "domain": "economics",
+            "difficulty": "basic",
+        }
+        (paras / "seed.json").write_text(json.dumps([entry], ensure_ascii=False), encoding="utf-8")
+
+    def test_misaligned_entry_warns_but_passes(self, tmp_path, monkeypatch, capsys):
+        """The para-007 shape: four list items rendered as one."""
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        validate()  # warns, does not raise
+        out = capsys.readouterr().out
+        assert "alignment" in out
+        assert "para-001" in out
+
+    def test_misaligned_entry_fails_under_strict(self, tmp_path, monkeypatch):
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        with pytest.raises(SystemExit) as exc:
+            validate(strict=True)
+        assert exc.value.code == 1
+
+    def test_strict_reports_each_finding_once(self, tmp_path, monkeypatch, capsys):
+        """Raised on #34: findings were appended to errors and printed twice."""
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        with pytest.raises(SystemExit):
+            validate(strict=True)
+        # Rich word-wraps, so collapse whitespace before counting.
+        out = " ".join(capsys.readouterr().out.split())
+        assert out.count("math spans missing") == 1
+
+    def test_strict_alignment_failure_does_not_claim_success(
+        self, tmp_path, monkeypatch, capsys
+    ):
+        """Keeping findings out of `errors` must not let the success branch run."""
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        with pytest.raises(SystemExit):
+            validate(strict=True)
+        assert "All valid" not in capsys.readouterr().out
+
+    def test_non_strict_alignment_warning_still_reports_success(
+        self, tmp_path, monkeypatch, capsys
+    ):
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "1. the determinant of $A$ equals the product 2. the trace of $A$ equals "
+            "the sum 3. if $A$ is symmetric all eigenvalues are real 4. the "
+            "eigenvalues of $A^{-1}$ are $1/\\lambda_1$",
+            "1. $A$ 的行列式等于其特征值的乘积",
+        )
+        validate()
+        assert "All valid" in capsys.readouterr().out
+
+    def test_aligned_entry_is_silent(self, tmp_path, monkeypatch, capsys):
+        self._write_paragraph(
+            tmp_path,
+            monkeypatch,
+            "Given the dynamics in {eq}`ar1_ma` and initial conditions $\\mu_0, v_0$, "
+            "we obtain $\\mu_t, v_t$ and hence",
+            "给定 {eq}`ar1_ma` 中的动态和初始条件 $\\mu_0, v_0$，我们得到 $\\mu_t, v_t$，因此",
+        )
+        validate()
+        assert "alignment" not in capsys.readouterr().out
+
+    def test_terms_are_not_alignment_checked(self, tmp_path, monkeypatch, capsys):
+        """A headword and its translation have no markers and no comparable length."""
+        monkeypatch.setattr("qebench.commands.validate.DATA_DIR", tmp_path)
+        terms = tmp_path / "terms"
+        terms.mkdir()
+        entry = {
+            "id": "term-001",
+            "en": "Present discounted value",
+            "zh": "现值",
+            "domain": "finance",
+            "difficulty": "basic",
+        }
+        (terms / "seed.json").write_text(json.dumps([entry], ensure_ascii=False), encoding="utf-8")
+        validate()
+        assert "alignment" not in capsys.readouterr().out

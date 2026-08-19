@@ -14,6 +14,7 @@ import sys
 from pydantic import ValidationError
 
 from qebench.models import Paragraph, Sentence, Term
+from qebench.scoring.alignment import check_pair
 from qebench.utils.dataset import DATA_DIR
 from qebench.utils.display import console
 
@@ -24,10 +25,39 @@ _MODELS = {
     "paragraphs": Paragraph,
 }
 
+# Terms are a headword and its translation, with no markers or comparable
+# length, so the alignment signals do not apply to them.
+_ALIGNMENT_TYPES = ("sentences", "paragraphs")
 
-def validate() -> None:
-    """Validate all dataset files against Pydantic schemas."""
+
+def _alignment_warnings(items: list, rel: str) -> list[str]:
+    """Flag entries whose zh reference may not be a translation of its en.
+
+    Eight entries were seeded misaligned (#31) and nothing caught it until
+    the references had already been judged against.  These are warnings, not
+    errors: the check is a heuristic, and it flagged one correct entry out of
+    17 before it was tuned, so it should prompt review rather than block a
+    contributor.  Use ``--strict`` to fail on them.
+    """
+    warnings: list[str] = []
+    for i, item in enumerate(items):
+        if not isinstance(item, dict):
+            continue
+        problems = check_pair(item.get("en", ""), item.get("zh", ""))
+        if problems:
+            warnings.append(f"  {rel}[{i}] ({item.get('id', '?')}): {'; '.join(problems)}")
+    return warnings
+
+
+def validate(strict: bool = False) -> None:
+    """Validate all dataset files against Pydantic schemas.
+
+    The CLI wrapper lives in :mod:`qebench.cli`; a plain default is used here
+    so the function stays directly callable, since a ``typer.Option`` default
+    would arrive as a truthy ``OptionInfo`` sentinel.
+    """
     errors: list[str] = []
+    warnings: list[str] = []
     total_files = 0
     total_entries = 0
 
@@ -74,13 +104,33 @@ def validate() -> None:
                             f"{loc} — {err['msg']}"
                         )
 
+            if subdir in _ALIGNMENT_TYPES:
+                warnings.extend(_alignment_warnings(items, str(rel)))
+
+    if warnings:
+        label = "error" if strict else "warning"
+        colour = "red" if strict else "yellow"
+        console.print(
+            f"\n[{colour} bold]en/zh alignment — {len(warnings)} {label}(s):[/{colour} bold]\n"
+        )
+        for warning in warnings:
+            console.print(f"[{colour}]{warning}[/{colour}]")
+        console.print(
+            "\n[dim]Review with: uv run python scripts/audit_alignment.py --show-text[/dim]"
+        )
+
+    # Alignment findings are reported in their own block above and never
+    # copied into `errors`, which stays the schema-error list — appending
+    # them there printed every finding twice under --strict.
     if errors:
         console.print(f"\n[red bold]Validation failed — {len(errors)} error(s):[/red bold]\n")
         for err in errors:
             console.print(f"[red]{err}[/red]")
         console.print()
+
+    if errors or (strict and warnings):
         sys.exit(1)
-    else:
-        console.print(
-            f"\n[green]✓ All valid — {total_entries} entries in {total_files} files[/green]\n"
-        )
+
+    console.print(
+        f"\n[green]✓ All valid — {total_entries} entries in {total_files} files[/green]\n"
+    )

@@ -173,39 +173,38 @@ def _extract_sections(md_content: str) -> list[list[str]]:
 
 
 def _shared_markers(en_text: str, zh_text: str) -> bool:
-    """Check if en/zh paragraphs share structural markers (math, citations).
+    """Check if en/zh paragraphs correspond closely enough to seed as a pair.
 
-    Returns True if they likely correspond to each other.
+    This defers to :func:`qebench.scoring.alignment.check_pair`, the same
+    rule that audits the committed dataset and runs in ``qebench validate``,
+    so anything seeded here passes that audit by construction and the two
+    cannot drift apart.
+
+    An earlier version accepted a pair as soon as it shared *any single*
+    math span, citation or inline-code span, which let genuinely different
+    blocks through: an English table and an unrelated Chinese sentence that
+    both contained ``$x_1$`` passed, and that is how ``para-009`` and seven
+    other entries were seeded misaligned.
     """
-    # Extract shared math expressions
-    en_math = set(re.findall(r"\$([^$]+)\$", en_text))
-    zh_math = set(re.findall(r"\$([^$]+)\$", zh_text))
-    if en_math and en_math & zh_math:
-        return True
+    from qebench.scoring.alignment import HAS_MARKERS, MIN_LENGTH_RATIO, check_pair
 
-    # Extract shared citations
-    en_cite = set(re.findall(r"\{cite\}`([^`]+)`", en_text))
-    zh_cite = set(re.findall(r"\{cite\}`([^`]+)`", zh_text))
-    if en_cite and en_cite & zh_cite:
-        return True
-
-    # Extract shared inline code
-    en_code = set(re.findall(r"`([^`]+)`", en_text))
-    zh_code = set(re.findall(r"`([^`]+)`", zh_text))
-    if en_code and len(en_code & zh_code) >= 1:
-        return True
-
-    # If EN has structural markers but none overlap with ZH, reject
-    if en_math or en_cite or en_code:
+    if not en_text.strip() or not zh_text.strip():
         return False
 
-    # For pure plain prose, use tighter length ratio
-    if len(en_text) > 0 and len(zh_text) > 0:
-        ratio = len(zh_text) / len(en_text)
-        if 0.4 <= ratio <= 2.0:
-            return True
+    if check_pair(en_text, zh_text):
+        return False
 
-    return False
+    # For prose carrying no markers at all, length is the only signal left.
+    # The floor is the audit's, not a second opinion: this branch previously
+    # demanded 0.4, which rejects the shorter half of the normal
+    # English-to-Chinese range and disagreed with what the audit accepts.
+    # An upper bound still guards against a zh block that is far too long to
+    # be a translation of this en block.
+    if not HAS_MARKERS.search(en_text):
+        ratio = len(zh_text) / len(en_text)
+        return MIN_LENGTH_RATIO <= ratio <= 2.0
+
+    return True
 
 
 def _detect_features(text: str) -> dict[str, bool]:

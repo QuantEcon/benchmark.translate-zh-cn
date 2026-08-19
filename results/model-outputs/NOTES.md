@@ -179,19 +179,25 @@ see the April section below. Full pairwise tables for all three types come from
   strips structural and numeric ASCII before scoring. Full-width figures here
   are on the corrected metric and are not comparable with any recorded before
   2026-08-19.
-- **Some paragraph and sentence references are misaligned.**
-  `scripts/audit_alignment.py` flags 5 of 17 paragraphs and 7 of 80 sentences
-  where the `zh` reference is not a translation of the `en` source. `para-007`
-  keeps only the first of four list items; `para-009` pairs an English table
-  with an unrelated Chinese sentence; `para-014` pairs part **c)** with part
-  **d)**. This does not affect the formatting or cost numbers above, which never
-  touch the reference. It does affect the `reference_overlap` figure in the
-  judge reveal panel and the `reference` field stored on every judgment record.
-  It no longer causes bad *matchups*: with eight model × prompt labels now
-  covering all 411 entries, `_build_matchups` never has to fall back to pairing
-  a model against `human-reference`. Repair the flagged entries before the
-  judging sprint so the reveal panel is not teaching judges from a wrong
-  reference.
+- **The misaligned references have since been repaired.** When this round was
+  run, 12 seeded entries had a `zh` reference that was not a translation of
+  its `en` source — `para-007` kept one of four list items, `para-009` paired
+  an English table with an unrelated Chinese sentence, `para-014` paired
+  exercise part **c)** with part **d)**. All 11 that had a better counterpart
+  upstream were re-pulled from the paired lecture repos, and
+  `scripts/audit_alignment.py` now reports 0 of 97 flagged. None of the cost,
+  formatting or agreement figures above depend on the reference, so they are
+  unaffected.
+- **Two entries were re-run against English that has since changed.** For
+  `para-001` and `para-014` the *English* had also moved upstream since
+  seeding — `para-001` switched notation from `\hat x_t` to `\mu_t`, and
+  `para-014`'s exercise was relettered from **c)** to **a)** — so the repair
+  updated both sides. That leaves 16 of the 3,288 committed records (0.5%)
+  holding a translation of the superseded English. Every record stores its own
+  `source_text`, so each run stays internally consistent and no table above
+  shifts; the only visible effect is in the judge reveal panel, which would
+  show those two paragraphs' translations against the updated reference.
+  Re-running just those two entries would clear it.
 
 ---
 

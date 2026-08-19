@@ -1,7 +1,7 @@
 [
   {
     "en": "We assume that the expected rate of inflation $\\pi_t^*$ is governed by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {cite}`Cagan`, where $\\lambda\\in [0,1]$ denotes the weight on expected inflation.",
-    "zh": "我们假设预期通胀率 $\\pi_t^*$ 遵循弗里德曼-凯根的自适应预期机制：",
+    "zh": "我们假设预期通胀率 $\\pi_t^*$ 遵循由 {cite}`Friedman1956` 和 {cite}`Cagan` 提出的以下自适应预期机制，其中 $\\lambda\\in [0,1]$ 表示预期通胀的权重。",
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -127,7 +127,7 @@
   },
   {
     "en": "Given the dynamics in {eq}`ar1_ma` and initial conditions $\\mu_0, v_0$, we obtain $\\mu_t, v_t$ and hence",
-    "zh": "(这是根据我们的假设和 {eq}`ar1_ma` 得出的。)",
+    "zh": "给定 {eq}`ar1_ma` 中的动态和初始条件 $\\mu_0, v_0$，我们得到 $\\mu_t, v_t$，因此",
     "domain": "stochastic-processes",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -154,7 +154,7 @@
   },
   {
     "en": "Taking the difference between equation {eq}`eq:eqfiscth1` at time $t+1$ and at time $t$ gives",
-    "zh": "对方程 {eq}`eq:eqfiscth1` 求时间差分，得到：",
+    "zh": "对方程 {eq}`eq:eqfiscth1` 在 $t+1$ 时刻与 $t$ 时刻取差分，得到：",
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -172,7 +172,7 @@
   },
   {
     "en": "Having solved equation {eq}`eq:eq4` for $\\pi^*$, we can use  equation {eq}`eq:eq2`  to solve for $\\pi$:",
-    "zh": "有了 $\\pi^*$,我们就可以从方程 {eq}`eq:eq2` 求出 $\\pi$:",
+    "zh": "求解出方程 {eq}`eq:eq4` 中的 $\\pi^*$ 后，我们就可以利用方程 {eq}`eq:eq2` 求出 $\\pi$:",
     "domain": "macroeconomics",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -343,7 +343,7 @@
   },
   {
     "en": "where $u_{t} \\sim N\\left(0, \\sigma_{u}^{2}\\right)$ and is {ref}`IID <iid-theorem>`, meaning independent and identically distributed.",
-    "zh": "其中 $u_{t} \\sim N\\left(0, \\sigma_{u}^{2}\\right)$ 并且是 {ref}`独立同分布<IID-theorem>` -- 相互独立且服从相同分布。",
+    "zh": "其中 $u_{t} \\sim N\\left(0, \\sigma_{u}^{2}\\right)$ 并且是 {ref}`独立同分布<iid-theorem>` 的，意味着独立且服从相同分布。",
     "domain": "statistics",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -352,7 +352,7 @@
   },
   {
     "en": "Just as system {eq}`eq:eqma` constitutes  a **moving average** representation for $y$, system  {eq}`eq:eqar` constitutes  an **autoregressive** representation for $y$.",
-    "zh": "我们可以看到，系统既可以用移动平均形式 {eq}`eq:eqma` 表示，也可以用自回归形式 {eq}`eq:eqar` 表示。这两种表示方式描述了同一个随机过程，只是从不同的角度来看。",
+    "zh": "正如系统 {eq}`eq:eqma` 构成了 $y$ 的一个**移动平均**表示一样，系统 {eq}`eq:eqar` 构成了 $y$ 的一个**自回归**表示。",
     "domain": "statistics",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -478,7 +478,7 @@
   },
   {
     "en": "Thus, taken together, the systems of equations {eq}`eq:Xfour1a` and {eq}`eq:Xfour1b` describe the  four fundamental subspaces of $X$ in the following ways:",
-    "zh": "方程 {eq}`eq:Xfour1b` 表明：",
+    "zh": "因此，方程组 {eq}`eq:Xfour1a` 和 {eq}`eq:Xfour1b` 共同描述了 $X$ 的四个基本子空间，如下所示：",
     "domain": "linear-algebra",
     "difficulty": "intermediate",
     "key_terms": [],
