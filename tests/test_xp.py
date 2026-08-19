@@ -79,6 +79,125 @@ class TestAwardXP:
         assert (nested / "eve.json").exists()
 
 
+class TestCorruptXPFiles:
+    """Contributors hand-edit these files, so unreadable ones must not be fatal."""
+
+    def test_load_xp_returns_zero_for_undecodable_file(self, xp_dir):
+        """A file saved as GBK rather than UTF-8 is skipped, not fatal.
+
+        UnicodeDecodeError subclasses ValueError, so neither an OSError nor a
+        JSONDecodeError handler would catch it.
+        """
+        (xp_dir / "alice.json").write_bytes(
+            json.dumps({"total": 150, "actions": {}, "note": "通货膨胀"}, ensure_ascii=False).encode("gbk")
+        )
+        assert load_xp("alice") == 0
+
+    def test_load_xp_returns_zero_for_truncated_file(self, xp_dir):
+        (xp_dir / "alice.json").write_text('{"total": 150, "actions": {"translate": 1')
+        assert load_xp("alice") == 0
+
+    def test_load_xp_returns_zero_for_non_object_json(self, xp_dir):
+        (xp_dir / "alice.json").write_text("[150]")
+        assert load_xp("alice") == 0
+
+    def test_load_xp_returns_zero_for_unreadable_file(self, xp_dir, monkeypatch):
+        """A file that cannot be opened at all is skipped, not fatal."""
+        (xp_dir / "alice.json").write_text(json.dumps({"total": 150, "actions": {}}))
+
+        def fail(path, *args, **kwargs):
+            raise OSError("permission denied")
+
+        monkeypatch.setattr("builtins.open", fail)
+        assert load_xp("alice") == 0
+
+    def test_load_xp_details_falls_back_for_undecodable_file(self, xp_dir):
+        (xp_dir / "alice.json").write_bytes(
+            json.dumps({"total": 150, "actions": {}, "note": "通货膨胀"}, ensure_ascii=False).encode("gbk")
+        )
+        assert load_xp_details("alice") == {"total": 0, "actions": {}}
+
+    def test_load_xp_details_falls_back_for_non_object_json(self, xp_dir):
+        (xp_dir / "alice.json").write_text('"150"')
+        assert load_xp_details("alice") == {"total": 0, "actions": {}}
+
+    def test_award_xp_does_not_overwrite_undecodable_file(self, xp_dir):
+        """The XP file is the only record of a total — never reset it to zero.
+
+        Awarding nothing is recoverable once the file is repaired; writing a
+        fresh total over the contributor's own is not.
+        """
+        path = xp_dir / "grace.json"
+        corrupt = json.dumps(
+            {"total": 150, "actions": {"translate": 150}, "note": "通货膨胀"}, ensure_ascii=False
+        ).encode("gbk")
+        path.write_bytes(corrupt)
+
+        earned = award_xp("grace", "translate", 3)
+
+        assert earned == 0
+        assert path.read_bytes() == corrupt
+
+    def test_award_xp_does_not_overwrite_truncated_file(self, xp_dir):
+        path = xp_dir / "grace.json"
+        corrupt = '{"total": 150, "actions": {"translate": 1'
+        path.write_text(corrupt)
+
+        earned = award_xp("grace", "translate", 3)
+
+        assert earned == 0
+        assert path.read_text() == corrupt
+
+    def test_award_xp_does_not_overwrite_non_object_json(self, xp_dir):
+        path = xp_dir / "grace.json"
+        path.write_text("[150]")
+
+        earned = award_xp("grace", "judge", 1)
+
+        assert earned == 0
+        assert path.read_text() == "[150]"
+
+    def test_award_xp_does_not_crash_on_null_total(self, xp_dir):
+        """{"total": null} parses as an object but breaks award_xp's arithmetic."""
+        path = xp_dir / "grace.json"
+        corrupt = '{"total": null, "actions": {}}'
+        path.write_text(corrupt)
+
+        earned = award_xp("grace", "translate", 3)
+
+        assert earned == 0
+        assert path.read_text() == corrupt
+
+    def test_award_xp_does_not_crash_on_null_actions(self, xp_dir):
+        """{"actions": null} parses as an object but breaks actions.get."""
+        path = xp_dir / "grace.json"
+        corrupt = '{"total": 5, "actions": null}'
+        path.write_text(corrupt)
+
+        earned = award_xp("grace", "translate", 3)
+
+        assert earned == 0
+        assert path.read_text() == corrupt
+
+    def test_load_xp_returns_int_for_string_total(self, xp_dir):
+        """load_xp is annotated -> int; a hand-edited string total must not leak out."""
+        (xp_dir / "alice.json").write_text('{"total": "150", "actions": {}}')
+        assert load_xp("alice") == 0
+
+    def test_award_xp_preserves_non_ascii_fields_unescaped(self, xp_dir):
+        """Rewriting must not re-escape Chinese text in a committed XP file."""
+        path = xp_dir / "grace.json"
+        path.write_text(
+            json.dumps({"total": 10, "actions": {"translate": 10}, "note": "通货膨胀"},
+                       ensure_ascii=False),
+            encoding="utf-8",
+        )
+
+        assert award_xp("grace", "translate", 1) == 10
+        assert "通货膨胀" in path.read_text(encoding="utf-8")
+        assert "\\u" not in path.read_text(encoding="utf-8")
+
+
 class TestLoadXPDetails:
     def test_returns_empty_for_new_user(self, xp_dir):
         details = load_xp_details("nobody")

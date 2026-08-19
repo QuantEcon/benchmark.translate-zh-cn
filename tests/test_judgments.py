@@ -68,6 +68,134 @@ class TestEloRatings:
         assert new_b == 1500.0
 
 
+class TestCorruptEloFile:
+    """elo.json is a rebuildable local cache — a bad one must not stop judging."""
+
+    def test_undecodable_file_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
+        """A cache saved as GBK rather than UTF-8 is skipped, not fatal.
+
+        UnicodeDecodeError subclasses ValueError, so neither an OSError nor a
+        JSONDecodeError handler would catch it.
+        """
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_bytes(
+            json.dumps({"claude": 1520.0, "备注": 1480.0}, ensure_ascii=False).encode("gbk")
+        )
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        assert load_elo_ratings() == {}
+
+    def test_truncated_file_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text('{"claude": 152')
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        assert load_elo_ratings() == {}
+
+    def test_non_object_json_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
+        """A top-level list parses fine but has no .get for update_model_elos."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text("[1520.0, 1480.0]")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        assert load_elo_ratings() == {}
+
+    def test_unreadable_file_falls_back_to_empty(self, tmp_path, monkeypatch) -> None:
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text(json.dumps({"claude": 1520.0}))
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+
+        def fail(path, *args, **kwargs):
+            raise OSError("permission denied")
+
+        monkeypatch.setattr("builtins.open", fail)
+        assert load_elo_ratings() == {}
+
+    def test_update_model_elos_survives_undecodable_cache(self, tmp_path, monkeypatch) -> None:
+        """Ratings restart from DEFAULT_RATING instead of aborting the judgment."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_bytes(
+            json.dumps({"claude": 1520.0, "备注": 1480.0}, ensure_ascii=False).encode("gbk")
+        )
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        new_a, new_b = update_model_elos("claude", "gpt-4o", "a")
+        assert new_a > 1500
+        assert new_b < 1500
+
+    def test_unreadable_cache_is_preserved_not_overwritten(self, tmp_path, monkeypatch) -> None:
+        """Nothing recomputes Elo from the judgment logs, so elo.json is the only record.
+
+        Restarting from defaults is fine; letting the next save overwrite the
+        old ratings is not — a misencoded file is one re-encode from readable.
+        """
+        elo_path = tmp_path / "elo.json"
+        original = json.dumps({"claude": 1700.0, "通义千问": 1550.0}, ensure_ascii=False).encode("gbk")
+        elo_path.write_bytes(original)
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+
+        update_model_elos("claude", "gpt-4o", "a")
+
+        quarantined = list(tmp_path.glob("elo.json.corrupt*"))
+        assert len(quarantined) == 1
+        assert quarantined[0].read_bytes() == original
+        assert json.loads(quarantined[0].read_bytes().decode("gbk"))["通义千问"] == 1550.0
+
+    def test_repeat_corruption_does_not_clobber_the_first_quarantine(
+        self, tmp_path, monkeypatch
+    ) -> None:
+        elo_path = tmp_path / "elo.json"
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+
+        elo_path.write_bytes(json.dumps({"claude": 1700.0}).encode("gbk") + b"\xff")
+        load_elo_ratings()
+        elo_path.write_text("{not json", encoding="utf-8")
+        load_elo_ratings()
+
+        assert sorted(p.name for p in tmp_path.glob("elo.json.corrupt*")) == [
+            "elo.json.corrupt",
+            "elo.json.corrupt.1",
+        ]
+
+    def test_unopenable_cache_is_left_in_place(self, tmp_path, monkeypatch) -> None:
+        """A file we merely failed to open may be healthy and only briefly locked.
+
+        Renaming it away would be worse than falling back, so only a bad
+        *payload* gets quarantined.
+        """
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text('{"claude": 1700.0}', encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+
+        real_open = open
+
+        def fail(path, *args, **kwargs):
+            if str(path) == str(elo_path):
+                raise OSError("permission denied")
+            return real_open(path, *args, **kwargs)
+
+        monkeypatch.setattr("builtins.open", fail)
+        assert load_elo_ratings() == {}
+        assert elo_path.exists()
+        assert elo_path.read_text(encoding="utf-8") == '{"claude": 1700.0}'
+        assert list(tmp_path.glob("elo.json.corrupt*")) == []
+
+    def test_non_object_cache_is_also_preserved(self, tmp_path, monkeypatch) -> None:
+        """Valid JSON of the wrong shape is still someone's file — keep it."""
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text("[1520.0, 1480.0]", encoding="utf-8")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+
+        assert load_elo_ratings() == {}
+        quarantined = list(tmp_path.glob("elo.json.corrupt*"))
+        assert len(quarantined) == 1
+        assert quarantined[0].read_text(encoding="utf-8") == "[1520.0, 1480.0]"
+
+    def test_update_model_elos_survives_non_object_cache(self, tmp_path, monkeypatch) -> None:
+        elo_path = tmp_path / "elo.json"
+        elo_path.write_text("[1520.0, 1480.0]")
+        monkeypatch.setattr("qebench.scoring.judgments.ELO_PATH", elo_path)
+        new_a, new_b = update_model_elos("claude", "gpt-4o", "b")
+        assert new_a < 1500
+        assert new_b > 1500
+
+
 class TestRecordJudgment:
     def test_saves_jsonl(self, tmp_path, monkeypatch) -> None:
         monkeypatch.setattr("qebench.scoring.judgments.JUDGMENTS_DIR", tmp_path)
