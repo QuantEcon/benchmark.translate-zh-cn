@@ -80,6 +80,62 @@ checks run on each translation pair and are displayed in the reveal panel:
 
 See [Architecture: Scoring Module](docs/developer/architecture.md#scoring-module) for implementation details.
 
+## Feedback Loop
+
+The benchmark is not a leaderboard for its own sake. It exists to improve
+[action-translation](https://github.com/QuantEcon/action-translation), the
+GitHub Action that actually translates the QuantEcon lectures.
+
+The cycle: the benchmark runs the same models against prompt templates that
+mirror action-translation's production prompts → it evaluates the output with
+human judgment plus automated scoring → findings flow back as glossary
+corrections, glossary additions, prompt refinements, and model-selection
+guidance → action-translation translates better.
+
+The benchmark does not ingest action-translation's output directly. `qebench
+run` calls the providers itself using the `action-basic` and `action-new`
+templates, which reproduce action-translation's rules; that is what makes the
+findings transferable.
+
+Each contribution mode feeds a different part of the cycle:
+
+| Command | What it contributes |
+|---|---|
+| `qebench translate` | Human translations, and the *why* when a translator diverges from the stored reference |
+| `qebench add` | New test entries — grows coverage of terms, sentences, and paragraphs |
+| `qebench judge` | Head-to-head ratings that produce the Elo rankings and model-selection guidance |
+| `qebench run` | The model outputs being judged, per model and per prompt template |
+
+**Closing the loop.** `scripts/glossary_syncback.py` compares human-verified
+translations and model consensus against the upstream `action-translation`
+glossary and emits three kinds of candidate: **corrections** (human translators
+agree on a translation that differs from the glossary), **additions** (terms the
+glossary does not cover yet), and **needs-context** terms (models get them wrong
+without glossary guidance, so the entry needs stronger context).
+
+```bash
+# Compare benchmark data against the upstream glossary
+uv run python scripts/glossary_syncback.py
+
+# Require three agreeing annotators and write the reports elsewhere
+uv run python scripts/glossary_syncback.py --min-annotators 3 --output-dir /tmp/syncback
+```
+
+`--min-annotators` defaults to `2`: that many distinct human translators must
+agree on the same translation before a correction is proposed.
+
+Reports land in `results/glossary-syncback/`. They are candidates, not commits:
+a maintainer reviews them and takes the accepted ones upstream as a PR against
+`action-translation`'s `glossary/zh-cn.json`.
+
+**Worked example.** The April term runs caught Haiku translating "Arrow
+securities" as 箭头证券 — a literal "arrow" — rather than 阿罗证券, which
+transliterates Kenneth Arrow's name. That is exactly the class of error a
+glossary entry prevents, and exactly what sync-back pushes upstream.
+
+See [REVIEW.md §8](REVIEW.md#8-the-feedback-loop-benchmark--action-translation)
+for the longer design discussion.
+
 ## Development
 
 ```bash

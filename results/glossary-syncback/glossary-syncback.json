@@ -1,0 +1,1371 @@
+{
+  "generated": "2026-08-19T00:33:57.794688+00:00",
+  "min_annotators": 2,
+  "counts": {
+    "glossary_terms": 357,
+    "benchmark_terms": 314,
+    "human_attempts": 98,
+    "model_outputs": 3288,
+    "corrections": 2,
+    "additions": 0,
+    "needs_context": 45
+  },
+  "corrections": [
+    {
+      "term_id": "term-066",
+      "en": "Naive expectations",
+      "domain": "economics",
+      "glossary_zh": "简单预期",
+      "benchmark_zh": "简单预期",
+      "proposed_zh": "朴素预期",
+      "annotators": [
+        "0x3f-Li",
+        "Cindy6308"
+      ],
+      "confidences": {
+        "0x3f-Li": 4,
+        "Cindy6308": 3
+      },
+      "attempts": 2
+    },
+    {
+      "term_id": "term-208",
+      "en": "Strongly connected",
+      "domain": "mathematics",
+      "glossary_zh": "强连通的",
+      "benchmark_zh": "强连通的",
+      "proposed_zh": "强连通",
+      "annotators": [
+        "0x3f-Li",
+        "HumphreyYang"
+      ],
+      "confidences": {
+        "0x3f-Li": 5,
+        "HumphreyYang": 5
+      },
+      "attempts": 2
+    }
+  ],
+  "additions": [],
+  "needs_context": [
+    {
+      "term_id": "term-146",
+      "en": "Aggregate production function",
+      "domain": "macroeconomics",
+      "glossary_zh": "总生产函数",
+      "benchmark_zh": "总生产函数",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "总量生产函数",
+          "runs": 3,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "总体生产函数",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic"
+          ]
+        },
+        {
+          "zh": "总产出函数",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-001",
+      "en": "Angle sum identities",
+      "domain": "calculus",
+      "glossary_zh": "和角恒等式",
+      "benchmark_zh": "和角恒等式",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "角和恒等式",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "角度和恒等式",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-020",
+      "en": "Cobb-Douglas production function",
+      "domain": "economics",
+      "glossary_zh": "科布-道格拉斯生产函数",
+      "benchmark_zh": "科布-道格拉斯生产函数",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "柯布-道格拉斯生产函数",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "Cobb-Douglas生产函数",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-180",
+      "en": "Complex conjugate",
+      "domain": "mathematics",
+      "glossary_zh": "共轭复数",
+      "benchmark_zh": "共轭复数",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "复共轭",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "# 复数共轭",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-249",
+      "en": "Counter CDF",
+      "domain": "probability",
+      "glossary_zh": "互补累积分布函数",
+      "benchmark_zh": "互补累积分布函数",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "反向累积分布函数",
+          "runs": 3,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic"
+          ]
+        },
+        {
+          "zh": "计数器 CDF",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "反累积分布函数",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-031",
+      "en": "Discount factor",
+      "domain": "economics",
+      "glossary_zh": "贴现因子",
+      "benchmark_zh": "贴现因子",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "折现因子",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "# 折扣因子",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-032",
+      "en": "Discounted payoff",
+      "domain": "economics",
+      "glossary_zh": "贴现收益",
+      "benchmark_zh": "贴现收益",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "折现收益",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-233",
+      "en": "FRED",
+      "domain": "other",
+      "glossary_zh": "美联储经济数据",
+      "benchmark_zh": "美联储经济数据",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "FRED",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "弗雷德",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-009",
+      "en": "Finite horizon",
+      "domain": "dynamic-programming",
+      "glossary_zh": "有限视界",
+      "benchmark_zh": "有限视界",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "# 有限时间范围",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "有限时域",
+          "runs": 2,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "有限时间域",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic"
+          ]
+        },
+        {
+          "zh": "有限期界",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-043",
+      "en": "First fundamental welfare theorem",
+      "domain": "economics",
+      "glossary_zh": "福利经济学第一定理",
+      "benchmark_zh": "福利经济学第一定理",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "第一福利基本定理",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-047",
+      "en": "Geary–Khamis dollar",
+      "domain": "economics",
+      "glossary_zh": "吉尔里-卡米斯元",
+      "benchmark_zh": "吉尔里-卡米斯元",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "基里-卡米斯美元",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "Geary–Khamis 美元",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "盖里-卡米斯美元",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/academic"
+          ]
+        },
+        {
+          "zh": "盖里-哈米斯美元",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-133",
+      "en": "Gershgorin Circle Theorem",
+      "domain": "linear-algebra",
+      "glossary_zh": "格什戈林圆盘定理",
+      "benchmark_zh": "格什戈林圆盘定理",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "盖尔施戈林圆盘定理",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "# Gershgorin圆盘定理",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "盖尔圆定理",
+          "runs": 2,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-125",
+      "en": "Grim trigger strategy",
+      "domain": "game-theory",
+      "glossary_zh": "冷酷策略",
+      "benchmark_zh": "冷酷策略",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "冷酷触发策略",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "严厉触发策略",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-099",
+      "en": "Inflation-indexed bonds",
+      "domain": "finance",
+      "glossary_zh": "通胀指数化债券",
+      "benchmark_zh": "通胀指数化债券",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "通货膨胀挂钩债券",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-sonnet-4-6/academic"
+          ]
+        },
+        {
+          "zh": "# 通胀挂钩债券",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "# 通货膨胀指数债券",
+          "runs": 2,
+          "sources": [
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-284",
+      "en": "Kolmogorov-Smirnov test",
+      "domain": "statistics",
+      "glossary_zh": "科尔莫戈罗夫-斯米尔诺夫检验",
+      "benchmark_zh": "科尔莫戈罗夫-斯米尔诺夫检验",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "Kolmogorov-Smirnov 检验",
+          "runs": 3,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "柯尔莫哥罗夫-斯米尔诺夫检验",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "柯尔莫哥洛夫-斯米尔诺夫检验",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-201",
+      "en": "Log transform",
+      "domain": "mathematics",
+      "glossary_zh": "对数转换",
+      "benchmark_zh": "对数转换",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "对数变换",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-061",
+      "en": "Marginal product of capital",
+      "domain": "economics",
+      "glossary_zh": "资本边际产量",
+      "benchmark_zh": "资本边际产量",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "资本边际产品",
+          "runs": 3,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "资本的边际产品",
+          "runs": 3,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-216",
+      "en": "Marginal revenue",
+      "domain": "microeconomics",
+      "glossary_zh": "边际收入",
+      "benchmark_zh": "边际收入",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "边际收益",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-220",
+      "en": "Method of successive approximations",
+      "domain": "numerical-methods",
+      "glossary_zh": "连续近似法",
+      "benchmark_zh": "连续近似法",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "逐次逼近法",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-064",
+      "en": "Money-financed government deficit",
+      "domain": "economics",
+      "glossary_zh": "货币融资的政府赤字",
+      "benchmark_zh": "货币融资的政府赤字",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "货币融资政府赤字",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-066",
+      "en": "Naive expectations",
+      "domain": "economics",
+      "glossary_zh": "简单预期",
+      "benchmark_zh": "简单预期",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "幼稚预期",
+          "runs": 3,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "朴素预期",
+          "runs": 3,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-068",
+      "en": "Numeraire",
+      "domain": "economics",
+      "glossary_zh": "计价商品",
+      "benchmark_zh": "计价商品",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "计价货币",
+          "runs": 3,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "计价单位",
+          "runs": 2,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "计价单位（numeraire）",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-204",
+      "en": "PageRank algorithm",
+      "domain": "mathematics",
+      "glossary_zh": "网页排名算法",
+      "benchmark_zh": "网页排名算法",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "PageRank算法",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-140",
+      "en": "Primitive matrix",
+      "domain": "linear-algebra",
+      "glossary_zh": "原始矩阵",
+      "benchmark_zh": "原始矩阵",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "本原矩阵",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-112",
+      "en": "Real bills theory",
+      "domain": "finance",
+      "glossary_zh": "实物票据理论",
+      "benchmark_zh": "实物票据理论",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "真实票据理论",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "# 实际票据理论",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-075",
+      "en": "Reform and liberalization",
+      "domain": "economics",
+      "glossary_zh": "改革开放",
+      "benchmark_zh": "改革开放",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "改革与自由化",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "改革和自由化",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-300",
+      "en": "SSR",
+      "domain": "statistics",
+      "glossary_zh": "残差平方和",
+      "benchmark_zh": "残差平方和",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "SSR",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "SSR（回归平方和）",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-076",
+      "en": "Second fundamental welfare theorem",
+      "domain": "economics",
+      "glossary_zh": "福利经济学第二定理",
+      "benchmark_zh": "福利经济学第二定理",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "第二福利基本定理",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-117",
+      "en": "State-contingent claims",
+      "domain": "finance",
+      "glossary_zh": "或有债权",
+      "benchmark_zh": "或有债权",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "状态相关索赔权",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic"
+          ]
+        },
+        {
+          "zh": "状态相关债权",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "状态或有权益",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/academic"
+          ]
+        },
+        {
+          "zh": "状态依存索取权",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "状态或有索取权",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-208",
+      "en": "Strongly connected",
+      "domain": "mathematics",
+      "glossary_zh": "强连通的",
+      "benchmark_zh": "强连通的",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "强连通",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-225",
+      "en": "Successive approximation",
+      "domain": "numerical-methods",
+      "glossary_zh": "逐次近似",
+      "benchmark_zh": "逐次近似",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "逐次逼近",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "逐次逼近法",
+          "runs": 2,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-014",
+      "en": "Terminal condition",
+      "domain": "dynamic-programming",
+      "glossary_zh": "终端条件",
+      "benchmark_zh": "终端条件",
+      "compliant_runs": 2,
+      "total_runs": 8,
+      "compliance": 0.25,
+      "models_produced": [
+        {
+          "zh": "终止条件",
+          "runs": 6,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-242",
+      "en": "Beta distribution",
+      "domain": "probability",
+      "glossary_zh": "贝塔分布",
+      "benchmark_zh": "贝塔分布",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "Beta分布",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-007",
+      "en": "Continuation value",
+      "domain": "dynamic-programming",
+      "glossary_zh": "延续值",
+      "benchmark_zh": "延续值",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "继续价值",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "续值",
+          "runs": 2,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "延续价值",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-183",
+      "en": "Contractions",
+      "domain": "mathematics",
+      "glossary_zh": "压缩",
+      "benchmark_zh": "压缩",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "收缩",
+          "runs": 3,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "收缩映射",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic"
+          ]
+        },
+        {
+          "zh": "缩写",
+          "runs": 1,
+          "sources": [
+            "claude-sonnet-4-6/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-090",
+      "en": "Discounting",
+      "domain": "finance",
+      "glossary_zh": "贴现",
+      "benchmark_zh": "贴现",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "折现",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-042",
+      "en": "Financial repression",
+      "domain": "economics",
+      "glossary_zh": "金融压抑",
+      "benchmark_zh": "金融压抑",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "金融抑制",
+          "runs": 3,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "# 金融压制",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-124",
+      "en": "Folk theorem",
+      "domain": "game-theory",
+      "glossary_zh": "无名氏定理",
+      "benchmark_zh": "无名氏定理",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "民间定理",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-157",
+      "en": "Gross nominal interest rate",
+      "domain": "macroeconomics",
+      "glossary_zh": "总名义利率",
+      "benchmark_zh": "总名义利率",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "名义总利率",
+          "runs": 4,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        },
+        {
+          "zh": "名义利率总额",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-197",
+      "en": "Katz centrality",
+      "domain": "mathematics",
+      "glossary_zh": "卡茨中心性",
+      "benchmark_zh": "卡茨中心性",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "Katz 中心性",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-105",
+      "en": "Money supply",
+      "domain": "finance",
+      "glossary_zh": "货币供给",
+      "benchmark_zh": "货币供给",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "货币供应量",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-236",
+      "en": "NBER",
+      "domain": "other",
+      "glossary_zh": "美国国家经济研究局",
+      "benchmark_zh": "美国国家经济研究局",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "NBER",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-203",
+      "en": "Neumann Series Lemma",
+      "domain": "mathematics",
+      "glossary_zh": "诺伊曼级数引理",
+      "benchmark_zh": "诺伊曼级数引理",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "冯·诺依曼级数引理",
+          "runs": 2,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/default"
+          ]
+        },
+        {
+          "zh": "Neumann级数引理",
+          "runs": 2,
+          "sources": [
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        },
+        {
+          "zh": "# Neumann Series Lemma",
+          "runs": 1,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-080",
+      "en": "Tax farming",
+      "domain": "economics",
+      "glossary_zh": "包税制",
+      "benchmark_zh": "包税制",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "税收承包制",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/academic",
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic"
+          ]
+        }
+      ]
+    },
+    {
+      "term_id": "term-122",
+      "en": "Unpleasant monetarist arithmetic",
+      "domain": "finance",
+      "glossary_zh": "不愉快的货币主义算术",
+      "benchmark_zh": "不愉快的货币主义算术",
+      "compliant_runs": 3,
+      "total_runs": 8,
+      "compliance": 0.375,
+      "models_produced": [
+        {
+          "zh": "令人不快的货币主义算术",
+          "runs": 5,
+          "sources": [
+            "claude-haiku-4-5-20251001/action-basic",
+            "claude-haiku-4-5-20251001/default",
+            "claude-sonnet-4-6/academic",
+            "claude-sonnet-4-6/action-basic",
+            "claude-sonnet-4-6/default"
+          ]
+        }
+      ]
+    }
+  ]
+}
