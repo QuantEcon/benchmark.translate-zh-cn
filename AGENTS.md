@@ -96,6 +96,12 @@ uv run qebench stats              # Example command
 ### Branch & PR Process
 
 - Always work on a branch, never commit directly to `main`
+- **Cut the branch from a freshly pulled `main`** — never from whatever your local `main` happens to be:
+  ```bash
+  git checkout main && git pull --ff-only origin main && git checkout -b my-branch
+  ```
+  This repo's `main` moves on its own — RAs push translation records straight to it — so a local `main` goes stale without you touching anything. Nothing warns you: a stale branch still merges cleanly, and the changes you never saw appear only after the squash. PR #32 was cut three commits behind and picked up #29 plus two RA data commits at merge time, moving the test count out from under it.
+- **Before pushing an older branch, pull `main` into it and re-run the tests.** A green CI run against a stale base proves less than it looks.
 - Use PRs for all changes, including docs
 - **Always use create/edit file tools** for file content — never heredoc or shell string escaping
 - Multi-line commit messages: write to `.tmp/` first, then use `-F`:
