@@ -39,6 +39,11 @@ DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 # the reference is not a translation of the whole source.
 MIN_LENGTH_RATIO = 0.30
 
+# The bar when every math span and reference target carried over.  That is
+# direct evidence the pair corresponds, so verbose English is tolerated —
+# but not a translation that keeps a marker and drops the prose around it.
+MIN_LENGTH_RATIO_SUPPORTED = 0.20
+
 # Fraction of the source's math spans that may go missing before the pair is
 # treated as misaligned rather than merely reformatted.
 MAX_MISSING_MATH = 0.5
@@ -71,22 +76,32 @@ def check_pair(en: str, zh: str) -> list[str]:
     """Return a list of alignment problems, empty when the pair looks sound."""
     problems: list[str] = []
 
-    ratio = len(zh) / max(len(en), 1)
-    if ratio < MIN_LENGTH_RATIO:
-        problems.append(f"length ratio {ratio:.2f} (expected >= {MIN_LENGTH_RATIO})")
-
     en_math = math_spans(en)
+    missing_math: set[str] = set()
     if en_math:
-        missing = en_math - math_spans(zh)
-        if len(missing) / len(en_math) > MAX_MISSING_MATH:
-            problems.append(f"{len(missing)}/{len(en_math)} math spans missing")
+        missing_math = en_math - math_spans(zh)
+        if len(missing_math) / len(en_math) > MAX_MISSING_MATH:
+            problems.append(f"{len(missing_math)}/{len(en_math)} math spans missing")
 
     en_roles = role_targets(en)
+    missing_roles: set[tuple[str, str]] = set()
     if en_roles:
         missing_roles = en_roles - role_targets(zh)
         if missing_roles:
             names = ", ".join(sorted(f"{{{n}}}`{t}`" for n, t in missing_roles))
             problems.append(f"{len(missing_roles)}/{len(en_roles)} reference targets missing: {names}")
+
+    # Length is the weakest of the three signals — English is often simply
+    # more verbose than its translation.  When the pair carries markers and
+    # every one survives, that is direct evidence of correspondence, so the
+    # bar drops rather than disappearing: a pair that keeps its one math span
+    # while dropping nine tenths of its prose is still worth flagging.
+    has_markers = bool(en_math or en_roles)
+    supported = has_markers and not missing_math and not missing_roles
+    floor = MIN_LENGTH_RATIO_SUPPORTED if supported else MIN_LENGTH_RATIO
+    ratio = len(zh) / max(len(en), 1)
+    if ratio < floor:
+        problems.append(f"length ratio {ratio:.2f} (expected >= {floor})")
 
     return problems
 

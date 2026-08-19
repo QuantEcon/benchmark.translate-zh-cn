@@ -1,7 +1,7 @@
 [
   {
-    "en": "1. Start the current period with prior $p_t(x) = N(\\hat x_t, \\Sigma_t)$. 1. Observe current measurement $y_t$. 1. Compute the filtering distribution $p_t(x \\,|\\, y) = N(\\hat x_t^F, \\Sigma_t^F)$ from $p_t(x)$ and $y_t$, applying Bayes rule and the conditional distribution {eq}`kl_measurement_model`. 1. Compute the predictive distribution $p_{t+1}(x) = N(\\hat x_{t+1}, \\Sigma_{t+1})$ from the filtering distribution and {eq}`kl_xdynam`. 1. Increment $t$ by one and go to step 1.",
-    "zh": "1. 以先验分布$p_t(x) = N(\\hat x_t, \\Sigma_t)$开始当前周期。 1. 观察当前测量值$y_t$。 1. 根据$p_t(x)$和$y_t$计算滤波分布$p_t(x \\,|\\, y) = N(\\hat x_t^F, \\Sigma_t^F)$，应用贝叶斯法则和条件分布{eq}`kl_measurement_model`。",
+    "en": "1. Start the current period with prior density $p_t(x) = N(\\mu_t, \\Sigma_t)$ for $X_t$.\n1. Observe current signal $Y_t = y_t$.\n1. Compute the filtering density $p_t(x \\,|\\, y_t) = N(\\mu_t^F, \\Sigma_t^F)$ from $p_t(x)$ and $y_t$, applying Bayes rule and the conditional distribution {eq}`kl_measurement_model`.\n1. Compute the predictive density $p_{t+1}(x) = N(\\mu_{t+1}, \\Sigma_{t+1})$ for $X_{t+1}$ from the filtering density and {eq}`kl_xdynam`.\n1. Increment $t$ by one and go to step 1.",
+    "zh": "1. 以$X_t$的先验密度$p_t(x) = N(\\mu_t, \\Sigma_t)$开始当前周期。\n1. 观察当前信号$Y_t = y_t$。\n1. 应用贝叶斯法则和条件分布{eq}`kl_measurement_model`，根据$p_t(x)$和$y_t$计算滤波密度$p_t(x \\,|\\, y_t) = N(\\mu_t^F, \\Sigma_t^F)$。\n1. 根据滤波密度和{eq}`kl_xdynam`计算$X_{t+1}$的预测密度$p_{t+1}(x) = N(\\mu_{t+1}, \\Sigma_{t+1})$。\n1. 将 $t$ 加一并返回步骤1。",
     "domain": "other",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -85,7 +85,7 @@
   },
   {
     "en": "1. the determinant of $A$ equals the product of the eigenvalues 2. the trace of $A$ (the sum of the elements on the principal diagonal) equals the sum of the eigenvalues 3. if $A$ is symmetric, then all of its eigenvalues are real 4. if $A$ is invertible and $\\lambda_1, \\ldots, \\lambda_n$ are its eigenvalues, then the eigenvalues of $A^{-1}$ are $1/\\lambda_1, \\ldots, 1/\\lambda_n$.",
-    "zh": "1. $A$ 的行列式等于其特征值的乘积",
+    "zh": "1. $A$ 的行列式等于其特征值的乘积\n2. $A$ 的迹（主对角线上元素的和）等于其特征值的和\n3. 如果 $A$ 是对称的，那么它的所有特征值都是实数\n4. 如果 $A$ 可逆，且 $\\lambda_1, \\ldots, \\lambda_n$ 是它的特征值，那么 $A^{-1}$ 的特征值是 $1/\\lambda_1, \\ldots, 1/\\lambda_n$。",
     "domain": "linear-algebra",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -113,7 +113,7 @@
   },
   {
     "en": "|             | Total output | Agriculture | Industry | Service | Consumer | |:-----------:|:------------:|:-----------:|:--------:|:-------:|:--------:| | Agriculture |     $x_1$    |   0.3$x_1$  | 0.2$x_2$ |0.3$x_3$ |     4    | |   Industry  |     $x_2$    |   0.2$x_1$  | 0.4$x_2$ |0.3$x_3$ |     5    | |   Service   |     $x_3$    |   0.2$x_1$  | 0.5$x_2$ |0.1$x_3$ |    12    |",
-    "zh": "第一行描述了农业的总产出$x_1$是如何分配的",
+    "zh": "|             | 总产出 | 农业 | 工业 | 服务业 | 消费者 |\n|:-----------:|:------------:|:-----------:|:--------:|:-------:|:--------:|\n| 农业 |     $x_1$    |   0.3$x_1$  | 0.2$x_2$ |0.3$x_3$ |     4    |\n|   工业  |     $x_2$    |   0.2$x_1$  | 0.4$x_2$ |0.3$x_3$ |     5    |\n|   服务业   |     $x_3$    |   0.2$x_1$  | 0.5$x_2$ |0.1$x_3$ |    12    |",
     "domain": "linear-algebra",
     "difficulty": "intermediate",
     "key_terms": [],
@@ -182,8 +182,8 @@
     "id": "para-013"
   },
   {
-    "en": "**c)** Now pretend that the true value of $\\theta = .4$ and that someone who doesn't know this has a beta prior distribution with parameters  with $\\beta = \\alpha = .5$. Please write a Python class to simulate this person's personal posterior distribution for $\\theta$  for a _single_ sequence of $n$ draws.",
-    "zh": "**d)** 请绘制当 $n$ 增长为 $1, 2, \\ldots$ 时，$\\theta$ 的后验分布关于 $\\theta$ 的函数图。",
+    "en": "**a)** Now pretend that the true value of $\\theta = 0.4$ and that someone who doesn't know this has a beta prior distribution with parameters $\\beta = \\alpha = 0.5$. Write Python code to simulate this person's personal posterior distribution for $\\theta$ for a _single_ sequence of $n$ draws.",
+    "zh": "**a)** 现在假设 $\\theta$ 的真实值为 $0.4$，而某个不知道这一点的人有一个参数为 $\\beta = \\alpha = 0.5$ 的beta先验分布。请编写Python代码来模拟这个人对于一个长度为 $n$ 的*单个*抽取序列的 $\\theta$ 的个人后验分布。",
     "domain": "probability",
     "difficulty": "intermediate",
     "key_terms": [],

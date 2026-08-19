@@ -64,6 +64,26 @@ class TestCheckPair:
         zh = "让我们回顾{doc}`之前关于大数定律的讨论 <lln_clt>`，这是一个重要的结果说明"
         assert check_pair(en, zh) == []
 
+    def test_verbose_english_is_tolerated_when_markers_all_carry(self) -> None:
+        """A complete translation of wordy English must not trip the length check.
+
+        This is para-015: an 846-character blockquote rendered in 246
+        characters of Chinese, ratio 0.29, with its one math span intact.
+        """
+        en = "A test procedure is simply a rule specifying, for each possible sample of size $n$, " + (
+            "whether the hypothesis should be accepted or rejected on the basis of that sample. " * 4
+        )
+        zh = "检验程序就是一个规则，它为每个可能的样本量 $n$ 规定是否应该基于该样本接受或拒绝假设。" * 2
+        assert 0.20 <= len(zh) / len(en) < 0.30
+        assert check_pair(en, zh) == []
+
+    def test_marker_kept_but_prose_dropped_is_still_flagged(self) -> None:
+        """Surviving markers lower the bar; they do not remove it."""
+        en = "the value of $x_1$ " + ("and a great deal more explanatory prose besides " * 12)
+        zh = "$x_1$ 的值"
+        assert len(zh) / len(en) < 0.20
+        assert any("length ratio" in p for p in check_pair(en, zh))
+
     def test_empty_source_does_not_crash(self) -> None:
         assert isinstance(check_pair("", ""), list)
 
