@@ -356,7 +356,15 @@ def _curate_sentences(
     - Ensure domain diversity (at most 15 per domain)
     - Prefer moderate length (60-250 chars)
     - Skip generic/boilerplate sentences
+
+    A *target* of zero or less selects nothing.  The loop below appends before
+    it checks the target, so without this guard an already-full set would
+    still yield one sentence — and in ``--append`` mode, where the target is
+    the shortfall against what is already committed, that is every no-op run.
     """
+    if target <= 0:
+        return []
+
     import random
     random.seed(42)
 

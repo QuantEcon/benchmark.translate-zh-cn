@@ -179,6 +179,41 @@ class TestCurateParagraphs:
 
         assert seed._curate_paragraphs([para("A fresh candidate.")], target=30, existing=existing) == []
 
+    def test_a_target_below_the_committed_count_selects_nothing(self) -> None:
+        """Asking for fewer than there are must not add one anyway."""
+        existing = [
+            para(f"Committed passage {i}, long enough to stand alone.", entry_id=f"para-{i:03d}")
+            for i in range(30)
+        ]
+
+        assert seed._curate_paragraphs([para("A fresh candidate.")], target=10, existing=existing) == []
+
+
+class TestCurateSentences:
+    """`--append` passes the shortfall as the target, so it reaches zero."""
+
+    def sentence(self, en: str, *, domain: str = "economics") -> dict:
+        return {"en": en, "zh": "译文", "domain": domain, "difficulty": "intermediate"}
+
+    def test_a_zero_target_selects_nothing(self) -> None:
+        # The no-op case: as many sentences committed as the target asks for.
+        candidates = [self.sentence(f"A candidate sentence with $x_{i}$ in it, of moderate length.") for i in range(20)]
+
+        assert seed._curate_sentences(candidates, target=0) == []
+
+    def test_a_negative_target_selects_nothing(self) -> None:
+        candidates = [self.sentence(f"A candidate sentence with $x_{i}$ in it, of moderate length.") for i in range(20)]
+
+        assert seed._curate_sentences(candidates, target=-20) == []
+
+    def test_a_positive_target_still_selects(self) -> None:
+        candidates = [
+            self.sentence(f"A candidate sentence with $x_{i}$ in it, of moderate length.", domain=f"d{i}")
+            for i in range(20)
+        ]
+
+        assert len(seed._curate_sentences(candidates, target=3)) == 3
+
 
 class TestNextId:
     def test_continues_past_the_highest_committed_id(self) -> None:
