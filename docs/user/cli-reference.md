@@ -368,7 +368,7 @@ Export dataset statistics and results to JSON files for the dashboard website.
 uv run qebench export
 ```
 
-Writes 7 JSON files to `docs/_static/dashboard/data/`:
+Writes 8 JSON files to `docs/_static/dashboard/data/`:
 - `coverage.json` — terms/sentences/paragraphs vs. targets
 - `domains.json` — per-domain entry counts
 - `difficulty.json` — basic/intermediate/advanced distribution
@@ -376,8 +376,29 @@ Writes 7 JSON files to `docs/_static/dashboard/data/`:
 - `activity.json` — recent translation attempts
 - `samples.json` — sample terms for the browse section
 - `ratings.json` — model Elo ratings and mean judge scores
+- `models.json` — formatting fidelity and glossary compliance per model, prompt and entry type
 
 This is run automatically by CI when changes are pushed.
+
+### Where the model comparison comes from
+
+`ratings.json` needs a human in the loop — a model only appears once someone has
+judged it. `models.json` is computed from the committed run files in
+`results/model-outputs/`, so it covers every model and prompt that has ever been
+run, judged or not. The two are complementary rather than redundant.
+
+Glossary compliance is scored against the upstream `action-translation` glossary,
+not the dataset's own `key_terms` field, which is empty for every committed entry
+and would score a vacuous 100%. A record the glossary has nothing to say about is
+excluded rather than counted as compliant, so the number of records actually
+scored travels with the mean.
+
+Two caveats worth carrying into any reading of it. The check is plain
+containment, so a translation that happens to contain the expected characters
+counts as compliant even when the text around it is wrong — treat it as an upper
+bound. And `action-new` injects the glossary into its own prompt, so 100% there
+means the model followed an instruction it was given, not that the translation is
+better than one scoring 78%.
 
 ### Where model ratings come from
 

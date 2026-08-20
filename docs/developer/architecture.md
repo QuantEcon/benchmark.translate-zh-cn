@@ -24,7 +24,7 @@ src/qebench/
 │   ├── stats.py           # Dataset coverage + XP leaderboard (Rich panels/tables)
 │   ├── add.py             # Interactive entry creation → saves to per-user file
 │   ├── translate.py       # Translation practice game loop
-│   ├── export.py          # Export 7 JSON files for the dashboard
+│   ├── export.py          # Export 8 JSON files for the dashboard
 │   ├── submit.py          # Git pull/commit/push workflow
 │   ├── doctor.py          # 8 preflight checks (gh, git, repo, data, etc.)
 │   ├── update.py          # Pull latest code + uv sync dependencies
@@ -115,7 +115,7 @@ export.py ──→ loads all data + results
     │       ──→ ratings.py replays results/judgments/*.jsonl into
     │           model ratings (results/elo.json is a gitignored cache,
     │           so the committed logs are the source of truth)
-    │       ──→ writes 7 JSON files to docs/_static/dashboard/data/
+    │       ──→ writes 8 JSON files to docs/_static/dashboard/data/
     ▼
 MyST build + gh-pages deploys the dashboard
 ```

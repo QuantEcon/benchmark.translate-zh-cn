@@ -8,13 +8,15 @@ from pathlib import Path
 from rich.panel import Panel
 
 from qebench.models import Term
+from qebench.scoring.formatting import formatting_score
+from qebench.scoring.glossary import expected_translations, glossary_compliance
 from qebench.scoring.ratings import (
     elo_eligible,
     load_judgment_records,
     recompute_elo,
     score_summary,
 )
-from qebench.utils.dataset import get_targets, load_all
+from qebench.utils.dataset import get_targets, load_all, load_glossary
 from qebench.utils.display import console
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -193,6 +195,151 @@ def _ratings_export() -> dict:
     }
 
 
+# formatting_score() returns three pass/fail checks and two 0-1 rates.
+_BOOLEAN_CHECKS = ("directive_balance", "fence_consistency", "code_block_integrity")
+_SCORE_CHECKS = ("fullwidth_punctuation", "directive_spacing")
+_FORMATTING_KEYS = _BOOLEAN_CHECKS + _SCORE_CHECKS
+
+# April's term runs predate the entry_type field — recover it from the id.
+_ID_PREFIX_TYPES = {"term": "terms", "sent": "sentences", "para": "paragraphs"}
+
+
+def _run_records() -> list[dict]:
+    """Every usable record in ``results/model-outputs``.
+
+    Tolerant in the same way as the other readers here: this runs in the
+    docs-deploy workflow, so one malformed line must not fail the dashboard
+    build for everyone.
+    """
+    outputs_dir = _REPO_ROOT / "results" / "model-outputs"
+    if not outputs_dir.exists():
+        return []
+
+    records: list[dict] = []
+    for path in sorted(outputs_dir.glob("*.jsonl")):
+        try:
+            with open(path, encoding="utf-8-sig") as f:
+                for lineno, line in enumerate(f, 1):
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        record = json.loads(line)
+                    except json.JSONDecodeError as e:
+                        console.print(
+                            f"[yellow]warning:[/] skipping malformed line {lineno} in {path.name}: {e}"
+                        )
+                        continue
+                    if isinstance(record, dict) and record.get("entry_id"):
+                        records.append(record)
+        except (OSError, UnicodeDecodeError) as e:
+            console.print(f"[yellow]warning:[/] skipping {path.name}: {e}")
+    return records
+
+
+def _entry_type(record: dict) -> str:
+    declared = record.get("entry_type")
+    if declared:
+        return str(declared)
+    prefix = str(record.get("entry_id", "")).split("-", 1)[0]
+    return _ID_PREFIX_TYPES.get(prefix, "unknown")
+
+
+def _formatting(record: dict) -> dict:
+    """Score a record's formatting with the current checks, ignoring any stored dict.
+
+    The stored ``formatting`` field is whatever the checks said when the run was
+    written, so a table mixing stored and recomputed rows compares metric
+    versions as much as models.  ``check_fullwidth_punctuation`` was corrected
+    in v0.6.0, and today every committed record happens to agree with a
+    recompute — the April runs carry no stored field, and the August runs were
+    stamped after the fix.  Recomputing makes that a property of the export
+    rather than a coincidence that a single run committed from stale code would
+    quietly end.
+
+    :mod:`scripts.analyze_runs` deliberately prefers the stored value and
+    flags what it rescored, because it reports on runs as they were recorded.
+    This is a cross-run comparison, so uniformity wins instead.
+    """
+    return formatting_score(str(record.get("source_text", "")), str(record.get("translated_text", "")))
+
+
+def _model_comparison() -> dict:
+    """Per-model formatting fidelity and glossary compliance, for the dashboard.
+
+    ``ratings.json`` already carries Elo and mean judge scores, which need a
+    human in the loop.  These two are computed from the committed run files, so
+    they cover every model and prompt rather than only the pairs someone has
+    judged.
+
+    Glossary compliance is scored against the upstream ``action-translation``
+    glossary via :func:`expected_translations` — not the dataset's own
+    ``key_terms``, which is empty for every committed entry and would score a
+    vacuous 1.0. Records the glossary says nothing about are excluded rather
+    than counted as compliant, so ``glossary.scored`` travels with the mean.
+
+    The check is plain containment, so a translation that happens to contain
+    the expected characters counts as compliant even when the surrounding text
+    is wrong. It reads as an upper bound.
+
+    Formatting is recomputed for every record rather than read from the stored
+    field, so each row is scored by the same checks — see :func:`_formatting`.
+    """
+    records = _run_records()
+    glossary = load_glossary()
+
+    grouped: dict[tuple[str, str, str], list[dict]] = {}
+    for record in records:
+        key = (
+            str(record.get("model", "unknown")),
+            str(record.get("prompt_template", "unknown")),
+            _entry_type(record),
+        )
+        grouped.setdefault(key, []).append(record)
+
+    rows: list[dict] = []
+    for (model, prompt, entry_type), group in sorted(grouped.items()):
+        scores = [_formatting(r) for r in group]
+        total = len(scores)
+        pass_rates = {
+            check: round(100.0 * sum(1 for s in scores if s.get(check)) / total, 1)
+            for check in _BOOLEAN_CHECKS
+        }
+        means = {
+            check: round(sum(float(s.get(check) or 0.0) for s in scores) / total, 4)
+            for check in _SCORE_CHECKS
+        }
+
+        compliances = [
+            glossary_compliance(str(r.get("translated_text", "")), expected)
+            for r in group
+            if (expected := expected_translations(str(r.get("source_text", "")), glossary))
+        ]
+        rows.append(
+            {
+                "model": model,
+                "prompt_template": prompt,
+                "entry_type": entry_type,
+                "records": total,
+                "pass_rates": pass_rates,
+                "means": means,
+                "glossary": {
+                    "scored": len(compliances),
+                    "mean": round(sum(compliances) / len(compliances), 4) if compliances else None,
+                },
+            }
+        )
+
+    return {
+        "runs": rows,
+        "models": sorted({row["model"] for row in rows}),
+        "prompts": sorted({row["prompt_template"] for row in rows}),
+        "entry_types": sorted({row["entry_type"] for row in rows}),
+        "records": len(records),
+        "glossary_terms": len(glossary),
+    }
+
+
 def _term_samples(terms: list[Term], per_domain: int = 3) -> list[dict]:
     """Pick a few sample terms per domain for the browse section."""
     by_domain: dict[str, list[dict]] = {}
@@ -244,6 +391,9 @@ def export() -> None:
     # 7. Ratings, recomputed from the committed judgment logs
     ratings = _ratings_export()
 
+    # 8. Model comparison, computed from the committed run files
+    models = _model_comparison()
+
     # Write all export files
     exports = {
         "coverage.json": coverage,
@@ -253,6 +403,7 @@ def export() -> None:
         "activity.json": activity,
         "samples.json": samples,
         "ratings.json": ratings,
+        "models.json": models,
     }
 
     for filename, data in exports.items():
