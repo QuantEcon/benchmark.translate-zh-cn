@@ -7,7 +7,7 @@ import json
 import pytest
 import typer
 
-from qebench.commands.run import _get_provider, _save_results
+from qebench.commands.run import _get_provider, _inject_glossary, _save_results
 from qebench.providers.base import TranslationResult
 
 
@@ -41,6 +41,48 @@ class TestGetProvider:
         monkeypatch.setattr("builtins.__import__", mock_import)
         with pytest.raises(ImportError, match="openai"):
             _get_provider("openai")
+
+
+class TestInjectGlossary:
+    TEMPLATE = "GLOSSARY:\n{glossary}\n\nDomain: {domain}\n\n{text}"
+
+    def _render(self, template: str) -> str:
+        return template.format(text="inflation", source_lang="en", target_lang="zh-cn", domain="economics")
+
+    def test_terms_are_listed_alphabetically(self) -> None:
+        terms = [
+            {"en": "Inflation", "zh-cn": "通货膨胀"},
+            {"en": "Bellman equation", "zh-cn": "贝尔曼方程"},
+        ]
+        rendered = self._render(_inject_glossary(self.TEMPLATE, terms))
+
+        assert rendered.index("Bellman equation") < rendered.index("Inflation")
+        assert "  Inflation → 通货膨胀" in rendered
+
+    def test_a_brace_in_a_glossary_entry_survives_formatting(self) -> None:
+        """`{math}` in a headword would otherwise be read as a format field."""
+        terms = [{"en": "Set {math}", "zh-cn": "集合"}]
+
+        rendered = self._render(_inject_glossary(self.TEMPLATE, terms))
+
+        assert "Set {math} → 集合" in rendered
+
+    def test_plain_entries_carry_no_escaping_through(self) -> None:
+        terms = [{"en": "Inflation", "zh-cn": "通货膨胀"}]
+
+        rendered = self._render(_inject_glossary(self.TEMPLATE, terms))
+
+        assert "{{" not in rendered
+
+    def test_an_empty_glossary_says_so(self) -> None:
+        rendered = self._render(_inject_glossary(self.TEMPLATE, []))
+
+        assert "(no glossary loaded)" in rendered
+
+    def test_a_template_without_the_placeholder_is_untouched(self) -> None:
+        template = "Domain: {domain}\n\n{text}"
+
+        assert _inject_glossary(template, [{"en": "Inflation", "zh-cn": "通货膨胀"}]) == template
 
 
 class TestSaveResults:
@@ -90,6 +132,51 @@ class TestSaveResults:
         assert lines[0]["domain"] == "economics"
         assert lines[0]["difficulty"] == "intermediate"
         assert lines[1]["entry_id"] == "term-002"
+
+    def test_records_cache_token_counts(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.commands.run.MODEL_OUTPUTS_DIR", tmp_path)
+        result = TranslationResult(
+            entry_id="term-001",
+            source_text="inflation",
+            translated_text="通货膨胀",
+            model="claude-sonnet-4-6",
+            provider="claude",
+            prompt_template="action-new",
+            input_tokens=13,
+            output_tokens=6,
+            cache_creation_tokens=0,
+            cache_read_tokens=5000,
+        )
+        path = _save_results(
+            [result], "cached-run", prompt_name="action-new",
+            entry_type="terms", entry_meta={},
+        )
+
+        record = json.loads(path.read_text(encoding="utf-8").splitlines()[0])
+        assert record["cache_creation_tokens"] == 0
+        assert record["cache_read_tokens"] == 5000
+        assert record["input_tokens"] == 13
+
+    def test_uncached_results_record_zeroes(self, tmp_path, monkeypatch) -> None:
+        monkeypatch.setattr("qebench.commands.run.MODEL_OUTPUTS_DIR", tmp_path)
+        result = TranslationResult(
+            entry_id="term-001",
+            source_text="inflation",
+            translated_text="通货膨胀",
+            model="claude-sonnet-4-6",
+            provider="claude",
+            prompt_template="default",
+            input_tokens=13,
+            output_tokens=6,
+        )
+        path = _save_results(
+            [result], "plain-run", prompt_name="default",
+            entry_type="terms", entry_meta={},
+        )
+
+        record = json.loads(path.read_text(encoding="utf-8").splitlines()[0])
+        assert record["cache_creation_tokens"] == 0
+        assert record["cache_read_tokens"] == 0
 
     def test_appends_to_existing(self, tmp_path, monkeypatch) -> None:
         monkeypatch.setattr("qebench.commands.run.MODEL_OUTPUTS_DIR", tmp_path)

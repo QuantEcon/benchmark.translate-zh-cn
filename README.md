@@ -59,7 +59,7 @@ Translation pairs at three granularities sourced from QuantEcon lectures:
 |---|---|---|---|
 | Terms | 500+ | 314 | Single terms with standard translations |
 | Sentences | 100+ | 80 | One-sentence definitions or statements |
-| Paragraphs | 30+ | 17 | Multi-sentence explanations (may include math/code/directives) |
+| Paragraphs | 30+ | 30 | Multi-sentence explanations (may include math/code/directives) |
 
 Sentences and paragraphs are seeded from aligned English/Chinese lecture pairs
 using `scripts/seed_from_lectures.py`. See [Seed Script Guide](docs/developer/seeding-from-lectures.md).

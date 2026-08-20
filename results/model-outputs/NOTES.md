@@ -152,13 +152,70 @@ documentation page about this*. The output-token column shows it plainly:
 model under `action-new`.
 
 `action-new` is identical except that it injects the glossary — and it removes
-the failure completely (0/314). The glossary block is not only a terminology
-aid; on short inputs it is what keeps the model in translation mode. Sonnet is
-largely immune (1.0%), so this is a small-model failure mode.
+the failure completely (0/314), which reads at first as the glossary block being
+what keeps the model in translation mode. The next section tests that reading
+and narrows it.
 
-**For `action-translation`:** never send a bare fragment through a
-documentation-framed prompt without the glossary block, particularly on a Haiku-
-class model. This is the strongest prompt-design result in the round.
+### What actually fixes it
+
+The reading above — that the glossary block is what holds the model in
+translation mode — was tested directly rather than left as an inference. Four
+prompts were run over the same 30 short terms (one or two words, where the
+recorded failure rate is highest), on Haiku 4.5 at temperature 0:
+
+| Prompt | Prompt tokens | Pages | Cost |
+|---|---:|---:|---:|
+| `action-basic` as shipped | 241 | 15/30 (**50.0%**) | $0.0508 |
+| `action-basic` + three lines of scoping | 284 | 0/30 (**0.0%**) | $0.0099 |
+| `action-basic` + a 20-term glossary | 512 | 0/30 (**0.0%**) | $0.0168 |
+| `action-new` (full 357-term glossary) | 5,241 | 0/30 (**0.0%**) | $0.0293 |
+
+The three added lines were:
+
+> The input may be a single term or a fragment rather than a whole document.
+> Translate exactly what is given and nothing else — no headings, no
+> definition, no explanation, no added sections.
+
+So the glossary is **not** what fixes this. Forty-three tokens of scoping fix it
+just as completely as five thousand tokens of glossary, and a twenty-term
+glossary works too. What all three have in common is that they show the model
+the expected output is short. The full glossary happens to demonstrate that 357
+times over; it is doing the job incidentally, not by being a glossary.
+
+Repeating the comparison on a held-out set of 30 short terms reproduces it:
+`action-basic` 17/30 (56.7%), the scoped variant 0/30.
+
+Two things follow that the recorded run did not make obvious.
+
+**The broken prompt is the expensive one.** `action-basic` costs about five
+times the scoped variant on the same terms ($0.0508 against $0.0099), because
+each failure emits a 450–1,832 token page instead of a nine-token translation.
+Failure rate and spend move together here, so this is not a
+quality-versus-cost trade.
+
+**Failure rate falls as the input gets longer,** which is what a framing fault
+predicts: 51% on one-word terms, 46% on two, 38% on three, 22% on four. Nothing
+else in the data separates the failures — 45% of basic terms fail against 50% of
+advanced, so difficulty is not the variable.
+
+The scoped variant was also run over all 17 paragraphs, the case the MyST rules
+exist for, to check the instruction does not suppress legitimate structure. All
+three pass/fail checks stay at 100%, and directive spacing at 1.000. Full-width
+punctuation moves 0.946 → 0.908, which on 17 records is one or two paragraphs
+and would want a repeat before being read as a real effect.
+
+**Recommendation.** Scope the prompt rather than adding the glossary. It is
+cheaper, it is a smaller change, and it fixes the actual fault. Doing so means
+`prompts/action-basic.txt` no longer matches the `action-basic` records already
+committed here, so either the terms grid is re-run or the change ships under a
+new template name.
+
+**For `action-translation`:** the operative rule is that a documentation-framed
+prompt must tell the model when its input is a fragment. Sending the glossary on
+every section does achieve this, but it is an expensive way to buy it, and the
+prompt-caching support added for this benchmark is a better answer to the cost
+than the framing. Sonnet is largely immune (1.0%), so this remains a small-model
+failure mode.
 
 ## Agreement
 

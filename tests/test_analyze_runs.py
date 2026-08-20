@@ -33,6 +33,8 @@ def make_record(
     entry_type: str = "terms",
     input_tokens: int = 10,
     output_tokens: int = 5,
+    cache_creation_tokens: int | None = None,
+    cache_read_tokens: int | None = None,
     cost_usd: float = 0.001,
     latency_ms: float = 1000.0,
     formatting: dict | None = None,
@@ -53,6 +55,10 @@ def make_record(
         "cost_usd": cost_usd,
         "latency_ms": latency_ms,
     }
+    if cache_creation_tokens is not None:
+        record["cache_creation_tokens"] = cache_creation_tokens
+    if cache_read_tokens is not None:
+        record["cache_read_tokens"] = cache_read_tokens
     if formatting is not None:
         record["formatting"] = formatting
     return record
@@ -499,6 +505,59 @@ class TestGuardRails:
 
 
 # ---------------------------------------------------------------------------
+# Prompt caching
+# ---------------------------------------------------------------------------
+
+class TestCacheTokens:
+    def test_input_tokens_count_the_whole_prompt(self, tmp_path: Path) -> None:
+        """A cached run has to stay comparable with the uncached rounds."""
+        write_run(
+            tmp_path,
+            "cached",
+            [make_record("term-001", input_tokens=13, cache_read_tokens=5000, cache_creation_tokens=0)],
+        )
+
+        row = analyze_runs.analyse(tmp_path)["cost"][0]
+
+        assert row["input_tokens"] == 5013
+        assert row["cache_read_tokens"] == 5000
+        assert row["cache_creation_tokens"] == 0
+
+    def test_a_write_also_counts_toward_the_prompt(self, tmp_path: Path) -> None:
+        write_run(
+            tmp_path,
+            "cached",
+            [make_record("term-001", input_tokens=13, cache_creation_tokens=5000, cache_read_tokens=0)],
+        )
+
+        row = analyze_runs.analyse(tmp_path)["cost"][0]
+
+        assert row["input_tokens"] == 5013
+
+    def test_records_without_the_fields_report_zero(self, tmp_path: Path) -> None:
+        """Every run committed before caching shipped lands here."""
+        write_run(tmp_path, "april", [make_record("term-001", input_tokens=10)])
+
+        row = analyze_runs.analyse(tmp_path)["cost"][0]
+
+        assert row["input_tokens"] == 10
+        assert row["cache_creation_tokens"] == 0
+        assert row["cache_read_tokens"] == 0
+
+    def test_the_cached_column_appears_only_when_a_run_used_the_cache(self, tmp_path: Path) -> None:
+        write_run(tmp_path, "april", [make_record("term-001")])
+        assert "Cached tok" not in analyze_runs.render_markdown(analyze_runs.analyse(tmp_path))
+
+        write_run(tmp_path, "cached", [make_record("sent-001", entry_type="sentences", cache_read_tokens=5000)])
+        report = analyze_runs.render_markdown(analyze_runs.analyse(tmp_path))
+
+        assert "Cached tok" in report
+        assert "5,000" in report
+        # The run that predates caching gets a dash, not a misleading zero.
+        assert "—" in report
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -519,6 +578,32 @@ class TestCli:
         captured = capsys.readouterr()
         assert "| Run | Type | Entries |" in captured.out
         assert "## Formatting" in captured.out
+
+    def test_missing_directory_exits_non_zero(self, tmp_path: Path, capsys: pytest.CaptureFixture) -> None:
+        """A mistyped --dir in CI must not read as a clean run."""
+        exit_code = analyze_runs.main(["--dir", str(tmp_path / "nope")])
+
+        assert exit_code == 2
+        captured = capsys.readouterr()
+        assert "directory not found" in captured.err
+        assert "No run records found." in captured.out
+
+    def test_missing_directory_writes_no_json(self, tmp_path: Path) -> None:
+        out_path = tmp_path / "out" / "aggregates.json"
+
+        exit_code = analyze_runs.main(["--dir", str(tmp_path / "nope"), "--json", str(out_path)])
+
+        assert exit_code == 2
+        assert not out_path.exists()
+
+    def test_an_empty_but_present_directory_still_exits_zero(self, tmp_path: Path) -> None:
+        """Nothing found is not the same failure as nowhere to look."""
+        assert analyze_runs.main(["--dir", str(tmp_path)]) == 0
+
+    def test_a_corrupt_file_alone_does_not_fail_the_run(self, tmp_path: Path) -> None:
+        (tmp_path / "bad.jsonl").write_text("{not valid json\n", encoding="utf-8")
+
+        assert analyze_runs.main(["--dir", str(tmp_path)]) == 0
 
     def test_markdown_reports_retroactive_runs(self, tmp_path: Path, capsys: pytest.CaptureFixture) -> None:
         legacy = make_record("term-001")

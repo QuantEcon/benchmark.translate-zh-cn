@@ -288,6 +288,7 @@ uv run qebench run --prompt academic            # Use academic prompt template
 uv run qebench run --prompt action-new          # MyST-aware prompt with glossary
 uv run qebench run --type sentences --domain economics  # Filter entries
 uv run qebench run --count 10 --dry-run         # Preview without API calls
+uv run qebench run --prompt action-new --no-cache  # Bill the glossary on every call
 ```
 
 ### Options
@@ -301,6 +302,35 @@ uv run qebench run --count 10 --dry-run         # Preview without API calls
 | `--domain`, `-d` | *(all)* | Filter entries by domain |
 | `--type`, `-t` | `terms` | Entry type: `terms`, `sentences`, `paragraphs` |
 | `--dry-run` | `false` | Preview entries without calling the API |
+| `--cache` / `--no-cache` | `--cache` | Prompt-cache the part of the template every entry shares |
+
+### Prompt caching
+
+Every template ends with the `{text}` placeholder, so everything before it is
+the same for each entry in a run. `qebench run` sends that prefix as its own
+cacheable block, and the entry itself as a second block — the prompt text is
+unchanged, only its packaging.
+
+This matters for `action-new`, whose prefix carries the whole glossary: around
+5,200 of the roughly 5,250 tokens per term. Cached, that prefix is written once
+per distinct prefix and read back at a tenth of the input rate for every entry
+after it.
+
+Two details are worth knowing:
+
+- **`action-new` renders one prefix per domain**, because the template
+  interpolates `{domain}` on line 3, ahead of the glossary. A terms run
+  therefore writes 15 cache entries rather than one. `qebench run` translates
+  one entry per domain before fanning out the rest, so the writes happen once
+  instead of once per worker.
+- **A domain with a single entry is not cached at all.** A cache write costs
+  1.25x the input rate, so an entry nothing reads back would only cost more.
+  Three of the 17 paragraphs are the only entry in their domain.
+
+`--no-cache` sends the original single-block prompt, which is what the runs
+recorded in `NOTES.md` before v0.7.0 used. OpenAI caches long prefixes on its
+own with nothing to declare on the request, so there the flag only controls
+whether a run warms the cache before fanning out.
 
 ### Prompt Templates
 

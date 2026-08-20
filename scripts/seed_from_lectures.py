@@ -2,7 +2,8 @@
 """Seed sentences and paragraphs from paired English/Chinese lecture repos.
 
 Usage:
-    python scripts/seed_from_lectures.py /path/to/quantecon
+    python scripts/seed_from_lectures.py /path/to/quantecon --append
+    python scripts/seed_from_lectures.py /path/to/quantecon --overwrite
 
 Scans paired lecture repos (English + zh-cn), extracts aligned prose
 paragraphs, and writes seed data to data/sentences/ and data/paragraphs/.
@@ -10,10 +11,18 @@ paragraphs, and writes seed data to data/sentences/ and data/paragraphs/.
 Paragraph alignment: Both repos share identical file names and structural
 markers (headings, code blocks, math blocks), so prose paragraphs extracted
 by the same algorithm appear at the same indices.
+
+Ids are positional, so a re-run that rewrites a seed file renumbers every
+entry in it — and translation attempts, judgments and the repairs made by hand
+in #34 are all keyed on the id.  ``--append`` therefore keeps every committed
+entry exactly as it stands and only adds new ones after it; the destructive
+rewrite needs ``--overwrite`` said out loud.
 """
 
 from __future__ import annotations
 
+import argparse
+import difflib
 import json
 import re
 import sys
@@ -347,7 +356,15 @@ def _curate_sentences(
     - Ensure domain diversity (at most 15 per domain)
     - Prefer moderate length (60-250 chars)
     - Skip generic/boilerplate sentences
+
+    A *target* of zero or less selects nothing.  The loop below appends before
+    it checks the target, so without this guard an already-full set would
+    still yield one sentence — and in ``--append`` mode, where the target is
+    the shortfall against what is already committed, that is every no-op run.
     """
+    if target <= 0:
+        return []
+
     import random
     random.seed(42)
 
@@ -407,52 +424,215 @@ def _curate_sentences(
     return selected
 
 
+# Two extractions of the same passage differ by more than whitespace: upstream
+# rewraps lines, renumbers an exercise, tightens a sentence.  Three of the first
+# thirteen candidates matched a committed entry at 0.95 or better while nothing
+# unrelated came within 0.50, so the gap this sits in is wide.
+_DUPLICATE_RATIO = 0.90
+
+# Below this length a high similarity ratio means little — two short strings
+# differing in one character clear 0.90 easily.  Shorter text has to match
+# exactly.  Every committed paragraph is at least 292 characters, so this only
+# constrains sentences, where near-duplicates are correspondingly less likely
+# to be the same passage re-extracted.
+_MIN_FUZZY_CHARS = 120
+
+
+def _normalise(text: str) -> str:
+    """Collapse whitespace, so a rewrapped paragraph compares equal."""
+    return " ".join(text.split())
+
+
+def _is_duplicate(candidate: dict, against: list[dict]) -> bool:
+    """True when *candidate* is another rendering of something in *against*.
+
+    An exact match is not enough on its own: ``para-001`` and the same passage
+    re-extracted today differ only in line breaks, and two more of the first
+    thirteen candidates differed from a committed entry by a renumbered list
+    item.  One of those came from a different source file, so the comparison
+    cannot be scoped by source either.
+    """
+    text = _normalise(candidate["en"])
+    for other in against:
+        existing = _normalise(other["en"])
+        if text == existing:
+            return True
+        # Length is a cheap gate on the expensive comparison.
+        shorter, longer = sorted((len(text), len(existing)))
+        if shorter < _MIN_FUZZY_CHARS:
+            continue
+        if longer and shorter / longer < _DUPLICATE_RATIO:
+            continue
+        if difflib.SequenceMatcher(None, text, existing).ratio() >= _DUPLICATE_RATIO:
+            return True
+    return False
+
+
+def _is_featured(p: dict) -> bool:
+    """True when the paragraph carries the MyST structure the checks score."""
+    return bool(
+        p.get("contains_mixed_fencing", False)
+        or p.get("contains_directives", False)
+        or p.get("contains_roles", False)
+    )
+
+
+def _paragraph_rank(p: dict) -> tuple:
+    """Sort key preferring the MyST features the formatting checks exercise.
+
+    Directives and roles come first because they are what
+    ``directive_balance`` and ``directive_spacing`` actually score; the plain
+    feature count breaks ties.
+    """
+    return (
+        bool(p.get("contains_mixed_fencing", False)),
+        bool(p.get("contains_directives", False)),
+        bool(p.get("contains_roles", False)),
+        sum(
+            [
+                p.get("contains_math", False),
+                p.get("contains_code", False),
+                p.get("contains_directives", False),
+                p.get("contains_roles", False),
+            ]
+        ),
+    )
+
+
+# The extractor's domain heuristic is filename-based and falls back to
+# "economics", which takes 155 of the 184 candidates.  Featured candidates are
+# concentrated there too, so an uncapped feature-first pass makes every
+# addition economics.  Capping additions per domain trades a little of the
+# directive share for a set that still spans the corpus.
+DEFAULT_MAX_PER_DOMAIN = 5
+
+
 def _curate_paragraphs(
-    paragraphs: list[dict], target: int = 30
+    paragraphs: list[dict],
+    target: int = 30,
+    existing: list[dict] | None = None,
+    max_per_domain: int = DEFAULT_MAX_PER_DOMAIN,
 ) -> list[dict]:
     """Select diverse paragraphs prioritizing MyST features.
 
     Strategy:
-    - Prioritize paragraphs with math, directives, roles
-    - Ensure domain diversity
+    - Prioritize paragraphs with mixed fencing, directives and roles
+    - Take one domain at a time in rounds, so no domain crowds the set out
     - Skip paragraphs that are just prose (prefer formatting-rich ones)
+
+    Pass *existing* to extend a committed set: its entries are excluded from
+    the candidates, its domains seed the round-robin so a domain already well
+    covered waits its turn, and the returned list holds only the new
+    selections.  *max_per_domain* bounds how many of those new selections one
+    domain may contribute.
     """
-    # Sort: paragraphs with more features first
-    def _feature_score(p: dict) -> int:
-        return sum([
-            p.get("contains_math", False),
-            p.get("contains_code", False),
-            p.get("contains_directives", False),
-            p.get("contains_roles", False),
-        ])
-
-    paragraphs.sort(key=_feature_score, reverse=True)
-
-    per_domain = max(3, target // max(1, len({p["domain"] for p in paragraphs})))
-    domain_counts: dict[str, int] = {}
-    selected: list[dict] = []
-
-    for p in paragraphs:
-        dom = p["domain"]
-        if domain_counts.get(dom, 0) >= per_domain:
+    existing = existing or []
+    kept: list[dict] = list(existing)
+    by_domain: dict[str, list[dict]] = {}
+    for p in sorted(paragraphs, key=_paragraph_rank, reverse=True):
+        if _is_duplicate(p, kept):
             continue
-        domain_counts[dom] = domain_counts.get(dom, 0) + 1
-        selected.append(p)
-        if len(selected) >= target:
-            break
+        kept.append(p)
+        by_domain.setdefault(p["domain"], []).append(p)
+
+    # A domain that already carries entries starts that many rounds behind.
+    taken: dict[str, int] = {}
+    for entry in existing:
+        taken[entry["domain"]] = taken.get(entry["domain"], 0) + 1
+
+    # Directives and roles are what the formatting checks actually exercise,
+    # and the committed set is short of them — a 100% pass rate over easy
+    # prose says little.  Take every domain's featured candidates first, then
+    # come back for plain prose, so the weighting does not cost diversity.
+    featured = {d: [p for p in ps if _is_featured(p)] for d, ps in by_domain.items()}
+    plain = {d: [p for p in ps if not _is_featured(p)] for d, ps in by_domain.items()}
+
+    selected: list[dict] = []
+    added: dict[str, int] = {}
+    remaining = target - len(existing)
+    for pool in (featured, plain):
+        while len(selected) < remaining:
+            # Least-covered domain first, so the round-robin evens the set out.
+            domains = sorted(
+                (d for d, ps in pool.items() if ps and added.get(d, 0) < max_per_domain),
+                key=lambda d: (taken.get(d, 0), d),
+            )
+            if not domains:
+                break
+            for domain in domains:
+                if len(selected) >= remaining:
+                    break
+                selected.append(pool[domain].pop(0))
+                taken[domain] = taken.get(domain, 0) + 1
+                added[domain] = added.get(domain, 0) + 1
 
     return selected
 
 
-def main() -> None:
-    if len(sys.argv) < 2:
-        print("Usage: python scripts/seed_from_lectures.py /path/to/quantecon")
-        sys.exit(1)
+def _load_existing(path: Path) -> list[dict]:
+    """Read a committed seed file, or an empty list when there is none."""
+    if not path.exists():
+        return []
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
 
-    base_dir = Path(sys.argv[1])
+
+def _next_id(existing: list[dict], prefix: str) -> int:
+    """One past the highest numeric id in *existing*, or 1 when it is empty."""
+    highest = 0
+    for entry in existing:
+        try:
+            highest = max(highest, int(str(entry.get("id", "")).rsplit("-", 1)[-1]))
+        except ValueError:
+            continue
+    return highest + 1
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Seed sentences and paragraphs from paired English/Chinese lecture repos."
+    )
+    parser.add_argument("base_dir", type=Path, help="Directory holding the paired lecture repos.")
+    parser.add_argument(
+        "--append",
+        action="store_true",
+        help="Keep every committed entry and its id, appending only new ones.",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Rewrite the seed files from scratch, renumbering every entry.",
+    )
+    parser.add_argument("--paragraph-target", type=int, default=30, help="Total paragraphs to end up with.")
+    parser.add_argument("--sentence-target", type=int, default=80, help="Total sentences to end up with.")
+    parser.add_argument(
+        "--max-per-domain",
+        type=int,
+        default=DEFAULT_MAX_PER_DOMAIN,
+        help="Cap on how many new paragraphs one domain may contribute.",
+    )
+    args = parser.parse_args(argv)
+
+    base_dir = args.base_dir
     if not base_dir.exists():
         print(f"Error: {base_dir} not found")
-        sys.exit(1)
+        return 1
+
+    repo_root = Path(__file__).resolve().parent.parent
+    sent_path = repo_root / "data" / "sentences" / "_seed_lectures.json"
+    para_path = repo_root / "data" / "paragraphs" / "_seed_lectures.json"
+
+    if args.append and args.overwrite:
+        print("Error: pass --append or --overwrite, not both")
+        return 1
+    if not args.append and not args.overwrite and (sent_path.exists() or para_path.exists()):
+        # Ids are positional, so a rewrite renumbers entries that judgments,
+        # attempts and the #34 repairs are all keyed on.
+        print(
+            "Error: seed files already exist. Use --append to add to them, "
+            "or --overwrite to renumber every entry from scratch."
+        )
+        return 1
 
     all_sentences: list[dict] = []
     all_paragraphs: list[dict] = []
@@ -475,37 +655,49 @@ def main() -> None:
 
     print(f"\nRaw extraction: {len(all_sentences)} sentences, {len(all_paragraphs)} paragraphs")
 
-    # Curate to manageable, diverse subsets
-    all_sentences = _curate_sentences(all_sentences, target=80)
-    all_paragraphs = _curate_paragraphs(all_paragraphs, target=30)
+    existing_sentences = _load_existing(sent_path) if args.append else []
+    existing_paragraphs = _load_existing(para_path) if args.append else []
 
-    # Assign IDs
-    for i, s in enumerate(all_sentences, 1):
+    # Curate to manageable, diverse subsets
+    new_sentences = _curate_sentences(all_sentences, target=args.sentence_target - len(existing_sentences))
+    new_paragraphs = _curate_paragraphs(
+        all_paragraphs,
+        target=args.paragraph_target,
+        existing=existing_paragraphs,
+        max_per_domain=args.max_per_domain,
+    )
+    if args.append:
+        kept = list(existing_sentences)
+        deduped = []
+        for candidate in new_sentences:
+            if _is_duplicate(candidate, kept):
+                continue
+            kept.append(candidate)
+            deduped.append(candidate)
+        new_sentences = deduped
+
+    # Assign IDs, continuing past whatever is already committed
+    for i, s in enumerate(new_sentences, _next_id(existing_sentences, "sent")):
         s["id"] = f"sent-{i:03d}"
 
-    for i, p in enumerate(all_paragraphs, 1):
+    for i, p in enumerate(new_paragraphs, _next_id(existing_paragraphs, "para")):
         p["id"] = f"para-{i:03d}"
 
-    # Write output
-    repo_root = Path(__file__).resolve().parent.parent
+    all_sentences = existing_sentences + new_sentences
+    all_paragraphs = existing_paragraphs + new_paragraphs
 
-    # Sentences
-    sent_dir = repo_root / "data" / "sentences"
-    sent_dir.mkdir(parents=True, exist_ok=True)
-    sent_path = sent_dir / "_seed_lectures.json"
+    # Write output
+    sent_path.parent.mkdir(parents=True, exist_ok=True)
     with open(sent_path, "w", encoding="utf-8") as f:
         json.dump(all_sentences, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    print(f"\nSentences: {len(all_sentences)} → {sent_path}")
+    print(f"\nSentences: {len(all_sentences)} (+{len(new_sentences)}) → {sent_path}")
 
-    # Paragraphs
-    para_dir = repo_root / "data" / "paragraphs"
-    para_dir.mkdir(parents=True, exist_ok=True)
-    para_path = para_dir / "_seed_lectures.json"
+    para_path.parent.mkdir(parents=True, exist_ok=True)
     with open(para_path, "w", encoding="utf-8") as f:
         json.dump(all_paragraphs, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    print(f"Paragraphs: {len(all_paragraphs)} → {para_path}")
+    print(f"Paragraphs: {len(all_paragraphs)} (+{len(new_paragraphs)}) → {para_path}")
 
     # Domain summary
     from collections import Counter
@@ -520,12 +712,16 @@ def main() -> None:
         n_code = sum(1 for p in all_paragraphs if p.get("contains_code"))
         n_dir = sum(1 for p in all_paragraphs if p.get("contains_directives"))
         n_role = sum(1 for p in all_paragraphs if p.get("contains_roles"))
-        print(f"\nParagraph features:")
+        print("\nParagraph features:")
         print(f"  contains_math:       {n_math}")
         print(f"  contains_code:       {n_code}")
         print(f"  contains_directives: {n_dir}")
         print(f"  contains_roles:      {n_role}")
+        n_mixed = sum(1 for p in all_paragraphs if p.get("contains_mixed_fencing"))
+        print(f"  contains_mixed_fencing: {n_mixed}")
+
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

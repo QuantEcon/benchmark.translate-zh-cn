@@ -60,6 +60,8 @@ class Record:
     entry_type: str
     input_tokens: int
     output_tokens: int
+    cache_creation_tokens: int
+    cache_read_tokens: int
     cost_usd: float
     latency_ms: float
     formatting: dict[str, bool | float]
@@ -112,6 +114,7 @@ class LoadResult:
 
     runs: list[Run] = field(default_factory=list)
     skipped: list[str] = field(default_factory=list)
+    directory_missing: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -158,6 +161,10 @@ def parse_record(record: dict, source_file: str) -> Record:
         entry_type=infer_entry_type(record),
         input_tokens=_as_int(record.get("input_tokens")),
         output_tokens=_as_int(record.get("output_tokens")),
+        # Runs made before prompt caching carry neither field, and zero is the
+        # truth for them: every prompt token was billed at the full rate.
+        cache_creation_tokens=_as_int(record.get("cache_creation_tokens")),
+        cache_read_tokens=_as_int(record.get("cache_read_tokens")),
         cost_usd=_as_float(record.get("cost_usd")),
         latency_ms=_as_float(record.get("latency_ms")),
         formatting=formatting,
@@ -203,6 +210,7 @@ def load_directory(directory: Path, *, entry_type: str | None = None) -> LoadRes
     result = LoadResult()
     if not directory.exists():
         result.skipped.append(f"{directory}: directory not found")
+        result.directory_missing = True
         return result
 
     grouped: dict[tuple[str, str, str], Run] = {}
@@ -234,7 +242,13 @@ def cost_rows(runs: list[Run]) -> list[dict]:
     rows: list[dict] = []
     for run in runs:
         entries = len(run.records)
-        input_tokens = sum(r.input_tokens for r in run.records)
+        cache_creation_tokens = sum(r.cache_creation_tokens for r in run.records)
+        cache_read_tokens = sum(r.cache_read_tokens for r in run.records)
+        # Keep "input tokens" meaning the whole prompt, so a cached run stays
+        # comparable with the uncached rounds already recorded in NOTES.md.
+        input_tokens = (
+            sum(r.input_tokens for r in run.records) + cache_creation_tokens + cache_read_tokens
+        )
         output_tokens = sum(r.output_tokens for r in run.records)
         cost = sum(r.cost_usd for r in run.records)
         latency = sum(r.latency_ms for r in run.records) / entries if entries else 0.0
@@ -247,6 +261,8 @@ def cost_rows(runs: list[Run]) -> list[dict]:
                 "entries": entries,
                 "input_tokens": input_tokens,
                 "output_tokens": output_tokens,
+                "cache_creation_tokens": cache_creation_tokens,
+                "cache_read_tokens": cache_read_tokens,
                 "total_tokens": input_tokens + output_tokens,
                 "cost_usd": round(cost, 6),
                 "mean_latency_ms": round(latency, 1),
@@ -405,6 +421,7 @@ def analyse(
     aggregates["directory"] = str(directory)
     aggregates["entry_type_filter"] = entry_type
     aggregates["skipped"] = loaded.skipped
+    aggregates["directory_missing"] = loaded.directory_missing
     return aggregates
 
 
@@ -456,9 +473,13 @@ def _render_skipped(skipped: list[str]) -> list[str]:
 
 
 def _render_cost(rows: list[dict]) -> list[str]:
+    cached = any(row.get("cache_read_tokens") or row.get("cache_creation_tokens") for row in rows)
     headers = ["Run", "Type", "Entries", "Input tok", "Output tok", "Cost", "Mean latency"]
-    body = [
-        [
+    if cached:
+        headers.insert(5, "Cached tok")
+    body = []
+    for row in rows:
+        cells = [
             f"{row['model']} / {row['prompt_template']}",
             row["entry_type"],
             f"{row['entries']:,}",
@@ -467,8 +488,10 @@ def _render_cost(rows: list[dict]) -> list[str]:
             f"${row['cost_usd']:.4f}",
             f"{row['mean_latency_ms']:,.0f}ms",
         ]
-        for row in rows
-    ]
+        if cached:
+            served = row.get("cache_read_tokens") or 0
+            cells.insert(5, f"{served:,}" if served else "—")
+        body.append(cells)
     total_cost = sum(row["cost_usd"] for row in rows)
     total_entries = sum(row["entries"] for row in rows)
     lines = ["## Runs", ""]
@@ -682,6 +705,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"warning: {message}", file=sys.stderr)
 
     print(render_markdown(aggregates))
+
+    if aggregates["directory_missing"]:
+        # A mistyped --dir otherwise produces an empty report and exit 0, which
+        # in CI is indistinguishable from a run that genuinely found nothing.
+        print(f"error: {args.dir}: directory not found", file=sys.stderr)
+        return 2
 
     if args.json_path:
         args.json_path.parent.mkdir(parents=True, exist_ok=True)

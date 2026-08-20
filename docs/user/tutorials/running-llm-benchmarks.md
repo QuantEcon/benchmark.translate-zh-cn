@@ -122,6 +122,22 @@ The `action-new` template automatically loads the glossary from
 `action-translation`'s GitHub repository (configured in `config.yaml`).
 See [Glossary & Prompt Templates](glossary-and-prompts.md) for full details.
 
+That glossary is around 5,200 tokens, and it is re-sent with every entry — for
+314 short terms it is essentially the entire bill. `qebench run` prompt-caches
+it by default, so it is paid for once per domain rather than once per entry.
+Pass `--no-cache` to bill it every time, which is what the runs already in
+`NOTES.md` did:
+
+```bash
+uv run qebench run --prompt action-new -n 20            # cached (default)
+uv run qebench run --prompt action-new -n 20 --no-cache # every call pays in full
+```
+
+The run summary reports how many tokens were written to and read from the
+cache, so it is easy to tell whether the cache is being hit. See
+[prompt caching](../cli-reference.md#prompt-caching) for why a run writes one
+cache entry per domain, and why a domain with a single entry is left uncached.
+
 ## Step 6: Translate Different Entry Types
 
 By default, `qebench run` translates terms. Use `--type` for other types:
@@ -181,6 +197,8 @@ sentences:
   "difficulty": "intermediate",
   "input_tokens": 59,
   "output_tokens": 26,
+  "cache_creation_tokens": 0,
+  "cache_read_tokens": 0,
   "cost_usd": 0.000567,
   "latency_ms": 1522.5,
   "formatting": {
@@ -196,6 +214,11 @@ sentences:
 `entry_type`, `domain` and `difficulty` are copied from the dataset entry, so
 a run file can be sliced by type or domain on its own, without loading `data/`
 alongside it.
+
+The three token counts do not overlap: `input_tokens` is what was billed at the
+full input rate, and the two cache counts are what was written to and read from
+the prompt cache. The whole prompt is their sum. Both cache fields are zero on
+the record above, and on every run recorded before v0.7.0.
 
 `formatting` holds the five automated checks, scored at write time from the
 source and the translation. The first three are pass/fail; the last two are
