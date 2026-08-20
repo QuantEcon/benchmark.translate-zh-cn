@@ -3,7 +3,7 @@
     "domain": "economics",
     "terms": 70,
     "sentences": 8,
-    "paragraphs": 0
+    "paragraphs": 5
   },
   {
     "domain": "mathematics",
@@ -15,7 +15,7 @@
     "domain": "macroeconomics",
     "terms": 32,
     "sentences": 8,
-    "paragraphs": 3
+    "paragraphs": 5
   },
   {
     "domain": "statistics",
@@ -24,16 +24,16 @@
     "paragraphs": 1
   },
   {
+    "domain": "probability",
+    "terms": 29,
+    "sentences": 8,
+    "paragraphs": 3
+  },
+  {
     "domain": "finance",
     "terms": 39,
     "sentences": 0,
     "paragraphs": 0
-  },
-  {
-    "domain": "probability",
-    "terms": 29,
-    "sentences": 8,
-    "paragraphs": 1
   },
   {
     "domain": "linear-algebra",
@@ -45,13 +45,13 @@
     "domain": "other",
     "terms": 11,
     "sentences": 8,
-    "paragraphs": 3
+    "paragraphs": 5
   },
   {
     "domain": "dynamic-programming",
     "terms": 10,
     "sentences": 8,
-    "paragraphs": 3
+    "paragraphs": 5
   },
   {
     "domain": "stochastic-processes",

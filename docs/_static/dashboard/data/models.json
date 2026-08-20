@@ -1,0 +1,477 @@
+{
+  "runs": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "academic",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9671,
+        "directive_spacing": 0.8824
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 0.9
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "academic",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9875,
+        "directive_spacing": 0.95
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 0.84
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "academic",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 0.7611
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "action-basic",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9457,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 0.75
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "action-basic",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 0.95
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 0.8
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "action-basic",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 97.8,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 99.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9992,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 0.7389
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "action-new",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9671,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 1.0
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "action-new",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9875,
+        "directive_spacing": 0.95
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 1.0
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "action-new",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 1.0
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "default",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9524,
+        "directive_spacing": 0.8235
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 0.9
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "default",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9875,
+        "directive_spacing": 0.95
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 0.88
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "prompt_template": "default",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9936,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 0.7803
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "academic",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9167,
+        "directive_spacing": 0.9412
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 0.75
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "academic",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9875,
+        "directive_spacing": 0.925
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 1.0
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "academic",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 0.7803
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "action-basic",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9755,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 0.8
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "action-basic",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 0.9375
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 0.96
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "action-basic",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 99.4,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 99.4
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9998,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 0.7484
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "action-new",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 1.0
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "action-new",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9875,
+        "directive_spacing": 0.9375
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 1.0
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "action-new",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 1.0
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "default",
+      "entry_type": "paragraphs",
+      "records": 17,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9755,
+        "directive_spacing": 0.9412
+      },
+      "glossary": {
+        "scored": 5,
+        "mean": 0.9
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "default",
+      "entry_type": "sentences",
+      "records": 80,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 0.9875,
+        "directive_spacing": 0.925
+      },
+      "glossary": {
+        "scored": 25,
+        "mean": 0.92
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "prompt_template": "default",
+      "entry_type": "terms",
+      "records": 314,
+      "pass_rates": {
+        "directive_balance": 100.0,
+        "fence_consistency": 100.0,
+        "code_block_integrity": 100.0
+      },
+      "means": {
+        "fullwidth_punctuation": 1.0,
+        "directive_spacing": 1.0
+      },
+      "glossary": {
+        "scored": 314,
+        "mean": 0.8121
+      }
+    }
+  ],
+  "models": [
+    "claude-haiku-4-5-20251001",
+    "claude-sonnet-4-6"
+  ],
+  "prompts": [
+    "academic",
+    "action-basic",
+    "action-new",
+    "default"
+  ],
+  "entry_types": [
+    "paragraphs",
+    "sentences",
+    "terms"
+  ],
+  "records": 3288,
+  "glossary_terms": 357
+}

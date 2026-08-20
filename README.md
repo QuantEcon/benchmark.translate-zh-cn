@@ -49,7 +49,9 @@ qebench update       Pull latest code, data, and dependencies from GitHub
 
 Elo is not part of `stats`. `qebench export` recomputes model ratings from the
 committed judgment logs into `ratings.json`, and the dashboard renders them
-under **Model Ratings**.
+under **Model Ratings**. It also writes `models.json` — formatting fidelity and
+glossary compliance per model, prompt and entry type, computed from the run
+files rather than from judgments, so it covers models nobody has judged yet.
 
 ## Dataset
 

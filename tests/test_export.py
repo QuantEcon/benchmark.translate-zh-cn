@@ -14,6 +14,7 @@ from qebench.commands.export import (
     _difficulty_stats,
     _domain_stats,
     _file_summary,
+    _model_comparison,
     _term_samples,
     _xp_leaderboard,
     export,
@@ -842,3 +843,181 @@ class TestExportIntegration:
         assert [r["username"] for r in activity] == ["alice"]
         leaderboard = json.loads((export_dir / "leaderboard.json").read_text())
         assert [r["username"] for r in leaderboard] == ["alice"]
+
+
+def _run_record(
+    entry_id: str,
+    *,
+    model: str = "claude-sonnet-4-6",
+    prompt: str = "default",
+    entry_type: str | None = "terms",
+    source_text: str = "Bellman equation",
+    translated_text: str = "贝尔曼方程",
+    formatting: dict | None = None,
+) -> dict:
+    record = {
+        "entry_id": entry_id,
+        "source_text": source_text,
+        "translated_text": translated_text,
+        "model": model,
+        "provider": "claude",
+        "prompt_template": prompt,
+    }
+    if entry_type is not None:
+        record["entry_type"] = entry_type
+    if formatting is not None:
+        record["formatting"] = formatting
+    return record
+
+
+def _write_runs(repo_root: Path, name: str, records: list[dict]) -> Path:
+    outputs = repo_root / "results" / "model-outputs"
+    outputs.mkdir(parents=True, exist_ok=True)
+    path = outputs / f"{name}.jsonl"
+    with open(path, "w", encoding="utf-8") as f:
+        for record in records:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    return path
+
+
+GLOSSARY = [{"en": "Bellman equation", "zh-cn": "贝尔曼方程"}]
+
+
+class TestModelComparison:
+    def test_no_run_directory(self, tmp_path: Path) -> None:
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert result["runs"] == []
+        assert result["records"] == 0
+
+    def test_groups_by_model_prompt_and_type(self, tmp_path: Path) -> None:
+        _write_runs(tmp_path, "runs", [
+            _run_record("term-001"),
+            _run_record("term-002"),
+            _run_record("sent-001", entry_type="sentences"),
+            _run_record("term-003", model="claude-haiku-4-5-20251001"),
+        ])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert len(result["runs"]) == 3
+        assert result["models"] == ["claude-haiku-4-5-20251001", "claude-sonnet-4-6"]
+        assert result["entry_types"] == ["sentences", "terms"]
+        terms_row = next(r for r in result["runs"] if r["model"] == "claude-sonnet-4-6" and r["entry_type"] == "terms")
+        assert terms_row["records"] == 2
+
+    def test_glossary_compliance_is_scored(self, tmp_path: Path) -> None:
+        _write_runs(tmp_path, "runs", [
+            _run_record("term-001", translated_text="贝尔曼方程"),
+            _run_record("term-002", translated_text="贝尔曼等式"),
+        ])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        row = result["runs"][0]
+        assert row["glossary"]["scored"] == 2
+        assert row["glossary"]["mean"] == 0.5
+
+    def test_records_the_glossary_says_nothing_about_are_excluded(self, tmp_path: Path) -> None:
+        """Counting them as compliant would report a made-up 100%."""
+        _write_runs(tmp_path, "runs", [
+            _run_record("term-001", translated_text="贝尔曼方程"),
+            _run_record("term-002", source_text="Some unrelated phrase", translated_text="无关短语"),
+        ])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        row = result["runs"][0]
+        assert row["records"] == 2
+        assert row["glossary"]["scored"] == 1
+        assert row["glossary"]["mean"] == 1.0
+
+    def test_a_run_with_nothing_scorable_reports_none_not_zero(self, tmp_path: Path) -> None:
+        _write_runs(tmp_path, "runs", [_run_record("term-001", source_text="Unrelated", translated_text="无关")])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert result["runs"][0]["glossary"] == {"scored": 0, "mean": None}
+
+    def test_an_unavailable_glossary_does_not_fail_the_export(self, tmp_path: Path) -> None:
+        """load_glossary() returns [] when the fetch fails and there is no cache."""
+        _write_runs(tmp_path, "runs", [_run_record("term-001")])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=[]):
+                result = _model_comparison()
+
+        assert result["glossary_terms"] == 0
+        assert result["runs"][0]["glossary"] == {"scored": 0, "mean": None}
+
+    def test_stored_formatting_is_used(self, tmp_path: Path) -> None:
+        stored = {
+            "directive_balance": False,
+            "fence_consistency": True,
+            "code_block_integrity": True,
+            "fullwidth_punctuation": 0.5,
+            "directive_spacing": 1.0,
+        }
+        _write_runs(tmp_path, "runs", [_run_record("term-001", formatting=stored)])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        row = result["runs"][0]
+        assert row["pass_rates"]["directive_balance"] == 0.0
+        assert row["means"]["fullwidth_punctuation"] == 0.5
+
+    def test_missing_formatting_is_computed_on_the_fly(self, tmp_path: Path) -> None:
+        """The April runs predate the field and must stay comparable."""
+        _write_runs(tmp_path, "runs", [_run_record("term-001")])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert result["runs"][0]["pass_rates"]["directive_balance"] == 100.0
+
+    def test_entry_type_falls_back_to_the_id_prefix(self, tmp_path: Path) -> None:
+        _write_runs(tmp_path, "runs", [_run_record("para-001", entry_type=None)])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert result["runs"][0]["entry_type"] == "paragraphs"
+
+    def test_a_malformed_line_does_not_fail_the_build(self, tmp_path: Path) -> None:
+        """export runs in the docs-deploy workflow — one bad line must not stop it."""
+        path = _write_runs(tmp_path, "runs", [_run_record("term-001")])
+        with open(path, "a", encoding="utf-8") as f:
+            f.write("{not valid json\n")
+            f.write('"a bare string"\n')
+            f.write('{"no_entry_id": true}\n')
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert result["records"] == 1
+
+    def test_an_unreadable_file_is_skipped(self, tmp_path: Path) -> None:
+        _write_runs(tmp_path, "good", [_run_record("term-001")])
+        bad = tmp_path / "results" / "model-outputs" / "bad.jsonl"
+        bad.write_bytes(json.dumps(_run_record("term-002"), ensure_ascii=False).encode("gbk") + b"\n")
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert result["records"] == 1

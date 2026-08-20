@@ -364,6 +364,12 @@
     <div class="loading">Loading...</div>
   </div>
 
+  <!-- Model Comparison -->
+  <h2 class="section-title">Model Comparison</h2>
+  <div class="leaderboard" id="models">
+    <div class="loading">Loading...</div>
+  </div>
+
   <!-- Activity Feed -->
   <h2 class="section-title">Recent Activity</h2>
   <div class="activity" id="activity">
@@ -665,8 +671,74 @@ function renderRatings(ratings) {
   `;
 }
 
+function renderModels(models) {
+  const el = document.getElementById('models');
+  const runs = (models && models.runs) || [];
+
+  if (!runs.length) {
+    el.innerHTML = `
+      <div class="leaderboard-empty">
+        <div class="emoji">📐</div>
+        <p>No model output to compare yet!</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+          Run <code style="color: #38bdf8;">qebench run</code> and
+          <code style="color: #38bdf8;">qebench submit</code> — these are computed
+          from the committed run files, so no judging is needed.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  // `pct` is already a global here with a different signature — don't shadow it.
+  const share = (v) => (v == null ? '—' : `${(v * 100).toFixed(0)}%`);
+  const rate = (v) => (v == null ? '—' : `${v.toFixed(0)}%`);
+  const rows = runs.map((r) => {
+    const g = r.glossary || {};
+    const myst = [r.pass_rates.directive_balance, r.pass_rates.fence_consistency,
+                  r.pass_rates.code_block_integrity];
+    const worst = Math.min(...myst);
+    return `
+      <tr>
+        <td style="font-weight: 600;">${esc(r.model)}</td>
+        <td><span class="xp-badge">${esc(r.prompt_template)}</span></td>
+        <td style="color: #94a3b8;">${esc(r.entry_type)}</td>
+        <td style="color: #94a3b8; font-size: 0.85rem;">${r.records}</td>
+        <td>${share(g.mean)}
+          <span style="color: #64748b; font-size: 0.8rem;">${g.scored ? `(${g.scored})` : ''}</span></td>
+        <td>${rate(worst)}</td>
+        <td>${share(r.means.fullwidth_punctuation)}</td>
+      </tr>
+    `;
+  }).join('');
+
+  el.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th><th>Prompt</th><th>Type</th><th>N</th>
+          <th>Glossary</th><th>MyST</th><th>Full-width</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 0.75rem;">
+      Computed from ${models.records || 0} committed model outputs — no judging required,
+      so every model and prompt is covered rather than only the judged pairs.
+      <strong>Glossary</strong> is the share of upstream glossary terms whose expected
+      translation appears in the output, over the records the ${models.glossary_terms || 0}-term
+      glossary has something to say about (count in brackets); it is a containment check,
+      so read it as an upper bound. <code style="color: #38bdf8;">action-new</code> injects
+      the glossary into its prompt, so 100% there means the rule was followed, not that the
+      translation is better. <strong>MyST</strong> is the weakest of the three structural
+      pass rates. <strong>Full-width</strong> is punctuation compliance; figures recorded
+      before 2026-08-19 are not comparable with later ones.
+    </p>
+  `;
+}
+
 async function init() {
-  const [coverage, domains, difficulty, leaderboard, activity, samples, ratings] = await Promise.all([
+  const [coverage, domains, difficulty, leaderboard, activity, samples, ratings, models] = await Promise.all([
     loadJSON('coverage.json'),
     loadJSON('domains.json'),
     loadJSON('difficulty.json'),
@@ -674,6 +746,7 @@ async function init() {
     loadJSON('activity.json'),
     loadJSON('samples.json'),
     loadJSON('ratings.json'),
+    loadJSON('models.json'),
   ]);
 
   renderStats(coverage);
@@ -681,6 +754,7 @@ async function init() {
   renderDifficultyChart(difficulty);
   renderLeaderboard(leaderboard);
   renderRatings(ratings);
+  renderModels(models);
   renderActivity(activity);
   renderSamples(samples);
 }
