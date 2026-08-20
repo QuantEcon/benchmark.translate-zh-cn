@@ -47,12 +47,38 @@ git clone https://github.com/QuantEcon/lecture-intro.zh-cn.git
 
 ```bash
 cd benchmark.translate-zh-cn
-uv run python scripts/seed_from_lectures.py /path/to/quantecon
+uv run python scripts/seed_from_lectures.py /path/to/quantecon --append
 ```
 
 The script outputs:
 - `data/sentences/_seed_lectures.json` — curated sentence pairs
 - `data/paragraphs/_seed_lectures.json` — curated paragraph pairs
+
+### `--append` versus `--overwrite`
+
+Ids are positional: the tenth paragraph in the file is `para-010`. Translation
+attempts, judgments and the reference repairs made by hand in #34 are all keyed
+on those ids, so rewriting a seed file renumbers entries that other data points
+at.
+
+`--append` keeps every committed entry exactly as it stands, byte for byte, and
+adds new ones after it with fresh ids. It is what you want for growing the
+dataset. `--overwrite` rewrites from scratch and renumbers everything; it is
+what you want only for a first seed or a deliberate reset. Running with neither
+flag against existing files stops with an error rather than guessing.
+
+```bash
+# Grow paragraphs to 40, leaving sentences and every committed id alone
+uv run python scripts/seed_from_lectures.py .cache/lectures --append \
+    --paragraph-target 40 --sentence-target 80
+```
+
+Candidates are compared against the committed set on normalised text and then
+on a 0.90 similarity ratio, because upstream rewraps lines and renumbers list
+items — three of the first thirteen candidates were re-extractions of a
+committed paragraph that an exact-match check let through. Text shorter than
+120 characters has to match exactly instead, since a high ratio between two
+short strings means little.
 
 ## How It Works
 
@@ -120,8 +146,14 @@ The script curates the extracted pairs for quality and diversity:
 
 - **Sentences**: targets 80 entries — capped per domain at
   `max(5, target // number of domains present)`, so the mix stays diverse
-- **Paragraphs**: targets 30 entries — prioritizes paragraphs with math,
-  code, directives, and roles
+- **Paragraphs**: targets 30 entries. Paragraphs carrying mixed fencing,
+  directives or roles are taken first, because those are what the formatting
+  checks actually score and a pass rate over easy prose says little. Selection
+  then round-robins across domains, least-covered first, so the weighting does
+  not cost diversity, and `--max-per-domain` (default 5) stops one domain
+  taking every slot — the filename-based domain heuristic falls back to
+  `economics`, which claims 155 of the 184 candidates, so without the cap every
+  addition lands there
 
 ### 6. Domain Classification
 
@@ -215,13 +247,12 @@ Files not in the map default to `"economics"`.
 
 ### Adjusting targets
 
-The `_curate_sentences()` and `_curate_paragraphs()` functions accept a
-`target` parameter:
+Targets are command-line arguments, and count the whole set rather than the
+addition, so re-running with the same target is a no-op:
 
-```python
-# In main():
-sentences = _curate_sentences(target=120)   # more sentences
-paragraphs = _curate_paragraphs(target=50)  # more paragraphs
+```bash
+uv run python scripts/seed_from_lectures.py .cache/lectures --append \
+    --sentence-target 120 --paragraph-target 50 --max-per-domain 6
 ```
 
 ## Validation

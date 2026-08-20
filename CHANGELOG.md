@@ -5,6 +5,39 @@ All notable changes to `qebench` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **Prompt caching for the shared part of a prompt** (issue #37): Every template ends with `{text}`, so everything before it is identical for each entry in a run. `qebench run` now sends that prefix as its own cacheable content block and the entry as a second block. The prompt text is unchanged — only its packaging. This is aimed at `action-new`, where the injected glossary is about 5,200 of the roughly 5,250 tokens spent per term. Replaying the six committed `action-new` runs against the new billing puts them at **$1.88 rather than $8.86**, and the Sonnet terms run at $0.83 rather than $4.9973. `--no-cache` sends the original single-block prompt.
+- **`--cache` / `--no-cache` on `qebench run`**: On by default. `--no-cache` reproduces pre-caching billing, so a cached and an uncached run of the same grid stay comparable.
+- **`cache_creation_tokens` and `cache_read_tokens` on every run record**: The three token counts do not overlap — `input_tokens` is what was billed at the full input rate, and the whole prompt is the sum of all three. `scripts/analyze_runs.py` reports the sum in its existing **Input tok** column and adds a **Cached tok** column when any run used the cache, so a cached run stays comparable with the uncached August round. Records written before this release carry neither field and read back as zero, which is the truth for them.
+- **13 more paragraphs, 17 → 30** (issue #37): The target in `README.md` is met. Selection now takes paragraphs carrying directives or roles first — those are what `directive_balance` and `directive_spacing` score, and a 100% pass rate over easy prose says little. Directive-carrying entries go from 6/17 to 11/30, math from 12 to 23, code from 6 to 12. No paragraph with mixed fencing exists in the candidate pool, so that part of the ask is unmet rather than partly met. All 30 pass `validate --strict` and the alignment audit flags 0.
+- **`--append` on `scripts/seed_from_lectures.py`**: Ids are positional, so the existing behaviour — rewrite the file, renumber every entry — would have detached translation attempts, judgments and the #34 reference repairs from their entries. `--append` keeps every committed entry byte for byte and adds new ones after it. The destructive path now needs `--overwrite` said out loud, and running with neither flag against existing files stops rather than guessing. `--paragraph-target`, `--sentence-target` and `--max-per-domain` replace editing the source to change a target.
+- **`providers.base.split_prompt()`**: Renders a template as `(prefix, suffix)` at the `{text}` boundary. `prefix + suffix` is exactly what the un-split `.format()` produced, so a provider that cannot cache concatenates the two and sends the original prompt. The source text is concatenated rather than substituted, so a paragraph containing ```` ```{math} ```` is not re-read as a format field.
+
+### Fixed
+
+- **`scripts/analyze_runs.py` exited 0 when `--dir` did not exist**, so a typo in CI read as a clean run over an empty directory. It now prints the reason and exits 2, and writes no `--json` file. A directory that exists but holds nothing, or holds only corrupt files, still exits 0 — nothing found is not the same failure as nowhere to look.
+- **Near-duplicate seed candidates**: The seeder compared candidates against committed entries on exact text, so a passage upstream had rewrapped or renumbered came back as a second entry. Three of the first thirteen paragraph candidates were re-extractions of `para-001`, `para-016` and `para-007` at 0.95 similarity or better, while nothing unrelated came within 0.50. Comparison is now on whitespace-normalised text plus a 0.90 similarity ratio, with text under 120 characters still needing to match exactly. A test asserts no two committed paragraphs are the same passage.
+- **A brace in a glossary entry would have crashed a run.** The glossary is substituted into the template before `str.format()` renders it, so a headword such as `Set {math}` would have been read as a format field. Braces are escaped on injection; the glossary carries none today, across 357 terms. Injection moved into `run._inject_glossary()` so it is testable on its own.
+
+### Changed
+
+- **`translate_batch` warms the cache before it fans out.** A cache entry is only readable once the response that wrote it has begun, so firing all ten workers at once made every one of them pay the 1.25x write premium. One entry per distinct prefix is now translated first. Prefixes are grouped rather than assumed identical because `action-new` interpolates `{domain}` on line 3, **ahead of** the glossary — a terms run renders 15 distinct prefixes, one per domain, not one for the run.
+- **A prefix rendered by a single entry is left uncached.** A write costs 1.25x and a read 0.1x, so caching an entry nothing reads back only costs more. Three of the 17 paragraphs are the only entry in their domain.
+- `TranslationProvider.translate()` takes `cache_prefix`, which `translate_batch` sets False for those single-entry prefixes. Providers that do not cache prompts ignore it.
+- The OpenAI provider reports `prompt_tokens_details.cached_tokens` as `cache_read_tokens` and subtracts it from `input_tokens`, so both providers agree on what the fields mean. Cached tokens are still billed at the full input rate there — OpenAI discounts them, but the rate is not pinned per model in `_PRICING`, so the reported cost is an upper bound until the OpenAI baseline lands.
+- Tests: 626 → 702.
+
+### Notes
+
+- **`action-basic`'s failure on short fragments is a framing fault, not a missing glossary** (issue #37). `results/model-outputs/NOTES.md` read the August result — Haiku emitting documentation pages for 42.7% of terms under `action-basic` and 0% under `action-new` — as the glossary block being what holds the model in translation mode. Tested directly over 30 short terms, three lines of scoping (+43 tokens) fix it as completely as the 5,000-token glossary, and so does a 20-term glossary; what they share is showing the model that the expected output is short. The broken prompt is also the expensive one, at about five times the scoped variant, because each failure emits a 450–1,832 token page instead of a nine-token translation. Replicated on a held-out 30. `prompts/action-basic.txt` is **unchanged** — editing it would break comparability with the `action-basic` records already committed. NOTES.md carries the numbers and the recommendation.
+
+### Known
+
+- **Moving `Domain: {domain}` below the glossary in `prompts/action-new.txt` would collapse 15 cache entries into one**, taking the Sonnet terms run from about $0.83 to about $0.55. It is not done here because it changes the prompt, and every `action-new` record already committed was produced with the domain on line 3.
+
 ## [0.6.0] - 2026-08-19
 
 A tooling release. The v0.5.0 features — MyST formatting validators, the `action-*` prompts, seeded paragraphs — had no LLM output to score; this release generates it, aggregates it, and closes the loop back to `action-translation`'s glossary. The data goals proposed for this milestone (an OpenAI baseline, ≥100 judgments from ≥2 judges, the first upstream glossary PR) move to 0.7.0.

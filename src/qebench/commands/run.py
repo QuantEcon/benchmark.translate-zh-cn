@@ -30,7 +30,7 @@ _PROVIDERS: dict[str, tuple[str, str]] = {
 }
 
 
-def _get_provider(name: str, *, model: str | None = None):
+def _get_provider(name: str, *, model: str | None = None, cache: bool = True):
     """Lazily import and instantiate a provider by name."""
     if name not in _PROVIDERS:
         available = ", ".join(sorted(_PROVIDERS))
@@ -41,7 +41,24 @@ def _get_provider(name: str, *, model: str | None = None):
 
     mod = importlib.import_module(module_path)
     cls = getattr(mod, class_name)
-    return cls(model=model)
+    return cls(model=model, cache=cache)
+
+
+def _inject_glossary(template: str, glossary_terms: list[dict]) -> str:
+    """Substitute the ``{glossary}`` placeholder with the glossary block.
+
+    The result is rendered with :meth:`str.format` downstream, so braces coming
+    from the glossary are escaped — a headword such as ``Set {math}`` would
+    otherwise be read as a format field and raise.
+    """
+    if glossary_terms:
+        glossary_text = "\n".join(
+            f"  {t.get('en', '')} → {t.get('zh-cn', '')}"
+            for t in sorted(glossary_terms, key=lambda t: t.get("en", ""))
+        )
+    else:
+        glossary_text = "(no glossary loaded)"
+    return template.replace("{glossary}", glossary_text.replace("{", "{{").replace("}", "}}"))
 
 
 def _save_results(
@@ -70,6 +87,8 @@ def _save_results(
                 "difficulty": meta.get("difficulty", ""),
                 "input_tokens": r.input_tokens,
                 "output_tokens": r.output_tokens,
+                "cache_creation_tokens": r.cache_creation_tokens,
+                "cache_read_tokens": r.cache_read_tokens,
                 "cost_usd": round(r.cost_usd, 6),
                 "latency_ms": round(r.latency_ms, 1),
                 "formatting": formatting_score(r.source_text, r.translated_text),
@@ -86,6 +105,9 @@ def run(
     domain: str | None = typer.Option(None, "--domain", "-d", help="Filter by domain."),
     entry_type: str = typer.Option("terms", "--type", "-t", help="Entry type: terms, sentences, paragraphs."),
     dry_run: bool = typer.Option(False, "--dry-run", help="Preview entries without calling the API."),
+    cache: bool = typer.Option(
+        True, "--cache/--no-cache", help="Prompt-cache the shared part of the template."
+    ),
 ) -> None:
     """Batch translate dataset entries via an LLM provider."""
     # Load config for language pair
@@ -102,15 +124,7 @@ def run(
     if "{glossary}" in template:
         from qebench.utils.dataset import load_glossary
 
-        glossary_terms = load_glossary()
-        if glossary_terms:
-            glossary_text = "\n".join(
-                f"  {t.get('en', '')} → {t.get('zh-cn', '')}"
-                for t in sorted(glossary_terms, key=lambda t: t.get("en", ""))
-            )
-        else:
-            glossary_text = "(no glossary loaded)"
-        template = template.replace("{glossary}", glossary_text)
+        template = _inject_glossary(template, load_glossary())
 
     # Load entries
     terms, sentences, paragraphs = load_all()
@@ -142,7 +156,8 @@ def run(
             f"[bold]Model:[/bold] {model or '(default)'}\n"
             f"[bold]Prompt:[/bold] {prompt}\n"
             f"[bold]Entries:[/bold] {len(texts)} {entry_type}"
-            + (f" ({domain})" if domain else ""),
+            + (f" ({domain})" if domain else "")
+            + f"\n[bold]Prompt cache:[/bold] {'on' if cache else 'off'}",
             title="qebench run",
             border_style="blue",
         )
@@ -157,7 +172,7 @@ def run(
         return
 
     # Instantiate provider
-    llm = _get_provider(provider, model=model)
+    llm = _get_provider(provider, model=model, cache=cache)
 
     # Run translations via batch API
     run_id = f"{provider}-{llm.model}-{prompt}-{int(time.time())}"
@@ -190,7 +205,9 @@ def run(
 
     # Summary
     total_cost = sum(r.cost_usd for r in results)
-    total_tokens = sum(r.input_tokens + r.output_tokens for r in results)
+    total_tokens = sum(r.prompt_tokens + r.output_tokens for r in results)
+    cache_written = sum(r.cache_creation_tokens for r in results)
+    cache_read = sum(r.cache_read_tokens for r in results)
     avg_latency = sum(r.latency_ms for r in results) / len(results) if results else 0
 
     summary = Table(title="Run Summary", border_style="green")
@@ -198,6 +215,9 @@ def run(
     summary.add_column("Value", justify="right")
     summary.add_row("Entries translated", str(len(results)))
     summary.add_row("Total tokens", f"{total_tokens:,}")
+    if cache_written or cache_read:
+        summary.add_row("Cache written", f"{cache_written:,}")
+        summary.add_row("Cache read", f"{cache_read:,}")
     summary.add_row("Total cost", f"${total_cost:.4f}")
     summary.add_row("Avg latency", f"{avg_latency:.0f}ms")
     summary.add_row("Output file", str(output_path.relative_to(DATA_DIR.parent)))

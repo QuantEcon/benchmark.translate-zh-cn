@@ -25,6 +25,7 @@ class DummyProvider(TranslationProvider):
         domain: str,
         prompt_template: str,
         model: str | None = None,
+        cache_prefix: bool = True,
     ) -> TranslationResult:
         return TranslationResult(
             entry_id="",
