@@ -61,7 +61,16 @@ class StubMessages:
 
 
 def make_claude(usage: StubUsage | None = None, *, cache: bool = True, model: str | None = None):
-    provider = ClaudeProvider(api_key="test-key", model=model, cache=cache)
+    """Build a provider around a stub client, without the anthropic SDK.
+
+    ``__init__`` is bypassed because it imports ``anthropic``, which CI does
+    not install — it runs ``uv sync --extra dev``, and the SDKs live in the
+    ``llm`` extra. Nothing under test touches the SDK; the only thing that
+    would is the client the stub replaces.
+    """
+    provider = ClaudeProvider.__new__(ClaudeProvider)
+    provider._model = model or provider.default_model
+    provider._cache = cache
     stub = StubMessages(usage)
     provider._client = type("StubClient", (), {"messages": stub})()
     return provider, stub
