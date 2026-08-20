@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 
 - **`scripts/analyze_runs.py` exited 0 when `--dir` did not exist**, so a typo in CI read as a clean run over an empty directory. It now prints the reason and exits 2, and writes no `--json` file. A directory that exists but holds nothing, or holds only corrupt files, still exits 0 — nothing found is not the same failure as nowhere to look.
+- **A no-op `--append` could still add an entry.** `_curate_sentences()` appends before it checks the target, so it returned one sentence whenever the target was zero or less — and in `--append` mode the target is the shortfall against what is already committed, making `--sentence-target 80` against 80 committed sentences compute 0 and hand back a candidate. It never landed a row only because the top-scored candidate was already committed and the new dedup pass dropped it; had upstream rewrapped that sentence past the similarity threshold, a no-op run would have appended `sent-081`. Guarded inside the function so it holds for every caller. Re-running `--append` at the default targets is now a true no-op. Found by Copilot's review of PR #38.
 - **Near-duplicate seed candidates**: The seeder compared candidates against committed entries on exact text, so a passage upstream had rewrapped or renumbered came back as a second entry. Three of the first thirteen paragraph candidates were re-extractions of `para-001`, `para-016` and `para-007` at 0.95 similarity or better, while nothing unrelated came within 0.50. Comparison is now on whitespace-normalised text plus a 0.90 similarity ratio, with text under 120 characters still needing to match exactly. A test asserts no two committed paragraphs are the same passage.
 - **A brace in a glossary entry would have crashed a run.** The glossary is substituted into the template before `str.format()` renders it, so a headword such as `Set {math}` would have been read as a format field. Braces are escaped on injection; the glossary carries none today, across 357 terms. Injection moved into `run._inject_glossary()` so it is testable on its own.
 
@@ -28,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **A prefix rendered by a single entry is left uncached.** A write costs 1.25x and a read 0.1x, so caching an entry nothing reads back only costs more. Three of the 17 paragraphs are the only entry in their domain.
 - `TranslationProvider.translate()` takes `cache_prefix`, which `translate_batch` sets False for those single-entry prefixes. Providers that do not cache prompts ignore it.
 - The OpenAI provider reports `prompt_tokens_details.cached_tokens` as `cache_read_tokens` and subtracts it from `input_tokens`, so both providers agree on what the fields mean. Cached tokens are still billed at the full input rate there — OpenAI discounts them, but the rate is not pinned per model in `_PRICING`, so the reported cost is an upper bound until the OpenAI baseline lands.
-- Tests: 626 → 702.
+- Tests: 626 → 706.
 
 ### Notes
 
