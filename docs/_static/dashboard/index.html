@@ -731,8 +731,9 @@ function renderModels(models) {
       so read it as an upper bound. <code style="color: #38bdf8;">action-new</code> injects
       the glossary into its prompt, so 100% there means the rule was followed, not that the
       translation is better. <strong>MyST</strong> is the weakest of the three structural
-      pass rates. <strong>Full-width</strong> is punctuation compliance; figures recorded
-      before 2026-08-19 are not comparable with later ones.
+      pass rates. <strong>Full-width</strong> is punctuation compliance. Every row is scored by
+      today's checks rather than by whatever was recorded at run time, so runs from
+      different dates are directly comparable.
     </p>
   `;
 }

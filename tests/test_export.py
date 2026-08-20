@@ -960,13 +960,19 @@ class TestModelComparison:
         assert result["glossary_terms"] == 0
         assert result["runs"][0]["glossary"] == {"scored": 0, "mean": None}
 
-    def test_stored_formatting_is_used(self, tmp_path: Path) -> None:
+    def test_stored_formatting_is_ignored(self, tmp_path: Path) -> None:
+        """A stored score is whatever the checks said then, not what they say now.
+
+        `check_fullwidth_punctuation` was corrected in v0.6.0, so a table mixing
+        stored and recomputed rows would compare metric versions as much as
+        models. The stored dict here is deliberately wrong in both directions.
+        """
         stored = {
             "directive_balance": False,
-            "fence_consistency": True,
-            "code_block_integrity": True,
+            "fence_consistency": False,
+            "code_block_integrity": False,
             "fullwidth_punctuation": 0.5,
-            "directive_spacing": 1.0,
+            "directive_spacing": 0.5,
         }
         _write_runs(tmp_path, "runs", [_run_record("term-001", formatting=stored)])
 
@@ -975,8 +981,27 @@ class TestModelComparison:
                 result = _model_comparison()
 
         row = result["runs"][0]
-        assert row["pass_rates"]["directive_balance"] == 0.0
-        assert row["means"]["fullwidth_punctuation"] == 0.5
+        assert row["pass_rates"]["directive_balance"] == 100.0
+        assert row["means"]["fullwidth_punctuation"] == 1.0
+
+    def test_a_stored_and_an_unstored_record_score_alike(self, tmp_path: Path) -> None:
+        """The April runs carry no formatting field; both must land on one metric."""
+        stored = {
+            "directive_balance": False,
+            "fence_consistency": False,
+            "code_block_integrity": False,
+            "fullwidth_punctuation": 0.0,
+            "directive_spacing": 0.0,
+        }
+        _write_runs(tmp_path, "with", [_run_record("term-001", formatting=stored)])
+        _write_runs(tmp_path, "without", [_run_record("term-002", prompt="academic")])
+
+        with patch("qebench.commands.export._REPO_ROOT", tmp_path):
+            with patch("qebench.commands.export.load_glossary", return_value=GLOSSARY):
+                result = _model_comparison()
+
+        assert {r["means"]["fullwidth_punctuation"] for r in result["runs"]} == {1.0}
+        assert {r["pass_rates"]["directive_balance"] for r in result["runs"]} == {100.0}
 
     def test_missing_formatting_is_computed_on_the_fly(self, tmp_path: Path) -> None:
         """The April runs predate the field and must stay comparable."""

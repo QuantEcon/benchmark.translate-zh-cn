@@ -246,10 +246,21 @@ def _entry_type(record: dict) -> str:
 
 
 def _formatting(record: dict) -> dict:
-    """Stored formatting scores, or scores computed now for older records."""
-    stored = record.get("formatting")
-    if isinstance(stored, dict) and all(key in stored for key in _FORMATTING_KEYS):
-        return {key: stored[key] for key in _FORMATTING_KEYS}
+    """Score a record's formatting with the current checks, ignoring any stored dict.
+
+    The stored ``formatting`` field is whatever the checks said when the run was
+    written, so a table mixing stored and recomputed rows compares metric
+    versions as much as models.  ``check_fullwidth_punctuation`` was corrected
+    in v0.6.0, and today every committed record happens to agree with a
+    recompute — the April runs carry no stored field, and the August runs were
+    stamped after the fix.  Recomputing makes that a property of the export
+    rather than a coincidence that a single run committed from stale code would
+    quietly end.
+
+    :mod:`scripts.analyze_runs` deliberately prefers the stored value and
+    flags what it rescored, because it reports on runs as they were recorded.
+    This is a cross-run comparison, so uniformity wins instead.
+    """
     return formatting_score(str(record.get("source_text", "")), str(record.get("translated_text", "")))
 
 
@@ -270,6 +281,9 @@ def _model_comparison() -> dict:
     The check is plain containment, so a translation that happens to contain
     the expected characters counts as compliant even when the surrounding text
     is wrong. It reads as an upper bound.
+
+    Formatting is recomputed for every record rather than read from the stored
+    field, so each row is scored by the same checks — see :func:`_formatting`.
     """
     records = _run_records()
     glossary = load_glossary()
