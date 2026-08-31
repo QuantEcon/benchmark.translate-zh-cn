@@ -101,3 +101,15 @@
 {"entry_id": "term-096", "attempt": "戈登公式", "reference": "戈登公式", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-18T05:16:12.298119+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-054", "attempt": "通货膨胀税", "reference": "通货膨胀税", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-18T05:17:28.978289+00:00", "cli_version": "0.5.0"}
 {"entry_id": "term-105", "attempt": "货币供给", "reference": "货币供给", "confidence": 5, "similarity": 1.0, "timestamp": "2026-08-18T05:17:35.464352+00:00", "cli_version": "0.5.0"}
+{"entry_id": "term-085", "attempt": "年金", "reference": "年金", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T09:50:45.199085+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-269", "attempt": "支持", "reference": "支持", "confidence": 3, "similarity": 1.0, "timestamp": "2026-08-31T09:52:37.230436+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-121", "attempt": "标的资产", "reference": "标的资产", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T10:01:03.868067+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-028", "attempt": "成本函数", "reference": "成本函数", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T10:01:08.901272+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-259", "attempt": "边际分布", "reference": "边缘分布", "confidence": 4, "similarity": 0.6, "timestamp": "2026-08-31T10:01:26.675623+00:00", "cli_version": "0.6.0", "diff_reason": "alt-technical"}
+{"entry_id": "term-149", "attempt": "封闭经济", "reference": "封闭经济", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T10:01:38.393748+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-266", "attempt": "概率密度函数", "reference": "概率密度函数", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T10:01:46.095802+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-254", "attempt": "独立同分布", "reference": "独立同分布", "confidence": 5, "similarity": 1.0, "timestamp": "2026-08-31T10:02:07.987697+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-093", "attempt": "法定货币", "reference": "法定货币", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T10:02:57.217748+00:00", "cli_version": "0.6.0"}
+{"entry_id": "sent-055", "attempt": "该模型由{cite}`samuelson1971stochastic`、{cite}`wright1982economic`、{cite}`scheinkman1983simple`、{cite}`deaton1992on`、{cite}`deaton1996competitive`和{cite}`chambers1996theory`提出。", "reference": "该模型由 {cite}`samuelson1971stochastic`、{cite}`wright1982economic`、{cite}`scheinkman1983simple`、{cite}`deaton1992on`、{cite}`deaton1996competitive` 和 {cite}`chambers1996theory` 开发。", "confidence": 4, "similarity": 0.9, "timestamp": "2026-08-31T10:48:05.225577+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-145", "attempt": "资本总需求", "reference": "资本总需求", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T10:48:33.767084+00:00", "cli_version": "0.6.0"}
+{"entry_id": "term-219", "attempt": "生产者剩余", "reference": "生产者剩余", "confidence": 4, "similarity": 1.0, "timestamp": "2026-08-31T10:48:42.610624+00:00", "cli_version": "0.6.0"}
